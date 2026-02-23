@@ -65,7 +65,7 @@ DOJ subpoena names a BVI shell. ICIJ Offshore Leaks confirms it. Scouting Intern
 | **Financial transactions modeled** | **81,451** (5B) + **23,832** (5C directional) | ~186 normalized | 0 | 0 |
 | **Directional fund flows (A→B)** | **23,832** | qualitative | 0 | 0 |
 | **Wire transfers in master ledger** | **382** (Phase 25 audited) | 0 | 0 | 0 |
-| **Relational database tables** | **28+** | 3-4 | — | — |
+| **Relational database tables** | **35** | 3-4 | — | — |
 | **Confidence-tiered scoring** | ✅ 5-axis | — | — | — |
 | **Redaction proximity analysis** | ✅ | ✅ (different method) | — | — |
 | **SAR cross-validation** | ✅ **104.6%** | — | — | — |
@@ -88,7 +88,7 @@ DOJ subpoena names a BVI shell. ICIJ Offshore Leaks confirms it. Scouting Intern
 | **Extraction Phases** | 25 |
 | **Contamination Bugs Caught & Fixed** | 9 |
 | **Wire Transfers in Master Ledger** | 382 (Phase 25 audited) |
-| **Shell-to-Shell Transfers Identified** | 43 |
+| **Shell-to-Shell Transfers Identified** | 45 |
 | **Shell Trust Hierarchy Tiers Mapped** | 4 |
 
 ### Three-Tier Confidence Framework
@@ -158,7 +158,7 @@ All amounts are (Unverified) automated extractions. See [FINDINGS.md](docs/FINDI
 
 ---
 
-## Database Schema (28+ Tables)
+## Database Schema (35 Tables)
 
 > See full database architecture diagram: **[SCHEMA.md](docs/SCHEMA.md)**
 
@@ -171,7 +171,7 @@ This is not a search index. This is a relational forensic database.
 - `trust_transfers` — Trust-to-trust transfer records
 - `fincen_transactions` — FinCEN SAR data cross-referenced against corpus
 - `fincen_bank_connections` — Bank relationship mapping from regulatory filings
-- `financial_hits` — 35,375 raw financial content extraction markers
+- `financial_hits` — 81,451 raw financial content extraction markers
 - `financial_redactions` — Redacted financial content specifically tracked
 - `master_wire_ledger` — 382 Phase 25-audited wires with flow direction and entity classification
 
@@ -208,7 +208,7 @@ Phase 5B   Operational Cost Model → confidence-tiered financial extraction
 Phase 5C   Entity-to-Entity Fund Flows → directional A→B with 5-axis scoring
 Phase 5D   Payment-Travel-Victim Correlation → temporal pattern analysis
 Phase 5E   Redaction Map → navigational tool for document analysis
-Phases 14-25  Wire Transfer Extraction Pipeline → 382-wire master ledger, $1.964B
+Phases 14-25  Wire Transfer Extraction Pipeline → 420-wire master ledger, $1.964B
 ```
 
 ### Wire Transfer Extraction Pipeline (Phases 14-25)
@@ -223,6 +223,7 @@ Phases 14-25  Wire Transfer Extraction Pipeline → 382-wire master ledger, $1.9
 | 22 | Forensic scrub — chain-hop inflation removed | -$311M removed |
 | 23 | Date-aware census (same amount, different dates) | +$189M recovered |
 | 24 | Above-cap verified wires + bank custodian audit | +$121M / -$113M |
+| 5H | Multi-bank statement promotion (38 net-new entity-linked wires) | +$88M |
 | 25 | Date recovery from source context fields | +75 dates (31.9%→51.6%), 0 collisions |
 | **25** | **Date recovery from source context fields** | **75 dates recovered (31.9%→51.6%), 0 collisions** |
 
@@ -323,10 +324,10 @@ Source workbook: **[Forensic Workbook](https://docs.google.com/spreadsheets/d/11
 
 ### Visual Guides
 
-- **[SCHEMA.md](docs/SCHEMA.md)** — Full database architecture showing how 28+ tables, 11.4M entities, and 1.48M files feed into the 382-wire master ledger
+- **[SCHEMA.md](docs/SCHEMA.md)** — Full database architecture showing how 28+ tables, 11.4M entities, and 1.48M files feed into the 420-wire master ledger
 - **[NETWORK.md](docs/NETWORK.md)** — Annotated trust network flow diagram with dollar amounts on every edge
 
-### Forensic Workbook v6.1 (11 Tabs)
+### Forensic Workbook v7 (14 Tabs)
 
 | Tab | Name | Description |
 |:---:|------|-------------|
@@ -337,10 +338,13 @@ Source workbook: **[Forensic Workbook](https://docs.google.com/spreadsheets/d/11
 | 5 | Master Wire Ledger | 382 wires with flow direction, entity types, recovery flags |
 | 6 | Above-Cap Verified | 8 court-verified wires above $10M ($120.6M) |
 | 7 | Date Recovery | Same-amount different-date analysis (95 Phase 23 + 75 Phase 25 recoveries) |
-| 8 | Entity P&L | 158 entities with inflow/outflow/net, shell flags |
+| 8 | Entity P&L | 202 entities with inflow/outflow/net, shell flags |
 | 9 | Shell Network | 221 shell-involved wires, 43 shell-to-shell |
 | 10 | SAR Comparison | Bank-by-bank vs FinCEN benchmarks |
 | 11 | Methodology | 9 bugs documented, data sources, 10 limitations |
+| 12 | **Multi-Bank Wires** ★ | 949 wires across verified + bank statement transactions |
+| 13 | **Bank Statement Coverage** ★ | 14 banks × 25 years heat map (1999-2023) |
+| 14 | **Multi-Bank Summary** ★ | Pipeline comparison, validation tiers, 2003-04 gap analysis |
 
 ---
 
@@ -364,7 +368,7 @@ This repository publishes methodology, findings, and summary data. The underlyin
 - **Reproducibility through transparency**: The methodology documentation, scoring weights, classification rules, and dedup logic are fully described — enabling independent replication without distributing the tooling itself.
 - **Ongoing analysis**: The database and pipeline remain active analytical tools. Premature release could compromise the integrity of forthcoming data narratives and follow-on investigations.
 
-The master wire ledger (382 wires) and entity classification data are published in full in the `data/` directory. These represent the final audited outputs and are sufficient for independent verification of all published findings.
+The master wire ledger (420 wires) and entity classification data are published in full in the `data/` directory. These represent the final audited outputs and are sufficient for independent verification of all published findings.
 
 ---
 
