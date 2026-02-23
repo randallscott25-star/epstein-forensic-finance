@@ -87,7 +87,7 @@ DOJ subpoena names a BVI shell. ICIJ Offshore Leaks confirms it. Scouting Intern
 | **Extraction Coverage** | **104.6%** |
 | **Extraction Phases** | 25 |
 | **Contamination Bugs Caught & Fixed** | 9 |
-| **Wire Transfers in Master Ledger** | 382 (Phase 25 audited) |
+| **Wire Transfers in Master Ledger** | 420 (Phase 5H audited) |
 | **Shell-to-Shell Transfers Identified** | 45 |
 | **Shell Trust Hierarchy Tiers Mapped** | 4 |
 
@@ -138,12 +138,14 @@ All amounts are (Unverified) automated extractions. See [FINDINGS.md](docs/FINDI
 
 | Direction | Wires | Amount (Unverified) | Share |
 |-----------|------:|-------:|------:|
-| **MONEY IN** — External → Epstein entities | 91 | $232,538,043 | 41.7% |
-| **INTERNAL MOVE** — Shell → Shell reshuffling | 39 | $112,610,112 | 20.2% |
-| **PASS-THROUGH** — Attorney/trust administration | 130 | $72,433,003 | 13.0% |
-| **MONEY OUT** — Epstein entities → External | 51 | $63,266,349 | 11.3% |
-| **BANK → SHELL** — Custodian disbursements | 27 | $53,717,045 | 9.6% |
-| Other (Shell→Bank, Interbank, External→Bank) | 44 | $23,504,429 | 4.2% |
+| **MONEY IN** — External → Epstein entities | 102 | $238,376,891 | 36.9% |
+| **INTERNAL MOVE** — Shell → Shell reshuffling | 43 | $189,608,168 | 29.3% |
+| **PASS-THROUGH** — Attorney/trust administration | 141 | $73,965,062 | 11.4% |
+| **MONEY OUT** — Epstein entities → External | 63 | $65,841,728 | 10.2% |
+| **BANK → SHELL** — Custodian disbursements | 26 | $53,576,645 | 8.3% |
+| **SHELL → BANK** — Returns to custodian | 10 | $14,726,112 | 2.3% |
+| **BANK → EXTERNAL** — Direct bank payments | 22 | $8,690,228 | 1.3% |
+| Other (External→Bank, Interbank) | 13 | $1,510,070 | 0.2% |
 
 ### SAR Benchmark (Public Record, Independently Verified)
 
@@ -173,7 +175,7 @@ This is not a search index. This is a relational forensic database.
 - `fincen_bank_connections` — Bank relationship mapping from regulatory filings
 - `financial_hits` — 81,451 raw financial content extraction markers
 - `financial_redactions` — Redacted financial content specifically tracked
-- `master_wire_ledger` — 382 Phase 25-audited wires with flow direction and entity classification
+- `master_wire_ledger` — 420 Phase 5H-audited wires with flow direction and entity classification
 
 **Entity Intelligence**
 - `entities` — 11.4M extracted entities with NLP classification (PERSON, ORG, GPE)
@@ -292,7 +294,7 @@ Only one gap ($5-15M excluded tiers) has a credible dollar estimate. The others 
 | 15 | [Gratitude America: The Charity That Invested](narratives/15_gratitude_america.md) | Tax-exempt charity routing $2–20M to Boothbay, Honeycomb, Valar, Coatue | 89 financial · $45M wires |
 | 16 | [The Accountant](narratives/16_the_accountant.md) | Richard Kahn / HBRK Associates: 18,833 emails, 11,153 files, touches every shell | 18,833 emails · 11,153 files |
 | 18 | [Offshore Architecture: The Brunel–BVI–ICIJ Bridge](narratives/18_offshore_architecture.md) | DOJ subpoena ↔ ICIJ Offshore Leaks ↔ FinCEN cross-reference. Scouting International BVI shell. $10M+ Butterfly Trust. 8,526 pages, 172 docs | 3 databases · 172 docs · 689 NetIncorp entities scanned |
-| 17 | [One-Way Money](narratives/17_the_architecture.md) | $272M in. $63M out. $209M gap. First multi-institution balance sheet | 382 wires · 158 entities · $558M |
+| 17 | [One-Way Money](narratives/17_the_architecture.md) | $272M in. $63M out. $209M gap. First multi-institution balance sheet | 420 wires · 202 entities · $558M |
 
 Source workbook: **[Forensic Workbook](https://docs.google.com/spreadsheets/d/11lw0QjMZ-rYIjWesv5VG1YKts57ahPEm/edit?usp=sharing&ouid=103970896670138914877&rtpof=true&sd=true)** · [Interactive Shell Network](https://randallscott25-star.github.io/epstein-forensic-finance/visualizations/shell_network.html)
 
@@ -312,8 +314,8 @@ Source workbook: **[Forensic Workbook](https://docs.google.com/spreadsheets/d/11
 │   └── SOURCE_APPENDIX_TEMPLATE.md        ← Standard template for future narratives (N17+)
 ├── narratives/                            ← 16 forensic data narratives with source appendices
 ├── data/
-│   ├── master_wire_ledger_phase25.json    ← 382 wires (publication dataset)
-│   └── entity_classification.json         ← Entity → type mapping (158 entities)
+│   ├── master_wire_ledger_phase25.json    ← 420 wires (publication dataset)
+│   └── entity_classification.json         ← Entity → type mapping (202 entities)
 ├── visualizations/                        ← Interactive shell network diagram
 └── tools/
     ├── linkify_efta.py                    ← Auto-link EFTA IDs → DOJ PDFs in .md files
@@ -324,7 +326,7 @@ Source workbook: **[Forensic Workbook](https://docs.google.com/spreadsheets/d/11
 
 ### Visual Guides
 
-- **[SCHEMA.md](docs/SCHEMA.md)** — Full database architecture showing how 28+ tables, 11.4M entities, and 1.48M files feed into the 420-wire master ledger
+- **[SCHEMA.md](docs/SCHEMA.md)** — Full database architecture showing how 35 tables, 11.4M entities, and 1.48M files feed into the 420-wire master ledger
 - **[NETWORK.md](docs/NETWORK.md)** — Annotated trust network flow diagram with dollar amounts on every edge
 
 ### Forensic Workbook v7 (14 Tabs)
@@ -335,11 +337,11 @@ Source workbook: **[Forensic Workbook](https://docs.google.com/spreadsheets/d/11
 | 2 | Extraction Phases | 25-phase pipeline with running totals, bug fixes color-coded |
 | 3 | **Money Flow Patterns** | Every wire classified: MONEY IN / INTERNAL MOVE / MONEY OUT |
 | 4 | **Shell Trust Hierarchy** | 4-tier network with actual dollar flows per entity |
-| 5 | Master Wire Ledger | 382 wires with flow direction, entity types, recovery flags |
+| 5 | Master Wire Ledger | 420 wires with flow direction, entity types, recovery flags |
 | 6 | Above-Cap Verified | 8 court-verified wires above $10M ($120.6M) |
 | 7 | Date Recovery | Same-amount different-date analysis (95 Phase 23 + 75 Phase 25 recoveries) |
 | 8 | Entity P&L | 202 entities with inflow/outflow/net, shell flags |
-| 9 | Shell Network | 221 shell-involved wires, 43 shell-to-shell |
+| 9 | Shell Network | 247 shell-involved wires, 43 shell-to-shell |
 | 10 | SAR Comparison | Bank-by-bank vs FinCEN benchmarks |
 | 11 | Methodology | 9 bugs documented, data sources, 10 limitations |
 | 12 | **Multi-Bank Wires** ★ | 949 wires across verified + bank statement transactions |
@@ -364,7 +366,7 @@ This repository publishes methodology, findings, and summary data. The underlyin
 
 - **AICPA SSFS No. 1 (Statement on Standards for Forensic Services)** establishes that forensic practitioners maintain control over working papers, proprietary methodologies, and analytical tools. Work product privilege protects the analytical process.
 - **AICPA AU-C §230 (Audit Documentation)** provides that audit documentation is the property of the practitioner and should be retained under the practitioner's control. Sufficient documentation is provided for a knowledgeable reviewer to understand the work performed.
-- **Chain of custody**: The 6.9GB forensic database represents a consolidated analytical environment. Releasing it in fragments could enable miscontextualization of intermediate results without the full pipeline logic that produced them.
+- **Chain of custody**: The 8GB forensic database represents a consolidated analytical environment. Releasing it in fragments could enable miscontextualization of intermediate results without the full pipeline logic that produced them.
 - **Reproducibility through transparency**: The methodology documentation, scoring weights, classification rules, and dedup logic are fully described — enabling independent replication without distributing the tooling itself.
 - **Ongoing analysis**: The database and pipeline remain active analytical tools. Premature release could compromise the integrity of forthcoming data narratives and follow-on investigations.
 
@@ -434,7 +436,7 @@ The underlying DOJ documents are U.S. government publications in the public doma
 | Feb 18 | 19 datasets online (<a href="https://www.justice.gov/epstein/doj-disclosures/data-set-1-files" target="_blank">DS1</a>-12 + DS98-DS104) |
 | Feb 20 | Fund flows audit v6.2: $1.43B in P+S transactions, 39% SAR coverage |
 | Feb 21 | Wire extraction pipeline (Phases 14-24): $1.964B, 104.6% SAR coverage |
-| Feb 21 | Forensic workbook v6.1 published (11 tabs, 382-wire master ledger) |
+| Feb 21 | Forensic workbook v7 published (14 tabs, 420-wire master ledger) |
 | Feb 21 | Phase 25: Date recovery from context fields — 75 dates (31.9%→51.6%), 0 collisions (credit: u/miraculum_one) |
 | Feb 21 | Phase 25: Date recovery from context fields — 75 dates (31.9%→51.6%), 0 collisions (credit: u/miraculum_one) |
 | Feb 21 | Repository made public. 7 Data Narratives published |
