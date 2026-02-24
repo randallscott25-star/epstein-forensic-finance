@@ -83,7 +83,7 @@ The 2020 DFS settlement confirms regulatory findings that Deutsche Bank's compli
 
 ---
 
-*Source: DOJ EFTA Document Release, Deutsche Bank-SDNY Production, Exhibits C, D, and E. All data extracted via automated pipeline. Supporting data: <a href="https://docs.google.com/spreadsheets/d/11lw0QjMZ-rYIjWesv5VG1YKts57ahPEm/edit?usp=sharing&ouid=103970896670138914877&rtpof=true&sd=true" target="_blank">Forensic Workbook (view-only)</a>. This finding appears in the [master wire ledger](../data/master_wire_ledger_phase25.json) published with this repository.*
+*Source: DOJ EFTA Document Release, Deutsche Bank-SDNY Production, Exhibits C, D, and E. All data extracted via automated pipeline. Supporting data: <a href="https://docs.google.com/spreadsheets/d/11lw0QjMZ-rYIjWesv5VG1YKts57ahPEm/edit?usp=sharing&ouid=103970896670138914877&rtpof=true&sd=true" target="_blank">Forensic Workbook (view-only)</a>. This finding appears in the [master wire ledger](../data/master_wire_ledger_phase5i.json) published with this repository.*
 
 ---
 

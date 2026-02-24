@@ -87,11 +87,11 @@ GAGAS (issued by the U.S. Government Accountability Office) applies to governmen
 
 AU-C §230 establishes that audit documentation is the **property of the practitioner** and should be retained under the practitioner's control. While this analysis is not an audit, the same principle applies to forensic work product:
 
-- The 6.9GB forensic database, extraction code, and analytical pipeline constitute **practitioner work product**
+- The 8GB forensic database, extraction code, and analytical pipeline constitute **practitioner work product**
 - SSFS No. 1 recognizes that forensic practitioners maintain **proprietary methodologies and analytical tools**
 - Work product doctrine protects the analytical process that produced the findings
 
-This is why the repository publishes **findings and methodology** but not the underlying database or source code. The published master wire ledger (382 wires), entity classification data, and complete methodology documentation provide sufficient information for a knowledgeable reviewer to understand and evaluate the work performed — consistent with AU-C §230.05's documentation sufficiency standard.
+This is why the repository publishes **findings and methodology** but not the underlying database or source code. The published master wire ledger (481 wires), entity classification data, and complete methodology documentation provide sufficient information for a knowledgeable reviewer to understand and evaluate the work performed — consistent with AU-C §230.05's documentation sufficiency standard.
 
 ---
 

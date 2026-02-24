@@ -26,7 +26,7 @@ DOJ subpoena names a BVI shell. ICIJ Offshore Leaks confirms it. Scouting Intern
 > **→ [Read Narrative 18](narratives/18_offshore_architecture.md)**
 
 
-> **18 data narratives** reconstruct how $1.964 billion moved through 14 shell entities across 8+ banking institutions. Every claim is anchored to specific court exhibits and bates stamps.
+> **18 data narratives** reconstruct how money moved through 14 shell entities across 14 banking institutions — $1.964 billion in total extracted financial activity, anchored by a 481-wire master ledger ($973M). Every claim is tied to specific court exhibits and bates stamps.
 >
 > **→ [Read the Data Narratives](narratives/)** · **<a href="https://randallscott25-star.github.io/epstein-forensic-finance/visualizations/shell_network.html" target="_blank">Explore the Interactive Network</a>** · **<a href="https://docs.google.com/spreadsheets/d/11lw0QjMZ-rYIjWesv5VG1YKts57ahPEm/edit?usp=sharing&ouid=103970896670138914877&rtpof=true&sd=true" target="_blank">View the Forensic Workbook</a>**
 
@@ -48,8 +48,8 @@ DOJ subpoena names a BVI shell. ICIJ Offshore Leaks confirms it. Scouting Intern
 | 14 | [Where Leon Black's Money Went](narratives/14_where_leon_blacks_money_went.md) | 1,600 files. Every shell. $60.5M in, Apollo Management out the other side |
 | 15 | [Gratitude America: The Charity That Invested](narratives/15_gratitude_america.md) | 83% to hedge funds, Epstein's girlfriend on the records, IRS no statute of limitations |
 | 16 | [The Accountant](narratives/16_the_accountant.md) | Richard Kahn's CPA firm: 18,833 emails across every shell in the network |
+| **17** | **[One-Way Money](narratives/17_the_architecture.md)** | **$221M in. $54M out. First multi-institution balance sheet. [Visualization](https://randallscott25-star.github.io/epstein-forensic-finance/visualizations/17_one_way_money.html)** |
 | **18** | **[Offshore Architecture: The Brunel–BVI–ICIJ Bridge](narratives/18_offshore_architecture.md)** | **DOJ subpoena names a BVI shell. ICIJ Offshore Leaks confirms it. $10M+ Butterfly Trust pipeline. 3 databases cross-referenced.** |
-| **17** | **[One-Way Money](narratives/17_the_architecture.md)** | **$272M in. $63M out. First multi-institution balance sheet. [Visualization](https://randallscott25-star.github.io/epstein-forensic-finance/visualizations/17_one_way_money.html)** |
 
 
 
@@ -88,7 +88,7 @@ DOJ subpoena names a BVI shell. ICIJ Offshore Leaks confirms it. Scouting Intern
 | **Extraction Phases** | 25 |
 | **Contamination Bugs Caught & Fixed** | 9 |
 | **Wire Transfers in Master Ledger** | 481 (Phase 5I audited) |
-| **Shell-to-Shell Transfers Identified** | 45 |
+| **Shell-to-Shell Transfers Identified** | 75 |
 | **Shell Trust Hierarchy Tiers Mapped** | 4 |
 
 ### Three-Tier Confidence Framework
@@ -138,10 +138,10 @@ All amounts are (Unverified) automated extractions. See [FINDINGS.md](docs/FINDI
 
 | Direction | Wires | Amount (Unverified) | Share |
 |-----------|------:|-------:|------:|
-| **INTERNAL MOVE** — Shell → Shell reshuffling | 79 | $449,254,031 | 46.2% |
+| **INTERNAL MOVE** — Shell → Shell reshuffling | 75 | $372,300,092 | 38.2% |
 | **MONEY IN** — External → Epstein entities | 102 | $238,376,891 | 24.5% |
 | **PASS-THROUGH** — Attorney/trust administration | 163 | $112,488,062 | 11.6% |
-| **MONEY OUT** — Epstein entities → External | 66 | $94,770,375 | 9.7% |
+| **MONEY OUT** — Epstein entities → External | 70 | $171,724,314 | 17.6% |
 | **BANK → SHELL** — Custodian disbursements | 26 | $53,576,645 | 5.5% |
 | **SHELL → BANK** — Returns to custodian | 10 | $14,726,112 | 1.5% |
 | **BANK → EXTERNAL** — Direct bank payments | 22 | $8,690,228 | 0.9% |
@@ -210,7 +210,7 @@ Phase 5B   Operational Cost Model → confidence-tiered financial extraction
 Phase 5C   Entity-to-Entity Fund Flows → directional A→B with 5-axis scoring
 Phase 5D   Payment-Travel-Victim Correlation → temporal pattern analysis
 Phase 5E   Redaction Map → navigational tool for document analysis
-Phases 14-25  Wire Transfer Extraction Pipeline → 481-wire master ledger, $1.964B
+Phases 14-25  Wire Transfer Extraction Pipeline → 481-wire master ledger, $973M
 ```
 
 ### Wire Transfer Extraction Pipeline (Phases 14-25)
@@ -294,8 +294,8 @@ Only one gap ($5-15M excluded tiers) has a credible dollar estimate. The others 
 | 14 | [Where Leon Black's Money Went](narratives/14_where_leon_blacks_money_went.md) | 1,600 files, every shell, "Black Family Partners LP c/o Apollo Management" — the round trip | 1,600 files · $60.5M · 7 shells |
 | 15 | [Gratitude America: The Charity That Invested](narratives/15_gratitude_america.md) | Tax-exempt charity routing $2–20M to Boothbay, Honeycomb, Valar, Coatue | 89 financial · $45M wires |
 | 16 | [The Accountant](narratives/16_the_accountant.md) | Richard Kahn / HBRK Associates: 18,833 emails, 11,153 files, touches every shell | 18,833 emails · 11,153 files |
+| 17 | [One-Way Money](narratives/17_the_architecture.md) | $221M in. $54M out. $167M gap. First multi-institution balance sheet | 481 wires · 219 entities · $973M |
 | 18 | [Offshore Architecture: The Brunel–BVI–ICIJ Bridge](narratives/18_offshore_architecture.md) | DOJ subpoena ↔ ICIJ Offshore Leaks ↔ FinCEN cross-reference. Scouting International BVI shell. $10M+ Butterfly Trust. 8,526 pages, 172 docs | 3 databases · 172 docs · 689 NetIncorp entities scanned |
-| 17 | [One-Way Money](narratives/17_the_architecture.md) | $272M in. $63M out. $209M gap. First multi-institution balance sheet | 481 wires · 219 entities · $558M |
 
 Source workbook: **[Forensic Workbook](https://docs.google.com/spreadsheets/d/11lw0QjMZ-rYIjWesv5VG1YKts57ahPEm/edit?usp=sharing&ouid=103970896670138914877&rtpof=true&sd=true)** · [Interactive Shell Network](https://randallscott25-star.github.io/epstein-forensic-finance/visualizations/shell_network.html)
 
@@ -315,7 +315,7 @@ Source workbook: **[Forensic Workbook](https://docs.google.com/spreadsheets/d/11
 │   └── SOURCE_APPENDIX_TEMPLATE.md        ← Standard template for future narratives (N17+)
 ├── narratives/                            ← 16 forensic data narratives with source appendices
 ├── data/
-│   ├── master_wire_ledger_phase25.json    ← 481 wires (publication dataset)
+│   ├── master_wire_ledger_phase5i.json    ← 481 wires (publication dataset)
 │   └── entity_classification.json         ← Entity → type mapping (219 entities)
 ├── visualizations/                        ← Interactive shell network diagram
 └── tools/
@@ -342,7 +342,7 @@ Source workbook: **[Forensic Workbook](https://docs.google.com/spreadsheets/d/11
 | 6 | Above-Cap Verified | 8 court-verified wires above $10M ($120.6M) |
 | 7 | Date Recovery | Same-amount different-date analysis (95 Phase 23 + 75 Phase 25 recoveries) |
 | 8 | Entity P&L | 219 entities with inflow/outflow/net, shell flags |
-| 9 | Shell Network | 247 shell-involved wires, 43 shell-to-shell |
+| 9 | Shell Network | 308 shell-involved wires, 75 internal moves |
 | 10 | SAR Comparison | Bank-by-bank vs FinCEN benchmarks |
 | 11 | Methodology | 9 bugs documented, data sources, 10 limitations |
 | 12 | **Multi-Bank Wires** ★ | 949 wires across verified + bank statement transactions |

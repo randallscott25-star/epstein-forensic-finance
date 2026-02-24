@@ -8,7 +8,7 @@
 
 ## Summary
 
-I cross-referenced 160 verified wire transfer dates from the [master wire ledger](../data/master_wire_ledger_phase25.json) against 321 documented flight dates for Epstein's two registered aircraft — N212JE (Gulfstream) and N908JE (Boeing 727) — extracted from U.S. Customs and Border Protection APIS (Advance Passenger Information System) records in the EFTA corpus.
+I cross-referenced 160 verified wire transfer dates from the [master wire ledger](../data/master_wire_ledger_phase5i.json) against 321 documented flight dates for Epstein's two registered aircraft — N212JE (Gulfstream) and N908JE (Boeing 727) — extracted from U.S. Customs and Border Protection APIS (Advance Passenger Information System) records in the EFTA corpus.
 
 The overlap is 4.3 times what random chance would predict.
 
@@ -18,7 +18,7 @@ This analysis does not establish causation. It establishes temporal proximity at
 
 ## The Data Sources
 
-**Financial transfers**: 185 verified wire transfers with dates, court exhibit references, and bates stamps, extracted from Deutsche Bank-SDNY production documents (Exhibits A through E). Date range: October 2013 – April 2019. Source: [master wire ledger](../data/master_wire_ledger_phase25.json).
+**Financial transfers**: 185 verified wire transfers with dates, court exhibit references, and bates stamps, extracted from Deutsche Bank-SDNY production documents (Exhibits A through E). Date range: October 2013 – April 2019. Source: [master wire ledger](../data/master_wire_ledger_phase5i.json).
 
 **Aircraft flights**: APIS passenger manifests for N212JE and N908JE recovered from the EFTA corpus (Datasets <a href="https://www.justice.gov/epstein/doj-disclosures/data-set-8-files" target="_blank">8</a>, <a href="https://www.justice.gov/epstein/doj-disclosures/data-set-9-files" target="_blank">9</a>, and <a href="https://www.justice.gov/epstein/doj-disclosures/data-set-11-files" target="_blank">11</a>). These are CBP customs declaration records showing passenger name, date of birth, aircraft tail number, flight date, and ICAO airport codes for departure and arrival. 321 unique flight dates identified after filtering Epstein's DOB (01/20/1953) from OCR artifacts. Date range: 1990 – June 2019.
 
@@ -118,7 +118,7 @@ However, a confounding variable exists: both wire transfers and flights may clus
 
 ---
 
-*Source: DOJ EFTA Document Release — Deutsche Bank-SDNY Production (Exhibits A–E), APIS/CBP Passenger Records (Datasets <a href="https://www.justice.gov/epstein/doj-disclosures/data-set-8-files" target="_blank">8</a>, <a href="https://www.justice.gov/epstein/doj-disclosures/data-set-9-files" target="_blank">9</a>, <a href="https://www.justice.gov/epstein/doj-disclosures/data-set-11-files" target="_blank">11</a>), FAA Aircraft Registry. 2,411,188 dates extracted from 1,072,086 files via automated pipeline. Statistical calculation assumes uniform distribution of events across 2,017-day observation window (Oct 2013 – Apr 2019). This analysis appears in the [master wire ledger](../data/master_wire_ledger_phase25.json) and supporting data published with this repository.*
+*Source: DOJ EFTA Document Release — Deutsche Bank-SDNY Production (Exhibits A–E), APIS/CBP Passenger Records (Datasets <a href="https://www.justice.gov/epstein/doj-disclosures/data-set-8-files" target="_blank">8</a>, <a href="https://www.justice.gov/epstein/doj-disclosures/data-set-9-files" target="_blank">9</a>, <a href="https://www.justice.gov/epstein/doj-disclosures/data-set-11-files" target="_blank">11</a>), FAA Aircraft Registry. 2,411,188 dates extracted from 1,072,086 files via automated pipeline. Statistical calculation assumes uniform distribution of events across 2,017-day observation window (Oct 2013 – Apr 2019). This analysis appears in the [master wire ledger](../data/master_wire_ledger_phase5i.json) and supporting data published with this repository.*
 
 ---
 

@@ -1,6 +1,6 @@
 # Database Architecture
 
-**6.9GB SQLite · 28+ Tables · 19 Datasets · 11.4M Entities · 1.48M Files**
+**8GB SQLite · 35 Tables · 19 Datasets · 11.4M Entities · 1.48M Files**
 
 > This is not a search index. This is a relational forensic database designed to model financial flows, entity networks, and redaction patterns across the largest public corpus of Epstein-related documents.
 
@@ -9,7 +9,7 @@
 ## Architecture Overview
 
 ```
-EPSTEIN FORENSIC DATABASE (6.9GB)
+EPSTEIN FORENSIC DATABASE (8GB)
 │
 ├── CORPUS LAYER (1.48M files)
 │   ├── files ─────────────────────── 1,476,377 records
@@ -96,7 +96,7 @@ EPSTEIN FORENSIC DATABASE (6.9GB)
 │   │       └── Regulatory filing data
 │   │
 │   └── MASTER OUTPUT
-│       └── master_wire_ledger ────── 382 Phase 25-audited wires ★
+│       └── master_wire_ledger ────── 481 Phase 5I-audited wires ★
 │           ├── entity_from → entity_to
 │           ├── amount, date
 │           ├── source (verified_wires / audited_PROVEN / audited_STRONG)
@@ -187,8 +187,8 @@ EPSTEIN FORENSIC DATABASE (6.9GB)
                                      ▼
                         ┌────────────────────────┐
                         │   MASTER WIRE LEDGER   │
-                        │   382 audited wires    │
-                        │   $1,964,229,742       │
+                        │   481 audited wires    │
+                        │   $973,392,414       │
                         │   104.6% SAR coverage  │
                         └────────────────────────┘
 ```
@@ -205,7 +205,7 @@ EPSTEIN FORENSIC DATABASE (6.9GB)
 | Financial Analysis — Classified | 2 | 31,187 |
 | Financial Analysis — Verified | 2 | 185+ |
 | Financial Analysis — Benchmarks | 2 | Variable |
-| Financial Analysis — Output | 1 | 382 |
+| Financial Analysis — Output | 1 | 481 |
 | Redaction Analysis | 3 | Variable |
 | External Cross-Reference | 6 | Variable |
-| **Total** | **28+** | **13,000,000+** |
+| **Total** | **35** | **13,000,000+** |

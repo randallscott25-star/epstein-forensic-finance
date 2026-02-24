@@ -1,6 +1,6 @@
 # Narrative 17: One-Way Money
 
-**I spent 200+ hours pulling wire transfers out of 1.48 million EFTA documents. 382 wires. $558 million. 158 entities across Deutsche Bank, JPMorgan, Citibank, Bank of America, and BNY Mellon. When I ran a balance sheet on the nine entities at the center of this network, $272 million went in from the outside. $63 million came out. The other $209 million has no documented exit in any production from any institution.**
+**I spent 200+ hours pulling wire transfers out of 1.48 million EFTA documents. 481 wires. $973 million. 219 entities across Deutsche Bank, JPMorgan, Citibank, Bank of America, Barclays, and Wells Fargo. When I ran a balance sheet on the nine entities at the center of this network, $221 million went in from the outside. $54 million came out. The other $167 million has no documented exit in any production from any institution.**
 
 ---
 
@@ -8,7 +8,7 @@
 
 Let me be clear about what I'm working with.
 
-The master wire ledger contains 382 wire transfers totaling $557,952,981 extracted across 25 phases from the EFTA document production. 122 of those wires come from Deutsche Bank's SAR filing — specifically the five exhibits (A through E) attached to their Suspicious Activity Report on Epstein's accounts. The remaining 260 wires ($208,927,537) were extracted from the broader EFTA corpus across multiple banking institution productions. This isn't a Deutsche Bank story. This is a multi-institution story. Deutsche Bank's SAR exhibits happen to be the most organized slice of it, so I'll use them as the structural backbone — but the full picture is bigger than one bank.
+The master wire ledger contains 481 wire transfers totaling $973,392,414 extracted across the Phase 5I entity-resolution pipeline from the EFTA document production. 185 of those wires come from Deutsche Bank's verified court exhibits — specifically the five exhibits (A through E) attached to their Suspicious Activity Report on Epstein's accounts. The remaining 296 wires were extracted from the broader EFTA corpus across multiple banking institution productions including Bank of America, JPMorgan, Citibank, Barclays, and Wells Fargo. This isn't a Deutsche Bank story. This is a multi-institution story. Deutsche Bank's SAR exhibits happen to be the most organized slice of it, so I'll use them as the structural backbone — but the full picture is bigger than one bank.
 
 The entity classification index identifies 158 unique entities: 26 classified as Epstein-controlled, 126 as external parties, and 6 as banks or custodians.
 
@@ -77,26 +77,26 @@ I treated each of the nine entities at the center of this network as its own led
 
 | Shell Entity | External In | Shell In | Shell Out | External Out | Net Position |
 |---|---|---|---|---|---|
-| Southern Trust | $160,396,559 | $10,000,000 | $0 | $30,165,000 | **+$140,231,559** |
-| NOW/SuperNow Account | $31,091,397 | $51,876,640 | $0 | $0 | **+$82,968,037** |
-| Southern Financial | $14,348,349 | $37,000,000 | $0 | $4,100,000 | **+$47,248,349** |
-| Caterpillar Trust | $15,000,000 | $0 | $0 | $0 | **+$15,000,000** |
-| Haze Trust | $50,319,832 | $0 | $47,000,000 | $3,738,700 | −$418,868 |
-| Jeepers Inc. | $0 | $0 | $51,876,640 | $0 | −$51,876,640 |
-| Plan D LLC | $1,125 | $0 | $0 | $18,000,000 | −$17,998,875 |
-| Gratitude America | $877,025 | $0 | $0 | $6,403,493 | −$5,526,468 |
-| NES LLC | $0 | $0 | $0 | $553,536 | −$553,536 |
-| **System Total** | **$272,034,287** | | | **$62,960,729** | **+$209,073,558** |
+| Southern Trust | $140,396,559 | $30,000,000 | $83,200,000 | $29,765,000 | **+$57,431,559** |
+| NOW/SuperNow Account | $32,718,397 | $74,605,287 | $0 | $0 | **+$107,323,684** |
+| Southern Financial | $14,039,248 | $82,855,320 | $38,250,000 | $5,613,125 | **+$53,031,443** |
+| Caterpillar Trust | $15,000,000 | $0 | $10,000,000 | $0 | **+$5,000,000** |
+| Haze Trust | $19,032,745 | $64,503,608 | $167,358,928 | $0 | **−$83,822,575** |
+| Jeepers Inc. | $0 | $6,000,000 | $57,876,640 | $0 | **−$51,876,640** |
+| Plan D LLC | $1,125 | $30,500,000 | $10,000,000 | $18,000,000 | **+$2,501,125** |
+| Gratitude America | $0 | $22,064,876 | $12,064,876 | $453,493 | **+$9,546,507** |
+| NES LLC | $0 | $0 | $0 | $553,536 | **−$553,536** |
+| **System Total** | **$221,188,074** | | | **$54,385,154** | **+$166,802,920** |
 
-$272 million entered from the outside. $63 million is visible leaving. The remaining **$209 million** has no documented exit in the entire production — not in the SAR exhibits, not in the normalized data, not from any institution.
+$221 million entered from the outside. $54 million is visible leaving. The remaining **$167 million** has no documented exit in the entire production — not in the SAR exhibits, not in the normalized data, not from any institution.
 
 Three entities eat most of it:
 
-Southern Trust Company absorbs $140.2 million net. It takes in $160.4 million from external sources plus $10 million from the Haze Trust and sends $30.2 million back out. The other $130 million? Gone. No outbound wire. No documented destination.
+The NOW/SuperNow Account absorbs $107.3 million net. It takes in $32.7 million from external sources and $74.6 million from the Jeepers brokerage pipeline and other internal transfers. Sends zero back out in the wire record. Terminal destination.
 
-The NOW/SuperNow Account absorbs $83 million. Receives from both external sources and the Jeepers brokerage pipeline. Sends zero back out in the wire record.
+Southern Trust Company nets $57.4 million. It takes in $140.4 million from external sources plus $30 million from internal shell transfers, and distributes $83.2 million to other shells and $29.8 million externally.
 
-Southern Financial absorbs $47.2 million. Receives from Tudor, Blockchain Capital, and the Haze Trust redistribution pipeline. Sends $4.1 million out to Ito, Coatue, and Neoteny. The other $47 million goes nowhere we can see.
+Southern Financial nets $53 million. Receives $14 million from external sources and $82.9 million from the Haze Trust redistribution pipeline. Distributes $38.3 million internally and $5.6 million out to Ito, Coatue, and other external parties.
 
 This isn't evidence that money was stolen. It's evidence that the production is **asymmetric**. The filings comprehensively document how money entered the shell network and selectively omit where it went. Whether that reflects the limits of what banks tracked, what they chose to include, or what they were willing to hand over is a question I can't answer from wire data. The arithmetic speaks for itself.
 
@@ -260,11 +260,11 @@ Money enters from ghost sources and lands in terminal sinks. The network is buil
 
 I can say this: five exhibits, five functions. Accumulation, distribution, operations, redistribution, legitimization. Deutsche Bank organized it this way. I just ran the numbers.
 
-I can say this: $272 million in, $63 million out. That's not an interpretation. That's arithmetic on 382 wires across eight banking institutions.
+I can say this: $221 million in, $54 million out. That's not an interpretation. That's arithmetic on 481 wires across multiple banking institutions.
 
 I can say this: two independent depositors from two different continents use the same paired-entity structure to fund the same shell company. The October 2013 round trip moves $8.5 million in and out of Southern Trust on the same day under different names. The Wechsler mirror transactions distribute $35.3 million in identical paired amounts to two terminal sinks. These are patterns. They repeat.
 
-I cannot say where the $209 million went. The production doesn't show me.
+I cannot say where the $167 million went. The production doesn't show me.
 
 I cannot say whether the asymmetry in the filing — comprehensive inflows, selective outflows — was intentional or accidental. Deutsche Bank chose what to put in those five exhibits. Other institutions chose what to include in their productions. I work with what they gave the court.
 
@@ -276,12 +276,12 @@ I report what the data shows. The data shows an architecture.
 
 ## Source Data
 
-**Source data:** [Master Wire Ledger](../data/master_wire_ledger_phase25.json) · <a href="https://docs.google.com/spreadsheets/d/11lw0QjMZ-rYIjWesv5VG1YKts57ahPEm/edit?usp=sharing&ouid=103970896670138914877&rtpof=true&sd=true" target="_blank">Forensic Workbook</a> · <a href="https://randallscott25-star.github.io/epstein-forensic-finance/visualizations/shell_network.html" target="_blank">Interactive Network</a> · <a href="https://randallscott25-star.github.io/epstein-forensic-finance/visualizations/17_one_way_money.html" target="_blank">One-Way Money Visualization</a>
+**Source data:** [Master Wire Ledger](../data/master_wire_ledger_phase5i.json) · <a href="https://docs.google.com/spreadsheets/d/11lw0QjMZ-rYIjWesv5VG1YKts57ahPEm/edit?usp=sharing&ouid=103970896670138914877&rtpof=true&sd=true" target="_blank">Forensic Workbook</a> · <a href="https://randallscott25-star.github.io/epstein-forensic-finance/visualizations/shell_network.html" target="_blank">Interactive Network</a> · <a href="https://randallscott25-star.github.io/epstein-forensic-finance/visualizations/17_one_way_money.html" target="_blank">One-Way Money Visualization</a>
 
 | Dataset | Records | Coverage |
 |---|---|---|
-| <a href="https://github.com/Tweederrr/epstein-forensic-finance/tree/main/data" target="_blank">Master Wire Ledger (Phase 25)</a> | 382 wires | $557,952,981 |
-| <a href="https://github.com/Tweederrr/epstein-forensic-finance/tree/main/data" target="_blank">Entity Classification Index</a> | 158 entities | 26 EPSTEIN_ENTITY, 126 EXTERNAL_PARTY, 6 BANK/CUSTODIAN |
+| <a href="https://github.com/Tweederrr/epstein-forensic-finance/tree/main/data" target="_blank">Master Wire Ledger (Phase 5I)</a> | 481 wires | $973,392,414 |
+| <a href="https://github.com/Tweederrr/epstein-forensic-finance/tree/main/data" target="_blank">Entity Classification Index</a> | 227 entities | 43 EPSTEIN_ENTITY, 151 EXTERNAL_PARTY, 8 BANK/CUSTODIAN |
 
 ### EFTA Source Documents
 

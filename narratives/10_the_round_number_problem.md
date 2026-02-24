@@ -112,12 +112,12 @@ The round-number problem is not that the transfers are fake. It is that they are
 ## Source Documents & Exhibits
 
 ### Primary Exhibits
-**Exhibits A–E** (<a href="https://www.justice.gov/epstein/files/DataSet%208/EFTA00027019.pdf" target="_blank">EFTA00027019</a>): 382 verified wire transfer amounts tested against Benford's Law.
+**Exhibits A–E** (<a href="https://www.justice.gov/epstein/files/DataSet%208/EFTA00027019.pdf" target="_blank">EFTA00027019</a>): 481 wire transfer amounts tested against Benford's Law.
 
 ### Corpus Statistics Source
-**Method**: Benford's Law first-digit analysis on 382 wire amounts from the Master Wire Ledger.
+**Method**: Benford's Law first-digit analysis on 481 wire amounts from the Master Wire Ledger.
 **Finding**: 84.3% round numbers. Digits 2 and 5 over-represented vs. Benford's expected distribution.
-**Database**: Master Wire Ledger (382 wires, $1.964B total).
+**Database**: Master Wire Ledger (481 wires, $973M total).
 
 ### Scope Note
 Benford's test applied to Deutsche Bank wire production only. The test could be extended to Bear Stearns/JPMorgan transaction data if those records become available through future enforcement actions or EFTA releases.
@@ -137,7 +137,7 @@ Benford's test applied to Deutsche Bank wire production only. The test could be 
 
 | Exhibit / Analysis | View in Workbook |
 |---|---|
-| Master Wire Ledger — Full 382 wires | <a href="https://docs.google.com/spreadsheets/d/11lw0QjMZ-rYIjWesv5VG1YKts57ahPEm/edit?gid=2043824625#gid=2043824625" target="_blank">📊 Open Tab</a> |
+| Master Wire Ledger — Full 481 wires | <a href="https://docs.google.com/spreadsheets/d/11lw0QjMZ-rYIjWesv5VG1YKts57ahPEm/edit?gid=2043824625#gid=2043824625" target="_blank">📊 Open Tab</a> |
 | SAR Comparison | <a href="https://docs.google.com/spreadsheets/d/11lw0QjMZ-rYIjWesv5VG1YKts57ahPEm/edit?gid=1121979938#gid=1121979938" target="_blank">📊 Open Tab</a> |
 | Above-Cap Verified | <a href="https://docs.google.com/spreadsheets/d/11lw0QjMZ-rYIjWesv5VG1YKts57ahPEm/edit?gid=2071460294#gid=2071460294" target="_blank">📊 Open Tab</a> |
 | Methodology | <a href="https://docs.google.com/spreadsheets/d/11lw0QjMZ-rYIjWesv5VG1YKts57ahPEm/edit?gid=1840632994#gid=1840632994" target="_blank">📊 Open Tab</a> |

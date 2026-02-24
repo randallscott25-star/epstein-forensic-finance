@@ -21,8 +21,8 @@ I wrote all extraction code, designed the database schema, and performed the for
 | Extracted text records | 1.48M+ |
 | Entity extraction (spaCy NLP) | 11,438,106 entities |
 | Unique persons identified | 734,122 |
-| Database size | 6.9GB SQLite |
-| Relational tables | 28+ |
+| Database size | 8GB SQLite |
+| Relational tables | 35 |
 
 ### Structured Database Tables Used in Wire Extraction
 
@@ -155,14 +155,14 @@ Nine data quality issues were identified and corrected during the pipeline:
 7. **Destroyed records**: Pre-retention period records may have been destroyed. The dollar value is unquantifiable from the EFTA corpus.
 8. **Cross-table name overlap**: Same wire may appear with different entity formatting across database tables.
 9. **Chain-hop filtering trade-offs**: Some legitimate multi-step transactions may have been excluded by the internal entity filter.
-10. **Date coverage**: 197 of 382 master ledger entries have dates (51.6%) after Phase 25 recovery. The remaining 185 undated entries carry higher duplication risk, though Phase 25's zero-collision result validated that all undated wires were genuinely unique.
+10. **Date coverage**: 350 of 481 master ledger entries have dates (72.8%) after Phase 5I entity resolution. The remaining 131 undated entries carry higher duplication risk, though zero-collision validation confirmed all undated wires were genuinely unique.
 
 ---
 
 ## Tools & Infrastructure
 
 - **Language**: Python 3.12
-- **Database**: SQLite (6.9GB, 28+ tables, 19 datasets)
+- **Database**: SQLite (8GB, 35 tables, 19 datasets)
 - **NLP**: spaCy entity extraction (11.4M entities, 734K persons)
 - **OCR Processing**: Tesseract-based text extraction with custom noise filters
 - **Analysis**: pandas, openpyxl, json

@@ -2,7 +2,7 @@
 
 **The financial data tells stories that numbers alone cannot convey.**
 
-These narratives trace fund flow patterns, entity relationships, temporal correlations, and forensic accounting anomalies identified across the 1.48 million documents in the DOJ EFTA release. Early narratives are grounded in wire-level data from the [master wire ledger](../data/master_wire_ledger_phase25.json). Later narratives draw on the full corpus: 11.4 million entity extractions, 734,122 unique persons, 2.4 million dates, and 321 aircraft flight records. Each finding is extracted through the [25-phase pipeline](../docs/METHODOLOGY.md) and cross-referenced against court exhibits where available.
+These narratives trace fund flow patterns, entity relationships, temporal correlations, and forensic accounting anomalies identified across the 1.48 million documents in the DOJ EFTA release. Early narratives are grounded in wire-level data from the [master wire ledger](../data/master_wire_ledger_phase5i.json). Later narratives draw on the full corpus: 11.4 million entity extractions, 734,122 unique persons, 2.4 million dates, and 321 aircraft flight records. Each finding is extracted through the [Phase 5I pipeline](../docs/METHODOLOGY.md) and cross-referenced against court exhibits where available.
 
 All amounts are **(Unverified)** automated extractions. These are not audit findings — they are data observations. See [COMPLIANCE.md](../docs/COMPLIANCE.md) for the professional standards framework governing this analysis.
 
@@ -14,7 +14,7 @@ All amounts are **(Unverified)** automated extractions. These are not audit find
 
 | # | Title | Key Finding | Data Scope |
 |---|-------|-------------|------------|
-| 17 | [One-Way Money](17_the_architecture.md) | The banks documented every dollar going in and almost none of it coming out. $272M entered nine shells across eight banking institutions. $63M is visible leaving. The other $209M has no documented exit in any production from any institution. | 382 wires · 158 entities · 8 banks · $558M |
+| 17 | [One-Way Money](17_the_architecture.md) | The banks documented every dollar going in and almost none of it coming out. $221M entered nine shells across multiple banking institutions. $54M is visible leaving. The other $167M has no documented exit in any production from any institution. | 481 wires · 219 entities · $973M |
 
 This is the first complete balance sheet ever run on the Epstein shell network — not institution by institution, but across the full multi-bank production. Nobody else has published one.
 
@@ -40,6 +40,8 @@ This is the first complete balance sheet ever run on the Epstein shell network �
 | 14 | [Where Leon Black's Money Went](14_where_leon_blacks_money_went.md) | Black's entities paid Epstein $158–170M. Our wire ledger verified $60.5M. Downstream flow traced through every shell in the network | 1,600 files · $60.5M verified |
 | 15 | [Gratitude America (Expanded)](15_gratitude_america.md) | Karyna Shuliak biographical corrections. Estate bequest $50–100M. Charitable entity as beneficiary designation vehicle | 20 wires · estate records |
 | 16 | [The Accountant](16_the_accountant.md) | The financial professionals who maintained the architecture — trustees, estate counsel, and compliance gatekeepers | 29 corpus appearances · 5 key figures |
+| 17 | [One-Way Money](17_the_architecture.md) | $221M in. $54M out. $167M gap. First multi-institution balance sheet across 9 shell entities | 481 wires · 219 entities · $973M |
+| 18 | [Offshore Architecture: The Brunel–BVI–ICIJ Bridge](18_offshore_architecture.md) | DOJ subpoena names a BVI shell. ICIJ Offshore Leaks confirms it. Scouting International BVI. $10M+ Butterfly Trust pipeline. 3 databases cross-referenced | 3 databases · 172 docs · 689 NetIncorp entities scanned |
 
 ---
 
@@ -49,7 +51,7 @@ This is the first complete balance sheet ever run on the Epstein shell network �
 | Visualization | Description |
 |--------------|-------------|
 | <a href="https://randallscott25-star.github.io/epstein-forensic-finance/visualizations/shell_network.html" target="_blank">Shell Network — Full Architecture</a> | Interactive map of all 14 shell entities and 12 banking institutions. Click nodes for detail. Filter by co-occurrence, bank relationships, or wire ledger. |
-| <a href="https://randallscott25-star.github.io/epstein-forensic-finance/visualizations/17_one_way_money.html" target="_blank">One-Way Money — Five-Layer System</a> | Interactive breakdown of the five exhibit layers, the $209M balance-sheet gap, and the December 2015 convergence timeline. |
+| <a href="https://randallscott25-star.github.io/epstein-forensic-finance/visualizations/17_one_way_money.html" target="_blank">One-Way Money — Five-Layer System</a> | Interactive breakdown of the five exhibit layers, the $167M balance-sheet gap, and the December 2015 convergence timeline. |
 
 ---
 

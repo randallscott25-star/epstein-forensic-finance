@@ -72,7 +72,7 @@ Deep-linked table pointing readers directly to the relevant workbook tabs. Use t
 | Extraction Phases | 308915370 | Phase-by-phase extraction history |
 | Money Flow Patterns | 2075093083 | Inter-entity fund routing |
 | Shell Trust Hierarchy | 1943952132 | Shell entity structure and relationships |
-| Master Wire Ledger | 2043824625 | All 382 verified wires by exhibit |
+| Master Wire Ledger | 2043824625 | All 481 verified wires by exhibit |
 | Above-Cap Verified | 2071460294 | Court-verified wires above dedup cap |
 | Date Recovery | 339305346 | Phase 23 date recovery results |
 | Entity P&L | 1497389416 | Entity-level profit/loss analysis |

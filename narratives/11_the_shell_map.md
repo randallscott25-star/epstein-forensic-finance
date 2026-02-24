@@ -2,7 +2,7 @@
 
 **The wire ledger captured 7 entities. The corpus contains 14. Four of them — with 23,922 money references between them — never appeared in a single wire transfer.**
 
-*This narrative marks a transition. Narratives 1–10 analyzed what Deutsche Bank produced under a single SDNY subpoena: 382 wire transfers totaling $1.964 billion. That analysis is complete. Starting here, the scope expands to the full EFTA corpus — 1.48 million documents, 11.4 million entities, 463,402 dollar-amount references, and 13,146 emails flowing through a single operational hub. The wire ledger was the map. This is the territory.*
+*This narrative marks a transition. Narratives 1–10 analyzed the wire transfer ledger — 481 wires totaling $973 million extracted across the full EFTA corpus. Starting here, the scope expands beyond wire transfers into the full document universe — 1.48 million documents, 11.4 million entities, 463,402 dollar-amount references, and 13,146 emails flowing through a single operational hub. The wire ledger was the map. This is the territory.*
 
 *This analysis maps every shell entity in the Epstein financial network by searching the full EFTA corpus for corporate entities (trusts, LLCs, LPs, and incorporated entities) that co-occur with "Epstein" in the same documents. It then measures document co-occurrence between shells to map their internal connections. See [COMPLIANCE.md](../docs/COMPLIANCE.md) for professional standards framework.*
 
@@ -12,7 +12,7 @@
 
 ## What the Wire Ledger Built
 
-Narratives 1–6 mapped wire transfers through seven shell entities: Southern Trust Company, Southern Financial LLC, The Haze Trust, Gratitude America Ltd., Jeepers Inc., Plan D LLC, and BV70 LLC. These were the entities that appeared in the Deutsche Bank-SDNY wire production (Exhibits A–E). Together, they processed $1.964 billion in verified wires. Narrative 7 correlated those wires against flight records. Narratives 8–9 scanned the corpus for who bridges the financial and victim document universes. Narrative 10 tested the wire amounts against Benford's Law.
+Narratives 1–6 mapped wire transfers through seven shell entities: Southern Trust Company, Southern Financial LLC, The Haze Trust, Gratitude America Ltd., Jeepers Inc., Plan D LLC, and BV70 LLC. These were the entities that appeared in the Deutsche Bank-SDNY wire production (Exhibits A–E). Together, they anchor the 481-wire master ledger totaling $973 million. Narrative 7 correlated those wires against flight records. Narratives 8–9 scanned the corpus for who bridges the financial and victim document universes. Narrative 10 tested the wire amounts against Benford's Law.
 
 That body of work answered the question: *what did the wire transfers show?*
 
@@ -118,7 +118,7 @@ The co-occurrence map reveals a hub-and-spoke architecture, not a linear pipelin
 
 ## Beyond the Wire Production
 
-The wire transfer ledger — 382 verified wires totaling $1.964 billion — represents what Deutsche Bank produced under a single SDNY subpoena. The shell network is larger than what that subpoena captured.
+The wire transfer ledger — 481 verified wires totaling $973 million — represents the entity-resolved master ledger extracted from the full EFTA corpus. The shell network is larger than what any single subpoena captured.
 
 **Financial Trust Company** has 325 financial document appearances and zero wire transfers. Whatever moved through it — checks, ACH transfers, brokerage settlements, trust distributions — was not captured in the SDNY wire production. Yet it connects to Jeepers (125 shared files), Southern Trust (92), and Southern Financial (81). It is central to the financial infrastructure.
 
@@ -130,7 +130,7 @@ The wire transfer ledger — 382 verified wires totaling $1.964 billion — repr
 
 ## The Scale
 
-The wire ledger documented $1.964 billion through 7 of these 14 entities. The corpus contains **178,592 money-entity mentions** across all 14 shells. The four shells absent from the wire ledger — Epstein & Co, Insurance Trust, Butterfly Trust, and Outgoing Money Trust — account for **23,922 of those money mentions**.
+The wire ledger documented $973 million through 7 of these 14 entities. The corpus contains **178,592 money-entity mentions** across all 14 shells. The four shells absent from the wire ledger — Epstein & Co, Insurance Trust, Butterfly Trust, and Outgoing Money Trust — account for **23,922 of those money mentions**.
 
 We mapped the rivers. The corpus shows there are also streams, creeks, and underground channels. The financial network was not four entities and a wire ledger. It was fourteen entities, connected through 13,000+ emails, hundreds of financial documents, and money references that no single subpoena captured in full.
 

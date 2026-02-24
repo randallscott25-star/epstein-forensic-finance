@@ -89,7 +89,7 @@ Our data doesn't evaluate whether the payments were for legitimate services. Wha
 
 **Step 3:** Southern Trust Company financial records also show co-occurring transactions with Boothbay, Honeycomb, Valar, and Coatue — the same investment funds that received outflows from other Epstein entities including Gratitude America (see [Narrative 15](15_gratitude_america.md)).
 
-The question is not whether Black paid Epstein. That's established — approximately $168 million through five entities. The question is whether money that entered Southern Trust Company from Black entities subsequently flowed to accounts that Black entities also controlled or benefited from — and whether the "tax and estate planning" characterization adequately describes a relationship that touched every shell in a 14-entity network moving $1.964 billion.
+The question is not whether Black paid Epstein. That's established — approximately $168 million through five entities. The question is whether money that entered Southern Trust Company from Black entities subsequently flowed to accounts that Black entities also controlled or benefited from — and whether the "tax and estate planning" characterization adequately describes a relationship that touched every shell in a 14-entity network with $1.964 billion in total extracted financial activity.
 
 ## What the Dechert Review Didn't Have
 
@@ -109,7 +109,7 @@ Their presence on Southern Trust Company records places them inside the Epstein 
 
 **Methodology:** Entity co-occurrence analysis using Leon Black variant names (Leon Black, Leon & Debra, Black Family Partners, Elysium Management, Narrow Holdings, BV70) against shell entity names and investment fund names across financial documents. Wire amounts from verified Deutsche Bank production (Exhibits A–E). All co-occurrence counts are file-level (distinct file_id). See [Methodology](../docs/METHODOLOGY.md).
 
-**Source data:** [Master Wire Ledger](../data/master_wire_ledger_phase25.json) · <a href="https://docs.google.com/spreadsheets/d/11lw0QjMZ-rYIjWesv5VG1YKts57ahPEm/edit?usp=sharing&ouid=103970896670138914877&rtpof=true&sd=true" target="_blank">Forensic Workbook</a> · <a href="https://randallscott25-star.github.io/epstein-forensic-finance/visualizations/shell_network.html" target="_blank">Interactive Network</a>
+**Source data:** [Master Wire Ledger](../data/master_wire_ledger_phase5i.json) · <a href="https://docs.google.com/spreadsheets/d/11lw0QjMZ-rYIjWesv5VG1YKts57ahPEm/edit?usp=sharing&ouid=103970896670138914877&rtpof=true&sd=true" target="_blank">Forensic Workbook</a> · <a href="https://randallscott25-star.github.io/epstein-forensic-finance/visualizations/shell_network.html" target="_blank">Interactive Network</a>
 
 **Related narratives:** [N1: Money Pipeline](01_jeepers_pipeline.md) · [N3: Outflow Recipients](03_plan_d_question.md) · [N11: The Shell Map](11_the_shell_map.md) · [N15: Gratitude America](15_gratitude_america.md)
 

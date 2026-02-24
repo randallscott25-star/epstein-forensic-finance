@@ -71,7 +71,7 @@ HBRK Associates doesn't just appear in emails. It co-occurs with shell entities 
 
 The combined totals: Southern Trust/Financial (**167 shared files**), Butterfly Trust (**27**), Haze Trust (**26**), Jeepers (**23**), Gratitude America (**22**), Financial Trust Company (**17**), Epstein & Co (**9**), Nautilus (**7**).
 
-This is not a CPA practice that prepared annual tax returns for a client. This is a CPA practice that was embedded in the daily operational communications of a 14-entity, 8-bank, $1.964 billion financial network.
+This is not a CPA practice that prepared annual tax returns for a client. This is a CPA practice that was embedded in the daily operational communications of a 14-entity, multi-bank financial network with $1.964 billion in total extracted financial activity.
 
 ## The Inner Circle
 
@@ -129,13 +129,13 @@ The recurring references to invoice numbers (826119 Invoice # on 69 mentions) su
 
 This is the point: HBRK Associates was not a major financial beneficiary of the network. The money flowing through the shells — the $60.5 million from Leon Black, the $25 million from Rothschild, the $244 million through Southern Trust — dwarfs whatever HBRK earned in professional fees. The firm's significance is not in how much money it received. It's in how much money it **coordinated**.
 
-An accounting firm earning modest fees but routing 18,833 emails across a network moving $1.964 billion. That is the disproportion that makes HBRK Associates the most structurally important entity that nobody has examined.
+An accounting firm earning modest fees but routing 18,833 emails across a network with $1.964 billion in total financial activity. That is the disproportion that makes HBRK Associates the most structurally important entity that nobody has examined.
 
 ---
 
 **Methodology:** Entity co-occurrence analysis of HBRK-flagged documents against shell entity names (by document type), person names, and money values. Document type classification from automated pipeline. Person co-occurrence at file level (distinct file_id). All amounts are unverified automated extractions. See [Methodology](../docs/METHODOLOGY.md).
 
-**Source data:** [Master Wire Ledger](../data/master_wire_ledger_phase25.json) · <a href="https://docs.google.com/spreadsheets/d/11lw0QjMZ-rYIjWesv5VG1YKts57ahPEm/edit?usp=sharing&ouid=103970896670138914877&rtpof=true&sd=true" target="_blank">Forensic Workbook</a> · <a href="https://randallscott25-star.github.io/epstein-forensic-finance/visualizations/shell_network.html" target="_blank">Interactive Network</a>
+**Source data:** [Master Wire Ledger](../data/master_wire_ledger_phase5i.json) · <a href="https://docs.google.com/spreadsheets/d/11lw0QjMZ-rYIjWesv5VG1YKts57ahPEm/edit?usp=sharing&ouid=103970896670138914877&rtpof=true&sd=true" target="_blank">Forensic Workbook</a> · <a href="https://randallscott25-star.github.io/epstein-forensic-finance/visualizations/shell_network.html" target="_blank">Interactive Network</a>
 
 **Related narratives:** [N8: Entity Co-Occurrence](08_infrastructure_of_access.md) · [N11: The Shell Map](11_the_shell_map.md) · [N14: Leon Black](14_where_leon_blacks_money_went.md) · [N15: Gratitude America](15_gratitude_america.md)
 

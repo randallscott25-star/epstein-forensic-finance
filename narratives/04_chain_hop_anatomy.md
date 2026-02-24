@@ -66,7 +66,7 @@ I did not automatically remove these matches. Each was reviewed in the context o
 
 ---
 
-*Source: DOJ EFTA Document Release, Deutsche Bank-SDNY Production, Exhibits A and D. Chain-hop removal methodology documented in [METHODOLOGY.md](../docs/METHODOLOGY.md), Phase 22. Entity classifications and shell-to-shell flags are included in the [master wire ledger](../data/master_wire_ledger_phase25.json).*
+*Source: DOJ EFTA Document Release, Deutsche Bank-SDNY Production, Exhibits A and D. Chain-hop removal methodology documented in [METHODOLOGY.md](../docs/METHODOLOGY.md), Phase 22. Entity classifications and shell-to-shell flags are included in the [master wire ledger](../data/master_wire_ledger_phase5i.json).*
 
 ---
 
@@ -75,7 +75,7 @@ I did not automatically remove these matches. Each was reviewed in the context o
 ### Primary Exhibits
 **All Exhibits A–E** (<a href="https://www.justice.gov/epstein/files/DataSet%208/EFTA00027019.pdf" target="_blank">EFTA00027019</a>) plus expansion wires.
 
-This narrative synthesizes the full 382-wire ledger to demonstrate inter-entity fund routing patterns.
+This narrative synthesizes the full 481-wire ledger to demonstrate inter-entity fund routing patterns.
 
 | Exhibit | Wires | Total Value | Primary Entities |
 |---------|-------|-------------|-----------------|
@@ -99,7 +99,7 @@ The 4-tier model (intake → holding → distribution → personal) describes pa
 
 | Document | Source | Description |
 |----------|--------|-------------|
-| <a href="https://www.justice.gov/epstein/files/DataSet%208/EFTA00027019.pdf" target="_blank">EFTA00027019</a> | DS8 | Deutsche Bank-SDNY Production: Exhibits A–E (all 5 exhibits, 382 wires, $1.964B) |
+| <a href="https://www.justice.gov/epstein/files/DataSet%208/EFTA00027019.pdf" target="_blank">EFTA00027019</a> | DS8 | Deutsche Bank-SDNY Production: Exhibits A–E (all 5 exhibits, 481 wires, $973M) |
 | <a href="https://www.justice.gov/epstein/doj-disclosures/data-set-8-files" target="_blank">Dataset 8</a> | DS8 | Browse neighboring documents in Dataset 8 |
 
 ### 📊 Verify in Forensic Workbook

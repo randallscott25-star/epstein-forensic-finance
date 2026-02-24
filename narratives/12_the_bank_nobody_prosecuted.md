@@ -90,7 +90,7 @@ The records exist. They sit somewhere in JPMorgan Chase's legacy systems. The qu
 
 **Methodology:** Entity co-occurrence analysis across 1,476,377 EFTA documents. Money-mention volumes calculated by automated extraction. Bear Stearns document characterization based on OCR-extracted letterhead and statement formatting. Financial Trust Company banking relationship inferred from co-occurrence patterns (66 shared files with Bear Stearns entities). All amounts are unverified automated extractions. See [Methodology](../docs/METHODOLOGY.md) for full technical documentation.
 
-**Source data:** [Master Wire Ledger](../data/master_wire_ledger_phase25.json) · <a href="https://docs.google.com/spreadsheets/d/11lw0QjMZ-rYIjWesv5VG1YKts57ahPEm/edit?usp=sharing&ouid=103970896670138914877&rtpof=true&sd=true" target="_blank">Forensic Workbook</a> · <a href="https://randallscott25-star.github.io/epstein-forensic-finance/visualizations/shell_network.html" target="_blank">Interactive Network</a>
+**Source data:** [Master Wire Ledger](../data/master_wire_ledger_phase5i.json) · <a href="https://docs.google.com/spreadsheets/d/11lw0QjMZ-rYIjWesv5VG1YKts57ahPEm/edit?usp=sharing&ouid=103970896670138914877&rtpof=true&sd=true" target="_blank">Forensic Workbook</a> · <a href="https://randallscott25-star.github.io/epstein-forensic-finance/visualizations/shell_network.html" target="_blank">Interactive Network</a>
 
 **Related narratives:** [N1: Money Pipeline](01_jeepers_pipeline.md) · [N5: Bear Stearns vs. Deutsche Bank](05_deutsche_bank.md) · [N11: The Shell Map](11_the_shell_map.md)
 
@@ -112,7 +112,7 @@ Corpus-wide analysis of Bear Stearns financial documents and Financial Trust Com
 - **Method**: Bank × shell entity co-occurrence in financial documents (doc_type = 'financial')
 
 ### Wire Ledger Cross-Reference
-Financial Trust Company has **zero wires** in the Master Wire Ledger — all 382 verified wires are from Deutsche Bank production. This is the central finding: the highest-volume bank-shell relationship in the corpus produced no enforcement wire data because Bear Stearns was never subjected to equivalent regulatory action.
+Financial Trust Company has **zero wires** in the Master Wire Ledger — all 481 verified wires flow through the Deutsche Bank-centered extraction pipeline. This is the central finding: the highest-volume bank-shell relationship in the corpus produced no enforcement wire data because Bear Stearns was never subjected to equivalent regulatory action.
 
 ### Money Values in Bear Stearns × Financial Trust Co Documents
 Top recurring amounts: $80M (37 mentions), $500M (14), $55M (15), $10M (21), $20M (19)
