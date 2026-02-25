@@ -36,3 +36,13 @@ __pycache__/
 *.sqlite
 __pycache__/
 .DS_Store
+*.zip
+*.txt
+*.py
+*.sh
+files/
+narratives_v9_voice/
+visualizations/vis/
+visualizations/vis.zip
+*.json
+README Legacy Format.md
