@@ -1,0 +1,1629 @@
+
+████████████████████████████████████████████████████████████████████████████████
+  SCHEMA DISCOVERY — Tables that had errors
+████████████████████████████████████████████████████████████████████████████████
+
+  extracted_text: id, file_id, page_num, text_content, char_count, classification, class_note, extraction_method
+
+  financial_hits: id, extraction_tier, verify_tier, amount, category, dataset, serial, page, file_id, db_ref, doc_type, context, url
+
+  fund_flows: id, file_id, dataset, serial, page_num, entity_from, entity_to, entity_from_raw, entity_to_raw, amount, amount_text, date_ref, context, confidence
+
+  fund_flows_audited: id, entity_from, entity_to, amount, composite, tier, ent_cat, from_class, to_class, ctx_txn, ctx_noise, ctx_balance, doc_score, amt_score, date_ref, confidence, docs, datasets, is_balance, is_aggregate, v6_demoted, v6_demotion_reason, fincen_match, icij_match, context_snippet, file_id, dataset, doc_type
+
+  verified_wires: id, exhibit, exhibit_title, date, entity_from, entity_to, entity_from_raw, entity_to_raw, amount, bates, source_file_id
+
+  files: id, dataset, title, url, prefix, serial, serial_block, file_ext, downloaded, local_path, file_size, text_extracted, extraction_method, page_count, meta_created, meta_modified, meta_author, meta_producer, meta_creator, doc_date_earliest, doc_date_latest, doc_type, summary, actual_filetype, filetype_mismatch, media_duration, media_width, media_height, media_codec, media_info
+
+  poi_rankings: name_lower, display_name, score, file_count, primary_file_count, news_file_count, financial_count, flight_count, redaction_count, redaction_dollars, direct_dollars, dataset_count, is_known
+
+  redaction_summary: serial, dataset, pdf_path, total_pages, pages_with_redactions, total_redaction_boxes, total_recovered_fragments, total_recovered_chars, max_interest_score, has_recoverable_text
+
+  financial_redactions: file_id, dataset, title, serial, url, redaction_type, marker, position, context, amount, amount_str, distance_chars, confidence
+
+  dates_found: id, file_id, page_num, date_value, date_text, context
+
+████████████████████████████████████████████████████████████████████████████████
+  PART 1: EXTRACTED TEXT — MANDELSON (using correct columns)
+████████████████████████████████████████████████████████████████████████████████
+  extracted_text columns: ['id', 'file_id', 'page_num', 'text_content', 'char_count', 'classification', 'class_note', 'extraction_method']
+  Using text column: 'text_content'
+
+======================================================================
+  1A: Mandelson in extracted_text
+======================================================================
+  [1A] 50 rows [11.6s]
+  file_id                                  | title                                    | doc_type                                 | dataset                                  | context                                 
+  ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  13959                                    | EFTA00037176.pdf                         | document                                 | 8                                        | 15:52 
+Google 
+< 
+Top Stories 
+Jeffre...
+  18528                                    | EFTA00086575.pdf                         | letter                                   | 9                                        | hope that it now may be of some use t...
+  18528                                    | EFTA00086575.pdf                         | letter                                   | 9                                        | ight also find it useful to seek info...
+  18528                                    | EFTA00086575.pdf                         | letter                                   | 9                                        | ccess to boys who were brothers, frie...
+  21239                                    | EFTA00103831.pdf                         | email                                    | 9                                        | of British Foreign Secretary Malcolm ...
+  21239                                    | EFTA00103831.pdf                         | email                                    | 9                                        | f Tony Blair and Gordon Brown's rise ...
+  21239                                    | EFTA00103831.pdf                         | email                                    | 9                                        | ine.co.uk/tol/news/uk/scotland/articl...
+  21239                                    | EFTA00103831.pdf                         | email                                    | 9                                        | ord Burton, Lord 
+Cullen, Lord Gravil...
+  21239                                    | EFTA00103831.pdf                         | email                                    | 9                                        | but only 100 charges. 
+Follow 
+33 of ...
+  21239                                    | EFTA00103831.pdf                         | email                                    | 9                                        | NSPCC, One-Party-State, 
+Operation Av...
+  24929                                    | EFTA00143627.pdf                         | flight_log                               | 9                                        |  she has? 
+Thank you to the Daily Mai...
+  24929                                    | EFTA00143627.pdf                         | flight_log                               | 9                                        | -WhatsApp•scandal-exposed-MoS.html 
+W...
+  24929                                    | EFTA00143627.pdf                         | flight_log                               | 9                                        | AL AND TELL THE COURT EVERYTHING 
+SHE...
+  24929                                    | EFTA00143627.pdf                         | flight_log                               | 9                                        | Or you can wait for Kash Patel? 
+WHAT...
+  24929                                    | EFTA00143627.pdf                         | flight_log                               | 9                                        | tpOtwww rtailymail co uldnewsLarficle...
+  24929                                    | EFTA00143627.pdf                         | flight_log                               | 9                                        | t were written at the same time I was...
+  24929                                    | EFTA00143627.pdf                         | flight_log                               | 9                                        | you contact the FCA IMMEDIATELY 
+WITH...
+  24931                                    | EFTA00143663.pdf                         | email                                    | 9                                        | -WhatsApp-scandal-exposed-MoS.html 
+W...
+  24931                                    | EFTA00143663.pdf                         | email                                    | 9                                        | IAL AND TELL THE COURT EVERYTHING SHE...
+  24931                                    | EFTA00143663.pdf                         | email                                    | 9                                        | WHAT D() YOU KNOW ABOUT PETER MANDELS...
+  24931                                    | EFTA00143663.pdf                         | email                                    | 9                                        | ps://www.dailymail.co.ukinews/article...
+  24931                                    | EFTA00143663.pdf                         | email                                    | 9                                        | t were written at the same time I was...
+  24931                                    | EFTA00143663.pdf                         | email                                    | 9                                        | https://www.theguardian.com/politics/...
+  24936                                    | EFTA00143695.pdf                         | email                                    | 9                                        | cillors-centre-Hcat 
+Die
+-eximA6V1 
+W...
+  24936                                    | EFTA00143695.pdf                         | email                                    | 9                                        | RIALAND TELL THE COURT EVERYTHING SHE...
+  24936                                    | EFTA00143695.pdf                         | email                                    | 9                                        | ou know to them. 
+Or you can wait for...
+  24936                                    | EFTA00143695.pdf                         | email                                    | 9                                        | ps://www.dailymail.co.ukinews/arlicle...
+  24936                                    | EFTA00143695.pdf                         | email                                    | 9                                        | . 
+https://www.theguardian.com politi...
+  24936                                    | EFTA00143695.pdf                         | email                                    | 9                                        |  you contact the FCA IMMEDIATELY WITH...
+  24939                                    | EFTA00143777.pdf                         | email                                    | 9                                        | -WhatsApp-scandal-exposed-MoS.html 
+W...
+  24939                                    | EFTA00143777.pdf                         | email                                    | 9                                        | IAL AND TELL THE COURT EVERYTHING SHE...
+  24939                                    | EFTA00143777.pdf                         | email                                    | 9                                        | ou know to them. 
+Or you can wait for...
+  24939                                    | EFTA00143777.pdf                         | email                                    | 9                                        | lps://www.dailymaitco.ukinews/article...
+  24939                                    | EFTA00143777.pdf                         | email                                    | 9                                        | t were written at the same time I was...
+  24939                                    | EFTA00143777.pdf                         | email                                    | 9                                        |  you contact the FCA IMMEDIATELY WITH...
+  24943                                    | EFTA00143843.pdf                         | email                                    | 9                                        | ors-centre-aciglakexposed-MoSilimi 
+W...
+  24943                                    | EFTA00143843.pdf                         | email                                    | 9                                        | RIALAND TELL THE COURT EVERYTHING SHE...
+  24943                                    | EFTA00143843.pdf                         | email                                    | 9                                        | WHAT DO YOU KNOW ABOUT PETER MANDELSO...
+  24943                                    | EFTA00143843.pdf                         | email                                    | 9                                        | s://www dadymail co uktnews/article-1...
+  24943                                    | EFTA00143843.pdf                         | email                                    | 9                                        | G THAT THERE IS A TIGHT TIME SCHEDULE...
+  24943                                    | EFTA00143843.pdf                         | email                                    | 9                                        |  you contact the FCA IMMEDIATELY WITH...
+  24946                                    | EFTA00143878.pdf                         | email                                    | 9                                        | nrnire-
+pp-scandal-raggwrt-MnS  b1.03...
+  24946                                    | EFTA00143878.pdf                         | email                                    | 9                                        | IAL AND TELL THE COURT EVERYTHING SHE...
+  24946                                    | EFTA00143878.pdf                         | email                                    | 9                                        | 
+s:/11
+t
+we.dalymail.co.uWnews/articl...
+  24946                                    | EFTA00143878.pdf                         | email                                    | 9                                        | ING THAT THERE IS A TIGHT TIME SCHEDU...
+  24947                                    | EFTA00143938.pdf                         | email                                    | 9                                        | atsAp -scandal-
+exporel-MnS bilig 
+Wh...
+  24947                                    | EFTA00143938.pdf                         | email                                    | 9                                        | L AND TELL THE COURT EVERYTHING SHE 
+...
+  24947                                    | EFTA00143938.pdf                         | email                                    | 9                                        | u know to them. 
+Or you can wait for ...
+  24947                                    | EFTA00143938.pdf                         | email                                    | 9                                        | s://wvnv.dailymai.co.uWnewsfarlicle-
+...
+  24947                                    | EFTA00143938.pdf                         | email                                    | 9                                        | insli www thew iardia n rrantOnliti 
+...
+
+======================================================================
+  1B: 'Reinaldo' or 'Avila da Silva' in extracted_text
+======================================================================
+  [1B] 50 rows [13.0s]
+  file_id                                  | title                                    | doc_type                                 | dataset                                  | context                                 
+  ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  15280                                    | EFTA00048963.pdf                         | document                                 | 9                                        |  201-107LAD 85609-054 REID 
+MICHAEL 
+...
+  18528                                    | EFTA00086575.pdf                         | letter                                   | 9                                        |  including the New York 
+mansion. On ...
+  21696                                    | EFTA00108533.pdf                         | document                                 | 9                                        |  205-123LAD 85609-054 REID 
+MICHAEL 
+...
+  21697                                    | EFTA00108552.pdf                         | document                                 | 9                                        |  Z05-123LAD 85609-054 REID 
+MICHAEL 
+...
+  21927                                    | EFTA00109559.pdf                         | document                                 | 9                                        | IREZ 
+RAMIREZ 
+RAMIREZ 
+RAMOS 
+RAMOS ...
+  21928                                    | EFTA00109599.pdf                         | document                                 | 9                                        |  205-123LAD 85609-054 REID 
+MICHAEL 
+...
+  21929                                    | EFTA00109654.pdf                         | document                                 | 9                                        |  201-107LAD 85609-054 REID 
+MICHAEL 
+...
+  21932                                    | EFTA00109739.pdf                         | document                                 | 9                                        |  Z05-123LAD 85609-054 REID 
+MICHAEL 
+...
+  21933                                    | EFTA00109783.pdf                         | document                                 | 9                                        |  205-123LAD 85609-054 REID 
+MICHAEL 
+...
+  21935                                    | EFTA00109843.pdf                         | document                                 | 9                                        |  205-123LAD 85609-054 REID 
+MICHAEL 
+...
+  23108                                    | EFTA00128439.pdf                         | document                                 | 9                                        |  
+LN 
+ FN 
+VANIER 
+CARLTON 
+GONZALEZ ...
+  23109                                    | EFTA00128444.pdf                         | document                                 | 9                                        | MORCILIO 
+OCHOA 
+TORRES 
+REYES 
+SALAH...
+  23917                                    | EFTA00137802.pdf                         | document                                 | 9                                        |  201-107LAD 85609-054 REID 
+MICHAEL 
+...
+  150436                                   | EFTA00506914.pdf                         | phone_record                             | 9                                        | B022-F 
+709788093C8/AddressBook-v22.a...
+  150656                                   | EFTA00511872.pdf                         | document                                 | 9                                        | B022-F 
+709788093C8/AddressBook-v22.a...
+  150656                                   | EFTA00511872.pdf                         | document                                 | 9                                        | ibrary/Application Support/AddressBoo...
+  181091                                   | EFTA00576760.pdf                         | email                                    | 9                                        | From:
+To: Lesley Groff -MIMIn 
+Date: ...
+  278705                                   | EFTA00656689.pdf                         | email                                    | 9                                        | on@gmail.com> 
+Subject: 
+Date: Thu, 2...
+  299395                                   | EFTA00191467.pdf                         | document                                 | 9                                        | Member of Parliament 
+House of Common...
+  329040                                   | EFTA00586250.pdf                         | document                                 | 9                                        | Lyor Cohen, Tom Ford, Sandy Gallin, M...
+  340486                                   | EFTA00635344.pdf                         | email                                    | 9                                        | Lyor Cohen, Tom Ford, Sandy Gallin, 
+...
+  356139                                   | EFTA00706350.pdf                         | email                                    | 9                                        | 13 23:17:27 +0000 
+I would like to ve...
+  361719                                   | EFTA00715379.pdf                         | email                                    | 9                                        | jeevacation@gmail.com> 
+Subject: 
+Dat...
+  369148                                   | EFTA00734052.pdf                         | email                                    | 9                                        | gmail.com> 
+To: Rich Kahn
+Subject: 
+D...
+  369460                                   | EFTA00734480.pdf                         | email                                    | 9                                        | From: Jeffrey Epstein <jeevacation@gm...
+  369786                                   | EFTA00734928.pdf                         | email                                    | 9                                        | From: Jeffrey Epstein <jeevacation®gm...
+  370020                                   | EFTA00735254.pdf                         | email                                    | 9                                        |  2010 at 6:03 AM, •< 
+> wrote: 
+There...
+  370021                                   | EFTA00735255.pdf                         | email                                    | 9                                        |  9, 2010 at 6:03 AM, < 
+wrote: 
+There...
+  370469                                   | EFTA00735819.pdf                         | email                                    | 9                                        | gmail.com> 
+To: Rich Kahn
+Subject: 
+D...
+  372195                                   | EFTA00738170.pdf                         | email                                    | 9                                        | From: Jeffrey Epstein <jeevacation@gm...
+  372195                                   | EFTA00738170.pdf                         | email                                    | 9                                        | On Sat, Jul 11, 2009 at 5:48 PM, REIN...
+  372199                                   | EFTA00738176.pdf                         | email                                    | 9                                        | From: Jeffrey Epstein
+To:' 
+c:1 
+Subj...
+  372199                                   | EFTA00738176.pdf                         | email                                    | 9                                        | saturday 
+On Thu, Jul 30, 2009 at 6:0...
+  372199                                   | EFTA00738176.pdf                         | email                                    | 9                                        |  thousands of experiments on. 
+(there...
+  372199                                   | EFTA00738176.pdf                         | email                                    | 9                                        | king of you at this time and send you...
+  372216                                   | EFTA00738198.pdf                         | email                                    | 9                                        | From: Jeffrey Epstein <jeevacation@gm...
+  372216                                   | EFTA00738198.pdf                         | email                                    | 9                                        | Reinaldo 
+Reinaldo Avila 
+4 Park Vill...
+  372216                                   | EFTA00738198.pdf                         | email                                    | 9                                        |  thousands of experiments on. 
+(there...
+  372341                                   | EFTA00738371.pdf                         | email                                    | 9                                        | From: Jeffrey Epstein <jeevacation®gm...
+  372393                                   | EFTA00738436.pdf                         | email                                    | 9                                        | From: Jeffrey Epstein <jeevacation®gm...
+  372466                                   | EFTA00738532.pdf                         | email                                    | 9                                        | From: Jeffrey Epstein <jeevacation®gm...
+  372469                                   | EFTA00738535.pdf                         | email                                    | 9                                        | eless device 
+From: Jeffrey Epstein 
+...
+  372472                                   | EFTA00738540.pdf                         | email                                    | 9                                        | eless device 
+From: Jeffrey Epstein 
+...
+  372563                                   | EFTA00738691.pdf                         | email                                    | 9                                        | From: Jeffrey Epstein <jeevacation@gm...
+  372563                                   | EFTA00738691.pdf                         | email                                    | 9                                        | @gmaiLcom> wrote: 
+From: Jeffrey Epst...
+  372565                                   | EFTA00738694.pdf                         | email                                    | 9                                        | eless device 
+From: Jeffrey Epstein 
+...
+  372565                                   | EFTA00738694.pdf                         | email                                    | 9                                        | Reinaldo Avila 
+email 
+-- On Thu, 13/...
+  372567                                   | EFTA00738698.pdf                         | email                                    | 9                                        | ubject: Fwd: 
+Date: Mon, 17 Aug 2009 ...
+  372567                                   | EFTA00738698.pdf                         | email                                    | 9                                        | @gmaiLcom> wrote: 
+From: Jeffrey Epst...
+  372726                                   | EFTA00738907.pdf                         | email                                    | 9                                        | From: Jeffrey Epstein <jeevacation@gm...
+
+======================================================================
+  1C: CHIPS in extracted_text (financial context)
+======================================================================
+  [1C] 50 rows [31.5s]
+  file_id                                  | title                                    | doc_type                                 | dataset                                  | context                                 
+  ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  3883                                     | EFTA00008020.pdf                         | document                                 | 4                                        | stributor, Inc. for Micronesia; by Gr...
+  3885                                     | EFTA00008220.pdf                         | document                                 | 4                                        | about it. Even couch potatoes use the...
+  4375                                     | EFTA00010819.pdf                         | email                                    | 8                                        | rn 
+Rusanano/Akhanov invested in Quan...
+  4375                                     | EFTA00010819.pdf                         | email                                    | 8                                        | ics Corporation 
+EDGAR Search Results...
+  13362                                    | EFTA00035881.pdf                         | police_report                            | 8                                        | ems such as bars and grilles. It can ...
+  15037                                    | EFTA00039689.pdf                         | email                                    | 9                                        | om 
+Rusanano/Akhanov invested in Quan...
+  15037                                    | EFTA00039689.pdf                         | email                                    | 9                                        | ics Corporation 
+EDGAR Search Results...
+  15279                                    | EFTA00045963.pdf                         | document                                 | 9                                        | technology and real estate leading th...
+  15279                                    | EFTA00045963.pdf                         | document                                 | 9                                        | 
+technology and real estate leading t...
+  15285                                    | EFTA00054963.pdf                         | document                                 | 9                                        | MON 
+$5.80 
+5 
+RAMEN BEEF SOUP 
+$1.50...
+  15285                                    | EFTA00054963.pdf                         | document                                 | 9                                        | NSTANT RICE 
+56.00 
+2 
+PINK SALMON 
+5...
+  15285                                    | EFTA00054963.pdf                         | document                                 | 9                                        | ERRY 
+$2.30 
+2 
+JOLLY RANCHER 
+$2.30 ...
+  15285                                    | EFTA00054963.pdf                         | document                                 | 9                                        | NNAISE 
+$3.30 
+2 
+PINEAPPLE MIX 
+$2.3...
+  15592                                    | EFTA00062649.pdf                         | document                                 | 9                                        | 10 with attorney conference. 
+11 
+MR....
+  15592                                    | EFTA00062649.pdf                         | document                                 | 9                                        | . I'm just 
+5 saying if he's 7 days a...
+  15733                                    | EFTA00065103.pdf                         | letter                                   | 9                                        | om 
+Rusanano/Akhanov invested in Quan...
+  15733                                    | EFTA00065103.pdf                         | letter                                   | 9                                        | ics Corporation 
+EDGAR Search Results...
+  15955                                    | EFTA00067130.pdf                         | email                                    | 9                                        | om 
+Rusanano/Akhanov invested in Quan...
+  15955                                    | EFTA00067130.pdf                         | email                                    | 9                                        | ics Corporation 
+EDGAR Search Results...
+  16082                                    | EFTA00067752.pdf                         | email                                    | 9                                        | om 
+Rusanano/Akhanov invested in Quan...
+  16082                                    | EFTA00067752.pdf                         | email                                    | 9                                        | ics Corporation 
+EDGAR Search Results...
+  16091                                    | EFTA00067932.pdf                         | email                                    | 9                                        | om 
+Rusanano/Akhanov invested in Quan...
+  16091                                    | EFTA00067932.pdf                         | email                                    | 9                                        | ics Corporation 
+EDGAR Search Results...
+  16317                                    | EFTA00069339.pdf                         | email                                    | 9                                        | ics Corporation 
+EDGAR Search Results...
+  16318                                    | EFTA00069421.pdf                         | email                                    | 9                                        | om 
+Rusanano/Akhanov invested in Quan...
+  16318                                    | EFTA00069421.pdf                         | email                                    | 9                                        | ics Corporation 
+EDGAR Search Results...
+  16319                                    | EFTA00069571.pdf                         | email                                    | 9                                        | om 
+Rusanano/Akhanov invested in Quan...
+  16319                                    | EFTA00069571.pdf                         | email                                    | 9                                        | ics Corporation 
+EDGAR Search Results...
+  16320                                    | EFTA00069716.pdf                         | email                                    | 9                                        | rn 
+Rusanano/Akhanov invested in Quan...
+  16320                                    | EFTA00069716.pdf                         | email                                    | 9                                        | ics Corporation 
+EDGAR Search Results...
+  16345                                    | EFTA00070043.pdf                         | email                                    | 9                                        | om 
+Rusanano/Akhanov invested in Quan...
+  16345                                    | EFTA00070043.pdf                         | email                                    | 9                                        | ics Corporation 
+EDGAR Search Results...
+  16347                                    | EFTA00070202.pdf                         | email                                    | 9                                        | om 
+Rusanano/Akhanov invested in Quan...
+  16347                                    | EFTA00070202.pdf                         | email                                    | 9                                        | ics Corporation 
+EDGAR Search Results...
+  16348                                    | EFTA00070362.pdf                         | email                                    | 9                                        | om 
+Rusanano/Akhanov invested in Quan...
+  16348                                    | EFTA00070362.pdf                         | email                                    | 9                                        | ics Corporation 
+EDGAR Search Results...
+  16356                                    | EFTA00070722.pdf                         | email                                    | 9                                        | om 
+Rusanano/Akhanov invested in Quan...
+  16356                                    | EFTA00070722.pdf                         | email                                    | 9                                        | ics Corporation 
+EDGAR Search Results...
+  16365                                    | EFTA00070998.pdf                         | email                                    | 9                                        | om 
+Rusanano/Akhanov invested in Quan...
+  16365                                    | EFTA00070998.pdf                         | email                                    | 9                                        | ics Corporation 
+EDGAR Search Results...
+  16366                                    | EFTA00071140.pdf                         | email                                    | 9                                        | om 
+Rusanano/Akhanov invested in Quan...
+  16366                                    | EFTA00071140.pdf                         | email                                    | 9                                        | ics Corporation 
+EDGAR Search Results...
+  16367                                    | EFTA00071284.pdf                         | court_filing                             | 9                                        | om 
+Rusanano/Akhanov invested in Quan...
+  16367                                    | EFTA00071284.pdf                         | court_filing                             | 9                                        | ics Corporation 
+EDGAR Search Results...
+  16430                                    | EFTA00071966.pdf                         | letter                                   | 9                                        | om 
+Rusanano/Akhanov invested in Quan...
+  16430                                    | EFTA00071966.pdf                         | letter                                   | 9                                        | ics Corporation 
+EDGAR Search Results...
+  16441                                    | EFTA00072134.pdf                         | email                                    | 9                                        | om 
+Rusanano/Akhanov invested in Quan...
+  16441                                    | EFTA00072134.pdf                         | email                                    | 9                                        | ics Corporation 
+EDGAR Search Results...
+  17790                                    | EFTA00080676.pdf                         | email                                    | 9                                        | om 
+Rusanano/Akhanov invested in Quan...
+  17790                                    | EFTA00080676.pdf                         | email                                    | 9                                        | ics Corporation 
+EDGAR Search Results...
+
+======================================================================
+  1D: 'Loans and Exchanges' in extracted_text
+======================================================================
+  [1D] (no results) [9.0s]
+
+======================================================================
+  1E: Barclays in extracted_text (count + samples)
+======================================================================
+  [1E-count] 1 rows [8.3s]
+  pages_with_barclays                     
+  ------------------------------------------
+  2950                                    
+  [1E-sample] 25 rows [4.3s]
+  file_id                                  | title                                    | doc_type                                 | dataset                                  | context                                 
+  ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  6510                                     | EFTA00019096.pdf                         | email                                    | 8                                        | Barclays' Jes Staley probed over link...
+  6866                                     | EFTA00019889.pdf                         | email                                    | 8                                        |  him from holding a sernior position ...
+  6867                                     | EFTA00019892.pdf                         | email                                    | 8                                        | y him from holding a senior position ...
+  7016                                     | EFTA00020368.pdf                         | financial                                | 8                                        |  address, excluding the ZIP code, is ...
+  7016                                     | EFTA00020368.pdf                         | financial                                | 8                                        | 
+STATEMENT ADDRESS 
+ACCOUNT 
+NUMBER 
+...
+  7679                                     | EFTA00022173.pdf                         | email                                    | 8                                        | t to do their duty. 
+I have subsequen...
+  7693                                     | EFTA00022206.pdf                         | court_filing                             | 8                                        | on.' Instead, 
+the aggrieved party mu...
+  7722                                     | EFTA00022367.pdf                         | financial                                | 8                                        | ails about 
+those balances. 
+Russell ...
+  7723                                     | EFTA00022377.pdf                         | financial                                | 8                                        | ssell 3000 
+4.48% 
+10.58% 
+MSCI - Eur...
+  7724                                     | EFTA00022383.pdf                         | financial                                | 8                                        | ssell 3000 
+4.48% 
+10.58% 
+MSCI - Eur...
+  7725                                     | EFTA00022391.pdf                         | financial                                | 8                                        | the markets 
+Index 
+S&P 500 
+Russell ...
+  7726                                     | EFTA00022399.pdf                         | financial                                | 8                                        | the markets 
+Index 
+S&P 50O 
+Russell ...
+  7727                                     | EFTA00022407.pdf                         | financial                                | 8                                        | the markets 
+Index 
+S&P 500 
+Russell ...
+  7728                                     | EFTA00022415.pdf                         | financial                                | 8                                        | the markets 
+Index 
+S&P 500 
+Russell ...
+  7729                                     | EFTA00022423.pdf                         | financial                                | 8                                        | the markets 
+index 
+S&P 500 
+Russell ...
+  7983                                     | EFTA00023397.pdf                         | email                                    | 8                                        | f; JPMCJCIL-Requat for_Comment_WMorga...
+  7992                                     | EFTA00023410.pdf                         | email                                    | 8                                        | other week — about how UK law enforce...
+  8162                                     | EFTA00024009.pdf                         | email                                    | 8                                        |  connected source to blackmail Parlia...
+  8526                                     | EFTA00025082.pdf                         | email                                    | 8                                        | Jes 
+Staley's relationship with Epste...
+  8663                                     | EFTA00025392.pdf                         | email                                    | 8                                        | iation 
+Apple Inc. 
+Arctic Cat Inc. 
+...
+  8708                                     | EFTA00025526.pdf                         | email                                    | 8                                        | Amyris Inc. 
+Apple Inc. 
+BNP Paribas ...
+  8733                                     | EFTA00025624.pdf                         | document                                 | 8                                        | own 
+282,451. 
+I 
+I 
+17 Name of finan...
+  8733                                     | EFTA00025624.pdf                         | document                                 | 8                                        | nt wow, 
+2,671,835. 
+17 Name of Finan...
+  8733                                     | EFTA00025624.pdf                         | document                                 | 8                                        | ) (continued) 
+7a Name of financial i...
+  8733                                     | EFTA00025624.pdf                         | document                                 | 8                                        | Fiscal Service 
+7a Name of fnanclal i...
+
+======================================================================
+  1F: HSBC in extracted_text (count + samples)
+======================================================================
+  [1F-count] 1 rows [6.5s]
+  pages_with_hsbc                         
+  ------------------------------------------
+  2539                                    
+  [1F-sample] 25 rows [4.6s]
+  file_id                                  | title                                    | doc_type                                 | dataset                                  | context                                 
+  ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  7070                                     | EFTA00020541.pdf                         | court_filing                             | 8                                        | , this motion 
+presents a unique patt...
+  7070                                     | EFTA00020541.pdf                         | court_filing                             | 8                                        | y beyond the ... reach' of 
+the presu...
+  7679                                     | EFTA00022173.pdf                         | email                                    | 8                                        | een proven true in subsequent 
+settle...
+  8708                                     | EFTA00025526.pdf                         | email                                    | 8                                        |  firm confirmed Thursday. 
+Read full ...
+  8992                                     | EFTA00027019.pdf                         | financial                                | 8                                        |  a) 
+Southern Financial LLC Checking ...
+  10343                                    | EFTA00030281.pdf                         | email                                    | 8                                        | ry 
+Authority Inc. 
+General Cable Cor...
+  11191                                    | EFTA00032400.pdf                         | email                                    | 8                                        | od Marketing Institute 
+GVC Holdings ...
+  11219                                    | EFTA00032454.pdf                         | email                                    | 8                                        | lway Co. 
+Big Lots Inc. 
+CIM Group In...
+  11258                                    | EFTA00032556.pdf                         | email                                    | 8                                        | anklin Corp. 
+Fox Corp. 
+Freddie Mac ...
+  11284                                    | EFTA00032633.pdf                         | email                                    | 8                                        | al Test, Court Told 
+Freddie Mac 
+Gei...
+  11285                                    | EFTA00032642.pdf                         | email                                    | 8                                        |  a lower judge was 
+right to dismiss ...
+  11372                                    | EFTA00032922.pdf                         | email                                    | 8                                        | el Inc. 
+Fordham University 
+Gallup I...
+  11387                                    | EFTA00032964.pdf                         | email                                    | 8                                        | quifax Inc. 
+First Republic Bank 
+For...
+  16446                                    | EFTA00072357.pdf                         | email                                    | 9                                        |  
+A bank client asked her where they ...
+  16915                                    | EFTA00075477.pdf                         | deposition                               | 9                                        | s v. Amodeo, 71 F.3d 1044 (2d Cir. 19...
+  16915                                    | EFTA00075477.pdf                         | deposition                               | 9                                        | stion is 
+whether the records qualify...
+  16915                                    | EFTA00075477.pdf                         | deposition                               | 9                                        | overy 
+documents into "judicial docum...
+  17693                                    | EFTA00080250.pdf                         | email                                    | 9                                        | outhern Financial LLC Checking 
+l;
+) ...
+  17694                                    | EFTA00080260.pdf                         | financial                                | 9                                        | king 
+Southern Financial LLC Checkin:...
+  18087                                    | EFTA00083147.pdf                         | email                                    | 9                                        | A bank client asked her where they co...
+  18145                                    | EFTA00083741.pdf                         | email                                    | 9                                        | ivileges of his work release. 
+Read f...
+  18145                                    | EFTA00083741.pdf                         | email                                    | 9                                        | k Info On Appraiser In Easement Donat...
+  18406                                    | EFTA00085098.pdf                         | court_filing                             | 9                                        | 
+function, no presumption of public a...
+  19492                                    | EFTA00092308.pdf                         | court_filing                             | 9                                        | o, 44 F.3d 141, 145 (2d Cir. 1995) ("...
+  21450                                    | EFTA00104945.pdf                         | email                                    | 9                                        | outhern Financial LLC Checking 
+( 
+1 ...
+
+======================================================================
+  1G: $25,000 + (Barclays OR HSBC OR Mandelson OR JPMorgan) in same page
+======================================================================
+  [1G] 30 rows [2.0s]
+  file_id                                  | title                                    | doc_type                                 | dataset                                  | context                                 
+  ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  8992                                     | EFTA00027019.pdf                         | financial                                | 8                                        |  Checking ( 
+$15,000,000 DB-SDNY-0006...
+  17693                                    | EFTA00080250.pdf                         | email                                    | 9                                        | g 
+( 
+) 
+$15,000,000 
+DB-SDNY-
+000616...
+  17694                                    | EFTA00080260.pdf                         | financial                                | 9                                        |  Checking ( 
+$15,000,000 
+DB-SDNY-000...
+  21450                                    | EFTA00104945.pdf                         | email                                    | 9                                        | B-SDNY-
+0005198 
+1/29/2016 
+Gratitude...
+  21552                                    | EFTA00105525.pdf                         | document                                 | 9                                        | ox 
+25422,232 
+854.230 
+211,376 
+51-0...
+  28083                                    | EFTA00161693.pdf                         | email                                    | 9                                        | ady paid in related proceedings. Boug...
+  307104                                   | EFTA00283449.pdf                         | document                                 | 9                                        | 121,490,705 
+$121,490,705 
+Zuckerman ...
+  307104                                   | EFTA00283449.pdf                         | document                                 | 9                                        | 011 
+7,356,521 
+11,537,126 
+249,668 
+...
+  43353                                    | EFTA00284339.pdf                         | document                                 | 9                                        | /15%Barclays High Yield 
+2.1% 
+7.9% 
+...
+  43353                                    | EFTA00284339.pdf                         | document                                 | 9                                        | /15%Barclays High Yield 
+2.1% 
+7.9% 
+...
+  43353                                    | EFTA00284339.pdf                         | document                                 | 9                                        | 0% 
+0.1% 
+Municipal Securities 
+McDon...
+  151986                                   | EFTA00524160.pdf                         | document                                 | 9                                        | 8GVY7kZebijF9kpSodf6uiVCb4IGX6F03wGPh...
+  331071                                   | EFTA00599617.pdf                         | financial                                | 9                                        | 30 
+1,50000 
+Avalanche Biotechnologie...
+  331098                                   | EFTA00599823.pdf                         | document                                 | 9                                        | ls Inc 
+USD 
+mourner, Non.cyclk 
+0.00...
+  333058                                   | EFTA00613474.pdf                         | document                                 | 9                                        | 75.03 
+878,587.50 
+(55,912.50) 
+6/27/...
+  333607                                   | EFTA00617222.pdf                         | financial                                | 9                                        | -1.335.030 
+Avalanche Biotechnologies...
+  333617                                   | EFTA00617310.pdf                         | document                                 | 9                                        | le states that of the 15 largest IEFs...
+  373040                                   | EFTA00739345.pdf                         | email                                    | 9                                        | ooking downtown Manhattan. 
+Sponsorsh...
+  403634                                   | EFTA00796197.pdf                         | financial                                | 9                                        | 0.61 
+01/15 
+Chips Credit Via: Bank o...
+  405110                                   | EFTA00811490.pdf                         | document                                 | 9                                        |  ) 
+2,010,972 
+2,663,816 
+2,655,755 
+...
+  405119                                   | EFTA00811530.pdf                         | document                                 | 9                                        | 575 
+Avalanche Biotechnologies now ca...
+  405122                                   | EFTA00811539.pdf                         | financial                                | 9                                        | 30 
+1,50000 
+Avalanche Biotechnologie...
+  405123                                   | EFTA00811546.pdf                         | document                                 | 9                                        | 0 
+-1.335.030 
+Avalanche Biotechnoieg...
+  405124                                   | EFTA00811549.pdf                         | document                                 | 9                                        | 
+501.800 
+14,200 
+ON Semiconductor 
+6...
+  405125                                   | EFTA00811552.pdf                         | financial                                | 9                                        | -1.335.030 
+Avalanche Biotechnologies...
+  405138                                   | EFTA00811649.pdf                         | document                                 | 9                                        | 8720 
+52,440 
+KBW Regional Bank ETF 
+...
+  405142                                   | EFTA00811666.pdf                         | document                                 | 9                                        | 27 
+76,737,698 
+8,757,193 
+Southern F...
+  571289                                   | EFTA01118143.pdf                         | document                                 | 9                                        | Purchase 
+Quantity 
+9/30/14 
+10/31/14...
+  571481                                   | EFTA01119261.pdf                         | document                                 | 9                                        | ,537,500.00 
+1,492,500.00 
+45,000.00 ...
+  571481                                   | EFTA01119261.pdf                         | document                                 | 9                                        | 00.00 
+61,600.00 
+9/17/13 
+JPM 
+2.000...
+
+======================================================================
+  1H: 'best pal' or 'chief life adviser' in extracted_text
+======================================================================
+  [1H] 19 rows [9.7s]
+  file_id                                  | title                                    | doc_type                                 | dataset                                  | context                                 
+  ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  28442                                    | EFTA00163802.pdf                         | email                                    | 9                                        | billionaire Leon Black, was handed ov...
+  80126                                    | EFTA00377681.pdf                         | email                                    | 9                                        | From: ==l
+>
+To: Clare Probert 
+Subjec...
+  295731                                   | EFTA00686705.pdf                         | email                                    | 9                                        | Opinion Two: One of the most hackneye...
+  295731                                   | EFTA00686705.pdf                         | email                                    | 9                                        | Unabated, disruptive Palestinian civi...
+  400089                                   | EFTA00777380.pdf                         | email                                    | 9                                        | From: Jeffrey Epstein <jeevacation@gr...
+  400090                                   | EFTA00777382.pdf                         | email                                    | 9                                        | From: Jeevacation leevacation®gmail.c...
+  481606                                   | EFTA00926855.pdf                         | email                                    | 9                                        | From: "Kevin Law"
+To: "jeevacation®gm...
+  567629                                   | EFTA01073204.pdf                         | document                                 | 9                                        | FBI 
+SOS S. RAO DRIVE.
+BEST PALM VOI ...
+  190401                                   | EFTA01309573.pdf                         | financial                                | 10                                       | 0 
+-n 
+C 
+r 
+906ZIC0CINO-AN0S 
+I
+>L
+N...
+  772942                                   | EFTA01585165.pdf                         | document                                 | 10                                       | Confidential Treatment Requested by J...
+  797259                                   | EFTA01692526.pdf                         | financial                                | 10                                       | 01/16/2007 13:18 FAX 
+$DEC-2%-2006 16...
+  797535                                   | EFTA01709902.pdf                         | document                                 | 10                                       | ,,,ATA VERIFICATION FORM 
+..,--t-* NE...
+  869669                                   | EFTA01842985.pdf                         | email                                    | 10                                       | To: 
+jeevacation&maitcompeevacationag...
+  961023                                   | EFTA01977723.pdf                         | email                                    | 10                                       | manifestation of Palestinian national...
+  976562                                   | EFTA01998357.pdf                         | email                                    | 10                                       | To: 
+jeevacationftmail.com[jeevacatio...
+  984130                                   | EFTA02008963.pdf                         | email                                    | 10                                       | peace process created an opening for ...
+  206136                                   | EFTA02237974.pdf                         | email                                    | 11                                       | To: 
+From: 
+Sent 
+Mon 3/5/2018 7:21:3...
+  1274146                                  | EFTA02414612.pdf                         | email                                    | 11                                       | To: 
+Cc: 
+Subject: ' to apartment 
+To...
+  1274272                                  | EFTA02414628.pdf                         | email                                    | 11                                       | To: 
+Jeffrey Epsteinheevacation©gmail...
+
+======================================================================
+  1I: 'Related Entities' + 2003 or 2004 in extracted_text
+======================================================================
+  [1I] 30 rows [1.4s]
+  file_id                                  | title                                    | doc_type                                 | dataset                                  | context                                 
+  ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  17434                                    | EFTA00078683.pdf                         | document                                 | 9                                        |  or claim against 
+Jeffrey Epstein an...
+  299328                                   | EFTA00177847.pdf                         | court_filing                             | 9                                        | reted to, 
+constitute admissions on b...
+  307104                                   | EFTA00283449.pdf                         | document                                 | 9                                        | Mortimer B. Zuckerman and Related Ent...
+  307104                                   | EFTA00283449.pdf                         | document                                 | 9                                        | Mortimer B. Zuckerman and Related Ent...
+  307104                                   | EFTA00283449.pdf                         | document                                 | 9                                        | Mortimer B. Zuckerman and Related Ent...
+  307104                                   | EFTA00283449.pdf                         | document                                 | 9                                        | Mortimer B. Zuckerman and Related Ent...
+  307104                                   | EFTA00283449.pdf                         | document                                 | 9                                        | Mortimer B. Zuckerman and Related Ent...
+  307104                                   | EFTA00283449.pdf                         | document                                 | 9                                        | Mortimer B. Zuckerman and Related Ent...
+  307104                                   | EFTA00283449.pdf                         | document                                 | 9                                        | Mortimer B. Zuckerman and Related Ent...
+  307104                                   | EFTA00283449.pdf                         | document                                 | 9                                        | Mortimer B. Zuckerman and Related Ent...
+  43353                                    | EFTA00284339.pdf                         | document                                 | 9                                        | Mortimer B. Zuckerman and Related Ent...
+  43353                                    | EFTA00284339.pdf                         | document                                 | 9                                        | Mortimer B. Zuckerman and Related Ent...
+  43353                                    | EFTA00284339.pdf                         | document                                 | 9                                        | Mortimer B. Zuckerman and Related Ent...
+  43353                                    | EFTA00284339.pdf                         | document                                 | 9                                        | Mortimer B. Zuckerman and Related Ent...
+  43353                                    | EFTA00284339.pdf                         | document                                 | 9                                        | Mortimer B. Zuckerman and Related Ent...
+  43353                                    | EFTA00284339.pdf                         | document                                 | 9                                        | Mortimer B. Zuckerman and Related Ent...
+  43353                                    | EFTA00284339.pdf                         | document                                 | 9                                        | Mortimer B. Zuckerman and Related Ent...
+  43353                                    | EFTA00284339.pdf                         | document                                 | 9                                        | Mortimer B. Zuckerman and Related Ent...
+  43353                                    | EFTA00284339.pdf                         | document                                 | 9                                        | Mortimer B. Zuckerman and Related Ent...
+  50350                                    | EFTA00316714.pdf                         | court_filing                             | 9                                        | port: A report entitled "SEC's Oversi...
+  106327                                   | EFTA00422713.pdf                         | email                                    | 9                                        | lly released and discharged Defendant...
+  332858                                   | EFTA00611169.pdf                         | financial                                | 9                                        | rship tax returns for high-net worth ...
+  270370                                   | EFTA00642248.pdf                         | email                                    | 9                                        | arks and logos and the "S" logo 
+are ...
+  270879                                   | EFTA00643300.pdf                         | email                                    | 9                                        | arks and logos and the "S" logo 
+are ...
+  271797                                   | EFTA00645097.pdf                         | email                                    | 9                                        | arks and logos and the "S" logo 
+are ...
+  288369                                   | EFTA00673040.pdf                         | email                                    | 9                                        | arks and logos and the "S" logo 
+aro ...
+  288390                                   | EFTA00673067.pdf                         | email                                    | 9                                        | arks and logos and the "S" logo 
+aro ...
+  289941                                   | EFTA00675671.pdf                         | email                                    | 9                                        | arks and logos and the "S" logo 
+are ...
+  366378                                   | EFTA00725604.pdf                         | document                                 | 9                                        | ut of 
+interests in the general partn...
+  407176                                   | EFTA00815703.pdf                         | email                                    | 9                                        | arks and logos and the "S" logo 
+are ...
+
+████████████████████████████████████████████████████████████████████████████████
+  PART 2: FINANCIAL_HITS — CORRECTED
+████████████████████████████████████████████████████████████████████████████████
+  financial_hits columns: ['id', 'extraction_tier', 'verify_tier', 'amount', 'category', 'dataset', 'serial', 'page', 'file_id', 'db_ref', 'doc_type', 'context', 'url']
+  Using snippet column: 'context'
+
+======================================================================
+  2A: $25,000 hits with Mandelson/Barclays/HSBC context
+======================================================================
+  [2A] 7 rows [0.1s]
+  file_id                                  | title                                    | amount                                   | category                                 | ctx                                      | dataset                                 
+  ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  718578                                   | EFTA01482501.pdf                         | 25000.0                                  | wire_transfer                            | 571473  NC: LCP COMPANY, LLC  REF: 83... | 10                                      
+  718639                                   | EFTA01482562.pdf                         | 25000.0                                  | wire_transfer                            | /04/05 T  RN0506900304ESBECAUSE UTA A... | 10                                      
+  724237                                   | EFTA01488160.pdf                         | 25000.0                                  | wire_transfer                            | TEIN INTERESTS  NEW YORK NY 10022.684... | 10                                      
+  724240                                   | EFTA01488163.pdf                         | 25000.0                                  | wire_transfer                            | EIN INTERESTS  NEW YORK NY 10022.6843... | 10                                      
+  763924                                   | EFTA01552348.pdf                         | 25000.0                                  | wire_transfer                            | 4  11/14 Chips Debit Via: Deutsche Ba... | 10                                      
+  762634                                   | EFTA01532275.pdf                         | 25153.64                                 | wire_transfer                            | ount Number  EPSTEIN INTERESTS  Summa... | 10                                      
+  762703                                   | EFTA01532635.pdf                         | 25252.87                                 | wire_transfer                            | 2 of 4  Business Checki  Account Numb... | 10                                      
+
+======================================================================
+  2B: Any financial_hits mentioning Barclays or HSBC
+======================================================================
+  [2B] 30 rows [0.2s]
+  file_id                                  | title                                    | amount                                   | category                                 | ctx                                      | dataset                                 
+  ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  1163042                                  | EFTA02707575.pdf                         | 5400000.0                                | wire_transfer                            | ginning in June 2012. On December 19,... | 11                                      
+  1163042                                  | EFTA02707575.pdf                         | 3300000.0                                | wire_transfer                            | ich the new school building is to be ... | 11                                      
+  758462                                   | EFTA01522385.pdf                         | 490417.81                                | wire_transfer                            | ID: 89417E-10-9)  4/24  Purchase  PRO... | 10                                      
+  765124                                   | EFTA01572125.pdf                         | 439122.6                                 | wire_transfer                            | LD TO BARCLAYS BANK PLC GHISLAINE MAX... | 10                                      
+  796650                                   | EFTA01661868.pdf                         | 439122.6                                 | wire_transfer                            | ss USD  4128  Misc Disbursement  GBP ... | 10                                      
+  765038                                   | EFTA01567660.pdf                         | 439122.6                                 | wire_transfer                            | LD TO BARCLAYS BANK PLC GHISLAINE MAX... | 10                                      
+  571709                                   | EFTA01121645.pdf                         | 315000.0                                 | wire_transfer                            | 0.000%  ($1,000,000)  $1,097.500  SO ... | 9                                       
+  571708                                   | EFTA01121630.pdf                         | 315000.0                                 | wire_transfer                            | 0.000%  ($1,000,000)  $1,097,500  SO ... | 9                                       
+  300394                                   | EFTA00239747.pdf                         | 304930.0                                 | wire_transfer                            | ge  From:  G Max  Sent:  7/31/2019 3:... | 9                                       
+  300393                                   | EFTA00239743.pdf                         | 304930.0                                 | wire_transfer                            | alker, Christopher [  I; Traskus, Mic... | 9                                       
+  19381                                    | EFTA00091671.pdf                         | 304930.0                                 | wire_transfer                            | te  n ,b Walker. Christopher  m); Sta... | 9                                       
+  713108                                   | EFTA01467202.pdf                         | 300000.0                                 | wire_transfer                            | Portfolio Holdings (continued)  U.S. ... | 10                                      
+  796667                                   | EFTA01681865.pdf                         | 250000.0                                 | wire_transfer                            | gan Chase  TD Bank  Butterfly Trust  ... | 10                                      
+  297840                                   | EFTA00092643.pdf                         | 229800.0                                 | wire_transfer                            | outhern Financial  N/A  1/14/2019  Mi... | 9                                       
+  718841                                   | EFTA01482764.pdf                         | 200000.0                                 | wire_transfer                            | ACCRIBANK INTERNATIONAL PLC F  SWIFT:... | 10                                      
+  765008                                   | EFTA01565004.pdf                         | 197584.0                                 | wire_transfer                            | GHISLAINE MAXWELL - TAP DYS ACCT.  Fo... | 10                                      
+  765008                                   | EFTA01565004.pdf                         | 197492.16                                | wire_transfer                            | GHISLAINE MAXWELL - TAP DYS ACCT.  Fo... | 10                                      
+  765014                                   | EFTA01565547.pdf                         | 175333.12                                | wire_transfer                            | GHISLAINE MAXWELL - TAP DYS ACCT.  Fo... | 10                                      
+  765016                                   | EFTA01565740.pdf                         | 175030.22                                | wire_transfer                            | GHISLAINE MAXWELL - TAP DYS ACCT.  Fo... | 10                                      
+  297932                                   | EFTA00105307.pdf                         | 175000.0                                 | wire_transfer                            | ,000  TD Bank  JEGE, LLC  42953475  N... | 9                                       
+  297840                                   | EFTA00092643.pdf                         | 175000.0                                 | wire_transfer                            | LLC  $45,000  TD Bank  JEGE, LLC  N/A... | 9                                       
+  765012                                   | EFTA01565365.pdf                         | 174725.22                                | wire_transfer                            | GHISLAINE MAXWELL - TAP DYS ACCT.  Fo... | 10                                      
+  765010                                   | EFTA01565189.pdf                         | 173911.18                                | wire_transfer                            | GHISLAINE MAXWELL - TAP DYS ACCT.  Fo... | 10                                      
+  765016                                   | EFTA01565740.pdf                         | 173763.35                                | wire_transfer                            | GHISLAINE MAXWELL - TAP DYS ACCT.  Fo... | 10                                      
+  765014                                   | EFTA01565547.pdf                         | 173763.35                                | wire_transfer                            | GHISLAINE MAXWELL - TAP DYS ACCT.  Fo... | 10                                      
+  765012                                   | EFTA01565365.pdf                         | 173763.35                                | wire_transfer                            | GHISLAINE MAXWELL - TAP DYS ACCT.  Fo... | 10                                      
+  765010                                   | EFTA01565189.pdf                         | 173763.35                                | wire_transfer                            | GHISLAINE MAXWELL - TAP DYS ACCT.  Fo... | 10                                      
+  694279                                   | EFTA01430312.pdf                         | 167414.61                                | wire_transfer                            | errazza  Classification: Confidential... | 10                                      
+  676008                                   | EFTA01383613.pdf                         | 167414.61                                | wire_transfer                            | ust IC)  Classification: Confidential... | 10                                      
+  694279                                   | EFTA01430312.pdf                         | 167380.95                                | wire_transfer                            | 9 10:24:13 -0500  To: Richard Kahn  C... | 10                                      
+
+======================================================================
+  2C: Any financial_hits mentioning Mandelson
+======================================================================
+  [2C] 22 rows [0.3s]
+  file_id                                  | title                                    | amount                                   | category                                 | ctx                                      | dataset                                 
+  ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  669112                                   | EFTA01376717.pdf                         | 205433.55                                | wire_transfer                            | Xavier Avila  Subject:  RE: pls sell ... | 10                                      
+  693945                                   | EFTA01427245.pdf                         | 125136.24                                | wire_transfer                            | Fri, 15 Jun 2018 11:42:39 -0400  To: ... | 10                                      
+  673493                                   | EFTA01381098.pdf                         | 125136.24                                | wire_transfer                            | Sferrazza I  ; Joshua Shoshan  ; Xavi... | 10                                      
+  762634                                   | EFTA01532275.pdf                         | 100153.64                                | wire_transfer                            | vate Bank  Business Checkin  Account ... | 10                                      
+  723888                                   | EFTA01487811.pdf                         | 75153.84                                 | wire_transfer                            | lance  $100.153.64  $0 .00  $75.000 0... | 10                                      
+  723885                                   | EFTA01487808.pdf                         | 75153.84                                 | wire_transfer                            | lance  S100.153.64  $0 .00  $75.000 0... | 10                                      
+  762634                                   | EFTA01532275.pdf                         | 75000.0                                  | wire_transfer                            | Checkin  Account Number  EPSTEIN INTE... | 10                                      
+  691439                                   | EFTA01414874.pdf                         | 60000.0                                  | wire_transfer                            | 0500  To: "Paul Barrett Richard Kahn ... | 10                                      
+  723888                                   | EFTA01487811.pdf                         | 50153.64                                 | wire_transfer                            | JPMorgan Private Bank  Activity  Date... | 10                                      
+  421450                                   | EFTA00838795.pdf                         | 41407.82                                 | aviation                                 | ssman,  Would you like me to place th... | 9                                       
+  1361761                                  | EFTA02676629.pdf                         | 41407.82                                 | aviation                                 | d you like m= to place the order for ... | 11                                      
+  691416                                   | EFTA01414789.pdf                         | 30000.0                                  | wire_transfer                            | l Barrett Cc: Xavier Avila  Liam Osul... | 10                                      
+  762634                                   | EFTA01532275.pdf                         | 25153.64                                 | wire_transfer                            | ount Number  EPSTEIN INTERESTS  Summa... | 10                                      
+  802858                                   | EFTA01742003.pdf                         | 6525.0                                   | aviation                                 | oom tiles to be changed  On Sun, May ... | 10                                      
+  1373916                                  | EFTA02463714.pdf                         | 6525.0                                   | aviation                                 | =div class="gmail_extra">  On Sun, Ma... | 11                                      
+  1373436                                  | EFTA02463686.pdf                         | 6525.0                                   | aviation                                 | Sent:  Sunday, May 8, 2016 5:01 PM  T... | 11                                      
+  1373916                                  | EFTA02463714.pdf                         | 6000.0                                   | property                                 | r. Luciano (Tiled the Main Compound) ... | 11                                      
+  1373436                                  | EFTA02463686.pdf                         | 6000.0                                   | property                                 | r. Luciano (Tiled the Main Compound) ... | 11                                      
+  718580                                   | EFTA01482503.pdf                         | 5000.0                                   | wire_transfer                            | EF.JPM5433-24JUNO4 JPMORGA  N CHASERE... | 10                                      
+  774745                                   | EFTA01591951.pdf                         | 4000.0                                   | wire_transfer                            | Re: Jeffrey Epstein  Account # AIIIII... | 10                                      
+  769432                                   | EFTA01581655.pdf                         | 4000.0                                   | wire_transfer                            | 0 PM JPMorgan Chase  314 JEFFREY E. E... | 10                                      
+  1374235                                  | EFTA02484122.pdf                         | 3300.0                                   | aviation                                 | odriquez  wrote:=br>  Good night Boss... | 11                                      
+
+████████████████████████████████████████████████████████████████████████████████
+  PART 3: FUND FLOWS + VERIFIED WIRES — CORRECTED
+████████████████████████████████████████████████████████████████████████████████
+  fund_flows columns: ['id', 'file_id', 'dataset', 'serial', 'page_num', 'entity_from', 'entity_to', 'entity_from_raw', 'entity_to_raw', 'amount', 'amount_text', 'date_ref', 'context', 'confidence']
+  fund_flows_audited columns: ['id', 'entity_from', 'entity_to', 'amount', 'composite', 'tier', 'ent_cat', 'from_class', 'to_class', 'ctx_txn', 'ctx_noise', 'ctx_balance', 'doc_score', 'amt_score', 'date_ref', 'confidence', 'docs', 'datasets', 'is_balance', 'is_aggregate', 'v6_demoted', 'v6_demotion_reason', 'fincen_match', 'icij_match', 'context_snippet', 'file_id', 'dataset', 'doc_type']
+  verified_wires columns: ['id', 'exhibit', 'exhibit_title', 'date', 'entity_from', 'entity_to', 'entity_from_raw', 'entity_to_raw', 'amount', 'bates', 'source_file_id']
+
+======================================================================
+  3A: fund_flows — Barclays/HSBC/Mandelson (using actual cols)
+======================================================================
+  [3A] (no results) [0.1s]
+
+======================================================================
+  3B: fund_flows_audited — Barclays/HSBC/Mandelson
+======================================================================
+  [3B] (no results) [0.0s]
+
+======================================================================
+  3C: verified_wires — Barclays/HSBC/Mandelson
+======================================================================
+  [3C] 1 rows [0.0s]
+  id                                       | exhibit                                  | exhibit_title                            | date                                     | entity_from                              | entity_to                               
+  ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  160                                      | D                                        | Transactions Involving The Haze Trust... | 2018-12-13                               | HSBC Bank Bermuda Limited                | The Haze Trust (Checking)               
+
+████████████████████████████████████████████████████████████████████████████████
+  PART 4: DEEP DIVE — KEY DOCUMENTS
+████████████████████████████████████████████████████████████████████████████████
+
+======================================================================
+  4A: Full file list with Mandelson entity hits
+======================================================================
+  [4A] 1015 rows [3.2s]
+  id                                       | title                                    | doc_type                                 | dataset                                 
+  ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  13959                                    | EFTA00037176.pdf                         | document                                 | 8                                       
+  18528                                    | EFTA00086575.pdf                         | letter                                   | 9                                       
+  21239                                    | EFTA00103831.pdf                         | email                                    | 9                                       
+  24929                                    | EFTA00143627.pdf                         | flight_log                               | 9                                       
+  24931                                    | EFTA00143663.pdf                         | email                                    | 9                                       
+  24936                                    | EFTA00143695.pdf                         | email                                    | 9                                       
+  24939                                    | EFTA00143777.pdf                         | email                                    | 9                                       
+  24943                                    | EFTA00143843.pdf                         | email                                    | 9                                       
+  24946                                    | EFTA00143878.pdf                         | email                                    | 9                                       
+  24947                                    | EFTA00143938.pdf                         | email                                    | 9                                       
+  24977                                    | EFTA00144276.pdf                         | email                                    | 9                                       
+  24982                                    | EFTA00144401.pdf                         | email                                    | 9                                       
+  24983                                    | EFTA00144485.pdf                         | email                                    | 9                                       
+  24986                                    | EFTA00144597.pdf                         | email                                    | 9                                       
+  27540                                    | EFTA00157634.pdf                         | document                                 | 9                                       
+  28442                                    | EFTA00163802.pdf                         | email                                    | 9                                       
+  45733                                    | EFTA00298379.pdf                         | document                                 | 9                                       
+  47196                                    | EFTA00304706.pdf                         | document                                 | 9                                       
+  72455                                    | EFTA00364952.pdf                         | email                                    | 9                                       
+  85136                                    | EFTA00387034.pdf                         | email                                    | 9                                       
+  85157                                    | EFTA00387060.pdf                         | email                                    | 9                                       
+  88366                                    | EFTA00392897.pdf                         | email                                    | 9                                       
+  88409                                    | EFTA00393006.pdf                         | email                                    | 9                                       
+  88419                                    | EFTA00393023.pdf                         | email                                    | 9                                       
+  88420                                    | EFTA00393028.pdf                         | email                                    | 9                                       
+  88421                                    | EFTA00393031.pdf                         | email                                    | 9                                       
+  88422                                    | EFTA00393034.pdf                         | email                                    | 9                                       
+  88428                                    | EFTA00393048.pdf                         | email                                    | 9                                       
+  88429                                    | EFTA00393051.pdf                         | email                                    | 9                                       
+  88432                                    | EFTA00393063.pdf                         | email                                    | 9                                       
+  88475                                    | EFTA00393129.pdf                         | email                                    | 9                                       
+  88476                                    | EFTA00393135.pdf                         | email                                    | 9                                       
+  88483                                    | EFTA00393148.pdf                         | email                                    | 9                                       
+  88484                                    | EFTA00393149.pdf                         | email                                    | 9                                       
+  88499                                    | EFTA00393171.pdf                         | email                                    | 9                                       
+  88501                                    | EFTA00393174.pdf                         | email                                    | 9                                       
+  88524                                    | EFTA00393203.pdf                         | email                                    | 9                                       
+  88526                                    | EFTA00393205.pdf                         | email                                    | 9                                       
+  88527                                    | EFTA00393206.pdf                         | email                                    | 9                                       
+  88530                                    | EFTA00393210.pdf                         | email                                    | 9                                       
+  88531                                    | EFTA00393212.pdf                         | email                                    | 9                                       
+  88533                                    | EFTA00393215.pdf                         | email                                    | 9                                       
+  88536                                    | EFTA00393218.pdf                         | email                                    | 9                                       
+  88537                                    | EFTA00393220.pdf                         | email                                    | 9                                       
+  88539                                    | EFTA00393222.pdf                         | email                                    | 9                                       
+  88540                                    | EFTA00393224.pdf                         | email                                    | 9                                       
+  88541                                    | EFTA00393225.pdf                         | email                                    | 9                                       
+  88542                                    | EFTA00393226.pdf                         | email                                    | 9                                       
+  98992                                    | EFTA00411760.pdf                         | email                                    | 9                                       
+  99014                                    | EFTA00411791.pdf                         | email                                    | 9                                       
+  ... (965 more rows)
+
+======================================================================
+  4B: EFTA00086575.pdf — ALL entities in the Mandelson+Avila letter
+======================================================================
+  [4B] 30 rows [0.0s]
+  entity_text                              | entity_type                             
+  ------------------------------------------------------------------------------------
+  England                                  | GPE                                     
+  New York                                 | GPE                                     
+  New York                                 | GPE                                     
+  New York City                            | GPE                                     
+  US                                       | GPE                                     
+  US                                       | GPE                                     
+  Epstein                                  | LOC                                     
+  the Southern District                    | LOC                                     
+  the Southern District                    | LOC                                     
+  British                                  | NORP                                    
+  Epstein                                  | ORG                                     
+  Plaza 
+New York City                     | ORG                                     
+  Spacey                                   | ORG                                     
+  the World Trade Organization             | ORG                                     
+  • Epstein                                | ORG                                     
+  Andrew                                   | PERSON                                  
+  Andrew                                   | PERSON                                  
+  Berman                                   | PERSON                                  
+  Epstein                                  | PERSON                                  
+  Epstein                                  | PERSON                                  
+  Geoffrey S Berman                        | PERSON                                  
+  Jeffrey Epstein                          | PERSON                                  
+  Kevin Spacey                             | PERSON                                  
+  Mandelson                                | PERSON                                  
+  Mandelson                                | PERSON                                  
+  Mandelson                                | PERSON                                  
+  Peter                                    | PERSON                                  
+  Peter Mandelson                          | PERSON                                  
+  Prince Andrew                            | PERSON                                  
+  Reinaldo 
+Avila da Silva                 | PERSON                                  
+
+======================================================================
+  4C: EFTA00086575.pdf — Full extracted text
+======================================================================
+  [4C] 4 rows [0.0s]
+  full_text                               
+  ------------------------------------------
+  England 
+Telephone 1 
+US Attorney for...
+  Telephone 
+Mr Geoffrey S Berman 
+US A...
+  his guests whom he thought might enjo...
+  Ea' 
+A-110K1 
+5,,,(40•4 two) 
+A,/ ,4...
+
+======================================================================
+  4D: EFTA00037176.pdf (DS8 document) — ALL entities
+======================================================================
+  [4D] 13 rows [0.0s]
+  entity_text                              | entity_type                             
+  ------------------------------------------------------------------------------------
+  JPMorgan                                 | GPE                                     
+  London                                   | GPE                                     
+  New York                                 | GPE                                     
+  Paris                                    | GPE                                     
+  UK                                       | GPE                                     
+  LCI 
+Emails                              | ORG                                     
+  The Sun/News Licensing                   | ORG                                     
+  Epstein                                  | PERSON                                  
+  Jeffrey Epstein                          | PERSON                                  
+  Jeffrey Epstein's                        | PERSON                                  
+  Jim Pickard                              | PERSON                                  
+  Joe Miller                               | PERSON                                  
+  Peter Mandelson                          | PERSON                                  
+
+======================================================================
+  4E: EFTA00037176.pdf — Full extracted text
+======================================================================
+  [4E] 1 rows [0.0s]
+  full_text                               
+  ------------------------------------------
+  15:52 
+Google 
+< 
+Top Stories 
+Jeffre...
+
+======================================================================
+  4F: EFTA00103831.pdf (email) — ALL entities + text
+======================================================================
+  [4F-entities] 842 rows [0.0s]
+  entity_text                              | entity_type                             
+  ------------------------------------------------------------------------------------
+  Bow Street 
+Magistrates Court            | FAC                                     
+  Buckingham Palace                        | FAC                                     
+  Buckingham Palace                        | FAC                                     
+  Dolphin Square                           | FAC                                     
+  Edinburgh Pentlands                      | FAC                                     
+  Haut de la                               | FAC                                     
+  Haut de la Garenne                       | FAC                                     
+  Haut de la Garenne                       | FAC                                     
+  Operation Avalanche                      | FAC                                     
+  Operation Avalanche                      | FAC                                     
+  Palmeira Avenue Hove                     | FAC                                     
+  Palmeira Avenue Hove                     | FAC                                     
+  Vatican                                  | FAC                                     
+  Aberdeen                                 | GPE                                     
+  Aberdeen                                 | GPE                                     
+  Belfast                                  | GPE                                     
+  Belfast                                  | GPE                                     
+  Belgium                                  | GPE                                     
+  Brighton                                 | GPE                                     
+  Brighton                                 | GPE                                     
+  Brighton                                 | GPE                                     
+  Britain                                  | GPE                                     
+  Britain                                  | GPE                                     
+  Britain                                  | GPE                                     
+  Britain                                  | GPE                                     
+  Britain                                  | GPE                                     
+  Browning                                 | GPE                                     
+  Brussels                                 | GPE                                     
+  Buckingham                               | GPE                                     
+  Clapham                                  | GPE                                     
+  Clapham                                  | GPE                                     
+  Doorway                                  | GPE                                     
+  Dunblane                                 | GPE                                     
+  East Cottage                             | GPE                                     
+  East Cottage                             | GPE                                     
+  Edinburgh                                | GPE                                     
+  Edinburgh                                | GPE                                     
+  Edinburgh                                | GPE                                     
+  Edinburgh                                | GPE                                     
+  England                                  | GPE                                     
+  Florida                                  | GPE                                     
+  Germany                                  | GPE                                     
+  Hampshire                                | GPE                                     
+  Hampshire County 
+Council                | GPE                                     
+  Hove                                     | GPE                                     
+  Hove                                     | GPE                                     
+  Hove                                     | GPE                                     
+  Iraq                                     | GPE                                     
+  Ireland                                  | GPE                                     
+  Jersey                                   | GPE                                     
+  ... (792 more rows)
+  [4F-text] 5 rows [0.0s]
+  full_text                               
+  ------------------------------------------
+  From: Jean James <jeanjamesgtelus.net...
+  https://archive.org/details/TonyBlair...
+  Lord Cullen (SS)-who had physically w...
+  broadcast 
+Documentary of 
+Missing Jo...
+  comprehensive guide to government non...
+
+======================================================================
+  4G: EFTA00143627.pdf (flight_log with Mandelson) — text
+======================================================================
+  [4G] 5 rows [0.0s]
+  full_text                               
+  ------------------------------------------
+  Attachments 
+From: 
+To: 
+Subject: [EX...
+  _09_02 2007.png: 
+Not_prepared to_go_...
+  DICK DURBIN IS A DE COY WHEN THE VERY...
+  EFTA00143630                            
+  EFTA00143631                            
+
+████████████████████████████████████████████████████████████████████████████████
+  PART 5: POI_RANKINGS — CORRECTED
+████████████████████████████████████████████████████████████████████████████████
+  poi_rankings columns: ['name_lower', 'display_name', 'score', 'file_count', 'primary_file_count', 'news_file_count', 'financial_count', 'flight_count', 'redaction_count', 'redaction_dollars', 'direct_dollars', 'dataset_count', 'is_known']
+
+======================================================================
+  5A: Mandelson in POI rankings
+======================================================================
+  [5A] 1 rows [0.0s]
+  name_lower                               | display_name                             | score                                    | file_count                               | primary_file_count                       | news_file_count                         
+  ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  peter mandelson                          | Peter Mandelson                          | 1999                                     | 876                                      | 872                                      | 4                                       
+
+████████████████████████████████████████████████████████████████████████████████
+  PART 6: FILES TABLE — CORRECTED
+████████████████████████████████████████████████████████████████████████████████
+  files columns: ['id', 'dataset', 'title', 'url', 'prefix', 'serial', 'serial_block', 'file_ext', 'downloaded', 'local_path', 'file_size', 'text_extracted', 'extraction_method', 'page_count', 'meta_created', 'meta_modified', 'meta_author', 'meta_producer', 'meta_creator', 'doc_date_earliest', 'doc_date_latest', 'doc_type', 'summary', 'actual_filetype', 'filetype_mismatch', 'media_duration', 'media_width', 'media_height', 'media_codec', 'media_info']
+
+======================================================================
+  6A: All files mentioning Mandelson (via entities)
+======================================================================
+  [6A] 1015 rows [3.8s]
+  id                                       | title                                    | doc_type                                 | dataset                                  | entity_hits                             
+  ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  13959                                    | EFTA00037176.pdf                         | document                                 | 8                                        | 1                                       
+  18528                                    | EFTA00086575.pdf                         | letter                                   | 9                                        | 4                                       
+  21239                                    | EFTA00103831.pdf                         | email                                    | 9                                        | 10                                      
+  24929                                    | EFTA00143627.pdf                         | flight_log                               | 9                                        | 5                                       
+  24931                                    | EFTA00143663.pdf                         | email                                    | 9                                        | 5                                       
+  24936                                    | EFTA00143695.pdf                         | email                                    | 9                                        | 3                                       
+  24939                                    | EFTA00143777.pdf                         | email                                    | 9                                        | 4                                       
+  24943                                    | EFTA00143843.pdf                         | email                                    | 9                                        | 4                                       
+  24946                                    | EFTA00143878.pdf                         | email                                    | 9                                        | 2                                       
+  24947                                    | EFTA00143938.pdf                         | email                                    | 9                                        | 2                                       
+  24977                                    | EFTA00144276.pdf                         | email                                    | 9                                        | 4                                       
+  24982                                    | EFTA00144401.pdf                         | email                                    | 9                                        | 7                                       
+  24983                                    | EFTA00144485.pdf                         | email                                    | 9                                        | 7                                       
+  24986                                    | EFTA00144597.pdf                         | email                                    | 9                                        | 2                                       
+  27540                                    | EFTA00157634.pdf                         | document                                 | 9                                        | 1                                       
+  28442                                    | EFTA00163802.pdf                         | email                                    | 9                                        | 1                                       
+  45733                                    | EFTA00298379.pdf                         | document                                 | 9                                        | 1                                       
+  47196                                    | EFTA00304706.pdf                         | document                                 | 9                                        | 2                                       
+  72455                                    | EFTA00364952.pdf                         | email                                    | 9                                        | 1                                       
+  85136                                    | EFTA00387034.pdf                         | email                                    | 9                                        | 2                                       
+  85157                                    | EFTA00387060.pdf                         | email                                    | 9                                        | 1                                       
+  88366                                    | EFTA00392897.pdf                         | email                                    | 9                                        | 1                                       
+  88409                                    | EFTA00393006.pdf                         | email                                    | 9                                        | 1                                       
+  88419                                    | EFTA00393023.pdf                         | email                                    | 9                                        | 1                                       
+  88420                                    | EFTA00393028.pdf                         | email                                    | 9                                        | 1                                       
+  88421                                    | EFTA00393031.pdf                         | email                                    | 9                                        | 1                                       
+  88422                                    | EFTA00393034.pdf                         | email                                    | 9                                        | 1                                       
+  88428                                    | EFTA00393048.pdf                         | email                                    | 9                                        | 1                                       
+  88429                                    | EFTA00393051.pdf                         | email                                    | 9                                        | 1                                       
+  88432                                    | EFTA00393063.pdf                         | email                                    | 9                                        | 1                                       
+  88475                                    | EFTA00393129.pdf                         | email                                    | 9                                        | 1                                       
+  88476                                    | EFTA00393135.pdf                         | email                                    | 9                                        | 1                                       
+  88483                                    | EFTA00393148.pdf                         | email                                    | 9                                        | 2                                       
+  88484                                    | EFTA00393149.pdf                         | email                                    | 9                                        | 1                                       
+  88499                                    | EFTA00393171.pdf                         | email                                    | 9                                        | 1                                       
+  88501                                    | EFTA00393174.pdf                         | email                                    | 9                                        | 1                                       
+  88524                                    | EFTA00393203.pdf                         | email                                    | 9                                        | 1                                       
+  88526                                    | EFTA00393205.pdf                         | email                                    | 9                                        | 1                                       
+  88527                                    | EFTA00393206.pdf                         | email                                    | 9                                        | 1                                       
+  88530                                    | EFTA00393210.pdf                         | email                                    | 9                                        | 1                                       
+  88531                                    | EFTA00393212.pdf                         | email                                    | 9                                        | 1                                       
+  88533                                    | EFTA00393215.pdf                         | email                                    | 9                                        | 1                                       
+  88536                                    | EFTA00393218.pdf                         | email                                    | 9                                        | 1                                       
+  88537                                    | EFTA00393220.pdf                         | email                                    | 9                                        | 1                                       
+  88539                                    | EFTA00393222.pdf                         | email                                    | 9                                        | 1                                       
+  88540                                    | EFTA00393224.pdf                         | email                                    | 9                                        | 1                                       
+  88541                                    | EFTA00393225.pdf                         | email                                    | 9                                        | 1                                       
+  88542                                    | EFTA00393226.pdf                         | email                                    | 9                                        | 1                                       
+  98992                                    | EFTA00411760.pdf                         | email                                    | 9                                        | 1                                       
+  99014                                    | EFTA00411791.pdf                         | email                                    | 9                                        | 1                                       
+  ... (965 more rows)
+
+████████████████████████████████████████████████████████████████████████████████
+  PART 7: DS11 SEARCH — THE BIG ONE
+████████████████████████████████████████████████████████████████████████████████
+  DS11 has 331,659 files. FT says 'most recent release of ~3M documents'
+  These CHIPS payments are most likely in DS11.
+
+======================================================================
+  7A: DS11 files with Mandelson in entities
+======================================================================
+  [7A] 30 rows [0.1s]
+  id                                       | title                                    | doc_type                                
+  ------------------------------------------------------------------------------------------------------------------------------
+  236905                                   | EFTA02298983.pdf                         | email                                   
+  237531                                   | EFTA02299868.pdf                         | email                                   
+  241730                                   | EFTA02306166.pdf                         | email                                   
+  241750                                   | EFTA02306195.pdf                         | email                                   
+  241758                                   | EFTA02306205.pdf                         | email                                   
+  241773                                   | EFTA02306241.pdf                         | email                                   
+  241825                                   | EFTA02306318.pdf                         | email                                   
+  242086                                   | EFTA02306717.pdf                         | email                                   
+  242166                                   | EFTA02306848.pdf                         | email                                   
+  242286                                   | EFTA02307056.pdf                         | email                                   
+  242473                                   | EFTA02307404.pdf                         | email                                   
+  242511                                   | EFTA02307458.pdf                         | email                                   
+  242525                                   | EFTA02307480.pdf                         | email                                   
+  242573                                   | EFTA02307572.pdf                         | email                                   
+  242599                                   | EFTA02307614.pdf                         | email                                   
+  242736                                   | EFTA02307854.pdf                         | email                                   
+  242762                                   | EFTA02307894.pdf                         | email                                   
+  242805                                   | EFTA02307952.pdf                         | email                                   
+  242845                                   | EFTA02308024.pdf                         | email                                   
+  242930                                   | EFTA02308179.pdf                         | email                                   
+  242960                                   | EFTA02308222.pdf                         | email                                   
+  243176                                   | EFTA02308554.pdf                         | email                                   
+  243186                                   | EFTA02308569.pdf                         | email                                   
+  243199                                   | EFTA02308586.pdf                         | email                                   
+  243316                                   | EFTA02308779.pdf                         | email                                   
+  243356                                   | EFTA02308828.pdf                         | email                                   
+  243359                                   | EFTA02308831.pdf                         | email                                   
+  243363                                   | EFTA02308836.pdf                         | email                                   
+  243638                                   | EFTA02309257.pdf                         | email                                   
+  245005                                   | EFTA02311699.pdf                         | email                                   
+
+======================================================================
+  7B: DS11 files with Mandelson in extracted_text
+======================================================================
+  [7B] 30 rows [0.2s]
+  file_id                                  | title                                    | doc_type                                 | context                                 
+  ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  236857                                   | EFTA02298915.pdf                         | email                                    | T 
+To: 
+eduardo , mon , ian mon, mira...
+  236905                                   | EFTA02298983.pdf                         | email                                    |  with the king now having chocolate d...
+  237531                                   | EFTA02299868.pdf                         | email                                    | From: 
+Sent: 
+Monday, January 16, 201...
+  241730                                   | EFTA02306166.pdf                         | email                                    | From: 
+Sent: 
+Sunday, May 27, 2012 4:...
+  241750                                   | EFTA02306195.pdf                         | email                                    | From: 
+Sent: 
+Sunday, May 27, 2012 10...
+  241758                                   | EFTA02306205.pdf                         | email                                    | From: 
+Sent: 
+Sunday, May 27, 2012 11...
+  241773                                   | EFTA02306241.pdf                         | email                                    | From: 
+Sent: 
+lk•cia 1.2012 
+11:24 AM...
+  241825                                   | EFTA02306318.pdf                         | email                                    | From: 
+Sent: 
+Wednesday, May 2, 2012 ...
+  242086                                   | EFTA02306717.pdf                         | email                                    | From: 
+Sent: 
+Saturday, May 19, 2012 ...
+  242166                                   | EFTA02306848.pdf                         | email                                    | From: 
+Ortal Message 
+Imailto 
+Sent: ...
+  242286                                   | EFTA02307056.pdf                         | email                                    | PM, 
+Begin forwarded message: 
+=/div>...
+  242473                                   | EFTA02307404.pdf                         | email                                    | y Groff < 
+> 
+<mailto 
+>  wrote: 
+=bl...
+  242511                                   | EFTA02307458.pdf                         | email                                    | From: 
+Sent: 
+Thursday, May 24, 2012 ...
+  242525                                   | EFTA02307480.pdf                         | email                                    |  <= <mailto 
+<mailto:lesley.jee@gm=il...
+  242525                                   | EFTA02307480.pdf                         | email                                    | <=iv>From: Peter Mandelson 
+<mailto 
+...
+  242573                                   | EFTA02307572.pdf                         | email                                    | alyn Fontanilla; Jojo(luciano) Fontan...
+  242599                                   | EFTA02307614.pdf                         | email                                    |  inal Messa e 
+From: 
+(mailto
+Sent: W...
+  242736                                   | EFTA02307854.pdf                         | email                                    | iginal Message 
+From: 
+mailto 
+Sent: ...
+  242762                                   | EFTA02307894.pdf                         | email                                    | eeting the girls at 745 and noaat 6=5...
+  242805                                   | EFTA02307952.pdf                         | email                                    | m: 
+Sent: 
+Friday, May 25, 2012 3:51 ...
+  242845                                   | EFTA02308024.pdf                         | email                                    | From: 
+Sent: 
+To: 
+Peter Mandelson 
+4...
+  242930                                   | EFTA02308179.pdf                         | email                                    | From: 
+Sent: 
+Thursday, May 31, 2012 ...
+  242960                                   | EFTA02308222.pdf                         | email                                    | From: 
+Sent: 
+To: 
+Subject: 
+Peter Ma...
+  243098                                   | EFTA02308449.pdf                         | document                                 | E-TICKET RECEIPT and ITINERARY 
+E-Tic...
+  243176                                   | EFTA02308554.pdf                         | email                                    | y for all the typos .Sent from my iPh...
+  243186                                   | EFTA02308569.pdf                         | email                                    |  
+Sent: 
+Thursdilla.2012 11:36 AM 
+To...
+  243199                                   | EFTA02308586.pdf                         | email                                    | 2, at 1:35 PM, Lesley Groff «mailt 
+<...
+  243316                                   | EFTA02308779.pdf                         | email                                    | From: 
+Sent: 
+Tuesday, May 29, 2012 1...
+  243356                                   | EFTA02308828.pdf                         | email                                    | From: 
+Peter Mandelson < 
+> 
+Sent: 
+S...
+  243359                                   | EFTA02308831.pdf                         | email                                    | r the evening in case you want her to...
+
+======================================================================
+  7C: DS11 files with Barclays in extracted_text
+======================================================================
+  [7C] 30 rows [0.3s]
+  file_id                                  | title                                    | doc_type                                 | context                                 
+  ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  268043                                   | EFTA02347700.pdf                         | email                                    | 1F497D"> 
+This bond looks interesting...
+  268236                                   | EFTA02348109.pdf                         | email                                    | 5/14/15 
+3,000,000 
+Bank of America 8...
+  268410                                   | EFTA02348507.pdf                         | email                                    | luctance to step into the breach. Ban...
+  268506                                   | EFTA02348681.pdf                         | email                                    | Sent: 
+Monday, October 12, 2015 9:01 ...
+  1130003                                  | EFTA02484409.pdf                         | email                                    | http://www.nytimes=com/2015/10/13/bus...
+  1130195                                  | EFTA02484403.pdf                         | email                                    | ation@gmail.com> a ecrit : 
+http://ww...
+  1132001                                  | EFTA02495539.pdf                         | email                                    | ild-2 
+Subject: 
+lots going on 
+http:...
+  1132875                                  | EFTA02505059.pdf                         | email                                    | 
+jeffrey E. 
+Subject: 
+Re: Marrakech ...
+  1133307                                  | EFTA02505030.pdf                         | email                                    | 
+jeffrey E. 
+Subject: 
+Re: Marrakech ...
+  1133460                                  | EFTA02504869.pdf                         | email                                    |  2015 at 7:22 AM, Mark Lloyd 
+wrote: ...
+  1134227                                  | EFTA02441952.pdf                         | email                                    | s. 
+Internet communications are not g...
+  1136765                                  | EFTA02401514.pdf                         | email                                    | =e big banking news over here in the ...
+  1138000                                  | EFTA02706722.pdf                         | document                                 | Web, Excel and 
+system 
+interfaces 
+u...
+  1142274                                  | EFTA02693661.pdf                         | email                                    |  of your friend? 
+Thanks for your ans...
+  1147565                                  | EFTA02451285.pdf                         | email                                    | ard Kahn 
+Sent: 
+Monday, September 12...
+  1154713                                  | EFTA02700857.pdf                         | email                                    | y < 
+Sent: 
+Friday, July 27, 2012 2:1...
+  1155457                                  | EFTA02700848.pdf                         | email                                    | London heli broker: 
+Hi Larry, 
+I hav...
+  1157403                                  | EFTA02719868.pdf                         | email                                    | n < 
+Sent: 
+Tuesday, November 24, 201...
+  1157403                                  | EFTA02719868.pdf                         | email                                    | 
+Here's a bond =hat I'd like to show ...
+  1158198                                  | EFTA02415736.pdf                         | email                                    | s. 
+Internet communications are not g...
+  1158198                                  | EFTA02415736.pdf                         | email                                    | s. 
+Internet communications are not g...
+  1158300                                  | EFTA02416307.pdf                         | email                                    | 27/2010 8:27:01 AM 
+Subject Re: barca...
+  1162802                                  | EFTA02707384.pdf                         | document                                 | ller & Co. 
+World Vision Internationa...
+  1162802                                  | EFTA02707384.pdf                         | document                                 | de France 
+Chief Executive, Wealth Ma...
+  1162802                                  | EFTA02707384.pdf                         | document                                 | al 
+Sasol Limited 
+South Africa 
+Offi...
+  1162802                                  | EFTA02707384.pdf                         | document                                 | impelCom 
+The Boston Consulting Group...
+  1162802                                  | EFTA02707384.pdf                         | document                                 | on 
+USA 
+Neuberger Berman Group LLC U...
+  1162802                                  | EFTA02707384.pdf                         | document                                 | ng Corporation 
+Lancaster University ...
+  1163149                                  | EFTA02706863.pdf                         | document                                 | mporary 
+African Guinean An 
+Nnaceic ...
+  1164177                                  | EFTA02403236.pdf                         | email                                    | aily
+Sent: 
+Friday, July 27, 2012 2:1...
+
+======================================================================
+  7D: DS11 files with HSBC in extracted_text
+======================================================================
+  [7D] 30 rows [0.2s]
+  file_id                                  | title                                    | doc_type                                 | context                                 
+  ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  234594                                   | EFTA02295725.pdf                         | financial                                | of available funds.) 
+USD internation...
+  241974                                   | EFTA02306530.pdf                         | letter                                   | 's account number and 
+invoice number...
+  241974                                   | EFTA02306530.pdf                         | letter                                   | numéro de facture. Nos coordonnées so...
+  262293                                   | EFTA02336391.pdf                         | email                                    | Kung ( that also has a =onvenient but...
+  262490                                   | EFTA02336884.pdf                         | email                                    | jeevacation@gmail.com> a ecrit : 
+htt...
+  1128739                                  | EFTA02506441.pdf                         | email                                    | ros 7'540.--
+Payment by wire transfer...
+  1139463                                  | EFTA02717488.pdf                         | document                                 | divers 
+Montant dû 
+68 100.00 
+86 895...
+  1140621                                  | EFTA02702841.pdf                         | email                                    | 
+Sent: 
+Monday, May 2, 2016 8:42 PM 
+...
+  1140621                                  | EFTA02702841.pdf                         | email                                    | 
+Product Type: =ixed-to-Floating Rate...
+  1140681                                  | EFTA02702844.pdf                         | financial                                | ectus dated March 5. 2015 and 
+Prospe...
+  1140681                                  | EFTA02702844.pdf                         | financial                                | HSBC USA Inc. 
+Fixed to Floating Rate...
+  1140681                                  | EFTA02702844.pdf                         | financial                                | ent relating to the 
+Notes. 
+t A cred...
+  1140681                                  | EFTA02702844.pdf                         | financial                                | page. The purchaser of a Note will ac...
+  1140681                                  | EFTA02702844.pdf                         | financial                                | Notes versus a conventional debt secu...
+  1140681                                  | EFTA02702844.pdf                         | financial                                | any fluctuations in 3-Month LIBOR. 
+T...
+  1140681                                  | EFTA02702844.pdf                         | financial                                | Notes Lack Liquidity. 
+The Notes will...
+  1140681                                  | EFTA02702844.pdf                         | financial                                | SUPPLEMENTAL PLAN OF DISTRIBUTION (CO...
+  1140681                                  | EFTA02702844.pdf                         | financial                                | Find More Information 
+3 
+Special Not...
+  1141701                                  | EFTA02693998.pdf                         | email                                    | me in and we sorted out her bank situ...
+  1143257                                  | EFTA02417526.pdf                         | email                                    | tion©gmail.com] 
+From: 
+Sent 
+Fri 10/...
+  1144642                                  | EFTA02699283.pdf                         | email                                    | . 
+Tomorrow Royal Albert Hall in Roya...
+  1149995                                  | EFTA02453387.pdf                         | email                                    | tart working on the deal, two of the ...
+  1150345                                  | EFTA02453923.pdf                         | email                                    | tart 
+working on the deal, two of the...
+  1150493                                  | EFTA02454118.pdf                         | email                                    | tart 
+working on the deal, two of the...
+  1155958                                  | EFTA02419844.pdf                         | email                                    | nd scan and email back asap 
+Thanks f...
+  1157343                                  | EFTA02719892.pdf                         | email                                    | oms regulations. 
+Please remit paymen...
+  1157596                                  | EFTA02415758.pdf                         | email                                    | .com] 
+From: 
+Sent 
+Fri 11/12/2010 8:...
+  1158077                                  | EFTA02415526.pdf                         | email                                    | er. but Sam will be able to take matt...
+  1158077                                  | EFTA02415526.pdf                         | email                                    | T 
+I F 
+I Mark NIALUPBGBIHSBC (intern...
+  1158077                                  | EFTA02415526.pdf                         | email                                    | PETER MANDELSON 
+To 
+Mark NIALUPBGEVH...
+
+======================================================================
+  7E: DS11 — 'CHIPS' anywhere
+======================================================================
+  [7E] 30 rows [1.9s]
+  file_id                                  | title                                    | doc_type                                 | context                                 
+  ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  214315                                   | EFTA02252292.pdf                         | email                                    | 
+> On Jul 22, 2018, at 8:52 PM, Larry...
+  214577                                   | EFTA02252714.pdf                         | email                                    | 18, at 8:52 PM, Larry Visoski <lvjet@...
+  221968                                   | EFTA02270060.pdf                         | email                                    | To: 
+lesley.j 
+From: 
+Lesley ro 
+Subj...
+  226661                                   | EFTA02283333.pdf                         | email                                    | To: 
+From: 
+Subject 
+eft - chips and ...
+  233023                                   | EFTA02293830.pdf                         | email                                    | 
+Subject: Alert - Add buy flowers for...
+  245239                                   | EFTA02312052.pdf                         | email                                    | l 24, 201=, at 11:08 AM, Tabitha Lewi...
+  245920                                   | EFTA02313109.pdf                         | email                                    | 2012, at 11:08 AM, Tabitha =ewis < 
+H...
+  248359                                   | EFTA02317066.pdf                         | email                                    |  =anvier 2013 23:07 A : Sea =emory Ob...
+  1129962                                  | EFTA02484971.pdf                         | email                                    | te: 
+Would you like a light lunch at ...
+  1130216                                  | EFTA02484950.pdf                         | email                                    | ex">Would you like a 
+light lunch at ...
+  1130488                                  | EFTA02484884.pdf                         | email                                    | uss 
+Would you like a light lunch at ...
+  1147634                                  | EFTA02450946.pdf                         | email                                    |  1:17 PM, Afri z 
+» <mailto 
+=div> 
+Y...
+  1151479                                  | EFTA02503337.pdf                         | email                                    | all. Dr. Ingle found several of us in...
+  1161073                                  | EFTA02716901.pdf                         | email                                    | the ingredients together. 
+A Way to T...
+  1161993                                  | EFTA02705187.pdf                         | document                                 | pore fusions: 
+• 
+in situ sequencing ...
+  1165128                                  | EFTA02674567.pdf                         | document                                 | a — but 
+Starbucks buys them because ...
+  1172927                                  | EFTA02623644.pdf                         | email                                    | ound pork 
+> Bread crumbs 
+> Assorted...
+  1174214                                  | EFTA02572388.pdf                         | email                                    | battery life, weight). It is incredib...
+  1186342                                  | EFTA02675629.pdf                         | document                                 | ers 
+19 
+Hors d' oeuvres 
+Aged gouda ...
+  1186342                                  | EFTA02675629.pdf                         | document                                 | balsamic vinaigrette dressing 
+Summer...
+  1187335                                  | EFTA02601237.pdf                         | email                                    |  vacation 
+Cc: 
+Lesley Groff 
+Subject...
+  1192993                                  | EFTA02579997.pdf                         | email                                    | ll effect, and s= far, it seems to be...
+  1209851                                  | EFTA02644819.pdf                         | email                                    | room as is? 
+Will need to review mirr...
+  1215840                                  | EFTA02643836.pdf                         | email                                    | room as is? 
+Will need to review mirr...
+  1216089                                  | EFTA02643841.pdf                         | email                                    | rrent class July 20th and competes Ju...
+  1216125                                  | EFTA02643880.pdf                         | email                                    | rrent class July 20th and competes Ju...
+  1216700                                  | EFTA02643780.pdf                         | email                                    | rrent class July 20th and competes Ju...
+  1223865                                  | EFTA02632634.pdf                         | email                                    | unter Top 
+Kenny was there today from...
+  1246903                                  | EFTA02679857.pdf                         | email                                    | don't know this guy, but he's at Stan...
+  1252661                                  | EFTA02462117.pdf                         | email                                    |  
+over 10b , why should they? , calif...
+
+======================================================================
+  7F: DS11 — $25,000 in any financial context
+======================================================================
+  [7F] 30 rows [0.3s]
+  file_id                                  | title                                    | doc_type                                 | context                                 
+  ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  266749                                   | EFTA02345516.pdf                         | email                                    | er =partment please 
+advise if ok to ...
+  1137385                                  | EFTA02401916.pdf                         | email                                    |  your lawyer send to Howie 
+anyone 
+W...
+  1162608                                  | EFTA02707125.pdf                         | email                                    | iginal loan to Avioneta Holdin=s LLC ...
+  1162642                                  | EFTA02707722.pdf                         | document                                 | 0 
+Amended and Restated Amount: $100,...
+  1163078                                  | EFTA02708042.pdf                         | email                                    | property. 
+• 
+The budgeted capital ex...
+  1163397                                  | EFTA02707101.pdf                         | financial                                | ble Cash 
+$23,789,905 
+Return of Equi...
+  1165030                                  | EFTA02674377.pdf                         | document                                 |  
+2/16 
+$150,000 
+5/21 
+250,000 
+1130...
+  1165269                                  | EFTA02674373.pdf                         | document                                 | 1/27 
+$20,000 
+2/17 
+20,000 
+3/7 
+20,...
+  1165937                                  | EFTA02371753.pdf                         | financial                                |  DISTRIB 
+1,278,152 
+• 
+9.169,972 
+0 ...
+  1172505                                  | EFTA02664715.pdf                         | email                                    |  
+To: Churkin, Maxim 
+Subject: loan 
+...
+  1174259                                  | EFTA02571457.pdf                         | email                                    | return of Good Faith Deposit) 
+=AO $1...
+  1174769                                  | EFTA02571429.pdf                         | email                                    | C (return of Good Faith Deposit) 
+$15...
+  1180024                                  | EFTA02621094.pdf                         | email                                    | h 
+wrote: 
+Attached is an outline of ...
+  1181708                                  | EFTA02662707.pdf                         | email                                    |  
+To: Churkin, Maxim 
+Subject: loan 
+...
+  1187064                                  | EFTA02676102.pdf                         | document                                 | Palm Beach RE Taxes 
+(165,000) 
+Misce...
+  1194391                                  | EFTA02570670.pdf                         | email                                    | LC (return of Good Faith Deposit) 
+$1...
+  1194448                                  | EFTA02570661.pdf                         | email                                    | C (return of Good Faith Deposit) 
+$15...
+  1194942                                  | EFTA02571059.pdf                         | email                                    | C (return of Good Faith Deposit) 
+$15...
+  1195184                                  | EFTA02570721.pdf                         | email                                    | C (return of Good Faith Deposit) 
+$15...
+  1220795                                  | EFTA02650474.pdf                         | email                                    | igation. 
+o Year 3 - $250,000 advisor...
+  1232295                                  | EFTA02437609.pdf                         | email                                    | 0,000 shares to be issued ($0.4706/sh...
+  1241052                                  | EFTA02439215.pdf                         | email                                    | attan. 
+Sponsorship opportunities for...
+  1244571                                  | EFTA02436800.pdf                         | email                                    | ww.scholz-
+edelstahl.de/), its a stee...
+  1258681                                  | EFTA02711356.pdf                         | document                                 | eople Around a Dying Man (Le malade) ...
+  1259205                                  | EFTA02710783.pdf                         | document                                 | LC 
+One Financial Plaza 
+Providence. ...
+  1259379                                  | EFTA02711200.pdf                         | document                                 |  
+Totals 
+Loans Receivable 
+Adam BV 
+...
+  1259537                                  | EFTA02711416.pdf                         | document                                 | eople Around a Dying Man (Le malade) ...
+  1262765                                  | EFTA02410618.pdf                         | email                                    | 
+a) 2/9/2010 
+10,000 
+b) 4/13/2010 
+1...
+  1273340                                  | EFTA02696024.pdf                         | document                                 | 6,919) 
+(659,000) 
+(450,000) 
+(600,00...
+  1278198                                  | EFTA02397369.pdf                         | document                                 | - FTC 
+60,000 
+240,000 
+197,308 
+43,8...
+
+████████████████████████████████████████████████████████████████████████████████
+  PART 8: REDACTION + FINANCIAL REDACTIONS — CORRECTED
+████████████████████████████████████████████████████████████████████████████████
+  redaction_summary columns: ['serial', 'dataset', 'pdf_path', 'total_pages', 'pages_with_redactions', 'total_redaction_boxes', 'total_recovered_fragments', 'total_recovered_chars', 'max_interest_score', 'has_recoverable_text']
+  financial_redactions columns: ['file_id', 'dataset', 'title', 'serial', 'url', 'redaction_type', 'marker', 'position', 'context', 'amount', 'amount_str', 'distance_chars', 'confidence']
+
+======================================================================
+  8A: Redaction summary for known Mandelson files
+======================================================================
+  [8A] ERROR: no such column: file_id
+
+======================================================================
+  8B: Financial redactions in known Mandelson files
+======================================================================
+  [8B] (no results) [0.0s]
+
+
+
+████████████████████████████████████████████████████████████████████████████████
+  DONE — v2 COMPLETE
+████████████████████████████████████████████████████████████████████████████████
+Key files to investigate:
+  EFTA00086575.pdf — letter with BOTH Mandelson AND Reinaldo Avila da Silva
+  EFTA00037176.pdf — DS8 document with Peter Mandelson
+  EFTA00103831.pdf — email chain re: Mandelson
+  EFTA00143627.pdf — flight log with Mandelson
+================================================================================
