@@ -3,640 +3,424 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Shell Entity Network — Epstein Forensic Finance Project</title>
+<title>Epstein Financial Shell Network — Full Architecture</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@300;400;500&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap');
-
-  :root {
-    --navy-deep: #0a1019;
-    --navy: #111a2e;
-    --navy-mid: #172035;
-    --navy-light: #1e2a42;
-    --gold: #c49a3c;
-    --gold-dim: rgba(196,154,60,0.35);
-    --gold-glow: rgba(196,154,60,0.12);
-    --ice: #7ba7c2;
-    --ice-dim: rgba(123,167,194,0.3);
-    --slate: #8893a4;
-    --text: #c8cdd6;
-    --text-dim: #5e6a7a;
-    --border: #1e2a42;
-    --surface: #131d30;
-    --warn: #b07040;
-    --neutral-entity: #6b7a8e;
-  }
+  @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif&family=JetBrains+Mono:wght@300;400;500;600&family=Outfit:wght@200;300;400;500;600;700&display=swap');
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   body {
-    background: var(--navy-deep);
-    color: var(--text);
-    font-family: 'IBM Plex Sans', sans-serif;
-    font-size: 13px;
-    line-height: 1.5;
-    min-height: 100vh;
-  }
-
-  .disclaimer-bar {
-    background: var(--navy);
-    border-bottom: 1px solid var(--border);
-    padding: 10px 32px;
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px;
-    color: var(--warn);
-    letter-spacing: 0.3px;
-    line-height: 1.7;
-  }
-
-  .disclaimer-bar strong { color: #d09050; }
-
-  .container {
-    max-width: 1440px;
-    margin: 0 auto;
-    padding: 32px 40px 60px;
-  }
-
-  header {
-    margin-bottom: 40px;
-    padding-bottom: 32px;
-    border-bottom: 1px solid var(--border);
-  }
-
-  header .project-label {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 10px;
-  }
-
-  h1 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 38px;
-    font-weight: 400;
-    color: #e8ecf0;
-    line-height: 1.15;
-    margin-bottom: 12px;
-  }
-
-  .header-meta {
-    font-size: 13px;
-    color: var(--text-dim);
-    max-width: 800px;
-    line-height: 1.7;
-  }
-
-  .header-meta em { color: var(--slate); font-style: normal; }
-
-  /* PUBLICATION LEDGER CONTEXT BAR */
-  .context-bar {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 1px;
-    background: var(--border);
-    border: 1px solid var(--border);
-    margin-bottom: 40px;
-  }
-
-  .ctx-cell {
-    background: var(--surface);
-    padding: 16px 20px;
-    text-align: center;
-  }
-
-  .ctx-cell .val {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 22px;
-    color: #e0e4ea;
-  }
-
-  .ctx-cell .lbl {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 9px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    color: var(--text-dim);
-    margin-top: 4px;
-  }
-
-  .ctx-cell.highlight .val { color: var(--gold); }
-
-  /* MAIN VIZ AREA */
-  .viz-container {
-    position: relative;
-    background: var(--navy);
-    border: 1px solid var(--border);
+    background: #07080a;
+    color: #b0b0bc;
+    font-family: 'JetBrains Mono', monospace;
     overflow: hidden;
+    height: 100vh;
   }
 
-  .viz-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 16px 24px;
-    border-bottom: 1px solid var(--border);
-    background: var(--surface);
+  /* Grain overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1000;
   }
 
-  .viz-title {
-    font-family: 'IBM Plex Sans', sans-serif;
-    font-size: 12px;
-    font-weight: 500;
-    color: var(--slate);
+  .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    padding: 20px 32px 14px;
+    background: linear-gradient(to bottom, rgba(7,8,10,0.95) 60%, transparent);
+    pointer-events: none;
+  }
+
+  .header h1 {
+    font-family: 'Instrument Serif', serif;
+    font-size: 28px;
+    font-weight: 400;
+    color: #e0e0e8;
+    letter-spacing: -0.5px;
+  }
+
+  .header .meta {
+    font-size: 10px;
+    color: #555566;
+    margin-top: 4px;
     letter-spacing: 0.5px;
   }
 
-  .viz-controls {
+  .header .meta em { color: #8888a0; font-style: normal; }
+
+  .toolbar {
+    position: fixed;
+    top: 80px;
+    left: 32px;
+    z-index: 10;
     display: flex;
-    gap: 2px;
+    flex-direction: column;
+    gap: 3px;
   }
 
-  .viz-controls button {
+  .toolbar button {
     background: rgba(255,255,255,0.03);
     border: 1px solid rgba(255,255,255,0.06);
-    color: var(--text-dim);
-    padding: 5px 12px;
-    font-family: 'IBM Plex Mono', monospace;
+    color: #666678;
+    padding: 7px 14px;
+    font-family: 'JetBrains Mono', monospace;
     font-size: 9px;
-    letter-spacing: 0.5px;
+    font-weight: 400;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
     cursor: pointer;
-    transition: all 0.2s;
+    transition: all 0.25s;
+    text-align: left;
+    border-radius: 2px;
+    pointer-events: all;
   }
 
-  .viz-controls button:hover { color: var(--slate); background: rgba(255,255,255,0.05); }
-  .viz-controls button.active { color: var(--gold); border-color: var(--gold-dim); background: var(--gold-glow); }
+  .toolbar button:hover { background: rgba(255,255,255,0.06); color: #9999aa; }
 
-  #network-svg {
-    width: 100%;
-    display: block;
+  .toolbar button.active {
+    background: rgba(255,255,255,0.06);
+    border-color: rgba(200,160,100,0.25);
+    color: #c8a064;
   }
 
-  /* LEGEND */
+  .toolbar .divider {
+    height: 1px;
+    background: rgba(255,255,255,0.04);
+    margin: 6px 0;
+  }
+
   .legend {
+    position: fixed;
+    bottom: 24px;
+    left: 32px;
+    z-index: 10;
     display: flex;
-    gap: 24px;
-    padding: 14px 24px;
-    border-top: 1px solid var(--border);
-    background: var(--surface);
-    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 6px;
+    font-size: 9px;
+    color: #555566;
   }
 
-  .leg-item {
+  .legend-item {
     display: flex;
     align-items: center;
-    gap: 6px;
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 9px;
-    color: var(--text-dim);
-    letter-spacing: 0.3px;
+    gap: 8px;
   }
 
-  .leg-dot {
+  .legend-dot {
     width: 10px;
     height: 10px;
-    border-radius: 2px;
+    border-radius: 50%;
     flex-shrink: 0;
   }
 
-  .leg-line {
+  .legend-line {
     width: 20px;
     height: 0;
     flex-shrink: 0;
   }
 
-  /* TIER LABELS */
-  .tier-label {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 9px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    fill: var(--text-dim);
-  }
+  #canvas { width: 100vw; height: 100vh; }
 
-  .tier-bracket {
-    stroke: var(--border);
-    stroke-width: 1;
-    fill: none;
-  }
-
-  /* TOOLTIP */
-  .tooltip {
+  /* Detail panel */
+  .panel {
     position: fixed;
-    background: rgba(10,16,25,0.96);
-    border: 1px solid var(--border);
-    padding: 14px 18px;
-    font-size: 11px;
-    color: var(--text);
-    pointer-events: none;
-    z-index: 100;
-    display: none;
-    max-width: 360px;
-    line-height: 1.7;
-    backdrop-filter: blur(12px);
-  }
-
-  .tooltip .tt-name {
-    font-family: 'IBM Plex Sans', sans-serif;
-    font-size: 13px;
-    font-weight: 500;
-    color: #e0e4ea;
-    margin-bottom: 4px;
-  }
-
-  .tooltip .tt-type {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 9px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    margin-bottom: 8px;
-  }
-
-  .tooltip .tt-row {
-    display: flex;
-    justify-content: space-between;
-    padding: 2px 0;
-    border-bottom: 1px solid rgba(255,255,255,0.03);
-  }
-
-  .tooltip .tt-label { color: var(--text-dim); }
-  .tooltip .tt-val { color: #e0e4ea; font-weight: 500; }
-
-  .tooltip .tt-note {
-    margin-top: 8px;
-    font-size: 10px;
-    color: var(--text-dim);
-    font-style: italic;
-  }
-
-  .tooltip .tt-unverified {
-    margin-top: 8px;
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 8px;
-    color: var(--warn);
-    letter-spacing: 0.5px;
-  }
-
-  /* DETAIL PANEL */
-  .detail-panel {
-    position: fixed;
-    right: -500px;
+    right: -480px;
     top: 0;
     width: 480px;
     height: 100vh;
-    background: rgba(10,16,25,0.98);
-    border-left: 1px solid var(--border);
-    z-index: 50;
-    transition: right 0.3s ease;
+    background: rgba(10,11,14,0.97);
+    border-left: 1px solid rgba(255,255,255,0.05);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    z-index: 20;
+    transition: right 0.35s cubic-bezier(0.16, 1, 0.3, 1);
     overflow-y: auto;
-    backdrop-filter: blur(16px);
+    padding: 0;
   }
 
-  .detail-panel.open { right: 0; }
+  .panel.open { right: 0; }
 
-  .dp-header {
-    padding: 24px;
-    border-bottom: 1px solid var(--border);
+  .panel-head {
+    padding: 28px 28px 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
     position: relative;
   }
 
-  .dp-close {
+  .panel-head .close {
     position: absolute;
-    right: 16px;
-    top: 16px;
+    right: 20px;
+    top: 20px;
     background: none;
     border: none;
-    color: var(--text-dim);
-    font-size: 18px;
+    color: #555566;
+    font-size: 16px;
     cursor: pointer;
     padding: 4px 8px;
   }
 
-  .dp-name {
-    font-family: 'IBM Plex Sans', sans-serif;
-    font-size: 16px;
+  .panel-head h2 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 18px;
     font-weight: 500;
-    color: #e0e4ea;
+    color: #e0e0e8;
     padding-right: 40px;
   }
 
-  .dp-badge {
+  .panel-head .badge {
     display: inline-block;
-    font-family: 'IBM Plex Mono', monospace;
     font-size: 8px;
     letter-spacing: 1.5px;
     text-transform: uppercase;
     padding: 3px 10px;
+    border-radius: 2px;
     margin-top: 8px;
-    border: 1px solid;
+    font-family: 'JetBrains Mono', monospace;
   }
 
-  .dp-stats {
-    padding: 16px 24px;
+  .panel-stats {
+    padding: 16px 28px;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 10px;
+    gap: 12px;
   }
 
-  .dp-stat {
+  .stat-card {
     background: rgba(255,255,255,0.02);
     border: 1px solid rgba(255,255,255,0.04);
-    padding: 12px;
+    padding: 12px 14px;
+    border-radius: 3px;
   }
 
-  .dp-stat-val {
-    font-family: 'IBM Plex Sans', sans-serif;
-    font-size: 18px;
+  .stat-card .stat-val {
+    font-family: 'Outfit', sans-serif;
+    font-size: 20px;
     font-weight: 600;
-    color: #e0e4ea;
+    color: #e0e0e8;
   }
 
-  .dp-stat-lbl {
-    font-family: 'IBM Plex Mono', monospace;
+  .stat-card .stat-label {
     font-size: 9px;
-    color: var(--text-dim);
+    color: #555566;
+    letter-spacing: 0.5px;
     margin-top: 2px;
   }
 
-  .dp-section {
-    padding: 14px 24px;
+  .panel-section {
+    padding: 16px 28px;
     border-top: 1px solid rgba(255,255,255,0.03);
   }
 
-  .dp-section h3 {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 9px;
+  .panel-section h3 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 10px;
     font-weight: 500;
-    color: var(--text-dim);
+    color: #666678;
     letter-spacing: 1.5px;
     text-transform: uppercase;
     margin-bottom: 10px;
   }
 
-  .dp-conn {
+  .conn-item {
     display: flex;
     align-items: center;
-    padding: 6px 0;
+    padding: 7px 0;
     border-bottom: 1px solid rgba(255,255,255,0.02);
-    gap: 8px;
+    gap: 10px;
+  }
+
+  .conn-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .conn-name {
+    flex: 1;
     font-size: 11px;
+    color: #9999aa;
   }
 
-  .dp-conn-dot { width: 6px; height: 6px; flex-shrink: 0; }
-  .dp-conn-name { flex: 1; color: var(--slate); }
-  .dp-conn-val { color: var(--gold); font-weight: 500; font-size: 10px; }
-
-  .dp-disclaimer {
-    padding: 14px 24px;
-    border-top: 1px solid rgba(255,255,255,0.03);
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 8px;
-    color: var(--warn);
-    line-height: 1.7;
+  .conn-val {
+    font-size: 10px;
+    color: #c8a064;
+    font-weight: 500;
+    text-align: right;
   }
 
-  /* METHODOLOGY FOOTER */
-  .methodology {
-    margin-top: 32px;
-    padding: 24px;
-    background: var(--surface);
-    border: 1px solid var(--border);
+  .conn-bar {
+    width: 60px;
+    height: 3px;
+    background: rgba(255,255,255,0.04);
+    border-radius: 1px;
+    overflow: hidden;
+    flex-shrink: 0;
   }
 
-  .methodology h2 {
-    font-family: 'IBM Plex Sans', sans-serif;
+  .conn-bar-fill {
+    height: 100%;
+    border-radius: 1px;
+    transition: width 0.3s;
+  }
+
+  /* tooltip */
+  .tip {
+    position: fixed;
+    background: rgba(14,15,20,0.95);
+    border: 1px solid rgba(255,255,255,0.08);
+    padding: 10px 14px;
+    font-size: 10px;
+    color: #b0b0bc;
+    pointer-events: none;
+    z-index: 30;
+    display: none;
+    max-width: 300px;
+    line-height: 1.6;
+    backdrop-filter: blur(10px);
+  }
+
+  .tip strong {
+    font-family: 'Outfit', sans-serif;
     font-size: 12px;
     font-weight: 500;
-    color: var(--slate);
-    letter-spacing: 0.5px;
-    margin-bottom: 12px;
+    color: #e0e0e8;
+    display: block;
+    margin-bottom: 2px;
   }
 
-  .methodology p {
-    font-size: 11px;
-    color: var(--text-dim);
-    line-height: 1.8;
-    margin-bottom: 8px;
+  .search-box {
+    position: fixed;
+    top: 80px;
+    right: 32px;
+    z-index: 10;
   }
 
-  .methodology .source-ref {
-    font-family: 'IBM Plex Mono', monospace;
+  .search-box input {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.06);
+    color: #b0b0bc;
+    padding: 7px 14px;
+    font-family: 'JetBrains Mono', monospace;
     font-size: 10px;
-    color: var(--text-dim);
-    margin-top: 12px;
-    padding-top: 12px;
-    border-top: 1px solid var(--border);
+    width: 200px;
+    outline: none;
+    border-radius: 2px;
+    transition: border-color 0.2s;
   }
 
-  .methodology .source-ref a {
-    color: var(--ice);
-    text-decoration: none;
+  .search-box input:focus {
+    border-color: rgba(200,160,100,0.3);
   }
 
-  .compliance-footer {
-    margin-top: 24px;
-    padding: 20px 24px;
-    border: 1px solid rgba(176,112,64,0.2);
-    background: rgba(176,112,64,0.04);
-    font-family: 'IBM Plex Mono', monospace;
+  .search-box input::placeholder { color: #444455; }
+
+  .instructions {
+    position: fixed;
+    bottom: 24px;
+    right: 32px;
     font-size: 9px;
-    color: var(--warn);
+    color: #333344;
+    text-align: right;
     line-height: 1.8;
-  }
-
-  .compliance-footer strong { color: #d09050; }
-
-  @media (max-width: 900px) {
-    .context-bar { grid-template-columns: repeat(3, 1fr); }
-    .container { padding: 20px 16px 40px; }
-    h1 { font-size: 28px; }
+    z-index: 10;
   }
 </style>
 </head>
 <body>
 
-<div class="disclaimer-bar">
-  <strong>⚠ NAVIGATIONAL TOOL — NOT AN AUDIT OPINION.</strong> All dollar amounts are (Unverified) automated extractions from DOJ EFTA documents. This visualization does not constitute an audit, examination, or review performed in accordance with GAAS, GAGAS, or AICPA SSFS No. 1. Appearance in this analysis does not imply wrongdoing.
+<div class="header">
+  <h1>Epstein Financial Shell Network</h1>
+  <div class="meta">
+    <em>14 shell entities</em> · <em>8+ banking institutions</em> · <em>178,592 money references</em> · <em>1.48M documents</em><br>
+    DOJ EFTA Document Release — Corpus-Wide Analysis
+  </div>
 </div>
 
-<div class="container">
-
-  <header>
-    <div class="project-label">Epstein Forensic Finance Project — Entity Network Visualization</div>
-    <h1>Shell Entity Network</h1>
-    <div class="header-meta">
-      <em>14 shell entities</em> across <em>8+ banking institutions</em> with <em>178,592 money references</em> in <em>1.48 million documents</em>. Wire transfers from Deutsche Bank Exhibits A–E mapped against corpus-wide entity co-occurrence. Node positions reflect functional tier in the shell hierarchy — not geographic location. Edge thickness proportional to dollar volume or co-occurrence count.
-    </div>
-  </header>
-
-  <div class="context-bar">
-    <div class="ctx-cell highlight">
-      <div class="val">$2.146B</div>
-      <div class="lbl">Publication Ledger (Unverified)</div>
-    </div>
-    <div class="ctx-cell">
-      <div class="val">6,310</div>
-      <div class="lbl">Unique Transactions</div>
-    </div>
-    <div class="ctx-cell">
-      <div class="val">481</div>
-      <div class="lbl">Verified Wires</div>
-    </div>
-    <div class="ctx-cell">
-      <div class="val">228</div>
-      <div class="lbl">Resolved Entities</div>
-    </div>
-    <div class="ctx-cell">
-      <div class="val">104.4%</div>
-      <div class="lbl">T1–T3 SAR Coverage</div>
-    </div>
-  </div>
-
-  <div class="viz-container">
-    <div class="viz-header">
-      <div class="viz-title">4-TIER SHELL HIERARCHY — WIRE TRANSFERS &amp; CORPUS CO-OCCURRENCE</div>
-      <div class="viz-controls">
-        <button class="active" onclick="setFilter('all')">All</button>
-        <button onclick="setFilter('wires')">Wire Transfers</button>
-        <button onclick="setFilter('cooccur')">Co-occurrence</button>
-        <button onclick="setFilter('banks')">Bank Relations</button>
-        <button onclick="setFilter('missing')">Not in Wire Ledger</button>
-      </div>
-    </div>
-
-    <svg id="network-svg" viewBox="0 0 1380 920"></svg>
-
-    <div class="legend">
-      <div class="leg-item"><div class="leg-dot" style="background:var(--gold)"></div>Shell — in wire ledger</div>
-      <div class="leg-item"><div class="leg-dot" style="background:var(--neutral-entity)"></div>Shell — not in wire production</div>
-      <div class="leg-item"><div class="leg-dot" style="background:var(--ice)"></div>Banking institution</div>
-      <div class="leg-item"><div class="leg-dot" style="background:#6a9a72"></div>External source / recipient</div>
-      <div class="leg-item"><div class="leg-dot" style="background:#8a6aaa"></div>Communication hub (email)</div>
-      <div class="leg-item"><svg width="24" height="10"><line x1="0" y1="5" x2="24" y2="5" stroke="var(--gold)" stroke-width="2"/><polygon points="20,2 24,5 20,8" fill="var(--gold)"/></svg>Wire transfer (directed, Unverified)</div>
-      <div class="leg-item"><svg width="24" height="10"><line x1="0" y1="5" x2="24" y2="5" stroke="var(--text-dim)" stroke-width="1" stroke-dasharray="3,2"/></svg>Co-occurrence / banking</div>
-    </div>
-  </div>
-
-  <div class="methodology">
-    <h2>Methodology &amp; Data Sources</h2>
-    <p><strong>Wire transfers</strong> (directed edges with amounts): Extracted from Deutsche Bank SAR Exhibits A–E, authenticated via court exhibit numbers and bates stamps (DB-SDNY series). 481 wires, 228 entity-resolved counterparties, $558M total value across the master wire ledger. All amounts are (Unverified) automated extractions.</p>
-    <p><strong>Entity co-occurrence</strong> (undirected edges with shared file counts): Computed from spaCy NLP entity extraction across 1,476,377 EFTA files. Two entities share a co-occurrence edge when they appear in the same document. Threshold: ≥20 shared files for display.</p>
-    <p><strong>Banking relationships</strong> (dashed edges): Derived from entity co-occurrence filtered to financial document types. Indicates institutional-level document presence, not necessarily account relationships.</p>
-    <p><strong>Node sizing</strong>: Proportional to total file count in the EFTA corpus. Node position reflects functional tier in the shell hierarchy as documented in the Master Wire Ledger (Phase 5I).</p>
-    <p><strong>Shell entities not in wire ledger</strong>: Financial Trust Co., Epstein &amp; Co., HBRK Associates, Outgoing Money Trust, Butterfly Trust, Insurance Trust, Epstein Interests, and Nautilus Inc. appear extensively in the EFTA corpus with financial document presence but have zero wires in the Deutsche Bank production. Their financial activity may be documented at other institutions.</p>
-    <div class="source-ref">
-      Sources: DOJ EFTA Document Release (Feb 2026) · Deutsche Bank SDNY Production · Publication Ledger Phase 5L · FinCEN SAR filings<br>
-      Database: 36 tables · 26.6M rows · 8GB SQLite · <a href="https://github.com/randallscott25-star/epstein-forensic-finance" target="_blank">github.com/randallscott25-star/epstein-forensic-finance</a>
-    </div>
-  </div>
-
-  <div class="compliance-footer">
-    <strong>PROFESSIONAL STANDARDS NOTICE:</strong> This visualization is a navigational tool produced as part of a pro bono public interest forensic analysis. It does not constitute an audit, examination, or review performed in accordance with GAAS (Generally Accepted Auditing Standards), GAGAS (Generally Accepted Government Auditing Standards), or AICPA SSFS No. 1. No audit opinion is expressed. All financial amounts are (Unverified) automated extractions from OCR text processing. Entity classifications are analytical designations based on corpus analysis — not legal determinations. Appearance in this visualization does not imply wrongdoing. See <a href="https://github.com/randallscott25-star/epstein-forensic-finance/blob/main/docs/COMPLIANCE.md" target="_blank" style="color:var(--ice)">COMPLIANCE.md</a> for full professional standards discussion.<br><br>
-    <strong>AUTHOR:</strong> Randall Scott Taylor · Director of Finance Administration, large municipal government agency · MS Applied Data Science, Syracuse University<br>
-    <strong>DATE:</strong> February 25, 2026 (Phase 5L) · <strong>LICENSE:</strong> CC BY 4.0
-  </div>
-
+<div class="toolbar" id="toolbar">
+  <button class="active" onclick="setView('all')">All connections</button>
+  <button onclick="setView('cooccurrence')">Shell co-occurrence</button>
+  <button onclick="setView('banks')">Bank relationships</button>
+  <button onclick="setView('wires')">Wire ledger</button>
+  <div class="divider"></div>
+  <button onclick="setView('no_wire')">❌ Missing from wires</button>
 </div>
 
-<div class="tooltip" id="tooltip"></div>
-<div class="detail-panel" id="detailPanel"><div id="panelContent"></div></div>
+<div class="search-box">
+  <input type="text" id="search" placeholder="Search entities..." oninput="searchNodes(this.value)">
+</div>
+
+<svg id="canvas"></svg>
+<div class="tip" id="tip"></div>
+<div class="panel" id="panel"><div id="panel-inner"></div></div>
+
+<div class="legend">
+  <div class="legend-item"><div class="legend-dot" style="background:#d4a853"></div>Shell — in wire ledger</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#c0504d"></div>Shell — ❌ NOT in wire ledger</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#5b8dbf"></div>Banking institution</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#6aaa6a"></div>External source / recipient</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#9a6abf"></div>Communication hub</div>
+  <div class="legend-item"><svg width="20" height="10"><line x1="0" y1="5" x2="20" y2="5" stroke="#444" stroke-width="2"/></svg>Wire transfer / co-occurrence</div>
+  <div class="legend-item"><svg width="20" height="10"><line x1="0" y1="5" x2="20" y2="5" stroke="#444" stroke-width="1" stroke-dasharray="4,3"/></svg>Banking relationship</div>
+</div>
+
+<div class="instructions">
+  Drag nodes to rearrange · Scroll to zoom · Click node for details<br>
+  Source: DOJ EFTA · github.com/randallscott25-star/epstein-forensic-finance
+</div>
 
 <script>
 // ═══════════════════════════════════════════════════════
-// DATA — ALL AMOUNTS ARE (UNVERIFIED) AUTOMATED EXTRACTIONS
+// DATA
 // ═══════════════════════════════════════════════════════
 
 const nodes = [
-  // TIER 0 — External Sources
-  { id:"black", label:"Leon Black / Apollo", tier:0, group:"external", x:180, y:65, r:16, wire:"$60.5M (Unverified)", note:"5 entities across 6 wires, Exhibit A" },
-  { id:"roth", label:"Rothschild", tier:0, group:"external", x:390, y:65, r:13, wire:"$25M (Unverified)", note:"Institutional + personal, Exhibit A" },
-  { id:"narrow", label:"Narrow Holdings", tier:0, group:"external", x:570, y:65, r:11, wire:"$20M (Unverified)", note:"Elysium Management, Exhibit A" },
-  { id:"auction", label:"Sotheby's / Christie's", tier:0, group:"external", x:760, y:65, r:13, wire:"$19M (Unverified)", note:"Art auction proceeds, Exhibit D" },
-  { id:"tudor", label:"Tudor Futures", tier:0, group:"external", x:940, y:65, r:11, wire:"$13.5M (Unverified)", note:"Investment returns, Exhibit B" },
-  { id:"blockchain", label:"Blockchain Capital", tier:0, group:"external", x:1100, y:65, r:11, wire:"$15M (Unverified)", note:"3 entities, Exhibit B" },
-
-  // TIER 1 — Holding Trusts
-  { id:"st", label:"Southern Trust Co.", tier:1, group:"shell_wire", x:350, y:230, r:28, files:883, fin:178, money:78569, wire:"$244M (Unverified)", wAmt:244 },
-  { id:"cat", label:"2017 Caterpillar Trust", tier:1, group:"shell_wire", x:1000, y:230, r:14, files:55, fin:8, money:0, wire:"$15M (Unverified)", wAmt:15 },
-
-  // TIER 2 — Distribution Trusts
-  { id:"haze", label:"Haze Trust", tier:2, group:"shell_wire", x:300, y:400, r:18, files:186, fin:12, money:8486, wire:"$126M (Unverified)", wAmt:126 },
-  { id:"sf", label:"Southern Financial LLC", tier:2, group:"shell_wire", x:680, y:400, r:25, files:628, fin:118, money:57208, wire:"$139M (Unverified)", wAmt:139 },
-
-  // TIER 3 — Operating Shells
-  { id:"jeep", label:"Jeepers Inc.", tier:3, group:"shell_wire", x:180, y:580, r:20, files:270, fin:19, wire:"$58M (Unverified)", wAmt:58 },
-  { id:"pland", label:"Plan D LLC", tier:3, group:"shell_wire", x:420, y:580, r:13, files:55, fin:8, wire:"$41M (Unverified)", wAmt:41 },
-  { id:"grat", label:"Gratitude America", tier:3, group:"shell_wire", x:650, y:580, r:18, files:209, fin:89, money:10407, wire:"$45M (Unverified)", wAmt:45 },
-  { id:"nes", label:"NES LLC", tier:3, group:"shell_wire", x:870, y:580, r:10, files:30, fin:5, wire:"$554K (Unverified)", note:"97% → Maxwell" },
-
-  // TIER 4 — Terminal Destinations
-  { id:"epstein_p", label:"Epstein Personal Acct", tier:4, group:"external", x:300, y:750, r:20, wire:"$107.3M terminal (Unverified)", note:"NOW/SuperNow — zero outflows in ledger" },
-  { id:"maxwell", label:"Ghislaine Maxwell", tier:4, group:"external", x:870, y:750, r:11, wire:"$539K (Unverified)", note:"Via NES LLC" },
-  { id:"funds", label:"Investment Funds", tier:4, group:"external", x:680, y:750, r:15, wire:"$131M+ (Unverified)", note:"Boothbay, Honeycomb, Valar, Coatue" },
-  { id:"charities", label:"Medical Charities", tier:4, group:"external", x:520, y:750, r:9, wire:"$453K (Unverified)", note:"Melanoma Research, Moskowitz, CRW" },
-
-  // BANKS — right column
-  { id:"db", label:"Deutsche Bank", group:"bank", x:1200, y:200, r:24, moneyRefs:415287, finFiles:1564, note:"Source of Exhibits A–E wire production" },
-  { id:"bs", label:"Bear Stearns", group:"bank", x:1200, y:300, r:28, moneyRefs:2381211, finFiles:191, note:"5.7× Deutsche Bank money volume — zero enforcement" },
-  { id:"jpm", label:"JPMorgan Chase", group:"bank", x:1200, y:400, r:22, moneyRefs:744536, finFiles:615 },
-  { id:"citi", label:"Citibank", group:"bank", x:1200, y:490, r:14, moneyRefs:78176, finFiles:39 },
-  { id:"hsbc", label:"HSBC", group:"bank", x:1200, y:565, r:13, moneyRefs:13389, finFiles:44, note:"Bermuda — Haze Trust connection" },
-  { id:"ms", label:"Morgan Stanley", group:"bank", x:1200, y:635, r:13, moneyRefs:13255, finFiles:82 },
-  { id:"wf", label:"Wells Fargo", group:"bank", x:1200, y:705, r:12, finFiles:153 },
-  { id:"boh", label:"Bank of Hawaii", group:"bank", x:1200, y:775, r:13, finFiles:734, note:"USVI operations — 2,431 total files" },
-
-  // NON-WIRE SHELLS — left sidebar
-  { id:"ftc", label:"Financial Trust Co.", group:"shell_nowire", x:60, y:220, r:22, files:1014, fin:325, note:"Primary bank: Bear Stearns" },
-  { id:"eco", label:"Epstein & Co", group:"shell_nowire", x:60, y:310, r:16, files:400, fin:174, money:10482 },
-  { id:"hbrk", label:"HBRK Associates", group:"comms", x:60, y:410, r:24, files:13389, fin:95, emails:13146, note:"Operational nerve center — 13,146 emails" },
-  { id:"omt", label:"Outgoing Money Trust", group:"shell_nowire", x:60, y:510, r:14, files:195, fin:180, money:2338, note:"Disbursement across 7 banks" },
-  { id:"butt", label:"Butterfly Trust", group:"shell_nowire", x:60, y:600, r:15, files:219, fin:73, money:3302 },
-  { id:"ins", label:"Insurance Trust", group:"shell_nowire", x:60, y:680, r:11, files:71, fin:49, money:7800 },
-  { id:"ei", label:"Epstein Interests", group:"shell_nowire", x:60, y:750, r:12, files:116, fin:28 },
-  { id:"naut", label:"Nautilus Inc.", group:"shell_nowire", x:60, y:825, r:12, files:149, fin:13, note:"Aircraft operations" },
+  // Shells in wire ledger
+  { id:"st", label:"Southern Trust", full:"Southern Trust Company Inc.", group:"shell_wire", files:883, fin:178, money:78569, wire:"$244M", wAmt:244 },
+  { id:"sf", label:"Southern Financial", full:"Southern Financial LLC", group:"shell_wire", files:628, fin:118, money:57208, wire:"$139M", wAmt:139 },
+  { id:"haze", label:"Haze Trust", full:"The Haze Trust", group:"shell_wire", files:186, fin:12, money:8486, wire:"$126M", wAmt:126 },
+  { id:"jeep", label:"Jeepers", full:"Jeepers Inc.", group:"shell_wire", files:270, fin:19, money:0, wire:"$58M", wAmt:58 },
+  { id:"grat", label:"Gratitude America", full:"Gratitude America Ltd.", group:"shell_wire", files:209, fin:89, money:10407, wire:"$45M", wAmt:45 },
+  { id:"pland", label:"Plan D", full:"Plan D LLC", group:"shell_wire", files:55, fin:8, money:0, wire:"$41M", wAmt:41 },
+  // Shells NOT in wire ledger
+  { id:"ftc", label:"Financial Trust Co.", full:"Financial Trust Company", group:"shell_nowire", files:1014, fin:325, money:0, note:"Primary bank: Bear Stearns" },
+  { id:"eco", label:"Epstein & Co", full:"Epstein & Co Inc.", group:"shell_nowire", files:400, fin:174, money:10482 },
+  { id:"hbrk", label:"HBRK Associates", full:"HBRK Associates Inc.", group:"comms", files:13389, fin:95, money:0, emails:13146, note:"13,146 emails — operational nerve center" },
+  { id:"omt", label:"Outgoing Money Trust", full:"Outgoing Money Trust", group:"shell_nowire", files:195, fin:180, money:2338, note:"Disbursement across 7 banks" },
+  { id:"butt", label:"Butterfly Trust", full:"Butterfly Trust", group:"shell_nowire", files:219, fin:73, money:3302 },
+  { id:"ins", label:"Insurance Trust", full:"Jeffrey E. Epstein Insurance Trust", group:"shell_nowire", files:71, fin:49, money:7800 },
+  { id:"ei", label:"Epstein Interests", full:"Epstein Interests Inc.", group:"shell_nowire", files:116, fin:28, money:0 },
+  { id:"naut", label:"Nautilus", full:"Nautilus Inc.", group:"shell_nowire", files:149, fin:13, money:0, note:"Aircraft operations" },
+  // Banks
+  { id:"bs", label:"Bear Stearns", full:"Bear Stearns", group:"bank", moneyRefs:2381211, finFiles:191, note:"#1 by money volume" },
+  { id:"jpm", label:"JPMorgan Chase", full:"JPMorgan Chase", group:"bank", moneyRefs:744536, finFiles:615 },
+  { id:"db", label:"Deutsche Bank", full:"Deutsche Bank", group:"bank", moneyRefs:415287, finFiles:1564, note:"$150M DFS fine → source of wire production" },
+  { id:"citi", label:"Citibank", full:"Citibank", group:"bank", moneyRefs:78176, finFiles:39 },
+  { id:"gs", label:"Goldman Sachs", full:"Goldman Sachs", group:"bank", moneyRefs:14999, finFiles:25 },
+  { id:"hsbc", label:"HSBC", full:"HSBC", group:"bank", moneyRefs:13389, finFiles:44, note:"Bermuda connection" },
+  { id:"ms", label:"Morgan Stanley", full:"Morgan Stanley", group:"bank", moneyRefs:13255, finFiles:82 },
+  { id:"wf", label:"Wells Fargo", full:"Wells Fargo", group:"bank", moneyRefs:0, finFiles:153 },
+  { id:"boa", label:"Bank of America", full:"Bank of America", group:"bank", moneyRefs:0, finFiles:150 },
+  { id:"boh", label:"Bank of Hawaii", full:"Bank of Hawaii", group:"bank", moneyRefs:0, finFiles:734, note:"USVI — 2,431 total files" },
+  // External
+  { id:"black", label:"Leon Black / Apollo", full:"Leon & Debra Black / Apollo", group:"external", wire:"$60.5M" },
+  { id:"roth", label:"Rothschild", full:"Benjamin Edmond de Rothschild", group:"external", wire:"$25M" },
+  { id:"auction", label:"Sotheby's / Christie's", full:"Sotheby's + Christie's", group:"external", wire:"$19M" },
+  { id:"tudor", label:"Tudor Futures", full:"Tudor Futures Fund", group:"external", wire:"$13.5M" },
+  { id:"funds", label:"Investment Funds", full:"Boothbay · Honeycomb · Valar · Blockchain Capital", group:"external", wire:"$131M+" },
+  { id:"epstein_p", label:"Epstein Personal", full:"Jeffrey Epstein NOW/SuperNow Account", group:"external", wire:"$107.3M terminal" },
 ];
 
 const links = [
-  // WIRE TRANSFERS — directed, with exhibit references
-  // Exhibit A: External → Southern Trust
-  { source:"black", target:"st", type:"wire", amt:60.5, label:"$60.5M · 6 wires · Exh A", exhibit:"A" },
-  { source:"roth", target:"st", type:"wire", amt:25, label:"$25M · 2 wires · Exh A", exhibit:"A" },
-  { source:"narrow", target:"st", type:"wire", amt:20, label:"$20M · 1 wire · Exh A", exhibit:"A" },
-  // Exhibit B: Distribution via Southern Financial
-  { source:"tudor", target:"sf", type:"wire", amt:13.5, label:"$13.5M · 2 wires · Exh B", exhibit:"B" },
-  { source:"blockchain", target:"cat", type:"wire", amt:15, label:"$15M · 3 wires · Exh B", exhibit:"B" },
-  { source:"st", target:"sf", type:"wire", amt:67.9, label:"$67.9M · 8 wires · Exh B", exhibit:"B" },
-  { source:"sf", target:"funds", type:"wire", amt:131, label:"$131M · investments · Exh B", exhibit:"B" },
-  // Exhibit C: Jeepers → Personal
-  { source:"jeep", target:"epstein_p", type:"wire", amt:51.9, label:"$51.9M · 21 wires · Exh C", exhibit:"C" },
-  // Exhibit D: Art market → Haze → redistribution
-  { source:"auction", target:"haze", type:"wire", amt:19, label:"$19M · auction proceeds · Exh D", exhibit:"D" },
-  { source:"haze", target:"sf", type:"wire", amt:32, label:"$32M · 5 wires · Exh D", exhibit:"D" },
-  { source:"haze", target:"st", type:"wire", amt:15, label:"$15M · 2 wires · Exh D", exhibit:"D" },
-  // Exhibit E: Gratitude America
-  { source:"grat", target:"funds", type:"wire", amt:5.5, label:"$5.5M · investment · Exh E", exhibit:"E" },
-  { source:"grat", target:"charities", type:"wire", amt:0.45, label:"$453K · 8 wires · Exh E", exhibit:"E" },
-  // Plan D
-  { source:"pland", target:"black", type:"wire", amt:18, label:"$18M · 4 wires", exhibit:"B" },
-  // NES
-  { source:"nes", target:"maxwell", type:"wire", amt:0.54, label:"$539K · 97% of outflow", exhibit:"E" },
-
-  // BANK RELATIONSHIPS — dashed
-  { source:"db", target:"st", type:"bank", weight:52, label:"52 shared financial docs" },
-  { source:"db", target:"sf", type:"bank", weight:48, label:"48 shared financial docs" },
-  { source:"db", target:"grat", type:"bank", weight:76, label:"76 shared financial docs" },
-  { source:"db", target:"jeep", type:"bank", weight:10, label:"10 shared financial docs" },
-  { source:"db", target:"butt", type:"bank", weight:55, label:"55 shared financial docs" },
-  { source:"db", target:"ins", type:"bank", weight:45, label:"45 shared financial docs" },
-  { source:"db", target:"omt", type:"bank", weight:180, label:"180 shared financial docs" },
-  { source:"bs", target:"ftc", type:"bank", weight:66, label:"66 shared files · 6,910 money refs" },
-  { source:"jpm", target:"omt", type:"bank", weight:14, label:"14 shared financial docs" },
-  { source:"jpm", target:"ftc", type:"bank", weight:10, label:"10 shared financial docs" },
-  { source:"hsbc", target:"haze", type:"bank", weight:5, label:"HSBC Bermuda → Haze Trust" },
-  { source:"ms", target:"grat", type:"bank", weight:5, label:"Investment vehicle" },
-  { source:"wf", target:"omt", type:"bank", weight:63, label:"63 shared financial docs" },
-
-  // CO-OCCURRENCE — undirected, shell-to-shell
+  // Shell co-occurrence (solid)
   { source:"sf", target:"st", type:"cooccur", weight:163, label:"163 shared files" },
   { source:"eco", target:"ftc", type:"cooccur", weight:126, label:"126 shared files" },
   { source:"ftc", target:"jeep", type:"cooccur", weight:125, label:"125 shared files" },
@@ -644,365 +428,348 @@ const links = [
   { source:"hbrk", target:"sf", type:"cooccur", weight:104, label:"104 shared files" },
   { source:"ftc", target:"st", type:"cooccur", weight:92, label:"92 shared files" },
   { source:"ftc", target:"sf", type:"cooccur", weight:81, label:"81 shared files" },
+  { source:"eco", target:"sf", type:"cooccur", weight:73, label:"73 shared files" },
   { source:"butt", target:"st", type:"cooccur", weight:61, label:"61 shared files" },
   { source:"butt", target:"sf", type:"cooccur", weight:55, label:"55 shared files" },
+  { source:"eco", target:"st", type:"cooccur", weight:51, label:"51 shared files" },
   { source:"grat", target:"st", type:"cooccur", weight:50, label:"50 shared files" },
+  { source:"jeep", target:"st", type:"cooccur", weight:50, label:"50 shared files" },
   { source:"haze", target:"st", type:"cooccur", weight:49, label:"49 shared files" },
+  { source:"jeep", target:"sf", type:"cooccur", weight:49, label:"49 shared files" },
   { source:"haze", target:"sf", type:"cooccur", weight:48, label:"48 shared files" },
+  { source:"grat", target:"sf", type:"cooccur", weight:43, label:"43 shared files" },
+  { source:"ei", target:"ftc", type:"cooccur", weight:41, label:"41 shared files" },
+  { source:"butt", target:"hbrk", type:"cooccur", weight:37, label:"37 shared files" },
   { source:"hbrk", target:"haze", type:"cooccur", weight:32, label:"32 shared files" },
+  { source:"naut", target:"sf", type:"cooccur", weight:32, label:"32 shared files" },
   { source:"hbrk", target:"grat", type:"cooccur", weight:30, label:"30 shared files" },
+  { source:"naut", target:"st", type:"cooccur", weight:22, label:"22 shared files" },
+  { source:"butt", target:"grat", type:"cooccur", weight:26, label:"26 shared files" },
+  { source:"grat", target:"haze", type:"cooccur", weight:20, label:"20 shared files" },
+
+  // Bank relationships (dashed)
+  { source:"bs", target:"ftc", type:"bank", weight:66, label:"66 shared files · 6,910 money refs" },
+  { source:"db", target:"omt", type:"bank", weight:180, label:"180 shared financial docs" },
+  { source:"db", target:"grat", type:"bank", weight:76, label:"76 shared financial docs" },
+  { source:"db", target:"butt", type:"bank", weight:55, label:"55 shared financial docs" },
+  { source:"db", target:"st", type:"bank", weight:52, label:"52 shared financial docs" },
+  { source:"db", target:"sf", type:"bank", weight:48, label:"48 shared financial docs" },
+  { source:"db", target:"ins", type:"bank", weight:45, label:"45 shared financial docs" },
+  { source:"db", target:"jeep", type:"bank", weight:10, label:"10 shared financial docs" },
+  { source:"wf", target:"omt", type:"bank", weight:63, label:"63 shared financial docs" },
+  { source:"boa", target:"omt", type:"bank", weight:38, label:"38 shared financial docs" },
+  { source:"jpm", target:"omt", type:"bank", weight:14, label:"14 shared financial docs" },
+  { source:"jpm", target:"ftc", type:"bank", weight:10, label:"10 shared financial docs" },
+  { source:"hsbc", target:"haze", type:"bank", weight:5, label:"HSBC Bermuda → Haze Trust" },
+  { source:"ms", target:"grat", type:"bank", weight:5, label:"Gratitude America investment vehicle" },
+
+  // Wire transfers (solid, thick)
+  { source:"black", target:"st", type:"wire", weight:60, label:"$60.5M — 6 wires, Exhibit A" },
+  { source:"roth", target:"st", type:"wire", weight:25, label:"$25M — 2 wires, Exhibit A" },
+  { source:"tudor", target:"sf", type:"wire", weight:13, label:"$13.5M — 1 wire, Exhibit A" },
+  { source:"auction", target:"haze", type:"wire", weight:19, label:"$19M — auction proceeds, Exhibit D" },
+  { source:"st", target:"sf", type:"wire", weight:67, label:"$67.9M — 8 wires, Exhibit B" },
+  { source:"haze", target:"sf", type:"wire", weight:32, label:"$32M — 5 wires, Exhibit E" },
+  { source:"haze", target:"st", type:"wire", weight:15, label:"$15M — 2 wires, Exhibit E" },
+  { source:"jeep", target:"epstein_p", type:"wire", weight:51, label:"$51.9M — 21 wires, Exhibit C" },
+  { source:"sf", target:"funds", type:"wire", weight:131, label:"$131M — investments, Exhibit B" },
+  { source:"pland", target:"st", type:"wire", weight:30, label:"$30.5M — 4 wires, Exhibit B" },
 ];
 
 // ═══════════════════════════════════════════════════════
-// RENDERING
+// COLORS & SIZING
 // ═══════════════════════════════════════════════════════
 
-const svg = document.getElementById('network-svg');
-const ns = 'http://www.w3.org/2000/svg';
-const tooltip = document.getElementById('tooltip');
-let currentFilter = 'all';
-
-const colors = {
-  shell_wire: { fill:'#c49a3c', bg:'rgba(196,154,60,0.08)', border:'rgba(196,154,60,0.4)' },
-  shell_nowire: { fill:'#6b7a8e', bg:'rgba(107,122,142,0.08)', border:'rgba(107,122,142,0.3)' },
-  bank: { fill:'#7ba7c2', bg:'rgba(123,167,194,0.06)', border:'rgba(123,167,194,0.3)' },
-  external: { fill:'#6a9a72', bg:'rgba(106,154,114,0.06)', border:'rgba(106,154,114,0.3)' },
-  comms: { fill:'#8a6aaa', bg:'rgba(138,106,170,0.08)', border:'rgba(138,106,170,0.35)' },
+const palette = {
+  shell_wire:   { fill:"#d4a853", glow:"rgba(212,168,83,0.25)", border:"rgba(212,168,83,0.5)" },
+  shell_nowire: { fill:"#c0504d", glow:"rgba(192,80,77,0.25)", border:"rgba(192,80,77,0.5)" },
+  bank:         { fill:"#5b8dbf", glow:"rgba(91,141,191,0.20)", border:"rgba(91,141,191,0.4)" },
+  external:     { fill:"#6aaa6a", glow:"rgba(106,170,106,0.15)", border:"rgba(106,170,106,0.35)" },
+  comms:        { fill:"#9a6abf", glow:"rgba(154,106,191,0.25)", border:"rgba(154,106,191,0.5)" },
 };
 
-// Create node lookup
-const nodeMap = {};
-nodes.forEach(n => nodeMap[n.id] = n);
-
-// Arrow marker
-const defs = document.createElementNS(ns, 'defs');
-
-const marker = document.createElementNS(ns, 'marker');
-marker.setAttribute('id', 'arrowGold');
-marker.setAttribute('viewBox', '0 0 10 10');
-marker.setAttribute('refX', '10');
-marker.setAttribute('refY', '5');
-marker.setAttribute('markerWidth', '6');
-marker.setAttribute('markerHeight', '6');
-marker.setAttribute('orient', 'auto');
-const arrowPath = document.createElementNS(ns, 'path');
-arrowPath.setAttribute('d', 'M 0 1 L 10 5 L 0 9 z');
-arrowPath.setAttribute('fill', '#c49a3c');
-arrowPath.setAttribute('fill-opacity', '0.7');
-marker.appendChild(arrowPath);
-defs.appendChild(marker);
-
-// Subtle glow filter
-const glow = document.createElementNS(ns, 'filter');
-glow.setAttribute('id', 'nodeGlow');
-glow.setAttribute('x', '-40%');
-glow.setAttribute('y', '-40%');
-glow.setAttribute('width', '180%');
-glow.setAttribute('height', '180%');
-const blur = document.createElementNS(ns, 'feGaussianBlur');
-blur.setAttribute('stdDeviation', '4');
-blur.setAttribute('result', 'blur');
-glow.appendChild(blur);
-const merge = document.createElementNS(ns, 'feMerge');
-const mn1 = document.createElementNS(ns, 'feMergeNode');
-mn1.setAttribute('in', 'blur');
-const mn2 = document.createElementNS(ns, 'feMergeNode');
-mn2.setAttribute('in', 'SourceGraphic');
-merge.appendChild(mn1);
-merge.appendChild(mn2);
-glow.appendChild(merge);
-defs.appendChild(glow);
-
-svg.appendChild(defs);
-
-// TIER LABELS & BRACKETS
-const tierLabels = [
-  { text:'EXTERNAL SOURCES', y:30 },
-  { text:'TIER 1 — HOLDING TRUSTS', y:180 },
-  { text:'TIER 2 — DISTRIBUTION', y:350 },
-  { text:'TIER 3 — OPERATING SHELLS', y:535 },
-  { text:'TIER 4 — TERMINAL DESTINATIONS', y:710 },
-];
-
-const tierG = document.createElementNS(ns, 'g');
-tierLabels.forEach(t => {
-  // Background band
-  const band = document.createElementNS(ns, 'rect');
-  band.setAttribute('x', '120');
-  band.setAttribute('y', String(t.y - 2));
-  band.setAttribute('width', '1040');
-  band.setAttribute('height', '22');
-  band.setAttribute('fill', 'rgba(255,255,255,0.015)');
-  band.setAttribute('rx', '2');
-  tierG.appendChild(band);
-
-  const label = document.createElementNS(ns, 'text');
-  label.setAttribute('x', '135');
-  label.setAttribute('y', String(t.y + 12));
-  label.setAttribute('class', 'tier-label');
-  label.textContent = t.text;
-  tierG.appendChild(label);
-});
-
-// Side labels
-const sideLabels = [
-  { text:'SHELLS NOT IN WIRE PRODUCTION', x:60, y:170, anchor:'middle' },
-  { text:'BANKING INSTITUTIONS', x:1200, y:155, anchor:'middle' },
-];
-
-sideLabels.forEach(t => {
-  const label = document.createElementNS(ns, 'text');
-  label.setAttribute('x', String(t.x));
-  label.setAttribute('y', String(t.y));
-  label.setAttribute('text-anchor', t.anchor);
-  label.setAttribute('class', 'tier-label');
-  label.setAttribute('fill', '#4a5568');
-  label.textContent = t.text;
-  tierG.appendChild(label);
-});
-
-svg.appendChild(tierG);
-
-// DRAW LINKS
-const linkGroup = document.createElementNS(ns, 'g');
-linkGroup.setAttribute('id', 'links');
-
-const linkEls = [];
-links.forEach((link, i) => {
-  const src = nodeMap[link.source];
-  const tgt = nodeMap[link.target];
-  if (!src || !tgt) return;
-
-  const line = document.createElementNS(ns, 'line');
-  line.setAttribute('x1', String(src.x));
-  line.setAttribute('y1', String(src.y));
-  line.setAttribute('x2', String(tgt.x));
-  line.setAttribute('y2', String(tgt.y));
-
-  if (link.type === 'wire') {
-    const w = Math.max(1.5, Math.min(6, (link.amt || 1) / 25));
-    line.setAttribute('stroke', '#c49a3c');
-    line.setAttribute('stroke-width', String(w));
-    line.setAttribute('stroke-opacity', '0.5');
-    line.setAttribute('marker-end', 'url(#arrowGold)');
-  } else if (link.type === 'bank') {
-    line.setAttribute('stroke', '#7ba7c2');
-    line.setAttribute('stroke-width', '1');
-    line.setAttribute('stroke-opacity', '0.15');
-    line.setAttribute('stroke-dasharray', '4,3');
-  } else {
-    const w = Math.max(0.5, Math.min(3, (link.weight || 20) / 60));
-    line.setAttribute('stroke', '#4a5568');
-    line.setAttribute('stroke-width', String(w));
-    line.setAttribute('stroke-opacity', '0.2');
+function nodeRadius(d) {
+  if (d.group === 'bank') {
+    if (d.moneyRefs > 1000000) return 32;
+    if (d.moneyRefs > 100000) return 24;
+    if (d.moneyRefs > 10000) return 18;
+    return 14;
   }
+  if (d.group === 'external') return 14;
+  if (d.group === 'comms') return 28;
+  if (d.files > 800) return 30;
+  if (d.files > 400) return 24;
+  if (d.files > 200) return 20;
+  if (d.files > 100) return 16;
+  return 13;
+}
 
-  line.dataset.type = link.type;
-  line.dataset.index = i;
-  linkGroup.appendChild(line);
-  linkEls.push({ el: line, data: link });
-});
-svg.appendChild(linkGroup);
+function linkStroke(d) {
+  if (d.type === 'wire') return palette.shell_wire.fill;
+  if (d.type === 'bank') return palette.bank.fill;
+  return 'rgba(255,255,255,0.25)';
+}
 
-// DRAW NODES
-const nodeGroup = document.createElementNS(ns, 'g');
-nodeGroup.setAttribute('id', 'nodes');
-
-const nodeEls = [];
-nodes.forEach(n => {
-  const g = document.createElementNS(ns, 'g');
-  g.setAttribute('transform', `translate(${n.x},${n.y})`);
-  g.style.cursor = 'pointer';
-
-  const c = colors[n.group] || colors.external;
-
-  // Outer glow circle
-  const outer = document.createElementNS(ns, 'circle');
-  outer.setAttribute('r', String(n.r));
-  outer.setAttribute('fill', c.bg);
-  outer.setAttribute('stroke', c.border);
-  outer.setAttribute('stroke-width', n.group === 'shell_wire' ? '1.5' : '1');
-  outer.setAttribute('filter', 'url(#nodeGlow)');
-  g.appendChild(outer);
-
-  // Inner dot
-  const inner = document.createElementNS(ns, 'circle');
-  inner.setAttribute('r', String(Math.max(2.5, n.r * 0.28)));
-  inner.setAttribute('fill', c.fill);
-  inner.setAttribute('fill-opacity', '0.8');
-  g.appendChild(inner);
-
-  // Label
-  const text = document.createElementNS(ns, 'text');
-  text.setAttribute('y', String(n.r + 13));
-  text.setAttribute('text-anchor', 'middle');
-  text.setAttribute('font-family', 'IBM Plex Mono, monospace');
-  text.setAttribute('font-size', n.r > 20 ? '9' : '8');
-  text.setAttribute('fill', c.fill);
-  text.setAttribute('fill-opacity', '0.75');
-  text.textContent = n.label;
-  g.appendChild(text);
-
-  // Wire amount label for shell_wire nodes
-  if (n.group === 'shell_wire' && n.wire) {
-    const amt = document.createElementNS(ns, 'text');
-    amt.setAttribute('y', String(n.r + 23));
-    amt.setAttribute('text-anchor', 'middle');
-    amt.setAttribute('font-family', 'IBM Plex Mono, monospace');
-    amt.setAttribute('font-size', '7');
-    amt.setAttribute('fill', '#c49a3c');
-    amt.setAttribute('fill-opacity', '0.5');
-    amt.textContent = n.wire.split(' ')[0];
-    g.appendChild(amt);
-  }
-
-  // Hover
-  g.addEventListener('mouseenter', (e) => showTooltip(e, n));
-  g.addEventListener('mousemove', (e) => moveTooltip(e));
-  g.addEventListener('mouseleave', hideTooltip);
-  g.addEventListener('click', () => showDetail(n));
-
-  nodeGroup.appendChild(g);
-  nodeEls.push({ el: g, data: n });
-});
-svg.appendChild(nodeGroup);
+function linkWidth(d) {
+  const max = d.type === 'wire' ? 131 : d.type === 'bank' ? 180 : 163;
+  return Math.max(0.8, (d.weight / max) * 6);
+}
 
 // ═══════════════════════════════════════════════════════
-// INTERACTIONS
+// SIMULATION
 // ═══════════════════════════════════════════════════════
 
-function showTooltip(e, n) {
-  const c = colors[n.group] || colors.external;
-  let h = `<div class="tt-name">${n.full || n.label}</div>`;
-  h += `<div class="tt-type" style="color:${c.fill}">${n.group.replace(/_/g,' ')}</div>`;
-  if (n.files) h += `<div class="tt-row"><span class="tt-label">Corpus files</span><span class="tt-val">${n.files.toLocaleString()}</span></div>`;
-  if (n.fin) h += `<div class="tt-row"><span class="tt-label">Financial docs</span><span class="tt-val">${n.fin}</span></div>`;
-  if (n.money) h += `<div class="tt-row"><span class="tt-label">Money references</span><span class="tt-val">${n.money.toLocaleString()}</span></div>`;
-  if (n.moneyRefs) h += `<div class="tt-row"><span class="tt-label">Money mentions</span><span class="tt-val">${n.moneyRefs.toLocaleString()}</span></div>`;
-  if (n.finFiles) h += `<div class="tt-row"><span class="tt-label">Financial files</span><span class="tt-val">${n.finFiles}</span></div>`;
-  if (n.emails) h += `<div class="tt-row"><span class="tt-label">Emails</span><span class="tt-val">${n.emails.toLocaleString()}</span></div>`;
-  if (n.wire) h += `<div class="tt-row"><span class="tt-label">Wire ledger</span><span class="tt-val">${n.wire}</span></div>`;
-  if (n.note) h += `<div class="tt-note">${n.note}</div>`;
-  h += `<div class="tt-unverified">All amounts are (Unverified) automated extractions</div>`;
-  tooltip.innerHTML = h;
-  tooltip.style.display = 'block';
+const W = window.innerWidth, H = window.innerHeight;
+const svg = d3.select('#canvas').attr('viewBox', [0, 0, W, H]);
+const tip = document.getElementById('tip');
+let currentView = 'all';
+
+// Defs for glow effects
+const defs = svg.append('defs');
+Object.entries(palette).forEach(([key, val]) => {
+  const f = defs.append('filter').attr('id', `glow-${key}`).attr('x','-50%').attr('y','-50%').attr('width','200%').attr('height','200%');
+  f.append('feGaussianBlur').attr('in','SourceGraphic').attr('stdDeviation','6').attr('result','blur');
+  f.append('feFlood').attr('flood-color', val.glow).attr('result','color');
+  f.append('feComposite').attr('in','color').attr('in2','blur').attr('operator','in').attr('result','shadow');
+  const merge = f.append('feMerge');
+  merge.append('feMergeNode').attr('in','shadow');
+  merge.append('feMergeNode').attr('in','SourceGraphic');
+});
+
+const g = svg.append('g');
+
+// Zoom
+const zoom = d3.zoom().scaleExtent([0.3, 4]).on('zoom', (e) => g.attr('transform', e.transform));
+svg.call(zoom);
+
+// Initial centering
+svg.call(zoom.transform, d3.zoomIdentity.translate(W/2, H/2).scale(0.85));
+
+const simulation = d3.forceSimulation(nodes)
+  .force('link', d3.forceLink(links).id(d => d.id).distance(d => {
+    if (d.type === 'wire') return 120;
+    if (d.type === 'bank') return 180;
+    return 100 - d.weight * 0.3;
+  }).strength(d => {
+    if (d.type === 'bank') return 0.15;
+    return Math.min(0.5, d.weight / 200);
+  }))
+  .force('charge', d3.forceManyBody().strength(d => {
+    if (d.group === 'bank') return -400;
+    if (d.group === 'comms') return -350;
+    return -250;
+  }))
+  .force('center', d3.forceCenter(0, 0))
+  .force('collision', d3.forceCollide().radius(d => nodeRadius(d) + 12))
+  .force('x', d3.forceX().strength(d => {
+    if (d.group === 'bank') return 0.06;
+    if (d.group === 'external') return 0.08;
+    return 0.02;
+  }))
+  .force('y', d3.forceY().strength(0.02))
+  .alphaDecay(0.015);
+
+// Links
+const linkG = g.append('g');
+const linkEls = linkG.selectAll('line').data(links).join('line')
+  .attr('stroke', linkStroke)
+  .attr('stroke-width', linkWidth)
+  .attr('stroke-opacity', d => d.type === 'bank' ? 0.25 : 0.35)
+  .attr('stroke-dasharray', d => d.type === 'bank' ? '6,4' : null);
+
+// Node groups
+const nodeG = g.append('g');
+const nodeEls = nodeG.selectAll('g').data(nodes).join('g')
+  .attr('cursor', 'pointer')
+  .call(d3.drag()
+    .on('start', (e, d) => { if (!e.active) simulation.alphaTarget(0.3).restart(); d.fx = d.x; d.fy = d.y; })
+    .on('drag', (e, d) => { d.fx = e.x; d.fy = e.y; })
+    .on('end', (e, d) => { if (!e.active) simulation.alphaTarget(0); d.fx = null; d.fy = null; })
+  );
+
+// Circles
+nodeEls.append('circle')
+  .attr('r', nodeRadius)
+  .attr('fill', d => palette[d.group]?.fill || '#888')
+  .attr('fill-opacity', 0.12)
+  .attr('stroke', d => palette[d.group]?.border || '#888')
+  .attr('stroke-width', d => (d.id === 'st' || d.id === 'sf') ? 2 : 1)
+  .attr('filter', d => `url(#glow-${d.group})`);
+
+// Inner dot
+nodeEls.append('circle')
+  .attr('r', d => Math.max(3, nodeRadius(d) * 0.3))
+  .attr('fill', d => palette[d.group]?.fill || '#888')
+  .attr('fill-opacity', 0.7);
+
+// Labels
+nodeEls.append('text')
+  .text(d => d.label)
+  .attr('dy', d => nodeRadius(d) + 13)
+  .attr('text-anchor', 'middle')
+  .attr('font-family', 'JetBrains Mono, monospace')
+  .attr('font-size', d => nodeRadius(d) > 24 ? '9px' : '8px')
+  .attr('fill', d => palette[d.group]?.fill || '#888')
+  .attr('fill-opacity', 0.7);
+
+// No-wire indicator
+nodeEls.filter(d => d.group === 'shell_nowire' || d.group === 'comms')
+  .append('text')
+  .text('❌')
+  .attr('dy', -nodeRadius)
+  .attr('dx', nodeRadius)
+  .attr('font-size', '8px')
+  .attr('text-anchor', 'middle');
+
+// Events
+nodeEls.on('mouseover', (e, d) => {
+  tip.style.display = 'block';
+  let h = `<strong>${d.full || d.label}</strong>`;
+  if (d.files) h += `${d.files.toLocaleString()} files · ${d.fin} financial<br>`;
+  if (d.money) h += `${d.money.toLocaleString()} money refs<br>`;
+  if (d.emails) h += `${d.emails.toLocaleString()} emails<br>`;
+  if (d.wire) h += `Wire ledger: ${d.wire}<br>`;
+  if (d.moneyRefs) h += `${d.moneyRefs.toLocaleString()} money mentions<br>`;
+  if (d.note) h += `<span style="color:#888">${d.note}</span>`;
+  if (d.group === 'shell_nowire') h += `<span style="color:#c0504d">❌ Not in Deutsche Bank wire production</span>`;
+  tip.innerHTML = h;
 
   // Highlight connections
-  linkEls.forEach(l => {
-    const connected = l.data.source === n.id || l.data.target === n.id;
-    l.el.setAttribute('stroke-opacity', connected ? '0.8' : '0.04');
+  linkEls.attr('stroke-opacity', l =>
+    l.source.id === d.id || l.target.id === d.id ? 0.8 : 0.06
+  );
+  nodeEls.select('circle:first-child').attr('fill-opacity', n =>
+    n.id === d.id || links.some(l =>
+      (l.source.id === d.id && l.target.id === n.id) ||
+      (l.target.id === d.id && l.source.id === n.id)
+    ) ? 0.2 : 0.04
+  );
+})
+.on('mousemove', (e) => {
+  tip.style.left = Math.min(e.clientX + 16, W - 320) + 'px';
+  tip.style.top = (e.clientY - 10) + 'px';
+})
+.on('mouseout', () => {
+  tip.style.display = 'none';
+  applyView();
+})
+.on('click', (e, d) => showPanel(d));
+
+// Tick
+simulation.on('tick', () => {
+  linkEls
+    .attr('x1', d => d.source.x).attr('y1', d => d.source.y)
+    .attr('x2', d => d.target.x).attr('y2', d => d.target.y);
+  nodeEls.attr('transform', d => `translate(${d.x},${d.y})`);
+});
+
+// ═══════════════════════════════════════════════════════
+// VIEWS
+// ═══════════════════════════════════════════════════════
+
+function setView(view) {
+  currentView = view;
+  document.querySelectorAll('.toolbar button').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+  applyView();
+}
+
+function applyView() {
+  linkEls.attr('stroke-opacity', d => {
+    if (currentView === 'all') return d.type === 'bank' ? 0.25 : 0.35;
+    if (currentView === 'cooccurrence') return d.type === 'cooccur' ? 0.45 : 0.03;
+    if (currentView === 'banks') return d.type === 'bank' ? 0.45 : 0.03;
+    if (currentView === 'wires') return d.type === 'wire' ? 0.55 : 0.03;
+    if (currentView === 'no_wire') {
+      const s = typeof d.source === 'object' ? d.source : nodes.find(n=>n.id===d.source);
+      const t = typeof d.target === 'object' ? d.target : nodes.find(n=>n.id===d.target);
+      return (s?.group === 'shell_nowire' || s?.group === 'comms' || t?.group === 'shell_nowire' || t?.group === 'comms') ? 0.45 : 0.03;
+    }
+    return 0.35;
+  });
+
+  nodeEls.select('circle:first-child').attr('fill-opacity', d => {
+    if (currentView === 'all') return 0.12;
+    if (currentView === 'no_wire') return (d.group === 'shell_nowire' || d.group === 'comms') ? 0.2 : 0.04;
+    if (currentView === 'banks') return d.group === 'bank' ? 0.2 : 0.06;
+    if (currentView === 'wires') return (d.group === 'shell_wire' || d.group === 'external') ? 0.2 : 0.04;
+    return 0.12;
   });
 }
 
-function moveTooltip(e) {
-  const x = Math.min(e.clientX + 16, window.innerWidth - 380);
-  tooltip.style.left = x + 'px';
-  tooltip.style.top = (e.clientY - 10) + 'px';
+// ═══════════════════════════════════════════════════════
+// SEARCH
+// ═══════════════════════════════════════════════════════
+
+function searchNodes(q) {
+  q = q.toLowerCase().trim();
+  nodeEls.select('circle:first-child').attr('fill-opacity', d =>
+    !q ? 0.12 : (d.label.toLowerCase().includes(q) || (d.full||'').toLowerCase().includes(q)) ? 0.35 : 0.03
+  );
+  nodeEls.select('text').attr('fill-opacity', d =>
+    !q ? 0.7 : (d.label.toLowerCase().includes(q) || (d.full||'').toLowerCase().includes(q)) ? 1 : 0.15
+  );
 }
 
-function hideTooltip() {
-  tooltip.style.display = 'none';
-  applyFilter();
+// ═══════════════════════════════════════════════════════
+// DETAIL PANEL
+// ═══════════════════════════════════════════════════════
+
+function fmt(n) {
+  if (!n) return '—';
+  if (n >= 1e6) return (n/1e6).toFixed(1) + 'M';
+  if (n >= 1e3) return Math.round(n/1e3) + 'K';
+  return n.toLocaleString();
 }
 
-function showDetail(n) {
-  const c = colors[n.group] || colors.external;
-  const conns = links.filter(l => l.source === n.id || l.target === n.id);
+function showPanel(d) {
+  const p = palette[d.group];
+  const conns = links.filter(l => l.source.id === d.id || l.target.id === d.id);
+  const maxW = Math.max(...conns.map(c => c.weight), 1);
 
-  let h = `<div class="dp-header">
-    <button class="dp-close" onclick="closeDetail()">✕</button>
-    <div class="dp-name">${n.full || n.label}</div>
-    <div class="dp-badge" style="color:${c.fill};border-color:${c.border}">${n.group.replace(/_/g,' ').toUpperCase()}</div>
+  let h = `<div class="panel-head">
+    <button class="close" onclick="closePanel()">✕</button>
+    <h2>${d.full || d.label}</h2>
+    <div class="badge" style="background:${p.glow};color:${p.fill};border:1px solid ${p.border}">
+      ${d.group.replace('_',' ').toUpperCase()}
+    </div>
   </div>`;
 
-  h += `<div class="dp-stats">`;
-  if (n.files) h += `<div class="dp-stat"><div class="dp-stat-val">${n.files.toLocaleString()}</div><div class="dp-stat-lbl">Corpus Files</div></div>`;
-  if (n.fin) h += `<div class="dp-stat"><div class="dp-stat-val">${n.fin}</div><div class="dp-stat-lbl">Financial Docs</div></div>`;
-  if (n.money) h += `<div class="dp-stat"><div class="dp-stat-val">${n.money.toLocaleString()}</div><div class="dp-stat-lbl">Money References</div></div>`;
-  if (n.moneyRefs) h += `<div class="dp-stat"><div class="dp-stat-val">${n.moneyRefs.toLocaleString()}</div><div class="dp-stat-lbl">Money Mentions</div></div>`;
-  if (n.emails) h += `<div class="dp-stat"><div class="dp-stat-val">${n.emails.toLocaleString()}</div><div class="dp-stat-lbl">Emails</div></div>`;
-  if (n.wire) h += `<div class="dp-stat"><div class="dp-stat-val">${n.wire.split('(')[0].trim()}</div><div class="dp-stat-lbl">Wire Ledger (Unverified)</div></div>`;
+  h += `<div class="panel-stats">`;
+  if (d.files) h += `<div class="stat-card"><div class="stat-val">${fmt(d.files)}</div><div class="stat-label">Total files</div></div>`;
+  if (d.fin) h += `<div class="stat-card"><div class="stat-val">${d.fin}</div><div class="stat-label">Financial docs</div></div>`;
+  if (d.money) h += `<div class="stat-card"><div class="stat-val">${fmt(d.money)}</div><div class="stat-label">Money references</div></div>`;
+  if (d.emails) h += `<div class="stat-card"><div class="stat-val">${fmt(d.emails)}</div><div class="stat-label">Emails</div></div>`;
+  if (d.wire) h += `<div class="stat-card"><div class="stat-val">${d.wire}</div><div class="stat-label">Wire ledger</div></div>`;
+  if (d.moneyRefs) h += `<div class="stat-card"><div class="stat-val">${fmt(d.moneyRefs)}</div><div class="stat-label">Money mentions (financial docs)</div></div>`;
+  if (d.finFiles) h += `<div class="stat-card"><div class="stat-val">${d.finFiles}</div><div class="stat-label">Financial files</div></div>`;
+  if (d.group === 'shell_nowire') h += `<div class="stat-card" style="border-color:rgba(192,80,77,0.3)"><div class="stat-val" style="color:#c0504d">❌</div><div class="stat-label">Not in wire production</div></div>`;
   h += `</div>`;
 
-  if (n.note) h += `<div class="dp-section"><h3>Note</h3><div style="font-size:11px;color:var(--slate)">${n.note}</div></div>`;
+  if (d.note) h += `<div class="panel-section"><h3>Note</h3><div style="color:#888;font-size:11px">${d.note}</div></div>`;
 
   if (conns.length) {
-    h += `<div class="dp-section"><h3>Connections (${conns.length})</h3>`;
-    conns.forEach(conn => {
-      const otherId = conn.source === n.id ? conn.target : conn.source;
-      const other = nodeMap[otherId];
-      if (!other) return;
-      const oc = colors[other.group] || colors.external;
-      h += `<div class="dp-conn">
-        <div class="dp-conn-dot" style="background:${oc.fill}"></div>
-        <div class="dp-conn-name">${other.label}</div>
-        <div class="dp-conn-val">${conn.label.split('·')[0].trim()}</div>
+    h += `<div class="panel-section"><h3>Connections (${conns.length})</h3>`;
+    conns.sort((a,b) => b.weight - a.weight).forEach(c => {
+      const other = c.source.id === d.id ? c.target : c.source;
+      const op = palette[other.group] || { fill:'#888' };
+      const pct = Math.max(8, (c.weight / maxW) * 100);
+      h += `<div class="conn-item">
+        <div class="conn-dot" style="background:${op.fill}"></div>
+        <div class="conn-name">${other.label}</div>
+        <div class="conn-bar"><div class="conn-bar-fill" style="width:${pct}%;background:${c.type==='wire'?palette.shell_wire.fill:c.type==='bank'?palette.bank.fill:'rgba(255,255,255,0.3)'}"></div></div>
+        <div class="conn-val">${c.label.split('—')[0].trim()}</div>
       </div>`;
     });
     h += `</div>`;
   }
 
-  h += `<div class="dp-disclaimer">All amounts are (Unverified) automated extractions. Appearance does not imply wrongdoing. Entity classifications are analytical designations — not legal determinations.</div>`;
-
-  document.getElementById('panelContent').innerHTML = h;
-  document.getElementById('detailPanel').classList.add('open');
+  document.getElementById('panel-inner').innerHTML = h;
+  document.getElementById('panel').classList.add('open');
 }
 
-function closeDetail() {
-  document.getElementById('detailPanel').classList.remove('open');
-}
-
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeDetail(); });
-
-// ═══════════════════════════════════════════════════════
-// FILTERS
-// ═══════════════════════════════════════════════════════
-
-function setFilter(f) {
-  currentFilter = f;
-  document.querySelectorAll('.viz-controls button').forEach(b => b.classList.remove('active'));
-  event.target.classList.add('active');
-  applyFilter();
-}
-
-function applyFilter() {
-  linkEls.forEach(l => {
-    let op;
-    if (currentFilter === 'all') {
-      op = l.data.type === 'wire' ? 0.5 : l.data.type === 'bank' ? 0.15 : 0.2;
-    } else if (currentFilter === 'wires') {
-      op = l.data.type === 'wire' ? 0.7 : 0.03;
-    } else if (currentFilter === 'cooccur') {
-      op = l.data.type === 'cooccur' ? 0.4 : 0.03;
-    } else if (currentFilter === 'banks') {
-      op = l.data.type === 'bank' ? 0.4 : 0.03;
-    } else if (currentFilter === 'missing') {
-      const s = l.data.source, t = l.data.target;
-      const sNode = nodeMap[s], tNode = nodeMap[t];
-      const isMissing = (sNode && (sNode.group === 'shell_nowire' || sNode.group === 'comms')) ||
-                        (tNode && (tNode.group === 'shell_nowire' || tNode.group === 'comms'));
-      op = isMissing ? 0.4 : 0.03;
-    }
-    l.el.setAttribute('stroke-opacity', String(op));
-  });
-
-  nodeEls.forEach(n => {
-    let fillOp;
-    const outer = n.el.querySelector('circle');
-    if (currentFilter === 'all') {
-      fillOp = 0.08;
-    } else if (currentFilter === 'wires') {
-      fillOp = (n.data.group === 'shell_wire' || n.data.group === 'external') ? 0.12 : 0.02;
-    } else if (currentFilter === 'banks') {
-      fillOp = n.data.group === 'bank' ? 0.12 : 0.03;
-    } else if (currentFilter === 'missing') {
-      fillOp = (n.data.group === 'shell_nowire' || n.data.group === 'comms') ? 0.15 : 0.02;
-    } else {
-      fillOp = 0.08;
-    }
-    if (outer) outer.setAttribute('fill-opacity', String(fillOp));
-  });
-}
+function closePanel() { document.getElementById('panel').classList.remove('open'); }
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closePanel(); });
 </script>
 </body>
 </html>
