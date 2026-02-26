@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Timeline — When the Money Moved</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@300;400;500&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0a1019;--navy-mid:#111827;--navy-light:#1a2332;--gold:#c49a3c;--gold-dim:#a07d2e;--gold-bright:#dbb44c;--ice:#7ba7c2;--ice-dim:#5a8aa8;--ice-bright:#9dc2d8;--red-flag:#c44040;--white:#e8e4dc;--white-dim:#b0a898;--font-display:'Cormorant Garamond',Georgia,serif;--font-body:'IBM Plex Sans',sans-serif;--font-mono:'IBM Plex Mono',monospace;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--navy);color:var(--white);font-family:var(--font-body);font-weight:300;padding-bottom:100px;}
+.tl-wrap{max-width:860px;margin:40px auto;padding:0 20px;}
+.tl-head{text-align:center;margin-bottom:28px;}
+.tl-head .num{font-family:var(--font-mono);font-size:10px;letter-spacing:4px;color:var(--gold-dim);text-transform:uppercase;}
+.tl-head h2{font-family:var(--font-display);font-size:clamp(24px,3vw,34px);font-weight:600;color:var(--white);margin-top:8px;}
+.tl-head .sub{font-family:var(--font-body);font-size:14px;color:var(--white-dim);margin-top:6px;font-weight:300;}
+.tl-head .rule{width:60px;height:1px;background:var(--gold-dim);margin:16px auto 0;}
+.tl-stats{display:flex;justify-content:center;gap:28px;padding:16px 0 24px;flex-wrap:wrap;}
+.tl-stat{text-align:center;}
+.tl-sv{font-family:var(--font-mono);font-size:18px;font-weight:500;color:var(--gold);}
+.tl-sl{font-family:var(--font-mono);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--white-dim);margin-top:2px;}
+.tl-box{background:var(--navy-mid);border:1px solid rgba(196,154,60,0.15);padding:20px 16px 16px;margin-bottom:24px;overflow:hidden;}
+.tl-ctrl{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;padding:0 4px;flex-wrap:wrap;gap:8px;}
+.tl-tog{display:flex;}
+.tl-tog button{font-family:var(--font-mono);font-size:10px;letter-spacing:1px;text-transform:uppercase;background:transparent;color:var(--white-dim);border:1px solid rgba(196,154,60,0.2);padding:5px 12px;cursor:pointer;transition:all .2s;}
+.tl-tog button:first-child{border-radius:2px 0 0 2px;}
+.tl-tog button:last-child{border-radius:0 2px 2px 0;border-left:none;}
+.tl-tog button.on{background:rgba(196,154,60,0.15);color:var(--gold);border-color:var(--gold-dim);}
+.tl-cov{font-family:var(--font-mono);font-size:10px;color:var(--white-dim);letter-spacing:1px;}
+.tl-cov span{color:var(--ice);}
+.tl-scroll{width:100%;overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;padding-bottom:8px;}
+.tl-scroll::-webkit-scrollbar{height:6px;}
+.tl-scroll::-webkit-scrollbar-track{background:var(--navy);border-radius:3px;}
+.tl-scroll::-webkit-scrollbar-thumb{background:var(--gold-dim);border-radius:3px;}
+.tl-chart{position:relative;height:340px;}
+.bar{position:absolute;bottom:44px;border-radius:1px 1px 0 0;cursor:pointer;transition:background .15s,box-shadow .15s;z-index:2;}
+.bar.gld{background:var(--gold-dim);}.bar.gld:hover,.bar.gld.on{background:var(--gold-bright);box-shadow:0 0 10px rgba(196,154,60,0.4);}
+.bar.dim{background:rgba(123,167,194,0.25);}.bar.dim:hover,.bar.dim.on{background:rgba(123,167,194,0.45);box-shadow:0 0 8px rgba(123,167,194,0.3);}
+.gline{position:absolute;left:0;right:0;height:1px;background:rgba(255,255,255,0.04);z-index:0;}
+.glbl{position:absolute;left:4px;font-family:var(--font-mono);font-size:9px;color:rgba(255,255,255,0.2);transform:translateY(-50%);z-index:1;}
+.ylbl{position:absolute;bottom:10px;font-family:var(--font-mono);font-size:10px;color:var(--white-dim);letter-spacing:1px;}
+.xaxis{position:absolute;bottom:0;left:0;right:0;height:40px;border-top:1px solid rgba(196,154,60,0.15);}
+.evline{position:absolute;bottom:44px;width:1px;background:var(--red-flag);opacity:.4;z-index:1;}
+.evdot{position:absolute;width:9px;height:9px;border-radius:50%;background:var(--red-flag);border:1px solid var(--navy-mid);cursor:pointer;z-index:5;transition:transform .15s;box-shadow:0 0 6px rgba(255,77,77,0.4);}.evdot:hover{transform:scale(1.6);}
+.evflag{position:absolute;font-family:var(--font-mono);font-size:8px;letter-spacing:1px;color:var(--red-flag);text-transform:uppercase;white-space:nowrap;z-index:4;cursor:pointer;transition:color .15s;}.evflag:hover{color:#ff6b6b;}
+.yr-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:8px;margin-top:12px;}
+.yr-card{background:var(--navy-mid);border:1px solid rgba(196,154,60,0.1);padding:10px 12px;cursor:pointer;transition:border-color .15s;text-align:center;}
+.yr-card:hover,.yr-card.on{border-color:var(--gold-dim);background:var(--navy-light);}
+.yr-card.dk{opacity:.35;border-style:dashed;}.yr-card.dk:hover{opacity:.65;}
+.yr-y{font-family:var(--font-mono);font-size:12px;color:var(--white);letter-spacing:1px;}
+.yr-a{font-family:var(--font-mono);font-size:14px;color:var(--gold);font-weight:500;margin-top:2px;}
+.yr-w{font-family:var(--font-mono);font-size:9px;color:var(--white-dim);margin-top:2px;}
+.pp{position:fixed;z-index:1000;background:var(--navy-light);border:1px solid var(--gold-dim);padding:16px 20px 14px;min-width:320px;max-width:420px;box-shadow:0 8px 32px rgba(0,0,0,0.6);opacity:0;transform:translateY(4px);transition:opacity .15s,transform .15s;pointer-events:none;}
+.pp.vis{opacity:1;transform:translateY(0);pointer-events:auto;}
+.pp-x{position:absolute;top:6px;right:10px;font-family:var(--font-mono);font-size:16px;color:var(--white-dim);cursor:pointer;background:none;border:none;line-height:1;}.pp-x:hover{color:var(--gold);}
+.pp-mo{font-family:var(--font-mono);font-size:10px;letter-spacing:2px;color:var(--gold);text-transform:uppercase;margin-bottom:4px;}
+.pp-amt{font-family:var(--font-mono);font-size:22px;color:var(--gold-bright);font-weight:500;}
+.pp-wc{font-family:var(--font-mono);font-size:11px;color:var(--ice);margin-bottom:8px;}
+.pp-flows{border-top:1px solid rgba(196,154,60,0.12);padding-top:8px;max-height:320px;overflow-y:auto;}
+.pp-flows::-webkit-scrollbar{width:3px;}.pp-flows::-webkit-scrollbar-track{background:transparent;}.pp-flows::-webkit-scrollbar-thumb{background:var(--gold-dim);border-radius:2px;}
+.pp-fl{padding:5px 0;border-bottom:1px solid rgba(255,255,255,0.03);}.pp-fl:last-child{border-bottom:none;}
+.pp-fl-row{display:flex;align-items:baseline;gap:6px;}
+.pp-fl-amt{font-family:var(--font-mono);font-size:11px;color:var(--gold);min-width:62px;text-align:right;flex-shrink:0;}
+.pp-fl-arrow{color:var(--ice-dim);font-size:10px;flex-shrink:0;}
+.pp-fl-from{font-family:var(--font-mono);font-size:10px;color:var(--ice-bright);white-space:nowrap;}
+.pp-fl-to{font-family:var(--font-mono);font-size:10px;color:var(--white);white-space:nowrap;}
+.pp-ev{font-family:var(--font-mono);font-size:10px;color:var(--red-flag);border-top:1px solid rgba(196,154,60,0.12);padding-top:8px;margin-top:8px;line-height:1.5;}
+.pp-ev strong{text-transform:uppercase;letter-spacing:1px;}
+.pp-scroll-hint{font-family:var(--font-mono);font-size:8px;color:var(--white-dim);text-align:center;padding-top:4px;opacity:.5;}
+.tl-hint{text-align:center;font-family:var(--font-mono);font-size:9px;color:var(--white-dim);opacity:.4;margin-top:6px;letter-spacing:1px;}
+
+/* ROSTER */
+.ro-wrap{margin-top:48px;}
+.ro-head{text-align:center;margin-bottom:8px;}
+.ro-head h3{font-family:var(--font-display);font-size:clamp(20px,2.5vw,28px);font-weight:600;color:var(--white);}
+.ro-head .rule{width:60px;height:1px;background:var(--gold-dim);margin:12px auto 0;}
+.ro-head .sub{font-family:var(--font-mono);font-size:10px;color:var(--white-dim);letter-spacing:2px;text-transform:uppercase;margin-top:10px;}
+.ro-note{font-family:var(--font-body);font-size:12px;color:var(--white-dim);text-align:center;max-width:620px;margin:12px auto 28px;line-height:1.6;}
+.ro-legend{background:rgba(196,154,60,0.04);border:1px solid rgba(196,154,60,0.1);padding:14px 18px;margin:0 auto 28px;max-width:620px;}
+.ro-legend-title{font-family:var(--font-mono);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:8px;}
+.ro-legend-item{font-family:var(--font-body);font-size:11px;color:var(--white-dim);line-height:1.7;}
+.ro-legend-item b{color:var(--white);font-weight:400;}
+.ro-cat{margin-bottom:28px;}
+.ro-cat-hd{font-family:var(--font-mono);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:8px;padding-bottom:6px;border-bottom:1px solid rgba(196,154,60,0.12);display:flex;justify-content:space-between;align-items:baseline;}
+.ro-cat-hd span{color:var(--white-dim);font-weight:300;font-size:9px;}
+.ro-cols{font-family:var(--font-mono);font-size:8px;letter-spacing:1px;text-transform:uppercase;color:var(--white-dim);opacity:.4;padding:0 8px 4px;display:grid;grid-template-columns:38px 1fr 80px 60px;gap:4px;}
+.ro-grid{display:flex;flex-direction:column;gap:2px;}
+.ro-ent{display:grid;grid-template-columns:38px 1fr 80px 60px;gap:4px;padding:6px 8px;background:rgba(255,255,255,0.012);border-left:2px solid transparent;transition:all .15s;align-items:baseline;}
+.ro-ent:hover{background:rgba(196,154,60,0.04);border-left-color:var(--gold-dim);}
+.ro-rank{font-family:var(--font-mono);font-size:10px;color:var(--white-dim);text-align:right;padding-right:6px;}
+.ro-name{font-family:var(--font-mono);font-size:11px;color:var(--white);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;cursor:default;}
+.ro-name.has-bates{color:var(--ice-bright);cursor:pointer;}
+.ro-name.has-bates:hover{color:var(--gold-bright);text-decoration:underline;text-underline-offset:2px;}
+.ro-ent.hi .ro-name{color:var(--gold-bright);}
+.ro-ent.hi .ro-name.has-bates{color:var(--gold-bright);cursor:pointer;}
+.ro-ent.hi .ro-name.has-bates:hover{text-decoration:underline;text-underline-offset:2px;}
+.ro-ent.hi{border-left-color:var(--red-flag);}
+.ro-dollars{font-family:var(--font-mono);font-size:10px;color:var(--gold);text-align:right;}
+.ro-ds{font-family:var(--font-mono);font-size:10px;color:var(--ice-dim);text-align:center;position:relative;}
+.ro-ds-bar{display:flex;gap:1px;justify-content:center;}
+.ro-ds-pip{width:5px;height:8px;border-radius:1px;}
+.ro-ds-pip.on{background:var(--ice);opacity:.8;}
+.ro-ds-pip.off{background:rgba(123,167,194,0.12);}
+
+/* Bates popup */
+.bp-name{font-family:var(--font-mono);font-size:14px;color:var(--gold-bright);font-weight:500;margin-bottom:4px;}
+.bp-count{font-family:var(--font-mono);font-size:11px;color:var(--ice);margin-bottom:10px;}
+.bp-srcs{border-top:1px solid rgba(196,154,60,0.12);padding-top:8px;margin-bottom:8px;}
+.bp-src{font-family:var(--font-mono);font-size:10px;color:var(--white-dim);padding:2px 0;}
+.bp-src span{color:var(--gold);}
+.bp-refs{border-top:1px solid rgba(196,154,60,0.12);padding-top:8px;}
+.bp-ref-title{font-family:var(--font-mono);font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--white-dim);margin-bottom:6px;}
+.bp-ref{font-family:var(--font-mono);font-size:10px;color:var(--ice-bright);padding:2px 0;user-select:all;cursor:text;}
+.bp-no{font-family:var(--font-mono);font-size:10px;color:var(--white-dim);font-style:italic;padding:4px 0;}
+
+/* Vehicle */
+.ve-grid{display:flex;flex-direction:column;gap:2px;}
+.ve-ent{display:grid;grid-template-columns:140px 90px 1fr 80px;gap:8px;padding:6px 8px;background:rgba(255,255,255,0.012);border-left:2px solid rgba(123,167,194,0.2);align-items:baseline;}
+.ve-ent:hover{background:rgba(196,154,60,0.04);}
+.ve-name{font-family:var(--font-mono);font-size:11px;color:var(--ice-bright);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;cursor:pointer;}
+.ve-name:hover{color:var(--gold-bright);text-decoration:underline;text-underline-offset:2px;}
+.ve-role{font-family:var(--font-mono);font-size:9px;color:var(--gold-dim);text-transform:uppercase;letter-spacing:1px;}
+.ve-desc{font-family:var(--font-body);font-size:10px;color:var(--white-dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.ve-vol{font-family:var(--font-mono);font-size:10px;color:var(--gold);text-align:right;}
+
+/* Source bar */
+.src-bar{margin-top:32px;padding-top:20px;border-top:1px solid rgba(196,154,60,0.08);text-align:center;}
+.src-bar .lbl{font-family:var(--font-mono);font-size:9px;color:var(--white-dim);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;}
+.src-pills{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;}
+.src-pill{font-family:var(--font-mono);font-size:10px;color:var(--white-dim);}
+.src-pill span{color:var(--gold);}
+
+@media(max-width:700px){
+  .ro-ent{grid-template-columns:32px 1fr 65px 50px;}.ro-cols{grid-template-columns:32px 1fr 65px 50px;}
+  .ve-ent{grid-template-columns:120px 70px 1fr;}
+  .ve-vol{display:none;}.pp{min-width:260px;max-width:320px;}
+}
+</style>
+</head>
+<body>
+<div class="tl-wrap">
+  <div class="tl-head">
+    <div class="num">Section V</div>
+    <h2>The Timeline</h2>
+    <div class="sub">When the money moved. Who moved it. Where it went.</div>
+    <div class="rule"></div>
+  </div>
+  <div class="tl-stats">
+    <div class="tl-stat"><div class="tl-sv">10,964</div><div class="tl-sl">Transactions</div></div>
+    <div class="tl-stat"><div class="tl-sv">$2.146B</div><div class="tl-sl">Total Volume</div></div>
+    <div class="tl-stat"><div class="tl-sv">2005–2020</div><div class="tl-sl">Span</div></div>
+    <div class="tl-stat"><div class="tl-sv">1,008</div><div class="tl-sl">Entities</div></div>
+    <div style="font-family:var(--font-mono);font-size:9px;color:var(--white-dim);text-align:center;opacity:.5;margin-top:-8px;padding-bottom:8px;">7,897 of 10,964 records carry dates and appear in the chart below. 3,067 undated records ($679M) exist in the ledger but cannot be plotted.</div>
+  </div>
+  <div class="tl-box">
+    <div class="tl-ctrl">
+      <div class="tl-tog">
+        <button class="on" onclick="setV('m')">Monthly</button>
+        <button onclick="setV('y')">Annual</button>
+      </div>
+      <div class="tl-cov"><span>7,897</span> dated records across <span>158</span> months &middot; click any bar</div>
+    </div>
+    <div id="mv">
+      <div class="tl-scroll"><div class="tl-chart" id="ch"></div></div>
+      <div class="tl-hint">&larr; scroll to explore full timeline &rarr;</div>
+    </div>
+    <div id="yv" style="display:none"><div class="yr-grid" id="yg"></div></div>
+  </div>
+
+  <div class="ro-wrap">
+    <div class="ro-head">
+      <h3>The Names</h3>
+      <div class="rule"></div>
+      <div class="sub">69 persons of interest ranked across all data sources</div>
+    </div>
+    <div class="ro-legend" style="padding:8px 14px;">
+      <div class="ro-legend-title" style="font-size:8px;margin-bottom:4px;">Legend</div>
+      <div class="ro-legend-item" style="font-size:10px;line-height:1.4;"><b>#</b> &mdash; Rank out of 2,000 scored entities. Lower = deeper footprint.</div>
+      <div class="ro-legend-item" style="font-size:10px;line-height:1.4;"><b>Direct $</b> &mdash; Verified dollars from bank records and wire transfers.</div>
+      <div class="ro-legend-item" style="font-size:10px;line-height:1.4;"><b>Sources</b> &mdash; Lit squares = presence across 10 datasets (financials, flights, filings, bank stmts, SARs, contacts, testimony, news, FAA, ICIJ).</div>
+      <div class="ro-legend-item" style="font-size:10px;line-height:1.4;"><b>Blue names</b> &mdash; Clickable. Shows bates numbers from source docs.</div>
+    </div>
+    <div id="roster"></div>
+    <div id="vehicles"></div>
+    <div class="src-bar">
+      <div class="lbl">Source Corpus</div>
+      <div class="src-pills">
+        <div class="src-pill"><span>10,964</span> publication ledger</div>
+        <div class="src-pill"><span>7,343</span> extracted payments</div>
+        <div class="src-pill"><span>2,129</span> fund flows</div>
+        <div class="src-pill"><span>1,011</span> bank statements</div>
+        <div class="src-pill"><span>481</span> verified wires</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="pp" id="pp">
+  <button class="pp-x" onclick="hp()">&times;</button>
+  <div class="pp-mo" id="pm"></div>
+  <div class="pp-amt" id="pa"></div>
+  <div class="pp-wc" id="pw"></div>
+  <div class="pp-flows" id="pf"></div>
+  <div class="pp-ev" id="pe" style="display:none"></div>
+</div>
+
+<script>
+const D={"2005-01":{"t":210771,"c":13},"2005-02":{"t":18654,"c":7},"2005-05":{"t":1442593,"c":3},"2005-09":{"t":1650,"c":1},"2005-12":{"t":187045,"c":1},"2006-06":{"t":24577,"c":2},"2006-09":{"t":20000,"c":1},"2007-01":{"t":13510,"c":15},"2007-05":{"t":5,"c":1},"2007-07":{"t":75,"c":1},"2007-08":{"t":10810519,"c":91},"2007-09":{"t":13747885,"c":95},"2007-10":{"t":5529428,"c":123},"2007-11":{"t":3234974,"c":64},"2007-12":{"t":2689962,"c":115},"2008-01":{"t":7186094,"c":96},"2008-02":{"t":6548365,"c":133},"2008-03":{"t":6972517,"c":195},"2008-04":{"t":10422151,"c":186,"fl":[{"f":"Southern Financial","t":"Southern Financial","a":2061181}]},"2008-05":{"t":5930641,"c":61,"fl":[{"f":"Jeffrey Epstein","t":"Black Family Partners","a":20912}]},"2008-06":{"t":14125456,"c":225},"2008-07":{"t":3800191,"c":128},"2008-08":{"t":7430247,"c":169},"2008-09":{"t":6050684,"c":143},"2008-10":{"t":6237585,"c":128,"fl":[{"f":"Jeffrey Epstein","t":"Black Family Partners","a":50000000}]},"2008-11":{"t":4650303,"c":119},"2008-12":{"t":2256322,"c":84,"fl":[{"f":"Jeffrey Epstein","t":"Black Family Partners","a":20135706},{"f":"Jeffrey Epstein","t":"Black Family Partners","a":6797321}]},"2009-01":{"t":9492205,"c":89},"2009-02":{"t":17464438,"c":66},"2009-03":{"t":4881700,"c":63,"fl":[{"f":"Yellow Cab","t":"Robert Critton","a":111884},{"f":"D. Critton","t":"Robert Critton","a":888}]},"2009-04":{"t":4129507,"c":83},"2009-05":{"t":3684263,"c":59},"2009-06":{"t":6671448,"c":69},"2009-07":{"t":3553580,"c":66},"2009-08":{"t":1791472,"c":56},"2009-09":{"t":10555476,"c":107},"2009-10":{"t":3213378,"c":56},"2009-11":{"t":5322146,"c":58},"2009-12":{"t":2606234,"c":57},"2010-01":{"t":5598997,"c":53,"fl":[{"f":"Citibank","t":"M. Arda Beskardes","a":6000}]},"2010-02":{"t":4892033,"c":72,"fl":[{"f":"Citibank","t":"M. Arda Beskardes","a":13190}]},"2010-03":{"t":10085510,"c":103},"2010-04":{"t":19507737,"c":73},"2010-05":{"t":9787803,"c":69},"2010-06":{"t":12395287,"c":79},"2010-07":{"t":31185809,"c":103},"2010-08":{"t":3890273,"c":71},"2010-09":{"t":19158086,"c":116},"2010-10":{"t":14031920,"c":88},"2010-11":{"t":2959523,"c":64},"2010-12":{"t":6802402,"c":109},"2011-01":{"t":19428487,"c":87},"2011-02":{"t":5370053,"c":87},"2011-03":{"t":7602354,"c":86},"2011-04":{"t":3773767,"c":51,"fl":[{"f":"Citibank","t":"Peggy Siegal","a":8000}]},"2011-05":{"t":67161866,"c":74},"2011-06":{"t":4706452,"c":72},"2011-07":{"t":14608258,"c":57,"fl":[{"f":"Richard Kahn","t":"Bella Klein","a":700}]},"2011-08":{"t":32530514,"c":106},"2011-09":{"t":6446332,"c":52},"2011-10":{"t":3184915,"c":76},"2011-11":{"t":8243803,"c":66},"2011-12":{"t":6330237,"c":59},"2012-01":{"t":3141345,"c":76},"2012-02":{"t":3344665,"c":71},"2012-03":{"t":6179839,"c":73},"2012-04":{"t":4247018,"c":61},"2012-05":{"t":8962788,"c":61},"2012-06":{"t":4358211,"c":59},"2012-07":{"t":12084745,"c":80},"2012-08":{"t":1264565,"c":60},"2012-09":{"t":9688685,"c":58},"2012-10":{"t":2557940,"c":67,"fl":[{"f":"Deutsche Bank","t":"Butterfly Trust","a":30000}]},"2012-11":{"t":3333350,"c":58},"2012-12":{"t":5010765,"c":78},"2013-01":{"t":713510,"c":52},"2013-02":{"t":2119063,"c":74,"fl":[{"f":"Ellmax","t":"JPMorgan","a":111111}]},"2013-03":{"t":12754031,"c":121},"2013-04":{"t":21954098,"c":107},"2013-05":{"t":27051508,"c":69,"fl":[{"f":"Pershing (Southern Financial)","t":"Pershing (Southern Financial)","a":1513125}]},"2013-06":{"t":15233790,"c":119},"2013-07":{"t":21927046,"c":102},"2013-08":{"t":33303365,"c":81},"2013-09":{"t":4881482,"c":68,"fl":[{"f":"Deutsche Bank","t":"Butterfly Trust","a":300000}]},"2013-10":{"t":18029582,"c":86,"fl":[{"f":"Leon & Debra Black","t":"Southern Trust","a":8500000},{"f":"Southern Trust","t":"Debra Black","a":8500000},{"f":"Jeepers Inc.","t":"Jeffrey Epstein","a":3000000},{"f":"Deutsche Bank","t":"Darren Indyke","a":3000000},{"f":"Deutsche Bank","t":"Gratitude America","a":200000}]},"2013-11":{"t":3046374,"c":82,"fl":[{"f":"Jeepers Inc.","t":"Jeffrey Epstein","a":2000000},{"f":"Deutsche Bank","t":"Darren Indyke","a":2000000},{"f":"Barry Josephson","t":"Jeffrey Epstein","a":200000}]},"2013-12":{"t":12295336,"c":35,"fl":[{"f":"Black Family Partners","t":"Southern Trust","a":10000000},{"f":"Jeepers Inc.","t":"Jeepers Inc.","a":2000000},{"f":"Deutsche Bank","t":"Butterfly Trust","a":20000},{"f":"Deutsche Bank","t":"Shuliak","a":20000},{"f":"Larry Visoski","t":"Jean-Luc Brunel","a":10000}]},"2014-01":{"t":2280960,"c":30,"fl":[{"f":"Jeepers Inc.","t":"Jeffrey Epstein","a":2000000},{"f":"Unresolved","t":"Jeffrey Epstein","a":225000},{"f":"Larry Visoski","t":"Jean-Luc Brunel","a":182219},{"f":"Jean-Luc Brunel","t":"Beneficiary (Redacted)","a":182219},{"f":"Larry Visoski","t":"Jean-Luc Brunel","a":14000},{"f":"Jean-Luc Brunel","t":"Beneficiary (Redacted)","a":14000},{"f":"Deutsche Bank","t":"Bank of America","a":7500}]},"2014-02":{"t":10008684,"c":25,"fl":[{"f":"Jeepers Inc.","t":"Jeffrey Epstein","a":4000000},{"f":"Adam Bly","t":"Jeffrey Epstein","a":7500}]},"2014-03":{"t":8636,"c":20,"fl":[{"f":"Adam Bly","t":"Jeffrey Epstein","a":3500}]},"2014-04":{"t":33425939,"c":36,"fl":[{"f":"Leon & Debra Black","t":"Southern Trust","a":15000000},{"f":"Leon & Debra Black","t":"Southern Trust","a":5000000},{"f":"Black Family Partners","t":"Southern Trust","a":5000000},{"f":"Eileen Alexanderson","t":"Debra Black","a":5000000},{"f":"Plan D LLC","t":"Leon Black","a":5000000},{"f":"Leon Black","t":"Hannan","a":5000000},{"f":"Jeepers Inc.","t":"Jeffrey Epstein","a":3400000},{"f":"Larry Visoski","t":"Jean-Luc Brunel","a":50000},{"f":"Jean-Luc Brunel","t":"Beneficiary (Redacted)","a":50000}]},"2014-05":{"t":13616319,"c":18,"fl":[{"f":"Southern Financial","t":"Boothbay Multi Strategy","a":10000000},{"f":"Jeepers Inc.","t":"Jeffrey Epstein","a":2000000},{"f":"Deutsche Bank","t":"Darren Indyke","a":698000},{"f":"Indyke & Saipher","t":"Jeffrey Epstein","a":698000},{"f":"Indyke & Saipher","t":"Jeffrey Epstein","a":525000},{"f":"Island Global Yachting","t":"Jeffrey Epstein","a":292655},{"f":"Southern Financial","t":"Barack Ferrazzano","a":99999},{"f":"Larry Visoski","t":"Jean-Luc Brunel","a":64000},{"f":"Jean-Luc Brunel","t":"Beneficiary (Redacted)","a":64000},{"f":"Roy Black","t":"Jackie Perczek","a":4676},{"f":"Citibank","t":"M. Arda Beskardes","a":3000},{"f":"Deutsche Bank","t":"Darren Indyke","a":525}]},"2014-06":{"t":3502371,"c":13,"fl":[{"f":"Jeepers Inc.","t":"Jeffrey Epstein","a":3000000},{"f":"Larry Visoski","t":"Jean-Luc Brunel","a":24367},{"f":"Jean-Luc Brunel","t":"Beneficiary (Redacted)","a":24367},{"f":"Citibank","t":"M. Arda Beskardes","a":1075}]},"2014-07":{"t":22250113,"c":9,"fl":[{"f":"Narrow Holdings","t":"Southern Trust","a":20000000},{"f":"Deutsche Bank","t":"Haze Trust","a":2500000},{"f":"Jeepers Inc.","t":"Jeffrey Epstein","a":2000000},{"f":"Southern Financial","t":"Joichi Ito","a":250000}]},"2014-08":{"t":16004029,"c":6,"fl":[{"f":"Tudor Futures Fund","t":"Southern Financial","a":12826541},{"f":"Jeepers Inc.","t":"Jeffrey Epstein","a":2500000},{"f":"Tudor Futures Fund","t":"Southern Financial","a":677400}]},"2014-09":{"t":503463,"c":7,"fl":[{"f":"Southern Financial","t":"Joichi Ito","a":500001},{"f":"Adam Bly","t":"Jeffrey Epstein","a":3000}]},"2014-10":{"t":27503000,"c":6,"fl":[{"f":"Black Family Partners","t":"Southern Trust","a":13000000},{"f":"Leon & Debra Black","t":"Southern Trust","a":7000000},{"f":"Black Family Partners","t":"Southern Trust","a":3000000},{"f":"Plan D LLC","t":"Leon Black","a":3000000},{"f":"Jeepers Inc.","t":"Jeffrey Epstein","a":2500000},{"f":"Leon & Debra Black","t":"Southern Trust","a":2000000},{"f":"Plan D LLC","t":"Leon Black","a":2000000},{"f":"Adam Bly","t":"Jeffrey Epstein","a":3000},{"f":"Unresolved","t":"Lyle Casriel","a":1470}]},"2014-11":{"t":2036147,"c":3,"fl":[{"f":"Jeffrey Epstein","t":"Jeffrey Epstein","a":1928647},{"f":"Adam Bly","t":"Jeffrey Epstein","a":100000},{"f":"Deutsche Bank","t":"Darren Indyke","a":100000},{"f":"Deutsche Bank","t":"Citibank","a":100000},{"f":"Lexington","t":"Darren Indyke","a":100000},{"f":"Adam Bly","t":"Jeffrey Epstein","a":7500}]},"2014-12":{"t":4233,"c":12},"2015-01":{"t":2650357,"c":9,"fl":[{"f":"Jeepers Inc.","t":"Jeffrey Epstein","a":2500000},{"f":"Southern Trust","t":"Valar Global Fund","a":150000}]},"2015-02":{"t":1617409,"c":10,"fl":[{"f":"Southern Trust","t":"Valar Global Fund","a":900000}]},"2015-03":{"t":6969980,"c":16,"fl":[{"f":"Southern Trust","t":"Valar Global Fund","a":2700000},{"f":"Jeepers Inc.","t":"Jeffrey Epstein","a":2000000},{"f":"Jeepers Inc.","t":"Jeffrey Epstein","a":2000000},{"f":"Southern Financial","t":"Joichi Ito","a":250000},{"f":"Adam Bly","t":"Jeffrey Epstein","a":10484},{"f":"Unresolved","t":"Lyle Casriel","a":1382}]},"2015-04":{"t":3007584,"c":4,"fl":[{"f":"Jeepers Inc.","t":"Jeepers Inc.","a":2000000},{"f":"Southern Financial","t":"Neoteny 3 LP","a":1000000}]},"2015-05":{"t":2854744,"c":3,"fl":[{"f":"Jeepers Inc.","t":"Jeepers Inc.","a":2000000}]},"2015-06":{"t":4011567,"c":8,"fl":[{"f":"Jeepers Inc.","t":"Jeffrey Epstein","a":2000000},{"f":"Southern Financial","t":"Boothbay Absolute","a":2000000},{"f":"Adam Bly","t":"Jeffrey Epstein","a":10484}]},"2015-07":{"t":12850544,"c":15,"fl":[{"f":"Southern Financial","t":"Boothbay Absolute","a":7000000},{"f":"Jeepers Inc.","t":"Jeffrey Epstein","a":3200000},{"f":"AIC Title Agency","t":"Jeffrey Epstein","a":2000000},{"f":"Southern Trust","t":"Valar Global Fund","a":600000}]},"2015-08":{"t":2653941,"c":4,"fl":[{"f":"Jeepers Inc.","t":"Jeffrey Epstein","a":2000000},{"f":"Joichi Ito","t":"Southern Financial","a":483915},{"f":"Seed Media Group","t":"Jeffrey Epstein","a":170000}]},"2015-09":{"t":6202129,"c":13,"fl":[{"f":"Southern Financial","t":"Boothbay Absolute","a":4250000},{"f":"Southern Trust","t":"Valar Global Fund","a":1950000}]},"2015-10":{"t":25512002,"c":90,"fl":[{"f":"BV70 LLC","t":"Gratitude America Ltd","a":10000000},{"f":"Leon & Debra Black","t":"Southern Trust","a":5000000},{"f":"Black Family Partners","t":"Southern Trust","a":5000000},{"f":"Jeepers Inc.","t":"Jeffrey Epstein","a":2500000},{"f":"Jeepers Inc.","t":"Jeffrey Epstein","a":2000000},{"f":"Stone & Magnanini","t":"Jeffrey Epstein","a":1000000}]},"2015-11":{"t":26817310,"c":8,"fl":[{"f":"Kellerhals Ferguson","t":"Jeffrey Epstein","a":23000000}]},"2015-12":{"t":45002453,"c":20,"fl":[{"f":"Benjamin de Rothschild","t":"Southern Trust","a":14999980},{"f":"Edmond de Rothschild","t":"Southern Trust","a":10000000},{"f":"Black Family Partners","t":"Southern Trust","a":10000000},{"f":"Leon & Debra Black","t":"Southern Trust","a":10000000}]},"2016-01":{"t":20340341,"c":13,"fl":[{"f":"Haze Trust","t":"Jeffrey Epstein","a":20000000},{"f":"Gratitude America","t":"Melanoma Research Alliance","a":225000},{"f":"Gratitude America","t":"Moskowitz Foundation","a":50000},{"f":"Gratitude America","t":"Gratitude America Ltd","a":50000}]},"2016-02":{"t":225545,"c":7,"fl":[{"f":"Southern Trust","t":"Joichi Ito","a":3750000},{"f":"Gratitude America","t":"Gratitude America","a":150000},{"f":"Kellerhals Ferguson","t":"Jeffrey Epstein","a":75000}]},"2016-03":{"t":20250000,"c":4,"fl":[{"f":"Southern Financial","t":"Boothbay Absolute","a":10000000},{"f":"Gratitude America","t":"Gratitude America Ltd","a":5000000},{"f":"Gratitude America","t":"Citibank","a":5000000},{"f":"Southern Financial","t":"Boothbay Absolute","a":5000000},{"f":"Gratitude America","t":"Gratitude America","a":250000},{"f":"Unresolved","t":"Lyle Casriel","a":576}]},"2016-04":{"t":750861,"c":7,"fl":[{"f":"Gol Muchnik","t":"Jeffrey Epstein","a":500000},{"f":"Gratitude America","t":"Gratitude America Ltd","a":250000}]},"2016-05":{"t":20000473,"c":5,"fl":[{"f":"Southern Trust","t":"Honeycomb Partners","a":20000000},{"f":"Unresolved","t":"Lyle Casriel","a":678}]},"2016-06":{"t":250185,"c":8,"fl":[{"f":"Southern Trust","t":"Joichi Ito","a":250000},{"f":"Southern Trust","t":"Valar Global Fund","a":250000}]},"2016-07":{"t":550331,"c":10,"fl":[{"f":"Gratitude America","t":"Gratitude America Ltd","a":500000},{"f":"Deutsche Bank","t":"Gratitude America","a":500000},{"f":"Gratitude America","t":"Citibank","a":500000},{"f":"Gratitude America","t":"Moskowitz Foundation","a":50000}]},"2016-08":{"t":1250941,"c":8,"fl":[{"f":"Southern Trust","t":"Joichi Ito","a":1250000},{"f":"Southern Trust","t":"Valar Global Fund","a":1250000}]},"2016-09":{"t":2701632,"c":13,"fl":[{"f":"Jeepers Inc.","t":"Jeffrey Epstein","a":2000000},{"f":"Jeffrey Epstein","t":"Jeffrey Epstein","a":700000},{"f":"Unresolved","t":"Lyle Casriel","a":835}]},"2016-10":{"t":2101109,"c":9,"fl":[{"f":"Jeepers Inc.","t":"Jeffrey Epstein","a":2000000},{"f":"Delson International","t":"Jeffrey Epstein","a":50574},{"f":"Delson International","t":"Jeffrey Epstein","a":50000},{"f":"Unresolved","t":"Lyle Casriel","a":754}]},"2016-11":{"t":2940,"c":21},"2016-12":{"t":3771322,"c":20,"fl":[{"f":"Southern Trust","t":"Valar Global Fund","a":3750000},{"f":"Kyara Investments","t":"Southern Financial","a":10000},{"f":"Southern Trust","t":"Joichi Ito","a":10000}]},"2017-01":{"t":10201055,"c":20,"fl":[{"f":"Boothbay Absolute","t":"Southern Financial","a":10000000},{"f":"Gratitude America","t":"Citibank","a":200000},{"f":"Gratitude America","t":"Gratitude America","a":200000}]},"2017-02":{"t":740,"c":10},"2017-03":{"t":58751960,"c":11,"fl":[{"f":"Haze Trust","t":"Haze Trust","a":36000000},{"f":"BV70 LLC","t":"Plan D LLC","a":22500000},{"f":"Plan D LLC","t":"Leon Black","a":8000000},{"f":"Gratitude America","t":"Citibank","a":250000},{"f":"Gratitude America","t":"Gratitude America","a":250000}]},"2017-04":{"t":19002980,"c":16,"fl":[{"f":"Leon & Debra Black","t":"Southern Trust","a":8000000},{"f":"BV70 LLC","t":"Plan D LLC","a":8000000},{"f":"Southern Trust","t":"Valar Global Fund","a":3000000},{"f":"Unresolved","t":"Lyle Casriel","a":635}]},"2017-05":{"t":500268,"c":11,"fl":[{"f":"Southern Financial","t":"Coatue Enterprises","a":500000}]},"2017-06":{"t":8177676,"c":37,"fl":[{"f":"Christie's","t":"Haze Trust","a":7725000},{"f":"Gratitude America","t":"Gratitude America","a":250000},{"f":"Gratitude America","t":"Gratitude America","a":200000},{"f":"AT&T Wireless","t":"AT&T Wireless","a":780}]},"2017-07":{"t":5829895,"c":24,"fl":[{"f":"Southern Trust","t":"Valar Global Fund","a":4250000},{"f":"Southern Trust","t":"JPMorgan","a":1000000},{"f":"Southern Trust","t":"Honeycomb Ventures","a":1000000},{"f":"Sultan Bin Sulayem","t":"Jeffrey Epstein","a":6200}]},"2017-08":{"t":238,"c":6},"2017-09":{"t":1555,"c":19},"2017-10":{"t":13676485,"c":26,"fl":[{"f":"Sotheby's","t":"Haze Trust","a":11249417},{"f":"Southern Trust","t":"Valar Global Fund","a":2250000},{"f":"Jeffrey Epstein","t":"Barclays Bank","a":184456},{"f":"Jamie Mitchell","t":"Jeffrey Epstein","a":100000},{"f":"Gratitude America","t":"Cancer Research Institute","a":25000}]},"2017-11":{"t":150509,"c":11,"fl":[{"f":"Gratitude America","t":"Gratitude America","a":100000},{"f":"Gratitude America","t":"Gratitude America","a":50000}]},"2017-12":{"t":2602238,"c":29,"fl":[{"f":"Gratitude America","t":"Gratitude America","a":2500000},{"f":"Gratitude America","t":"Moskowitz Foundation","a":50000},{"f":"NLR Resorts","t":"Jeffrey Epstein","a":50000}]},"2018-01":{"t":4051449,"c":30,"fl":[{"f":"Gratitude America","t":"Gratitude America","a":2000000},{"f":"Southern Trust","t":"Valar Global Fund","a":1500000},{"f":"Southern Financial","t":"Coatue Enterprises","a":500000},{"f":"NLR Resorts","t":"Jeffrey Epstein","a":25000},{"f":"NLR Resorts","t":"Jeffrey Epstein","a":25000}]},"2018-02":{"t":15530214,"c":27,"fl":[{"f":"Blockchain Capital","t":"2017 Caterpillar Trust","a":10500000},{"f":"Blockchain Capital","t":"2017 Caterpillar Trust","a":2625000},{"f":"Blockchain Capital","t":"2017 Caterpillar Trust","a":1875000},{"f":"Southern Trust","t":"Valar Global Fund","a":500000},{"f":"Gratitude America","t":"Cancer Research Institute","a":25000}]},"2018-03":{"t":50766,"c":10,"fl":[{"f":"David Mitchell","t":"Jeffrey Epstein","a":50000}]},"2018-04":{"t":52732,"c":15,"fl":[{"f":"Neoteny 3 LP","t":"Southern Financial","a":30000},{"f":"Gratitude America","t":"Baleto Teatras","a":18493}]},"2018-05":{"t":2644,"c":19},"2018-06":{"t":26250652,"c":11,"fl":[{"f":"Southern Trust","t":"Honeycomb Partners","a":10000000},{"f":"Haze Trust","t":"Southern Financial","a":9000000},{"f":"Southern Trust","t":"Joichi Ito","a":5000000},{"f":"Southern Trust","t":"Honeycomb Partners","a":5000000},{"f":"Southern Trust","t":"Valar Global Fund","a":1750000},{"f":"Southern Financial","t":"Coatue Enterprises","a":500000}]},"2018-07":{"t":96,"c":5},"2018-08":{"t":5001458,"c":19,"fl":[{"f":"Haze Trust","t":"Southern Financial","a":5000000},{"f":"Deutsche Bank","t":"Haze Trust","a":5000000}]},"2018-09":{"t":21776497,"c":36,"fl":[{"f":"Haze Trust","t":"Southern Financial","a":8000000},{"f":"Deutsche Bank","t":"Southern Trust","a":8000000},{"f":"Deutsche Bank","t":"Haze Trust","a":8000000},{"f":"Southern Trust","t":"Leon Black","a":8000000},{"f":"Southern Trust","t":"Honeycomb Partners","a":8000000},{"f":"Haze Trust","t":"Southern Financial","a":5000000},{"f":"Jeffrey Epstein","t":"Jeffrey Epstein","a":700000},{"f":"David Mitchell","t":"Jeffrey Epstein","a":50000},{"f":"Kyara Investments","t":"Southern Financial","a":11392},{"f":"Gratitude America","t":"Baleto Teatras","a":10000}]},"2018-10":{"t":28136136,"c":12,"fl":[{"f":"Haze Trust","t":"Southern Trust","a":10000000},{"f":"Plan D LLC","t":"BV70 LLC","a":10000000},{"f":"Haze Trust","t":"Southern Financial","a":5000000},{"f":"Link Rockenbach","t":"Jeffrey Epstein","a":3000000},{"f":"Unresolved","t":"Jeffrey Epstein","a":125000},{"f":"David Mitchell","t":"Jeffrey Epstein","a":10000}]},"2018-11":{"t":3083371,"c":14,"fl":[{"f":"Haze Trust","t":"Southern Financial","a":2500000},{"f":"Southern Financial","t":"Coatue Enterprises","a":500000},{"f":"Wire Remittance","t":"Wire Remittance","a":189893},{"f":"David Mitchell","t":"Jeffrey Epstein","a":80000},{"f":"Wire Remittance","t":"Wire Remittance","a":26909}]},"2018-12":{"t":9118449,"c":45,"fl":[{"f":"Haze Trust","t":"Southern Financial","a":5000000},{"f":"HSBC Bermuda","t":"Haze Trust","a":58328},{"f":"Deutsche Bank","t":"Haze Trust","a":58328},{"f":"David Mitchell","t":"Jeffrey Epstein","a":50000}]},"2019-01":{"t":11750417,"c":63,"fl":[{"f":"Deutsche Bank","t":"Haze Trust","a":6000000},{"f":"Deutsche Bank","t":"Butterfly Trust","a":6000000},{"f":"Haze Trust","t":"Haze Trust","a":6000000},{"f":"Haze Trust","t":"Haze Trust","a":2727941},{"f":"Deutsche Bank","t":"Haze Trust","a":2727941},{"f":"Southern Trust","t":"Valar Global Fund","a":2500000},{"f":"Gratitude America","t":"Gratitude America","a":314876},{"f":"David Mitchell","t":"Jeffrey Epstein","a":100000},{"f":"Jeffrey Epstein","t":"Jeffrey Epstein","a":100000}]},"2019-02":{"t":108414268,"c":85,"fl":[{"f":"Haze Trust","t":"Southern Financial","a":24564037},{"f":"Haze Trust","t":"Haze Trust","a":12608253},{"f":"Haze Trust","t":"Southern Financial","a":8791283},{"f":"Deutsche Bank","t":"Haze Trust","a":7000000},{"f":"Haze Trust","t":"Jeffrey Epstein","a":7000000},{"f":"Jeffrey Epstein","t":"Haze Trust","a":7000000},{"f":"Jeepers Inc.","t":"Jeffrey Epstein","a":3276640},{"f":"HBRK Associates","t":"HBRK Associates","a":347838},{"f":"Haze Trust","t":"Haze Trust","a":167414},{"f":"Unresolved","t":"Lyle Casriel","a":3733}]},"2019-03":{"t":20049145,"c":14,"fl":[{"f":"Southern Trust","t":"Honeycomb Partners","a":10000000},{"f":"2017 Caterpillar Trust","t":"Honeycomb Ventures","a":10000000},{"f":"David Mitchell","t":"Jeffrey Epstein","a":25000},{"f":"David Mitchell","t":"Jeffrey Epstein","a":14000},{"f":"David Mitchell","t":"Jeffrey Epstein","a":5500},{"f":"David Mitchell","t":"Jeffrey Epstein","a":4000}]},"2019-04":{"t":1569591,"c":24,"fl":[{"f":"Southern Trust","t":"Valar Global Fund","a":1500000},{"f":"Unresolved","t":"Jeffrey Epstein","a":54000},{"f":"David Mitchell","t":"Jeffrey Epstein","a":7800},{"f":"David Mitchell","t":"Jeffrey Epstein","a":3000},{"f":"David Mitchell","t":"Jeffrey Epstein","a":2200}]},"2019-05":{"t":2172,"c":13,"fl":[{"f":"JEGE LLC","t":"Stevens Aerospace","a":343317},{"f":"JEGE LLC","t":"JEGE LLC","a":31290},{"f":"Unresolved","t":"Lyle Casriel","a":1723}]},"2019-06":{"t":98,"c":3,"fl":[{"f":"HBRK Associates","t":"Gihe UK Ltd","a":26188},{"f":"HBRK Associates","t":"Walch Schurti","a":21272},{"f":"HBRK Associates","t":"Roehampton University","a":5687}]},"2019-07":{"t":286,"c":7},"2019-08":{"t":202,"c":3},"2019-12":{"t":108,"c":7},"2020-01":{"t":990,"c":4},"2020-05":{"t":79976,"c":1}};
+const R={"inner":[{"n":"Jeffrey Epstein","r":1,"dd":40919002,"ds":10},{"n":"Lesley Groff","r":2,"dd":69880336,"ds":4},{"n":"Richard Kahn","r":3,"dd":360121234,"ds":4},{"n":"Karyna Shuliak","r":4,"dd":31678150,"ds":3},{"n":"Larry Visoski","r":5,"dd":73265015,"ds":5},{"n":"Bella Klein","r":6,"dd":12578665,"ds":3},{"n":"Ghislaine Maxwell","r":7,"dd":908219241,"ds":8},{"n":"Darren Indyke","r":8,"dd":281739122,"ds":4},{"n":"Daphne Wallace","r":9,"dd":927341,"ds":4},{"n":"Ann Rodriquez","r":10,"dd":42464769,"ds":4},{"n":"Melanie Spinella","r":20,"dd":183474822,"ds":4},{"n":"David Mitchell","r":21,"dd":40756716,"ds":4},{"n":"Eileen Alexanderson","r":29,"dd":404389761,"ds":2},{"n":"Jean Luc Brunel","r":45,"dd":0,"ds":5},{"n":"Alfredo Rodriguez","r":96,"dd":963337,"ds":3},{"n":"Mark Epstein","r":138,"dd":8000000,"ds":3}],"public":[{"n":"Leon Black","r":12,"dd":627962020,"ds":5},{"n":"Donald Trump","r":15,"dd":98619422,"ds":4},{"n":"Prince Andrew","r":18,"dd":21535814,"ds":6},{"n":"Bill Clinton","r":19,"dd":56899334,"ds":5},{"n":"Ehud Barak","r":34,"dd":8067000,"ds":3},{"n":"Larry Summers","r":37,"dd":11902000,"ds":4},{"n":"Jes Staley","r":40,"dd":1380682,"ds":4},{"n":"Woody Allen","r":42,"dd":2028137,"ds":3},{"n":"Noam Chomsky","r":56,"dd":36302022,"ds":2},{"n":"Leon Botstein","r":62,"dd":0,"ds":2},{"n":"Leslie Wexner","r":80,"dd":27604300,"ds":5},{"n":"Bill Richardson","r":81,"dd":300,"ds":4},{"n":"Bill Gates","r":90,"dd":30988392,"ds":4},{"n":"Benjamin Netanyahu","r":108,"dd":0,"ds":2,"note":"178 financial doc mentions, 190 flight log entries. No direct payments traced."},{"n":"Mort Zuckerman","r":153,"dd":2175000,"ds":4},{"n":"Peter Mandelson","r":173,"dd":75000,"ds":4}],"legal":[{"n":"Martin Weinberg","r":14,"dd":6512480,"ds":4},{"n":"Jack Scarola","r":22,"dd":15786369,"ds":2},{"n":"Scott Rothstein","r":24,"dd":107489765,"ds":2},{"n":"Jay Lefkowitz","r":28,"dd":2290510,"ds":4},{"n":"Roy Black","r":30,"dd":6798086,"ds":4},{"n":"Audrey Strauss","r":58,"dd":35620000,"ds":2},{"n":"Reid Weingarten","r":88,"dd":5001602,"ds":4},{"n":"Laura Menninger","r":91,"dd":10010500,"ds":3},{"n":"Gerald Lefcourt","r":92,"dd":304100,"ds":4},{"n":"Ken Starr","r":93,"dd":850200,"ds":5},{"n":"David Boies","r":104,"dd":311374,"ds":4},{"n":"Alex Acosta","r":120,"dd":950000,"ds":3},{"n":"William F. Sweeney Jr.","r":131,"dd":105000,"ds":2},{"n":"Geoffrey Berman","r":171,"dd":32452028,"ds":2},{"n":"Barry Krischer","r":172,"dd":3744200,"ds":4}],"associates":[{"n":"Alan Dershowitz","r":17,"dd":31053520,"ds":4},{"n":"Paul Morris","r":23,"dd":41022648,"ds":4},{"n":"Richard Joslin","r":30,"dd":116033485,"ds":2},{"n":"Emad Hanna","r":32,"dd":3217393,"ds":2},{"n":"Robert D. Critton","r":35,"dd":2243,"ds":3},{"n":"Peggy Siegal","r":36,"dd":7048227,"ds":2},{"n":"Gary Kerney","r":38,"dd":8894308,"ds":2},{"n":"Brad Wechsler","r":41,"dd":204445747,"ds":2},{"n":"Jojo Fontanilla","r":46,"dd":23446,"ds":2},{"n":"Sultan Bin Sulayem","r":49,"dd":45200811,"ds":3},{"n":"David Stern","r":50,"dd":3686883,"ds":3},{"n":"Ike Groff","r":68,"dd":20918658,"ds":2},{"n":"Harry Beller","r":72,"dd":15828863,"ds":4},{"n":"Kathy Ruemmler","r":73,"dd":16228,"ds":2},{"n":"Brice Gordon","r":74,"dd":9988798,"ds":3},{"n":"Cecile De Jongh","r":82,"dd":33128393,"ds":2},{"n":"Larry Delson","r":95,"dd":125000,"ds":2},{"n":"Tazia Smith","r":109,"dd":60336230,"ds":3},{"n":"Ariane de Rothschild","r":111,"dd":100000,"ds":2},{"n":"Barry J. Cohen","r":116,"dd":46063693,"ds":2},{"n":"Scott Denett","r":168,"dd":246505,"ds":3},{"n":"Daniel Sabba","r":198,"dd":123043137,"ds":2}]};
+const V=[{"n":"Southern Trust","role":"Central Shell","desc":"In: $692.0M \u00b7 Out: $642.9M \u00b7 586 wires","vol":692038172},{"n":"Southern Financial","role":"Central Shell","desc":"In: $606.9M \u00b7 Out: $194.7M \u00b7 762 wires","vol":606937982},{"n":"Haze Trust","role":"Shell","desc":"In: $618.0M \u00b7 Out: $698.0M \u00b7 368 wires","vol":618049845},{"n":"Jeepers Inc.","role":"Shell","desc":"In: $18.0M \u00b7 Out: $173.6M \u00b7 81 wires","vol":18000000},{"n":"Gratitude America","role":"Shell","desc":"In: $102.9M \u00b7 Out: $133.9M \u00b7 252 wires","vol":102898708},{"n":"Plan D LLC","role":"Shell","desc":"In: $119.7M \u00b7 Out: $129.2M \u00b7 96 wires","vol":119690562},{"n":"BV70 LLC","role":"Shell","desc":"In: $30.0M \u00b7 Out: $131.5M \u00b7 13 wires","vol":30000000},{"n":"2017 Caterpillar Trust","role":"Shell","desc":"In: $45.0M \u00b7 Out: $30.0M \u00b7 12 wires","vol":45000000},{"n":"Butterfly Trust","role":"Shell","desc":"Small maintenance payments via Deutsche Bank","vol":330000},{"n":"HBRK Associates","role":"Shell","desc":"Administrative entity \u2014 Lexington Ave address","vol":2000000},{"n":"JEGE LLC","role":"Shell","desc":"Stevens Aerospace payments, last-phase entity","vol":375000},{"n":"Kyara Investments","role":"Shell","desc":"Ito shell \u2014 funded Blockstream + OH2 Labs","vol":21000},{"n":"Valar Global Fund","role":"Destination","desc":"Peter Thiel fund \u2014 $28.8M from Southern Trust","vol":28800000},{"n":"Honeycomb Partners","role":"Destination","desc":"Largest hedge fund recipient \u2014 $53M","vol":53000000},{"n":"Boothbay Absolute","role":"Destination","desc":"$38.25M from Southern Financial","vol":38250000},{"n":"Coatue Enterprises","role":"Destination","desc":"$2M across 4 wires from Southern Financial","vol":2000000},{"n":"Blockchain Capital","role":"Return","desc":"$15M returned to 2017 Caterpillar Trust","vol":15000000},{"n":"Tudor Futures Fund","role":"Return","desc":"$13.5M into Southern Financial","vol":13500000},{"n":"Black Family Partners","role":"External Source","desc":"Black family vehicle \u2014 $46M into Southern Trust","vol":46000000},{"n":"Narrow Holdings","role":"External Source","desc":"Elysium Management \u2014 $20M single wire","vol":20000000},{"n":"Deutsche Bank","role":"Bank","desc":"Primary banking relationship \u2014 exited Nov 2018","vol":0,"bank":true},{"n":"JPMorgan","role":"Bank","desc":"Earlier banking relationship \u2014 exited 2013","vol":0,"bank":true},{"n":"Citibank","role":"Bank","desc":"Intermediary banking \u2014 Gratitude America accounts","vol":0,"bank":true}];
+const EV=[
+  {d:"2008-06",l:"Plea Deal",desc:"Florida state guilty plea — 13-month county sentence.",
+   detail:"Epstein pleads guilty to state prostitution charges in Palm Beach County. Receives 13 months in county jail with work release. Federal non-prosecution agreement shields co-conspirators. Financial operations across all shell entities continue completely uninterrupted throughout incarceration and after release."},
+  {d:"2011-05",l:"$67M Spike",desc:"Single largest pre-2019 month — $67M in activity.",
+   detail:"May 2011 registers $67 million in financial activity — the single largest month before the 2019 dissolution period. Volume is concentrated in extracted payment records and inter-entity fund flows across multiple shells. This spike occurs during a period of minimal legal scrutiny, three years after the plea deal and eight years before the federal arrest."},
+  {d:"2017-03",l:"Peak Wire Month",desc:"$59M in verified wire transfers across three major flows.",
+   detail:"March 2017 records $59 million in verified wire transfers — the highest single-month wire volume in the corpus. Key flows: Haze Trust sweep of $36M, BV70 LLC transfer to Plan D LLC of $22.5M, and Plan D disbursement to Leon Black of $8M. This month demonstrates the shell network operating at peak throughput, moving tens of millions in a single 30-day window."},
+  {d:"2018-11",l:"Deutsche Bank Exit",desc:"Deutsche Bank closes all Epstein accounts after compliance review.",
+   detail:"Deutsche Bank terminates its banking relationship with Epstein following an internal compliance review. DB had served as the primary banking institution since JPMorgan exited the relationship in 2013. The closure forces remaining financial operations to route through alternative channels. Within three months, the dissolution phase begins — suggesting the bank exit may have triggered the unwinding of the shell network."},
+  {d:"2019-02",l:"Dissolution",desc:"$108M — largest single month in entire corpus.",
+   detail:"February 2019 records $108 million in financial activity — the single largest month across all 10,964 transactions. Haze Trust is liquidated through Southern Financial LLC in what appears to be a systematic unwinding of the shell network. This dissolution begins just three months after Deutsche Bank's exit and five months before the federal arrest. The speed and scale suggest an organized wind-down rather than a panic response."},
+  {d:"2019-07",l:"Arrested",desc:"Federal arrest July 6, 2019. Financial activity ceases.",
+   detail:"Epstein arrested on federal sex trafficking charges at Teterboro Airport on July 6, 2019. The last significant wire transfer occurred in June 2019. Only three small HBRK Associates payments totaling $53K follow. After 11+ years of continuous financial operations spanning 14 banks and 8 shell entities, the machine stops. Epstein is found dead in his cell on August 10, 2019."}
+];
+const BT={"Jeffrey Epstein":{"t":726,"s":["DB-SDNY-0005684","DB-SDNY-0002926","DB-SDNY-0002992","DB-SDNY-0003538","DB-SDNY-0006349","DB-SDNY-0006510","EFTA01075607","EFTA01482294","EFTA01482867","EFTA01483896","SDNY_GM_00272615","SDNY_GM_00039644"],"p":{"EFTA":42,"DB-SDNY":12,"SDNY_GM":6}},"Ghislaine Maxwell":{"t":174,"s":["EFTA01411039","EFTA01411880","EFTA01523987","EFTA01524009","EFTA01524107","EFTA01575706","EFTA01576395","EFTA01654320","SDNY_GM_00320929","SDNY_GM_00321045","SDNY_GM_00321412"],"p":{"EFTA":32,"SDNY_GM":3}},"NES LLC":{"t":180,"s":["EFTA01498014","EFTA01498015","EFTA01498017","EFTA01498045","EFTA01498102","EFTA01498130","EFTA01545341","EFTA01546437"],"p":{"EFTA":15}},"LSJ LLC":{"t":135,"s":["EFTA01482271","EFTA01482281","EFTA01482858","EFTA01527055","EFTA01527914","EFTA01528475"],"p":{"EFTA":9}},"Hyperion Air Inc":{"t":120,"s":["EFTA01494375","EFTA01494406","EFTA01541052","EFTA01541415","SDNY_GM_00286672","SDNY_GM_00287149"],"p":{"EFTA":6,"SDNY_GM":2}},"JEGE LLC":{"t":82,"s":["EFTA01495695","EFTA01495696","EFTA01495711","EFTA01541892","EFTA01542030","SDNY_GM_00288234"],"p":{"EFTA":9,"SDNY_GM":1}},"Scott Graf":{"t":53,"s":["EFTA01483048","EFTA01483050","EFTA01483057","EFTA01483085","EFTA01483130","EFTA01527277","EFTA01527323","EFTA01528166"],"p":{"EFTA":53}},"Zorro Development":{"t":50,"s":["EFTA01482249","EFTA01482283","EFTA01482867","EFTA01482900","EFTA01482926","EFTA01482941","EFTA01483019","EFTA01483048","EFTA01527055","EFTA01527887"],"p":{"EFTA":37}},"Southern Trust":{"t":42,"s":["DB-SDNY-0002962","DB-SDNY-0003484","DB-SDNY-0004009","DB-SDNY-0005280","DB-SDNY-0005667","DB-SDNY-0006240","DB-SDNY-0007987","EFTA01500584","EFTA01548335","EFTA01548428"],"p":{"DB-SDNY":20,"EFTA":8}},"Haze Trust":{"t":39,"s":["DB-SDNY-0005135","DB-SDNY-0006153","DB-SDNY-0006646","DB-SDNY-0007361","DB-SDNY-0007798","DB-SDNY-0007979","DB-SDNY-0008064","EFTA01501417","EFTA01503018","EFTA01550569"],"p":{"DB-SDNY":14,"EFTA":9}},"Freedom Air International":{"t":30,"s":["EFTA01487460","EFTA01487488","EFTA01487566","EFTA01487612","EFTA01532063","EFTA01532157"],"p":{"EFTA":11}},"Epstein Interests":{"t":29,"s":["EFTA01488218","EFTA01488222","EFTA01488234","EFTA01532729","EFTA01532833","EFTA01532944"],"p":{"EFTA":7}},"Southern Financial":{"t":28,"s":["DB-SDNY-0000478","DB-SDNY-0003845","DB-SDNY-0004032","DB-SDNY-0005280","DB-SDNY-0005951","DB-SDNY-0007110","DB-SDNY-0007361","DB-SDNY-0007544","DB-SDNY-0007748","DB-SDNY-0008063"],"p":{"DB-SDNY":20}},"Zorro Trust":{"t":28,"s":["EFTA01482981","EFTA01483084","EFTA01483181","EFTA01483371","EFTA01503431","EFTA01503472","EFTA01551133","EFTA01551291"],"p":{"EFTA":12}},"Gratitude America":{"t":25,"s":["DB-SDNY-0005198","DB-SDNY-0005264","DB-SDNY-0006006","DB-SDNY-0006658","DB-SDNY-0006739","DB-SDNY-0006907","DB-SDNY-0007170","DB-SDNY-0007994"],"p":{"DB-SDNY":13}},"Jeepers Inc.":{"t":24,"s":["DB-SDNY-0002926","DB-SDNY-0002994","DB-SDNY-0003427","DB-SDNY-0003538","DB-SDNY-0003769","DB-SDNY-0004022","DB-SDNY-0004296","DB-SDNY-0004937","DB-SDNY-0005748","DB-SDNY-0008016"],"p":{"DB-SDNY":20}},"NY Strategy Group":{"t":24,"s":["EFTA01514201","EFTA01514211","EFTA01514221","EFTA01514283","EFTA01514457","EFTA01561723","EFTA01562050"],"p":{"EFTA":12}},"Air Ghislaine Inc":{"t":23,"s":["EFTA01487245","EFTA01487269","EFTA01487281","EFTA01487339","EFTA01487374","EFTA01531900","EFTA01531962"],"p":{"EFTA":11}},"Martin Weinberg":{"t":22,"s":["EFTA01482259","EFTA01482290","EFTA01482312","EFTA01482974","EFTA01483019","EFTA01483039","EFTA01483109","EFTA01483234","EFTA01483476","EFTA01483586","EFTA01527144","EFTA01527340"],"p":{"EFTA":22}},"Samantha Harris":{"t":21,"s":["EFTA01524808","EFTA01524814","EFTA01524836","EFTA01524855","EFTA01524898","EFTA01575815","EFTA01576818","EFTA01576877","EFTA01576928"],"p":{"EFTA":21}},"Stephen Auguste":{"t":20,"s":["EFTA01483041","EFTA01483051","EFTA01483070","EFTA01483096","EFTA01483131","EFTA01483199","EFTA01483318","EFTA01527249"],"p":{"EFTA":20}},"Plan D LLC":{"t":19,"s":["DB-SDNY-0003484","DB-SDNY-0004172","DB-SDNY-0005123","DB-SDNY-0006113","DB-SDNY-0007669","EFTA01499106","EFTA01499148","EFTA01499201","EFTA01499261","EFTA01499346"],"p":{"EFTA":12,"DB-SDNY":7}},"Roy Black":{"t":16,"s":["EFTA01482935","EFTA01482967","EFTA01483019","EFTA01483039","EFTA01483110","EFTA01483237","EFTA01483440","EFTA01527363","EFTA01527550","EFTA01527974"],"p":{"EFTA":16}},"Valar Global Fund":{"t":16,"s":["DB-SDNY-0004346","DB-SDNY-0004412","DB-SDNY-0004790","DB-SDNY-0005526","DB-SDNY-0006240","DB-SDNY-0006652","DB-SDNY-0006985","DB-SDNY-0007987","DB-SDNY-0008222"],"p":{"DB-SDNY":16}},"Robert D. Critton":{"t":15,"s":["EFTA01482999","EFTA01483020","EFTA01483035","EFTA01483042","EFTA01483055","EFTA01483083","EFTA01483109","EFTA01483129","EFTA01483215","EFTA01527277","EFTA01527291"],"p":{"EFTA":15}},"Kirkland & Ellis":{"t":15,"s":["EFTA01482867","EFTA01482883","EFTA01482901","EFTA01482928","EFTA01482936","EFTA01482952","EFTA01483012","EFTA01483334","EFTA01483504","EFTA01483686","EFTA01527073","EFTA01527083"],"p":{"EFTA":15}},"Deutsche Bank":{"t":11,"s":["DB-SDNY-0002926","DB-SDNY-0002992","DB-SDNY-0003832","DB-SDNY-0004183","DB-SDNY-0007361","DB-SDNY-0007798","DB-SDNY-0007979","DB-SDNY-0008063"],"p":{"DB-SDNY":11}},"David Mitchell":{"t":10,"s":["DB-SDNY-0007012","DB-SDNY-0007561","DB-SDNY-0007652","DB-SDNY-0007834","DB-SDNY-0008097","DB-SDNY-0008179","DB-SDNY-0008181"],"p":{"DB-SDNY":10}},"Leon Black":{"t":8,"s":["DB-SDNY-0003484","DB-SDNY-0004172","DB-SDNY-0004173","DB-SDNY-0004990","DB-SDNY-0005123","DB-SDNY-0006240"],"p":{"DB-SDNY":6}},"Adam Bly":{"t":8,"s":["DB-SDNY-0003640","DB-SDNY-0003709","DB-SDNY-0004074","DB-SDNY-0004127","DB-SDNY-0004183","DB-SDNY-0004431","DB-SDNY-0004665"],"p":{"DB-SDNY":8}},"Shmitka Air":{"t":7,"s":["EFTA01487420","EFTA01487424","EFTA01487428","EFTA01487440","EFTA01487452","EFTA01487456","EFTA01532045"],"p":{"EFTA":7}},"Gary Kerney":{"t":6,"s":["EFTA01483060","EFTA01483070","EFTA01483085","EFTA01483097","EFTA01483110","EFTA01483130"],"p":{"EFTA":6}},"Boothbay Absolute":{"t":5,"s":["DB-SDNY-0004675","DB-SDNY-0004745","DB-SDNY-0004881","DB-SDNY-0005280","DB-SDNY-0005281"],"p":{"DB-SDNY":5}},"HBRK Associates":{"t":5,"s":["EFTA01596076","EFTA01596130","EFTA01596145","SDNY_GM_00007337","SDNY_GM_00308687"],"p":{"EFTA":3,"SDNY_GM":2}},"Black Family Partners":{"t":5,"s":["DB-SDNY-0003484","DB-SDNY-0003819","DB-SDNY-0004172","DB-SDNY-0004173","DB-SDNY-0004990"],"p":{"DB-SDNY":5}},"Darren Indyke":{"t":4,"s":["DB-SDNY-0002926","DB-SDNY-0002992","DB-SDNY-0003832","DB-SDNY-0004183"],"p":{"DB-SDNY":4}},"BV70 LLC":{"t":4,"s":["DB-SDNY-0004999","DB-SDNY-0006113","DB-SDNY-0006197","DB-SDNY-0007669"],"p":{"DB-SDNY":4}},"Honeycomb Partners":{"t":4,"s":["DB-SDNY-0005457","DB-SDNY-0007348","DB-SDNY-0007623","DB-SDNY-0008154"],"p":{"DB-SDNY":4}},"Coatue Enterprises":{"t":4,"s":["DB-SDNY-0000478","DB-SDNY-0006847","DB-SDNY-0007289","DB-SDNY-0007748"],"p":{"DB-SDNY":4}},"Larry Visoski":{"t":2,"s":["EFTA01483138","EFTA01483217"],"p":{"EFTA":2}},"Emad Hanna":{"t":2,"s":["EFTA01483146","EFTA01526987"],"p":{"EFTA":2}},"Sultan Bin Sulayem":{"t":1,"s":["DB-SDNY-0006349"],"p":{"DB-SDNY":1}}};
+
+const MO=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+const EPOCH_Y=2005,EPOCH_M=1,END_Y=2020,END_M=5;
+const TOTAL_SLOTS=(END_Y-EPOCH_Y)*12+(END_M-EPOCH_M)+1;
+const SL=6,BW=4,CH=240,MAX=120,PAD_L=40;
+let aB=null;
+
+function slot(k){const p=k.split('-');return(parseInt(p[0])-EPOCH_Y)*12+(parseInt(p[1])-EPOCH_M);}
+function xOf(s){return PAD_L+s*SL;}
+function fa(a){if(a>=1e9)return'$'+(a/1e9).toFixed(1)+'B';if(a>=1e6)return'$'+(a/1e6).toFixed(1)+'M';if(a>=1e3)return'$'+Math.round(a/1e3).toLocaleString()+'K';return'$'+a.toLocaleString();}
+function ml(m){const p=m.split('-');return MO[parseInt(p[1])-1]+' '+p[0];}
+function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function pipHTML(n,tot){let h='<div class="ro-ds-bar">';for(let i=0;i<tot;i++){h+='<div class="ro-ds-pip '+(i<n?'on':'off')+'"></div>';}return h+'</div>';}
+
+const SRC_LABELS={'EFTA':'EFTA Production','DB-SDNY':'Deutsche Bank SDNY','SDNY_GM':'Maxwell SDNY','HOUSE':'House Oversight'};
+function showBates(e,name){
+  const b=BT[name];
+  const pp=document.getElementById('pp');
+  document.getElementById('pm').textContent='';
+  document.getElementById('pa').textContent='';
+  document.getElementById('pw').textContent='';
+  document.getElementById('pe').style.display='none';
+  let h='<div class="bp-name">'+esc(name)+'</div>';
+  if(!b){
+    let ent=null,cat='';
+    const catMap={inner:'Inner Circle',public:'Public Figure',legal:'Legal',associates:'Named Associate'};
+    for(const[k,arr] of Object.entries(R)){for(const p of arr){if(p.n===name){ent=p;cat=catMap[k]||k;break;}}if(ent)break;}
+    if(!ent){const vAll=[...V];for(const v of vAll){if(v.n===name){h+='<div class="bp-count" style="color:var(--ice);">Financial Vehicle</div>';if(v.desc)h+='<div style="font-family:var(--font-mono);font-size:10px;color:var(--white-dim);padding:4px 0;border-top:1px solid rgba(196,154,60,0.12);margin-top:6px;">'+esc(v.desc)+'</div>';if(v.vol)h+='<div style="font-family:var(--font-mono);font-size:10px;color:var(--white-dim);padding:2px 0;">Volume: <span style="color:var(--gold);">'+fa(v.vol)+'</span></div>';break;}}}
+    else{
+      h+='<div class="bp-count" style="color:var(--ice);">'+cat+'</div>';
+      h+='<div class="bp-srcs" style="margin-top:2px;">';
+      h+='<div class="bp-src">Rank: <span>#'+ent.r+'</span> of 2,000 scored entities</div>';
+      h+='<div class="bp-src">Direct $: <span>'+(ent.dd?fa(ent.dd):'$0')+'</span></div>';
+      h+='<div class="bp-src">Data sources: <span>'+ent.ds+'</span></div>';
+      if(ent.note)h+='<div style="font-family:var(--font-mono);font-size:10px;color:var(--white-dim);padding:6px 0 2px;border-top:1px solid rgba(196,154,60,0.12);margin-top:6px;font-style:italic;">'+esc(ent.note)+'</div>';
+      h+='</div>';
+    }
+  }
+  else{
+    h+='<div class="bp-count">'+b.t+' document references across source productions</div>';
+    h+='<div class="bp-srcs">';
+    for(const[pfx,ct] of Object.entries(b.p)){
+      const lbl=SRC_LABELS[pfx]||pfx;
+      h+='<div class="bp-src"><span>'+ct+'</span> refs in '+esc(lbl)+'</div>';
+    }
+    h+='</div>';
+    h+='<div class="bp-refs"><div class="bp-ref-title">Sample references (click to select)</div>';
+    for(const ref of b.s){h+='<div class="bp-ref">'+esc(ref)+'</div>';}
+    if(b.t>b.s.length)h+='<div class="bp-ref" style="color:var(--white-dim);font-style:italic;">... and '+(b.t-b.s.length)+' more</div>';
+    h+='</div>';
+  }
+  document.getElementById('pf').innerHTML=h;
+  pos(e,pp);
+}
+
+function showNote(e,name,note){
+  e.stopPropagation();
+  const pp=document.getElementById('pp');
+  document.getElementById('pm').textContent='WHY INCLUDED';
+  document.getElementById('pa').textContent=name;
+  document.getElementById('pw').textContent='$0 Direct Payments';
+  document.getElementById('pe').style.display='none';
+  document.getElementById('pf').innerHTML='<div style="font-family:var(--font-mono);font-size:11px;color:var(--white-dim);line-height:1.6;padding:6px 0;">'+note+'<br><br><span style="color:var(--ice-dim);font-size:10px;">Ranked on document frequency and cross-dataset presence, not financial transfers.</span></div>';
+  pos(e,pp);
+}
+function flowHTML(fl){let h='';fl.forEach(w=>{h+='<div class="pp-fl"><div class="pp-fl-row"><div class="pp-fl-amt">'+fa(w.a)+'</div><div class="pp-fl-from">'+esc(w.f)+'</div><div class="pp-fl-arrow">\u2192</div><div class="pp-fl-to">'+esc(w.t)+'</div></div></div>';});return h;}
+
+function showPP(e,m,d){
+  const pp=document.getElementById('pp');
+  document.getElementById('pm').textContent=ml(m);
+  document.getElementById('pa').textContent=fa(d.t);
+  document.getElementById('pw').textContent=d.c+' transaction'+(d.c>1?'s':'');
+  if(d.fl){
+    const fl=[...d.fl].sort((a,b)=>b.a-a.a);
+    document.getElementById('pf').innerHTML=flowHTML(fl);
+  } else {
+    document.getElementById('pf').innerHTML='<div style="font-family:var(--font-mono);font-size:11px;color:var(--white-dim);padding:6px 0;">'+d.c+' records totaling '+fa(d.t)+'<br><span style="font-size:10px;color:var(--ice-dim);">Wire-level detail available for 75 of 158 active months</span></div>';
+  }
+  const ev=EV.find(x=>x.d===m);const pe=document.getElementById('pe');
+  if(ev){pe.innerHTML='<span style="color:var(--red-flag);cursor:pointer;" onclick="event.stopPropagation();showEvPP(event,EV.find(x=>x.d===\''+ev.d+'\'))"><strong>\u26a0 '+esc(ev.l)+'</strong> \u2014 '+esc(ev.desc)+' <span style="font-size:10px;color:var(--ice-dim);text-decoration:underline;">read more</span></span>';pe.style.display='block';}else pe.style.display='none';
+  pos(e,pp);
+}
+
+function showEvPP(e,ev){const pp=document.getElementById('pp');document.getElementById('pm').textContent='\u26a0 '+ev.l.toUpperCase();document.getElementById('pa').textContent=ev.d;document.getElementById('pw').textContent='';document.getElementById('pf').innerHTML='<div style="font-size:12px;color:var(--white-dim);line-height:1.7;padding:4px 0;border-left:3px solid var(--red-flag);padding-left:12px;margin:6px 0;"><div style="font-size:11px;color:var(--gold);margin-bottom:6px;font-family:var(--font-mono);letter-spacing:.5px;">'+esc(ev.desc)+'</div>'+(ev.detail?esc(ev.detail):'')+'</div>';document.getElementById('pe').style.display='none';pos(e,pp);}
+
+function showYrPP(e,yr,d){
+  const pp=document.getElementById('pp');document.getElementById('pm').textContent=yr;document.getElementById('pa').textContent=fa(d.a);document.getElementById('pw').textContent=d.c+' transactions';
+  const af=[];Object.entries(D).forEach(([k,v])=>{if(k.startsWith(yr)&&v.fl)af.push(...v.fl);});af.sort((a,b)=>b.a-a.a);
+  if(af.length){document.getElementById('pf').innerHTML=flowHTML(af);}
+  else{document.getElementById('pf').innerHTML='<div style="font-family:var(--font-mono);font-size:11px;color:var(--white-dim);padding:6px 0;">'+d.c+' records totaling '+fa(d.a)+'</div>';}
+  const ev=EV.find(x=>x.d&&x.d.startsWith(yr));const pe=document.getElementById('pe');if(ev){pe.innerHTML='<span style="color:var(--red-flag);cursor:pointer;" onclick="event.stopPropagation();showEvPP(event,EV.find(x=>x.d===\''+ev.d+'\'))"><strong>\u26a0 '+esc(ev.l)+'</strong> \u2014 '+esc(ev.desc)+' <span style="font-size:10px;color:var(--ice-dim);text-decoration:underline;">read more</span></span>';pe.style.display='block';}else pe.style.display='none';pos(e,pp);
+}
+
+function pos(e,pp){pp.classList.remove('vis');pp.style.display='block';let x=e.clientX+16,y=e.clientY-20;if(x+430>window.innerWidth)x=e.clientX-430;if(y+400>window.innerHeight)y=window.innerHeight-420;if(y<8)y=8;if(x<8)x=8;pp.style.left=x+'px';pp.style.top=y+'px';requestAnimationFrame(()=>pp.classList.add('vis'));}
+function hp(){document.getElementById('pp').classList.remove('vis');if(aB){aB.classList.remove('on');aB=null;}}
+function setV(v){document.querySelectorAll('.tl-tog button').forEach(b=>b.classList.remove('on'));
+  if(v==='m'){document.querySelectorAll('.tl-tog button')[0].classList.add('on');document.getElementById('mv').style.display='block';document.getElementById('yv').style.display='none';}
+  else{document.querySelectorAll('.tl-tog button')[1].classList.add('on');document.getElementById('mv').style.display='none';document.getElementById('yv').style.display='block';}hp();}
+document.addEventListener('click',e=>{if(!e.target.closest('.bar')&&!e.target.closest('.evdot')&&!e.target.closest('.evflag')&&!e.target.closest('.yr-card')&&!e.target.closest('.pp')&&!e.target.closest('.ro-name')&&!e.target.closest('.ve-name'))hp();});
+
+function buildChart(){
+  const ch=document.getElementById('ch');ch.innerHTML='';
+  const W=PAD_L+TOTAL_SLOTS*SL+40;ch.style.width=W+'px';
+  [0,30,60,90,120].forEach(v=>{const y=CH-(v/MAX*CH);
+    const g=document.createElement('div');g.className='gline';g.style.bottom=(44+y)+'px';ch.appendChild(g);
+    if(v>0){const l=document.createElement('div');l.className='glbl';l.style.bottom=(44+y)+'px';l.textContent='$'+v+'M';ch.appendChild(l);}
+  });
+  Object.entries(D).forEach(([m,d])=>{
+    const s=slot(m),x=xOf(s);const mV=d.t/1e6;const h=Math.max(2,(mV/MAX)*CH);
+    const bar=document.createElement('div');bar.className='bar '+(mV>=1?'gld':'dim');bar.style.left=x+'px';bar.style.height=h+'px';bar.style.width=BW+'px';
+    bar.onclick=e=>{e.stopPropagation();hp();bar.classList.add('on');aB=bar;showPP(e,m,d);};ch.appendChild(bar);
+  });
+  EV.forEach((ev,idx)=>{if(!ev.d)return;const s=slot(ev.d),x=xOf(s);
+    const ln=document.createElement('div');ln.className='evline';ln.style.left=x+'px';ln.style.height=CH+'px';ch.appendChild(ln);
+    const dot=document.createElement('div');dot.className='evdot';dot.style.left=(x-4)+'px';dot.style.bottom=(CH+44-4)+'px';
+    dot.onclick=e=>{e.stopPropagation();showEvPP(e,ev);};ch.appendChild(dot);
+    const stagger=[0,0,0,14,28,0];const yOff=stagger[idx]||0;
+    const fl=document.createElement('div');fl.className='evflag';fl.style.left=(x+6)+'px';fl.style.bottom=(CH+48+yOff)+'px';fl.textContent=ev.l;fl.onclick=e=>{e.stopPropagation();showEvPP(e,ev);};ch.appendChild(fl);
+  });
+  for(let y=EPOCH_Y;y<=END_Y;y++){const s=slot(y+'-01'),x=xOf(s);
+    const lbl=document.createElement('div');lbl.className='ylbl';lbl.style.left=x+'px';lbl.textContent=y;ch.appendChild(lbl);
+  }
+}
+
+function buildYr(){
+  const yg=document.getElementById('yg');yg.innerHTML='';
+  const yd={};for(let y=EPOCH_Y;y<=END_Y;y++)yd[y]={a:0,c:0};
+  Object.entries(D).forEach(([m,d])=>{const y=parseInt(m.split('-')[0]);if(yd[y]){yd[y].a+=d.t;yd[y].c+=d.c;} });
+  Object.entries(yd).forEach(([yr,d])=>{
+    const c=document.createElement('div');c.className='yr-card'+(d.c===0?' dk':'');
+    c.innerHTML='<div class="yr-y">'+yr+'</div><div class="yr-a">'+(d.c?fa(d.a):'\u2014')+'</div><div class="yr-w">'+(d.c?d.c+' records':'no data')+'</div>';
+    if(d.c)c.onclick=e=>{e.stopPropagation();yg.querySelectorAll('.yr-card').forEach(x=>x.classList.remove('on'));c.classList.add('on');showYrPP(e,yr,d);};
+    yg.appendChild(c);
+  });
+}
+
+function buildRoster(){
+  const el=document.getElementById('roster');let h='';
+  const cats=[['inner','Inner Circle'],['public','Public Figures'],['legal','Legal'],['associates','Named Associates']];
+  cats.forEach(([k,lbl])=>{
+    const arr=R[k];if(!arr)return;
+    h+='<div class="ro-cat"><div class="ro-cat-hd">'+lbl+' <span>'+arr.length+' entities</span></div>';
+    h+='<div class="ro-cols"><div>#</div><div>Name</div><div style="text-align:right">Direct $</div><div style="text-align:center">Sources</div></div>';
+    h+='<div class="ro-grid">';
+    arr.forEach(p=>{
+      const hi=p.r<=20?'hi':'';
+      const click='onclick="showBates(event,\''+p.n.replace(/'/g,"\\'")+'\');"';
+      let dd;
+      if(p.dd)dd=fa(p.dd);
+      else if(p.note)dd='<span style="cursor:help;border-bottom:1px dotted var(--white-dim)" onclick="event.stopPropagation();showNote(event,\''+esc(p.n)+'\',\''+esc(p.note)+'\')">$0 \u24d8</span>';
+      else dd='$0';
+      h+='<div class="ro-ent '+hi+'"><div class="ro-rank">#'+p.r+'</div><div class="ro-name has-bates" '+click+'>'+esc(p.n)+'</div><div class="ro-dollars">'+dd+'</div><div class="ro-ds">'+pipHTML(p.ds,10)+'</div></div>';
+    });
+    h+='</div></div>';
+  });
+  el.innerHTML=h;
+}
+
+function buildVehicles(){
+  const el=document.getElementById('vehicles');
+  const shells=V.filter(v=>!v.bank);
+  const banks=V.filter(v=>v.bank);
+  let h='<div class="ro-cat" style="margin-top:36px;"><div class="ro-cat-hd">Financial Vehicles <span>'+shells.length+' entities</span></div>';
+  h+='<div class="ve-grid">';
+  shells.forEach(v=>{
+    const click='onclick="showBates(event,\''+v.n.replace(/'/g,"\\'")+'\');"';
+    h+='<div class="ve-ent"><div class="ve-name" '+click+'>'+esc(v.n)+'</div><div class="ve-role">'+esc(v.role)+'</div><div class="ve-desc">'+esc(v.desc)+'</div><div class="ve-vol">'+(v.vol?fa(v.vol):'\u2014')+'</div></div>';
+  });
+  h+='</div></div>';
+  if(banks.length){
+    h+='<div class="ro-cat" style="margin-top:20px;"><div class="ro-cat-hd">Banking Relationships <span>custodians \u2014 money moved through, not to</span></div>';
+    h+='<div class="ve-grid">';
+    banks.forEach(v=>{
+      const click='onclick="showBates(event,\''+v.n.replace(/'/g,"\\'")+'\');"';
+      h+='<div class="ve-ent" style="border-left-color:var(--gold-dim);"><div class="ve-name" '+click+'>'+esc(v.n)+'</div><div class="ve-role">Bank</div><div class="ve-desc">'+esc(v.desc)+'</div><div class="ve-vol" style="color:var(--white-dim);font-style:italic;font-size:9px;">custodian</div></div>';
+    });
+    h+='</div></div>';
+  }
+  el.innerHTML=h;
+}
+
+buildChart();buildYr();buildRoster();buildVehicles();
+</script>
+</body>
+</html>
