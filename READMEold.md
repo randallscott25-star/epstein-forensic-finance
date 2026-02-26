@@ -13,20 +13,20 @@ This repository contains the methodology, findings, and documentation for a comp
 
 I built this project as a solo effort — writing all extraction code, designing the database schema, developing the financial classification pipeline, and performing the forensic analysis myself, with AI assistance for development acceleration and quality assurance. The underlying methodology draws from my professional background in multi-affiliate financial reconciliation, budget variance analysis, and automated exception reporting at institutional scale.
 
-To my knowledge, this represents the first systematic attempt to reconstruct the complete financial infrastructure visible in the EFTA corpus using quantitative forensic methods — moving beyond narrative analysis of individual documents to model the full network of fund flows, entity relationships, and shell trust hierarchies at scale. For the victims; the girls. 
+To my knowledge, this represents the first systematic attempt to reconstruct the complete financial infrastructure visible in the EFTA corpus using quantitative forensic methods — moving beyond narrative analysis of individual documents to model the full network of fund flows, entity relationships, and shell trust hierarchies at scale. For the girls. 
 
 ---
 
 ## 📌 Start Here
 
-### 🔺 New: Offshore Architecture
+### 🔺 New: Blueprint of a Financial Machine
 
-> DOJ subpoena names a BVI shell company. ICIJ Offshore Leaks confirms it — Scouting International, incorporated in Tortola, 2003, now defunct. Three databases cross-referenced: DOJ EFTA corpus, ICIJ Offshore Leaks, and the verified wire ledger. **172 documents, 8,526 pages, and a corporate structure that connects Jean-Luc Brunel to the same offshore jurisdiction the money transited.**
+> I audited $2.1 billion in Epstein financial records. Here's every name the money touched. 123 nodes, 313 financial links, 8 shell entities, 12 key persons, 8 operators, 5 banks — mapped across the full $2.146B corpus. **Season 1 finale.**
 >
-> **→ [Read Narrative 18](narratives/18_offshore_architecture.md)** · **[One-Way Money (N17)](narratives/17_the_architecture.md)** · **<a href="https://randallscott25-star.github.io/epstein-forensic-finance/visualizations/17_one_way_money.html" target="_blank">Interactive Visualization</a>**
+> **→ <a href="https://randallscott25-star.github.io/epstein-forensic-finance/narratives/19_grand_opus_narrative.html" target="_blank">Read Narrative 19</a>** · **<a href="https://randallscott25-star.github.io/epstein-forensic-finance/visualizations/19_blueprint_financial_machine.html" target="_blank">Interactive Visualization</a>** · **[Offshore Architecture (N18)](narratives/18_offshore_architecture.md)** · **[One-Way Money (N17)](narratives/17_the_architecture.md)**
 
 
-> **18 data narratives** reconstruct how $2.146 billion moved through 14 shell entities across 8+ banking institutions. Every claim is anchored to specific court exhibits and bates stamps.
+> **19 data narratives** reconstruct how $2.146 billion moved through 14 shell entities across 8+ banking institutions. Every claim is anchored to specific court exhibits and bates stamps.
 >
 > **→ [Read the Data Narratives](narratives/)** · **<a href="https://randallscott25-star.github.io/epstein-forensic-finance/visualizations/shell_network.html" target="_blank">Explore the Interactive Network</a>** · **<a href="https://docs.google.com/spreadsheets/d/11lw0QjMZ-rYIjWesv5VG1YKts57ahPEm/edit?usp=sharing&ouid=103970896670138914877&rtpof=true&sd=true" target="_blank">View the Forensic Workbook</a>**
 
@@ -50,6 +50,7 @@ To my knowledge, this represents the first systematic attempt to reconstruct the
 | 16 | [The Accountant](narratives/16_the_accountant.md) | Richard Kahn / HBRK Associates: 18,833 emails, 11,153 files, touches every shell |
 | **17** | **[One-Way Money](narratives/17_the_architecture.md)** | **$272M in. $63M out. First multi-institution balance sheet. [Visualization](https://randallscott25-star.github.io/epstein-forensic-finance/visualizations/17_one_way_money.html)** |
 | **18** | **[Offshore Architecture: The Brunel–BVI–ICIJ Bridge](narratives/18_offshore_architecture.md)** | **DOJ subpoena names BVI shell. ICIJ confirms. Scouting International — Tortola, 2003, defunct. 172 docs, 3 databases cross-referenced.** |
+| **19** | **<a href="https://randallscott25-star.github.io/epstein-forensic-finance/narratives/19_grand_opus_narrative.html" target="_blank">Blueprint of a Financial Machine</a>** | **Season 1 finale. $2.146B, 123 nodes, 313 edges. Every bank, shell, operator, and key person mapped. <a href="https://randallscott25-star.github.io/epstein-forensic-finance/visualizations/19_blueprint_financial_machine.html" target="_blank">Visualization</a>** |
 
 
 
@@ -84,7 +85,7 @@ To my knowledge, this represents the first systematic attempt to reconstruct the
 
 | Metric | Value |
 |--------|-------|
-| **Publication Ledger Total** | **$2,146,000,000** (10,964 unique transactions) |
+| **Publication Ledger Total** | **$2,146,000,000** (6,310 unique transactions) |
 | **FinCEN SAR Benchmark** | $1,878,000,000 |
 | **T1–T3 Coverage of SAR** | **104.4%** ($1,960,600,000) |
 | **Payment Types Classified** | 10 |
@@ -173,7 +174,7 @@ All amounts are (Unverified) automated extractions. See [FINDINGS.md](docs/FINDI
 This is not a search index. This is a relational forensic database. **8.03 GB, 36 tables, 26.6 million rows.**
 
 **Financial Analysis (13 tables)**
-- `publication_ledger` — 10,964 transactions ($2.146B) with four-tier GAGAS classification (T1–T4), payment type, source exhibit
+- `publication_ledger` — 6,310 deduplicated transactions ($2.146B) with four-tier GAGAS classification (T1–T4), payment type, source exhibit
 - `fund_flows` — 23,832 directional money movements (entity_from → entity_to, amount, date, confidence)
 - `fund_flows_audited` — 7,355 classified flows (5-tier: PROVEN/STRONG/MODERATE/WEAK/VERY_WEAK) with FinCEN/ICIJ match flags, composite scoring, entity classification
 - `verified_wires` — 185 court-exhibit authenticated wire transfers (dates, bates numbers, exhibits)
@@ -238,7 +239,7 @@ Phases 14-24  Wire Transfer Extraction Pipeline → 382-wire ledger, $1.964B
 Phase 5I   Entity Resolution & Bank Expansion → 481-wire ledger, $973M entity-resolved, 14-bank coverage
 Phase 5J   Multi-Bank Statement Parser → 1,202 verified transactions from 13 banks
 Phase 5K   Payment Type Expansion → CHIPS, SWIFT, checks, bank statements beyond wire transfers
-Phase 5L   Publication Ledger Assembly → 10,964 unique transactions, $2.146B, four-tier GAGAS framework
+Phase 5L   Publication Ledger Assembly → 6,310 unique transactions, $2.146B, four-tier GAGAS framework
 ```
 
 ### Financial Extraction Pipeline (Phases 14–5L)
@@ -257,7 +258,7 @@ Phase 5L   Publication Ledger Assembly → 10,964 unique transactions, $2.146B, 
 | **5I** | **Entity resolution: 481 wires, 228 entities, 14 banks, 51% Bates coverage** | **$973M entity-resolved** |
 | 5J | Multi-bank statement parser: 1,202 transactions from 13 institutions | +$430K verified statements |
 | 5K | Payment type expansion: CHIPS, SWIFT, checks, bank statements | 10 payment types classified |
-| **5L** | **Publication ledger: 10,964 unique transactions, four-tier GAGAS, T1–T3 = 104.4% SAR** | **$2.146B total** |
+| **5L** | **Publication ledger: 6,310 unique transactions, four-tier GAGAS, T1–T3 = 104.4% SAR** | **$2.146B total** |
 
 Full phase-by-phase details: **[METHODOLOGY.md](docs/METHODOLOGY.md)**
 
@@ -344,7 +345,7 @@ Source workbook: **[Forensic Workbook](https://docs.google.com/spreadsheets/d/11
 │   └── SOURCE_APPENDIX_TEMPLATE.md        ← Standard template for source appendices
 ├── narratives/                            ← 18 forensic data narratives with source appendices
 ├── data/
-│   ├── publication_ledger_phase5l.json    ← 10,964 transactions, four-tier (publication dataset)
+│   ├── publication_ledger_phase5l.json    ← 6,310 transactions, four-tier (publication dataset)
 │   ├── master_wire_ledger_phase5i.json    ← 481 wires (wire-specific subset)
 │   └── entity_classification.json         ← Entity → type mapping (228 entities)
 ├── visualizations/                        ← Interactive shell network diagram
@@ -358,7 +359,7 @@ Source workbook: **[Forensic Workbook](https://docs.google.com/spreadsheets/d/11
 
 ### Visual Guides
 
-- **[SCHEMA.md](docs/SCHEMA.md)** — Full database architecture showing how 36 tables, 11.4M entities, and 1.48M files feed into the 10,964-transaction publication ledger
+- **[SCHEMA.md](docs/SCHEMA.md)** — Full database architecture showing how 36 tables, 11.4M entities, and 1.48M files feed into the 6,310-transaction publication ledger
 - **[NETWORK.md](docs/NETWORK.md)** — Annotated trust network flow diagram with dollar amounts on every edge
 
 ### Forensic Workbook v9
@@ -475,6 +476,7 @@ The underlying DOJ documents are U.S. government publications in the public doma
 | Feb 24 | Workbook v7 published (14 tabs). Full database audit: 33 tables, 8.03GB, 26.6M rows |
 | Feb 25 | Phase 5J: Multi-bank statement parser. 1,202 verified transactions from 13 banks ($430K) |
 | Feb 25 | Workbook v8 (19 tabs). N18 published. JSON v26 community dataset. |
-| Feb 25 | Phase 5K–5L: Payment type expansion + publication ledger assembly. 10,964 unique transactions, $2.146B, four-tier GAGAS framework |
+| Feb 25 | Phase 5K–5L: Payment type expansion + publication ledger assembly. 6,310 unique transactions, $2.146B, four-tier GAGAS framework |
 | Feb 25 | Workbook v9. Narratives updated to v9 voice. 18 data narratives live. |
+| Feb 25 | N19: Blueprint of a Financial Machine — season 1 finale. 123 nodes, 313 edges, full $2.146B corpus mapped. 19 data narratives live. |
 | Ongoing | Additional data narratives and follow-on analysis |
