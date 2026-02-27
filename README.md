@@ -330,7 +330,7 @@ One gap has a credible dollar estimate ($5-15M in excluded tiers). The rest are 
 | 17 | [One-Way Money](narratives/17_the_architecture.md) | $272M in. $63M out. $209M gap. First multi-institution balance sheet | 481 wires · 228 entities · $558M |
 | **18** | **[Offshore Architecture: The Brunel–BVI–ICIJ Bridge](narratives/18_offshore_architecture.md)** | **DOJ subpoena names BVI shell. ICIJ Offshore Leaks confirms. 3 databases cross-referenced** | **172 docs · 3 databases · 8,526 pages** |
 | **19** | **<a href="https://randallscott25-star.github.io/epstein-forensic-finance/narratives/19_grand_opus_narrative.html" target="_blank">Blueprint of a Financial Machine</a>** | **Season 1 finale. $2.146B, 123 nodes, 313 edges. Full network mapped. <a href="https://randallscott25-star.github.io/epstein-forensic-finance/visualizations/19_blueprint_financial_machine.html" target="_blank">Visualization</a>** | **10,964 txns · 123 nodes · $2.146B** |
-| **20** | **<a href="https://randallscott25-star.github.io/epstein-forensic-finance/narratives/20_the_verification_wall.html" target="_blank">The Verification Wall</a>** | **Season 2, Episode 1. Every document has a Bates number — the wall tests what's behind it. 8 noise POIs ($144.4M claimed, Bates stamps → news/court filings, $0 bank docs) vs. Leon Black ($310.5M, 42 verified wires, 15 bank docs). NLP phantom autopsy with clickable EFTA source documents.** | **9 POIs · 15 bank docs · $310.5M verified** |
+| **20** | **<a href="https://randallscott25-star.github.io/epstein-forensic-finance/narratives/20_the_verification_wall.html" target="_blank">The Verification Wall</a>** | **Season 2, Narrative 20 1. Every document has a Bates number — the wall tests what's behind it. 8 noise POIs ($144.4M claimed, Bates stamps → news/court filings, $0 bank docs) vs. Leon Black ($310.5M, 42 verified wires, 15 bank docs). NLP phantom autopsy with clickable EFTA source documents.** | **9 POIs · 15 bank docs · $310.5M verified** |
 
 Source workbook: **[Forensic Workbook](https://docs.google.com/spreadsheets/d/11lw0QjMZ-rYIjWesv5VG1YKts57ahPEm/edit?usp=sharing&ouid=103970896670138914877&rtpof=true&sd=true)** · [Interactive Shell Network](https://randallscott25-star.github.io/epstein-forensic-finance/visualizations/shell_network.html)
 
@@ -414,8 +414,8 @@ The master wire ledger (481 wires) and entity classification data are published 
 
 ## Author
 
-**Randall Scott Taylor**
-Director of Finance Administration, large municipal government agency
+**RS Taylor**
+
 BS Network & Cyber Security, Wilmington University
 MS Applied Data Science, Syracuse University
 
