@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>N13 — Seven Banks, One Trust</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #0a1019;
+  --navy-mid: #111827;
+  --navy-light: #1a2332;
+  --gold: #c49a3c;
+  --gold-dim: #a07d2e;
+  --gold-bright: #dbb44c;
+  --ice: #7ba7c2;
+  --ice-dim: #5a8aa8;
+  --ice-bright: #9dc2d8;
+  --red-flag: #c44040;
+  --white: #e8e4dc;
+  --white-dim: #b0a898;
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'IBM Plex Sans', sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  background: var(--navy);
+  color: var(--white);
+  font-family: var(--font-body);
+  font-weight: 300;
+  line-height: 1.8;
+  overflow-x: hidden;
+}
+.container { max-width: 780px; margin: 0 auto; padding: 0 32px; }
+
+/* HEADER */
+.header {
+  text-align: center;
+  padding: 80px 40px 48px;
+  border-bottom: 1px solid rgba(196,154,60,0.15);
+}
+.header .label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 28px;
+}
+.header h1 {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 4.5vw, 48px);
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.2;
+  max-width: 800px;
+  margin: 0 auto 20px;
+}
+.header h1 em { color: var(--gold); font-style: italic; }
+.header .subtitle {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-style: italic;
+  color: var(--ice);
+  margin-bottom: 28px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.header .author {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: var(--white-dim);
+  margin-bottom: 8px;
+}
+.header .date {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--white-dim);
+}
+
+/* STATS BAR */
+.stats-bar {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  padding: 28px 40px;
+  border-bottom: 1px solid rgba(196,154,60,0.1);
+  flex-wrap: wrap;
+}
+.stat { text-align: center; }
+.stat .val {
+  font-family: var(--font-mono);
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--gold);
+}
+.stat .lbl {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--white-dim);
+  margin-top: 4px;
+}
+
+/* BODY TEXT */
+.narrative { padding: 48px 0 60px; }
+.narrative p {
+  font-size: 15px;
+  margin-bottom: 20px;
+  color: var(--white);
+}
+.narrative p.lead {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-style: italic;
+  color: var(--ice);
+  line-height: 1.7;
+  margin-bottom: 32px;
+}
+.narrative a {
+  color: var(--ice);
+  text-decoration: underline;
+  text-decoration-color: rgba(123,167,194,0.3);
+  text-underline-offset: 3px;
+  transition: text-decoration-color 0.2s;
+}
+.narrative a:hover { text-decoration-color: var(--ice); }
+
+/* SECTION BREAKS */
+.section-break {
+  text-align: center;
+  padding: 48px 0 40px;
+}
+.section-break .num {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 4px;
+  color: var(--gold-dim);
+  text-transform: uppercase;
+}
+.section-break h2 {
+  font-family: var(--font-display);
+  font-size: clamp(24px, 3vw, 34px);
+  font-weight: 600;
+  color: var(--white);
+  margin-top: 8px;
+}
+.section-break .rule {
+  width: 60px;
+  height: 1px;
+  background: var(--gold-dim);
+  margin: 16px auto 0;
+}
+
+/* CALLOUTS */
+.callout {
+  background: var(--navy-mid);
+  border-left: 3px solid var(--gold);
+  padding: 20px 24px;
+  margin: 28px 0;
+}
+.callout p { margin-bottom: 8px; font-size: 14px; }
+.callout p:last-child { margin-bottom: 0; }
+.callout .co-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.callout .co-figure {
+  font-family: var(--font-mono);
+  font-size: 18px;
+  color: var(--gold);
+}
+
+/* DATA TABLES */
+.data-table-wrap { margin: 28px 0; overflow-x: auto; }
+.data-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.data-table thead th {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--ice);
+  text-align: left;
+  padding: 10px 12px;
+  border-bottom: 2px solid rgba(196,154,60,0.2);
+}
+.data-table thead th.right { text-align: right; }
+.data-table tbody td {
+  padding: 8px 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  color: var(--white-dim);
+}
+.data-table tbody td.mono {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--gold);
+  text-align: right;
+}
+.data-table tbody td.bates {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--ice-dim);
+}
+.data-table tbody td.sar {
+  color: var(--red-flag);
+  font-family: var(--font-mono);
+  font-size: 11px;
+}
+.data-table tbody tr:hover { background: rgba(196,154,60,0.04); }
+.data-table tbody td strong { color: var(--white); font-weight: 500; }
+
+/* PULL QUOTES */
+.pull-quote {
+  text-align: center;
+  padding: 36px 20px;
+  margin: 32px 0;
+  border-top: 1px solid rgba(196,154,60,0.1);
+  border-bottom: 1px solid rgba(196,154,60,0.1);
+}
+.pull-quote p {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--gold);
+  line-height: 1.5;
+  font-style: italic;
+}
+
+/* VIZ LINK */
+.viz-link {
+  display: block;
+  text-align: center;
+  padding: 20px;
+  margin: 32px 0;
+  background: var(--navy-mid);
+  border: 1px solid rgba(196,154,60,0.2);
+  text-decoration: none;
+  transition: border-color 0.2s, background 0.2s;
+}
+.viz-link:hover { border-color: var(--gold); background: var(--navy-light); }
+.viz-link .vl-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: var(--gold);
+  text-transform: uppercase;
+}
+.viz-link .vl-title {
+  font-family: var(--font-display);
+  font-size: 18px;
+  color: var(--white);
+  margin-top: 4px;
+}
+.viz-link .vl-desc {
+  font-size: 12px;
+  color: var(--white-dim);
+  margin-top: 4px;
+}
+
+/* SOURCE DOCS SECTION */
+.source-section {
+  border-top: 2px solid rgba(196,154,60,0.15);
+  margin-top: 48px;
+  padding-top: 40px;
+}
+.source-section h3 {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--white);
+  margin-bottom: 20px;
+}
+.source-section h4 {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-top: 28px;
+  margin-bottom: 12px;
+}
+.source-section p {
+  font-size: 13px;
+  color: var(--white-dim);
+  margin-bottom: 12px;
+  line-height: 1.7;
+}
+
+/* CODE BLOCKS */
+.code-block {
+  background: var(--navy-mid);
+  border: 1px solid rgba(196,154,60,0.1);
+  padding: 16px 20px;
+  margin: 20px 0;
+  overflow-x: auto;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--ice);
+  line-height: 1.6;
+  white-space: pre;
+}
+
+/* FOOTER */
+.footer {
+  text-align: center;
+  padding: 48px 40px;
+  border-top: 1px solid rgba(196,154,60,0.1);
+}
+.footer p {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--white-dim);
+  line-height: 1.8;
+  max-width: 700px;
+  margin: 0 auto;
+}
+.footer .dedication {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-style: italic;
+  color: var(--gold);
+  margin-top: 20px;
+}
+.footer a {
+  color: var(--ice-dim);
+  text-decoration: none;
+}
+.footer a:hover { text-decoration: underline; }
+
+/* DATASET BAR */
+.dataset-bar {
+  text-align: center;
+  margin: 20px 0;
+  padding: 12px;
+  background: var(--navy-mid);
+  border: 1px solid rgba(196,154,60,0.08);
+}
+.dataset-bar a {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--ice-dim);
+  margin: 0 4px;
+  text-decoration: none;
+}
+.dataset-bar a:hover { color: var(--gold); text-decoration: underline; }
+.dataset-bar .ds-label {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: var(--gold-dim);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+/* WORKBOOK LINKS */
+.wb-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin: 16px 0;
+}
+.wb-link {
+  display: block;
+  padding: 10px 14px;
+  background: var(--navy-mid);
+  border: 1px solid rgba(196,154,60,0.1);
+  text-decoration: none;
+  transition: border-color 0.2s;
+}
+.wb-link:hover { border-color: var(--gold-dim); }
+.wb-link .wb-name {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--white);
+}
+.wb-link .wb-icon {
+  font-size: 14px;
+  margin-right: 4px;
+}
+
+@media(max-width:700px) {
+  .stats-bar { gap: 20px; }
+  .wb-grid { grid-template-columns: 1fr; }
+  .header { padding: 48px 20px 32px; }
+  .container { padding: 0 16px; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="label">Data Narrative 13 — Epstein Forensic Finance Project</div>
+  <h1>Seven Banks, One Trust</h1>
+  <div class="subtitle">The Outgoing Money Trust distributed funds through seven separate banks. In financial compliance, this pattern has a name: structuring.</div>
+  <div class="author">Randall Scott Taylor</div>
+  <div class="date">February 2026</div>
+</div>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stat"><div class="val">7</div><div class="lbl">Banks Used</div></div>
+  <div class="stat"><div class="val">180</div><div class="lbl">Financial Docs</div></div>
+  <div class="stat"><div class="val">0</div><div class="lbl">Wire Records</div></div>
+  <div class="stat"><div class="val">$2.67M</div><div class="lbl">Balance</div></div>
+</div>
+
+<!-- BODY -->
+<div class="container">
+<div class="narrative">
+
+
+<div class="section-break">
+  <div class="num">I</div>
+  <h2>180 Financial Records, Zero Wire Transfers</h2>
+  <div class="rule"></div>
+</div>
+
+<p class="lead">The Outgoing Money Trust shows up in 195 EFTA documents. 180 are financial. That's 92% financial records — one of the most financially documented entities in the network.</p>
+
+<p>Zero wire transfer records in the Deutsche Bank production. Not one.</p>
+
+<p>That's not because it didn't move money. It moved money through seven different banks.</p>
+
+
+<div class="section-break">
+  <div class="num">II</div>
+  <h2>The Seven Banks</h2>
+  <div class="rule"></div>
+</div>
+
+<p>I ran co-occurrence on Outgoing Money Trust financial docs against banking entities. Clear disbursement architecture:</p>
+
+<div class="data-table-wrap">
+<table class="data-table">
+<thead>
+<tr><th>Bank</th><th class="right">Financial Files</th><th>Type</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>Deutsche Bank Trust Co. Americas</strong></td><td><strong>180</strong></td><td>Primary account</td></tr>
+<tr><td><strong>Wells Fargo Bank</strong></td><td><strong>63</strong></td><td>Secondary</td></tr>
+<tr><td><strong>Bank of America</strong></td><td><strong>38</strong></td><td>Secondary</td></tr>
+<tr><td><strong>TD Bank</strong></td><td><strong>23</strong></td><td>Secondary</td></tr>
+<tr><td><strong>JPMorgan Chase Bank</strong></td><td><strong>14</strong></td><td>Secondary</td></tr>
+<tr><td><strong>PNC Bank</strong></td><td><strong>12</strong></td><td>Secondary</td></tr>
+<tr><td><strong>Sabadell United Bank</strong></td><td><strong>11</strong></td><td>Secondary</td></tr>
+</tbody>
+</table>
+</div>
+
+<p>Deutsche Bank is the primary bank — but the Outgoing Money Trust has no entries in the wire ledger. Its Deutsche Bank statements got captured in the broader production, but the individual wires never made it into the exhibit structure covering Southern Trust, Southern Financial, and the other ledger entities.</p>
+
+<p>No other shell in the network used seven banks. Southern Trust banked at Deutsche Bank. Haze Trust banked at Deutsche Bank and HSBC. Gratitude America used Deutsche Bank and Morgan Stanley. The Outgoing Money Trust used <strong>seven</strong>.</p>
+
+
+<div class="section-break">
+  <div class="num">III</div>
+  <h2>What the Statements Show</h2>
+  <div class="rule"></div>
+</div>
+
+<p>The money values extracted from Outgoing Money Trust financial documents cluster in a pattern consistent with recurring disbursements:</p>
+
+<p><strong>Frequent transaction amounts:</strong> $100,000 (61 mentions), $200,000 (50 combined variants), $175,000 (20), $500,000 (17), $400,000 (17), $250,000 (16), $230,000 (15), $50,000 (18), $7,000 (39), $7,200 (18).</p>
+
+<p>The $100,000–$500,000 cluster is the operating range. These are not investment-scale transfers — they're disbursement-scale. The $7,000–$7,200 recurring amounts are consistent with management or service fees.</p>
+
+<p>The account also shows a balance figure of <strong>$2,668,832.43</strong> appearing across 15 documents, suggesting a maintained operating balance in that range.</p>
+
+
+<div class="section-break">
+  <div class="num">IV</div>
+  <h2>The Named Operators</h2>
+  <div class="rule"></div>
+</div>
+
+<p>Two names recur across Outgoing Money Trust financial documents:</p>
+
+<p><strong>Stewart Oldfield</strong> — appears on 35 files across OCR variants (23 as "Stewart Oldfield," 12 as "Stewart Oldficld"). This is the most frequently named individual on Outgoing Money Trust records. External reporting from other EFTA researchers identifies a Stewart Oldfield as Deutsche Bank operations staff who processed Epstein-related transactions alongside colleagues Brigid Macias and Firdaus Madiar — suggesting Oldfield was the bank's representative on these accounts rather than an Epstein associate. His recurrence across 35 OMT files indicates he was the primary Deutsche Bank officer servicing this trust's disbursement activity.</p>
+
+<p><strong>Lee McKenzie Consultants</strong> — appears on 12 files. This entity appears as a payee, suggesting recurring consulting payments from the trust.</p>
+
+<p>Neither name appears prominently on other Epstein shell entities' financial records at this frequency, suggesting their roles were concentrated in the Outgoing Money Trust's disbursement operations — Oldfield as the Deutsche Bank officer processing the transactions, and Lee McKenzie Consultants as a recurring payee.</p>
+
+
+<div class="section-break">
+  <div class="num">V</div>
+  <h2>Why Seven Banks Matters</h2>
+  <div class="rule"></div>
+</div>
+
+<p>Under the Bank Secrecy Act, financial institutions are required to file Suspicious Activity Reports (SARs) when they observe transactions that appear designed to evade reporting requirements. One of the primary indicators for SAR filing is <strong>structuring</strong> — the practice of distributing transactions across multiple institutions or accounts to avoid triggering individual reporting thresholds.</p>
+
+<p>One trust. Seven banks. Recurring disbursements in the $100K–$500K range. No clear commercial reason for the multi-bank setup. That's a textbook structuring profile.</p>
+
+<p>I'm not making a legal conclusion. There may be legitimate reasons for the seven-bank structure. But the pattern is precisely what BSA/AML compliance programs are designed to detect, and it raises a question: did any of these seven banks file SARs on the Outgoing Money Trust's activity?</p>
+
+<p>Deutsche Bank's Epstein-related SAR failures are a matter of public record — they were central to the $150 million DFS fine. Whether Wells Fargo, Bank of America, TD Bank, JPMorgan Chase, PNC Bank, or Sabadell United Bank filed SARs on the Outgoing Money Trust is unknown.</p>
+
+
+<div class="section-break">
+  <div class="num">VI</div>
+  <h2>The Name Says It All</h2>
+  <div class="rule"></div>
+</div>
+
+<p>Outgoing Money Trust. The name is the function. It was the network's payment processor — converting pooled funds into outgoing payments across multiple banking channels.</p>
+
+<p>Other shells collected and concentrated money. Southern Trust ($244M) and Southern Financial ($139M) were the hubs. The Outgoing Money Trust did the opposite: disaggregation. Concentrated funds distributed across seven banks in disbursement-sized amounts.</p>
+
+<p>Combined with the Outgoing Money Trust's co-occurrence with the broader Epstein entity network — it shares files with Deutsche Bank Trust Company Americas (157), Southern Trust Company via cross-references, and shows the standard bank statement formatting (Non-Electronic Funds Transfers, Preauthorized Debit, Debit Card Withdrawals) — this entity operated as the network's outflow engine.</p>
+
+<p>Seven banks. Recurring disbursements. One trust.</p>
+
+<p><strong>Methodology:</strong> Entity co-occurrence analysis of Outgoing Money Trust financial documents against bank-name entities. Money value clustering based on automated MONEY-type entity extraction. Named person identification from PERSON-type entities co-occurring on financial documents. All amounts are unverified automated extractions. See <a href="../docs/METHODOLOGY.md">Methodology</a>.</p>
+
+<p><strong>Source data:</strong> <a href="../data/master_wire_ledger_phase5i.json">Master Wire Ledger</a> · <a href="https://docs.google.com/spreadsheets/d/11lw0QjMZ-rYIjWesv5VG1YKts57ahPEm/edit?usp=sharing&ouid=103970896670138914877&rtpof=true&sd=true" target="_blank">Forensic Workbook</a> · <a href="https://randallscott25-star.github.io/epstein-forensic-finance/visualizations/shell_network.html" target="_blank">Interactive Network</a></p>
+
+<p><strong>Related narratives:</strong> <a href="01_jeepers_pipeline.md">N1: Money Pipeline</a> · <a href="05_deutsche_bank.md">N5: Bear Stearns vs. Deutsche Bank</a> · <a href="11_the_shell_map.md">N11: The Shell Map</a> · <a href="12_the_bank_nobody_prosecuted.md">N12: The Bank Nobody Prosecuted</a></p>
+
+<p style="font-size:12px;color:var(--white-dim);font-style:italic;">All findings are (Unverified) automated extractions from DOJ EFTA documents released under the Epstein Files Transparency Act. Entity mention does not imply wrongdoing. This analysis identifies patterns for further investigation — it does not make legal conclusions.</p>
+
+<div class="source-section">
+
+<h3>Source Documents & Exhibits</h3>
+
+<h4>Primary Source</h4>
+
+<p>Corpus-wide analysis of Outgoing Money Trust entity co-occurrence with banking institutions.</p>
+
+<h4>Key EFTA Corpus Statistics</h4>
+
+<p>- <strong>Outgoing Money Trust</strong>: 195 total files, 180 financial documents, zero wires in Master Wire Ledger</p>
+
+<p>- <strong>7-Bank Architecture</strong> (from entity co-occurrence in financial docs):</p>
+
+<div class="data-table-wrap">
+<table class="data-table">
+<thead>
+<tr><th>Bank</th><th class="right">Shared Files with OMT</th></tr>
+</thead>
+<tbody>
+<tr><td>Deutsche Bank</td><td class="mono">180</td></tr>
+<tr><td>Wells Fargo</td><td class="mono">63</td></tr>
+<tr><td>Bank of America</td><td class="mono">38</td></tr>
+<tr><td>TD Bank</td><td class="mono">23</td></tr>
+<tr><td>JPMorgan Chase</td><td class="mono">14</td></tr>
+<tr><td>PNC Bank</td><td class="mono">12</td></tr>
+<tr><td>Sabadell United Bank</td><td class="mono">11</td></tr>
+</tbody>
+</table>
+</div>
+
+<p><strong>Method</strong>: Bank entity co-occurrence with "Outgoing Money Trust" in financial documents.</p>
+
+<h4>Disbursement Amount Clustering</h4>
+
+<p>Top recurring amounts: $100K (61 mentions), $200K (50), $175K (20), $500K (17), $400K (17), $250K (16), $230K (15)</p>
+
+<p>Recurring fees: $7,000 (39 mentions), $7,200 (18)</p>
+
+<p><strong>Method</strong>: Money-entity extraction from OMT financial documents.</p>
+
+<h4>Key Persons</h4>
+
+<p>- Stewart Oldfield: 35 files — identified as Deutsche Bank operations staff (per rhowardstone INVESTIGATION_8)</p>
+
+<p>- <strong>Method</strong>: Person entity extraction from OMT financial documents, cross-referenced with external reporting</p>
+
+<h4>External Corroboration</h4>
+
+<p>- rhowardstone INVESTIGATION_8: Identifies Stewart Oldfield alongside Brigid Macias, Firdaus Madiar, Monica Gilkins, Rachel Wachs as Deutsche Bank staff processing Epstein transactions</p>
+
+<p>- BSA structuring threshold: $10,000 (31 U.S.C. § 5324) — OMT disbursement pattern shows amounts clustered below and at round thresholds</p>
+
+<h4>📄 EFTA Source Documents</h4>
+
+<p style="font-size:12px;color:var(--white-dim);font-style:italic;">Click any document ID to open the DOJ PDF in a new tab. Click a Dataset number to browse neighboring files.</p>
+
+<div class="data-table-wrap">
+<table class="data-table">
+<thead>
+<tr><th>Document</th><th>Source</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td class="bates">Full EFTA Corpus</td><td>DS1–12</td><td>Outgoing Money Trust: 195 documents (180 financial), 7 banking relationships</td></tr>
+<tr><td class="bates"><a href="https://www.justice.gov/epstein/files/DataSet%208/EFTA00027019.pdf" target="_blank">EFTA00027019</a></td><td>DS8</td><td>Deutsche Bank-SDNY Production: Exhibits A–E (trust network wires for cross-reference)</td></tr>
+<tr><td><a href="https://www.justice.gov/epstein/doj-disclosures/data-set-8-files" target="_blank">Dataset 8</a></td><td>DS8</td><td>Browse Dataset 8</td></tr>
+<tr><td><a href="https://www.justice.gov/epstein/doj-disclosures/data-set-9-files" target="_blank">Dataset 9</a></td><td>DS9</td><td>Browse Dataset 9 — multi-bank financial records</td></tr>
+</tbody>
+</table>
+</div>
+
+<p><strong>All 12 DOJ Datasets:</strong> <a href="https://www.justice.gov/epstein/doj-disclosures/data-set-1-files" target="_blank">1</a>, <a href="https://www.justice.gov/epstein/doj-disclosures/data-set-2-files" target="_blank">2</a>, <a href="https://www.justice.gov/epstein/doj-disclosures/data-set-3-files" target="_blank">3</a>, <a href="https://www.justice.gov/epstein/doj-disclosures/data-set-4-files" target="_blank">4</a>, <a href="https://www.justice.gov/epstein/doj-disclosures/data-set-5-files" target="_blank">5</a>, <a href="https://www.justice.gov/epstein/doj-disclosures/data-set-6-files" target="_blank">6</a>, <a href="https://www.justice.gov/epstein/doj-disclosures/data-set-7-files" target="_blank">7</a>, <a href="https://www.justice.gov/epstein/doj-disclosures/data-set-8-files" target="_blank">8</a>, <a href="https://www.justice.gov/epstein/doj-disclosures/data-set-9-files" target="_blank">9</a>, <a href="https://www.justice.gov/epstein/doj-disclosures/data-set-10-files" target="_blank">10</a>, <a href="https://www.justice.gov/epstein/doj-disclosures/data-set-11-files" target="_blank">11</a>, <a href="https://www.justice.gov/epstein/doj-disclosures/data-set-12-files" target="_blank">12</a></p>
+
+<h4>📊 Verify in Forensic Workbook</h4>
+
+<div class="data-table-wrap">
+<table class="data-table">
+<thead>
+<tr><th>Exhibit / Analysis</th><th>View in Workbook</th></tr>
+</thead>
+<tbody>
+<tr><td>Shell Network — Outgoing Money Trust × 7 banks</td><td><a href="https://docs.google.com/spreadsheets/d/11lw0QjMZ-rYIjWesv5VG1YKts57ahPEm/edit?gid=1040516313#gid=1040516313" target="_blank">📊 Open Tab</a></td></tr>
+<tr><td>Shell Trust Hierarchy — OMT position</td><td><a href="https://docs.google.com/spreadsheets/d/11lw0QjMZ-rYIjWesv5VG1YKts57ahPEm/edit?gid=1943952132#gid=1943952132" target="_blank">📊 Open Tab</a></td></tr>
+<tr><td>Money Flow Patterns — Disbursement clustering</td><td><a href="https://docs.google.com/spreadsheets/d/11lw0QjMZ-rYIjWesv5VG1YKts57ahPEm/edit?gid=2075093083#gid=2075093083" target="_blank">📊 Open Tab</a></td></tr>
+<tr><td>Entity P&L — Outgoing Money Trust</td><td><a href="https://docs.google.com/spreadsheets/d/11lw0QjMZ-rYIjWesv5VG1YKts57ahPEm/edit?gid=1497389416#gid=1497389416" target="_blank">📊 Open Tab</a></td></tr>
+<tr><td>Methodology</td><td><a href="https://docs.google.com/spreadsheets/d/11lw0QjMZ-rYIjWesv5VG1YKts57ahPEm/edit?gid=1840632994#gid=1840632994" target="_blank">📊 Open Tab</a></td></tr>
+</tbody>
+</table>
+</div>
+
+<h4>How to Verify</h4>
+
+<p>EFTA document IDs from public DOJ release at <a href="https://efts.gov" target="_blank">efts.gov</a>. Full methodology in <a href="../docs/METHODOLOGY.md">METHODOLOGY.md</a>.</p>
+
+</div>
+
+</div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <p>All amounts are (Unverified) automated extractions from DOJ EFTA documents released under the Epstein Files Transparency Act.<br>
+  Appearance in this analysis does not imply wrongdoing. This analysis identifies patterns for further investigation — it does not make legal conclusions.<br>
+  Source: <a href="https://github.com/randallscott25-star/epstein-forensic-finance" target="_blank">Epstein Financial Forensics Repository</a> · <a href="https://docs.google.com/spreadsheets/d/11lw0QjMZ-rYIjWesv5VG1YKts57ahPEm/edit?usp=sharing" target="_blank">Forensic Workbook</a></p>
+  <p class="dedication">For the girls.</p>
+</div>
+
+</body>
+</html>

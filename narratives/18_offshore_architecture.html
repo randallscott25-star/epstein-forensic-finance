@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>N18 — Offshore Architecture: The Brunel–BVI–ICIJ Bridge</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #0a1019;
+  --navy-mid: #111827;
+  --navy-light: #1a2332;
+  --gold: #c49a3c;
+  --gold-dim: #a07d2e;
+  --gold-bright: #dbb44c;
+  --ice: #7ba7c2;
+  --ice-dim: #5a8aa8;
+  --ice-bright: #9dc2d8;
+  --red-flag: #c44040;
+  --white: #e8e4dc;
+  --white-dim: #b0a898;
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'IBM Plex Sans', sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  background: var(--navy);
+  color: var(--white);
+  font-family: var(--font-body);
+  font-weight: 300;
+  line-height: 1.8;
+  overflow-x: hidden;
+}
+.container { max-width: 780px; margin: 0 auto; padding: 0 32px; }
+
+/* HEADER */
+.header {
+  text-align: center;
+  padding: 80px 40px 48px;
+  border-bottom: 1px solid rgba(196,154,60,0.15);
+}
+.header .label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 28px;
+}
+.header h1 {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 4.5vw, 48px);
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.2;
+  max-width: 800px;
+  margin: 0 auto 20px;
+}
+.header h1 em { color: var(--gold); font-style: italic; }
+.header .subtitle {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-style: italic;
+  color: var(--ice);
+  margin-bottom: 28px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.header .author {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: var(--white-dim);
+  margin-bottom: 8px;
+}
+.header .date {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--white-dim);
+}
+
+/* STATS BAR */
+.stats-bar {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  padding: 28px 40px;
+  border-bottom: 1px solid rgba(196,154,60,0.1);
+  flex-wrap: wrap;
+}
+.stat { text-align: center; }
+.stat .val {
+  font-family: var(--font-mono);
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--gold);
+}
+.stat .lbl {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--white-dim);
+  margin-top: 4px;
+}
+
+/* BODY TEXT */
+.narrative { padding: 48px 0 60px; }
+.narrative p {
+  font-size: 15px;
+  margin-bottom: 20px;
+  color: var(--white);
+}
+.narrative p.lead {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-style: italic;
+  color: var(--ice);
+  line-height: 1.7;
+  margin-bottom: 32px;
+}
+.narrative a {
+  color: var(--ice);
+  text-decoration: underline;
+  text-decoration-color: rgba(123,167,194,0.3);
+  text-underline-offset: 3px;
+  transition: text-decoration-color 0.2s;
+}
+.narrative a:hover { text-decoration-color: var(--ice); }
+
+/* SECTION BREAKS */
+.section-break {
+  text-align: center;
+  padding: 48px 0 40px;
+}
+.section-break .num {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 4px;
+  color: var(--gold-dim);
+  text-transform: uppercase;
+}
+.section-break h2 {
+  font-family: var(--font-display);
+  font-size: clamp(24px, 3vw, 34px);
+  font-weight: 600;
+  color: var(--white);
+  margin-top: 8px;
+}
+.section-break .rule {
+  width: 60px;
+  height: 1px;
+  background: var(--gold-dim);
+  margin: 16px auto 0;
+}
+
+/* CALLOUTS */
+.callout {
+  background: var(--navy-mid);
+  border-left: 3px solid var(--gold);
+  padding: 20px 24px;
+  margin: 28px 0;
+}
+.callout p { margin-bottom: 8px; font-size: 14px; }
+.callout p:last-child { margin-bottom: 0; }
+.callout .co-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.callout .co-figure {
+  font-family: var(--font-mono);
+  font-size: 18px;
+  color: var(--gold);
+}
+
+/* DATA TABLES */
+.data-table-wrap { margin: 28px 0; overflow-x: auto; }
+.data-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.data-table thead th {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--ice);
+  text-align: left;
+  padding: 10px 12px;
+  border-bottom: 2px solid rgba(196,154,60,0.2);
+}
+.data-table thead th.right { text-align: right; }
+.data-table tbody td {
+  padding: 8px 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  color: var(--white-dim);
+}
+.data-table tbody td.mono {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--gold);
+  text-align: right;
+}
+.data-table tbody td.bates {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--ice-dim);
+}
+.data-table tbody td.sar {
+  color: var(--red-flag);
+  font-family: var(--font-mono);
+  font-size: 11px;
+}
+.data-table tbody tr:hover { background: rgba(196,154,60,0.04); }
+.data-table tbody td strong { color: var(--white); font-weight: 500; }
+
+/* PULL QUOTES */
+.pull-quote {
+  text-align: center;
+  padding: 36px 20px;
+  margin: 32px 0;
+  border-top: 1px solid rgba(196,154,60,0.1);
+  border-bottom: 1px solid rgba(196,154,60,0.1);
+}
+.pull-quote p {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--gold);
+  line-height: 1.5;
+  font-style: italic;
+}
+
+/* VIZ LINK */
+.viz-link {
+  display: block;
+  text-align: center;
+  padding: 20px;
+  margin: 32px 0;
+  background: var(--navy-mid);
+  border: 1px solid rgba(196,154,60,0.2);
+  text-decoration: none;
+  transition: border-color 0.2s, background 0.2s;
+}
+.viz-link:hover { border-color: var(--gold); background: var(--navy-light); }
+.viz-link .vl-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: var(--gold);
+  text-transform: uppercase;
+}
+.viz-link .vl-title {
+  font-family: var(--font-display);
+  font-size: 18px;
+  color: var(--white);
+  margin-top: 4px;
+}
+.viz-link .vl-desc {
+  font-size: 12px;
+  color: var(--white-dim);
+  margin-top: 4px;
+}
+
+/* SOURCE DOCS SECTION */
+.source-section {
+  border-top: 2px solid rgba(196,154,60,0.15);
+  margin-top: 48px;
+  padding-top: 40px;
+}
+.source-section h3 {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--white);
+  margin-bottom: 20px;
+}
+.source-section h4 {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-top: 28px;
+  margin-bottom: 12px;
+}
+.source-section p {
+  font-size: 13px;
+  color: var(--white-dim);
+  margin-bottom: 12px;
+  line-height: 1.7;
+}
+
+/* CODE BLOCKS */
+.code-block {
+  background: var(--navy-mid);
+  border: 1px solid rgba(196,154,60,0.1);
+  padding: 16px 20px;
+  margin: 20px 0;
+  overflow-x: auto;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--ice);
+  line-height: 1.6;
+  white-space: pre;
+}
+
+/* FOOTER */
+.footer {
+  text-align: center;
+  padding: 48px 40px;
+  border-top: 1px solid rgba(196,154,60,0.1);
+}
+.footer p {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--white-dim);
+  line-height: 1.8;
+  max-width: 700px;
+  margin: 0 auto;
+}
+.footer .dedication {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-style: italic;
+  color: var(--gold);
+  margin-top: 20px;
+}
+.footer a {
+  color: var(--ice-dim);
+  text-decoration: none;
+}
+.footer a:hover { text-decoration: underline; }
+
+/* DATASET BAR */
+.dataset-bar {
+  text-align: center;
+  margin: 20px 0;
+  padding: 12px;
+  background: var(--navy-mid);
+  border: 1px solid rgba(196,154,60,0.08);
+}
+.dataset-bar a {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--ice-dim);
+  margin: 0 4px;
+  text-decoration: none;
+}
+.dataset-bar a:hover { color: var(--gold); text-decoration: underline; }
+.dataset-bar .ds-label {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: var(--gold-dim);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+/* WORKBOOK LINKS */
+.wb-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin: 16px 0;
+}
+.wb-link {
+  display: block;
+  padding: 10px 14px;
+  background: var(--navy-mid);
+  border: 1px solid rgba(196,154,60,0.1);
+  text-decoration: none;
+  transition: border-color 0.2s;
+}
+.wb-link:hover { border-color: var(--gold-dim); }
+.wb-link .wb-name {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--white);
+}
+.wb-link .wb-icon {
+  font-size: 14px;
+  margin-right: 4px;
+}
+
+@media(max-width:700px) {
+  .stats-bar { gap: 20px; }
+  .wb-grid { grid-template-columns: 1fr; }
+  .header { padding: 48px 20px 32px; }
+  .container { padding: 0 16px; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="label">Data Narrative 18 — Epstein Forensic Finance Project</div>
+  <h1>Offshore Architecture: The Brunel–BVI–ICIJ Bridge</h1>
+  <div class="subtitle">DOJ subpoena names a BVI shell. ICIJ Offshore Leaks confirms it. 172 documents, 3 databases cross-referenced.</div>
+  <div class="author">Randall Scott Taylor</div>
+  <div class="date">February 2026</div>
+</div>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stat"><div class="val">172</div><div class="lbl">Documents</div></div>
+  <div class="stat"><div class="val">3</div><div class="lbl">Databases</div></div>
+  <div class="stat"><div class="val">$10M+</div><div class="lbl">Butterfly Pipeline</div></div>
+  <div class="stat"><div class="val">$648K+</div><div class="lbl">Maxwell Paid</div></div>
+</div>
+
+<!-- BODY -->
+<div class="container">
+<div class="narrative">
+
+<div class="callout">
+<p><em>DOJ subpoena names a BVI shell. ICIJ Offshore Leaks confirms it. $10M+ flowed through the same trust network. 8,526 pages scanned, 172 documents, one offshore map no one had connected.</em></p>
+</div>
+
+<p class="lead">⚠️ <strong>All findings are navigational tools derived from automated extraction. They have not been independently verified and should not be treated as established fact. See <a href="/COMPLIANCE.md">COMPLIANCE.md</a> for full professional standards disclaimers.</strong></p>
+
+
+<div class="section-break">
+  <div class="num">I</div>
+  <h2>What I Found</h2>
+  <div class="rule"></div>
+</div>
+
+<p>I cross-referenced the DOJ EFTA corpus against the ICIJ Offshore Leaks database and FinCEN transaction records. What came back: the complete offshore-to-domestic financial architecture of the Brunel/MC2 modeling network. One BVI shell company — <strong>Scouting International Investment Co., Ltd.</strong> — appears in exactly one DOJ document and is independently confirmed in the ICIJ Offshore Leaks database as a Brunel-controlled entity incorporated through two offshore intermediaries in Tortola. That entity sits next to a domestic trust pipeline that moved $10M+ through a single JPMorgan account, with outflows to Ghislaine Maxwell totaling $648K+ across 8 STRONG-tier transfers.</p>
+
+<p>No individual data point here is new. The connected map is.</p>
+
+
+<div class="section-break">
+  <div class="num">II</div>
+  <h2>The Source Document</h2>
+  <div class="rule"></div>
+</div>
+
+<p><strong><a href="https://www.justice.gov/epstein/media/EFTA00809672.pdf">EFTA00809672.pdf</a></strong> (5 pages)</p>
+
+<div class="data-table-wrap">
+<table class="data-table">
+<thead>
+<tr><th>Field</th><th>Value</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>Type</strong></td><td>Subpoena Duces Tecum for Videotaped Deposition</td></tr>
+<tr><td><strong>Case</strong></td><td><em>Epstein v. Rothstein</em>, No. 50-2009CA040800XXXXMBAG</td></tr>
+<tr><td><strong>Date</strong></td><td>April 4, 2019</td></tr>
+<tr><td><strong>Bates Range</strong></td><td class="bates">EFTA00809672 – EFTA00809676</td></tr>
+</tbody>
+</table>
+</div>
+
+<p>Page 3, Exhibit A, Section C defines "entities owned or controlled by" Brunel:</p>
+
+<div class="callout">
+<p><em>"MC2 Models Management, LLC, MC2 Models Miami, LLC, Scouting International Investment Co., Ltd., Scouting I International Co., L'eclair au Café Limited Liability Company and Karin Models Agency"</em></p>
+</div>
+
+<p>Six entities. One of them — <strong>Scouting International Investment Co., Ltd.</strong> — appears in the ICIJ Offshore Leaks database.</p>
+
+
+<div class="section-break">
+  <div class="num">III</div>
+  <h2>The ICIJ Match</h2>
+  <div class="rule"></div>
+</div>
+
+<p><strong>Source:</strong> <a href="https://offshoreleaks.icij.org/">ICIJ Offshore Leaks Database</a> — <code style="font-family:var(--font-mono);font-size:12px;color:var(--ice);background:var(--navy-mid);padding:1px 4px;">icij_entities</code>, <code style="font-family:var(--font-mono);font-size:12px;color:var(--ice);background:var(--navy-mid);padding:1px 4px;">icij_officers</code>, <code style="font-family:var(--font-mono);font-size:12px;color:var(--ice);background:var(--navy-mid);padding:1px 4px;">icij_relationships</code>, <code style="font-family:var(--font-mono);font-size:12px;color:var(--ice);background:var(--navy-mid);padding:1px 4px;">icij_intermediaries</code>, <code style="font-family:var(--font-mono);font-size:12px;color:var(--ice);background:var(--navy-mid);padding:1px 4px;">icij_addresses</code></p>
+
+
+<div class="section-break">
+  <div class="num">•</div>
+  <h2>Scouting International Investment Co., Ltd.</h2>
+  <div class="rule"></div>
+</div>
+
+<div class="data-table-wrap">
+<table class="data-table">
+<thead>
+<tr><th>Field</th><th>Value</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>ICIJ Node</strong></td><td>140553 (Entity)</td></tr>
+<tr><td><strong>Officer</strong></td><td>Jean-Luc Brunel (node 93239)</td></tr>
+<tr><td><strong>Jurisdiction</strong></td><td>British Virgin Islands</td></tr>
+<tr><td><strong>Incorporated</strong></td><td>10-NOV-2003</td></tr>
+<tr><td><strong>Status</strong></td><td>Struck / Defunct / Deregistered</td></tr>
+<tr><td><strong>Type</strong></td><td>Standard International Company</td></tr>
+<tr><td><strong>Registered Address</strong></td><td>Portcullis TrustNet Chambers, P.O. Box 3444, Road Town, Tortola, BVI</td></tr>
+</tbody>
+</table>
+</div>
+
+
+<div class="section-break">
+  <div class="num">•</div>
+  <h2>Two Intermediaries</h2>
+  <div class="rule"></div>
+</div>
+
+<div class="data-table-wrap">
+<table class="data-table">
+<thead>
+<tr><th>Intermediary</th><th>ICIJ Node</th><th>Connected Entities</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>Portcullis TrustNet (BVI) Limited</strong></td><td class="mono">54662</td><td>436 entities across ICIJ</td></tr>
+<tr><td><strong>NetIncorp.com Corporation</strong></td><td class="mono">290197</td><td>689 entities across ICIJ</td></tr>
+</tbody>
+</table>
+</div>
+
+<p>Both intermediaries are BVI-registered corporate formation agents. Portcullis TrustNet was named in the original 2013 Offshore Leaks investigation. NetIncorp.com's 689 client entities were exhaustively cross-referenced against the EFTA corpus — all 11 name matches were verified as false positives (see <a href="#netincorp-investigation">NetIncorp Investigation</a> below).</p>
+
+
+<div class="section-break">
+  <div class="num">•</div>
+  <h2>ICIJ Cross-Reference of All Six Brunel Entities</h2>
+  <div class="rule"></div>
+</div>
+
+<div class="data-table-wrap">
+<table class="data-table">
+<thead>
+<tr><th>Entity</th><th>Found in ICIJ?</th><th>Details</th></tr>
+</thead>
+<tbody>
+<tr><td>Scouting International Investment Co., Ltd.</td><td>✅</td><td>BVI, Portcullis TrustNet, Inc. 10-NOV-2003, Struck/Defunct</td></tr>
+<tr><td>L'eclair au Café Limited Liability Company</td><td>❌</td><td>"Leclair" hits 3 unrelated offshore shells</td></tr>
+<tr><td>MC2 Models Management, LLC</td><td>❌</td><td>Domestic LLC</td></tr>
+<tr><td>MC2 Models Miami, LLC</td><td>❌</td><td>Domestic LLC</td></tr>
+<tr><td>Scouting I International Co.</td><td>❌</td><td>Possibly successor/variant entity</td></tr>
+<tr><td>Karin Models Agency</td><td>❌</td><td>Domestic (deposition confirms: "our company MC2, formerly Karin Models")</td></tr>
+</tbody>
+</table>
+</div>
+
+
+<div class="section-break">
+  <div class="num">IV</div>
+  <h2>The Money Pipeline</h2>
+  <div class="rule"></div>
+</div>
+
+<p>Scouting International shows no direct financial flows in the released documents. Either it was a holding vehicle, or the records got destroyed or withheld. But the domestic side of the Brunel network moved real money through a single trust account.</p>
+
+
+<div class="section-break">
+  <div class="num">•</div>
+  <h2>The Butterfly Trust — Account #44130552, JPMorgan Chase</h2>
+  <div class="rule"></div>
+</div>
+
+<p><strong>Source Documents:</strong></p>
+
+<p>- <strong><a href="https://www.justice.gov/epstein/media/EFTA00092643.pdf">EFTA00092643.pdf</a></strong> — "Timeline of Payments to (or on Behalf of) Potential Co-Conspirators"</p>
+
+<p>- <strong><a href="https://www.justice.gov/epstein/media/EFTA00105307.pdf">EFTA00105307.pdf</a></strong> — Wire details with account numbers and beneficiary banks</p>
+
+<p>#### Inflows (Unverified)</p>
+
+<div class="data-table-wrap">
+<table class="data-table">
+<thead>
+<tr><th>Source</th><th class="right">Amount</th><th>Confidence</th><th>FinCEN Match</th></tr>
+</thead>
+<tbody>
+<tr><td>Deutsche Bank → Butterfly Trust</td><td class="mono">$2,650,000 (120+ wires)</td><td>STRONG</td><td>✅</td></tr>
+<tr><td>Deutsche Bank → Butterfly Trust</td><td class="mono">$7,000,000 (settlements)</td><td>MODERATE</td><td>✅</td></tr>
+<tr><td>Deutsche Bank → Butterfly Trust</td><td class="mono">$300,000</td><td>PROVEN</td><td>✅</td></tr>
+<tr><td>Deutsche Bank → Butterfly Trust</td><td class="mono">$30,000</td><td>PROVEN</td><td>✅</td></tr>
+<tr><td>Deutsche Bank → Butterfly Trust</td><td class="mono">$20,000</td><td>PROVEN</td><td>✅</td></tr>
+<tr><td>MC2 Model Management → Butterfly Trust</td><td class="mono">$50,000</td><td>MODERATE</td><td>—</td></tr>
+<tr><td><strong>Total Inflows</strong></td><td><strong>$10,050,000+</strong></td><td></td><td></td></tr>
+</tbody>
+</table>
+</div>
+
+<p>#### Outflows to Maxwell (Unverified)</p>
+
+<div class="data-table-wrap">
+<table class="data-table">
+<thead>
+<tr><th>Transfer</th><th class="right">Amount</th><th>Confidence</th></tr>
+</thead>
+<tbody>
+<tr><td>Butterfly Trust → Maxwell</td><td class="mono">$150,000</td><td>STRONG</td></tr>
+<tr><td>Butterfly Trust → Maxwell</td><td class="mono">$100,000</td><td>STRONG</td></tr>
+<tr><td>Butterfly Trust → Maxwell</td><td class="mono">$50,000</td><td>STRONG</td></tr>
+<tr><td>Butterfly Trust → Maxwell</td><td class="mono">$30,000</td><td>STRONG</td></tr>
+<tr><td>Butterfly Trust → Maxwell</td><td class="mono">$21,379</td><td>STRONG</td></tr>
+<tr><td>Butterfly Trust → Maxwell</td><td class="mono">$12,500</td><td>STRONG</td></tr>
+<tr><td>Indyke → Maxwell (via Butterfly Trust)</td><td class="mono">$175,000</td><td>STRONG</td></tr>
+<tr><td>Indyke → Maxwell (via Butterfly Trust)</td><td class="mono">$110,000</td><td>STRONG</td></tr>
+<tr><td><strong>Total Outflows to Maxwell</strong></td><td><strong>$648,879</strong></td><td></td></tr>
+</tbody>
+</table>
+</div>
+
+<p>65 "Butterfly" entities exist in ICIJ. None match "The Butterfly Trust." This was a domestic Epstein vehicle, not an offshore shell.</p>
+
+
+<div class="section-break">
+  <div class="num">•</div>
+  <h2>MC2 Models Financial Trail (Unverified)</h2>
+  <div class="rule"></div>
+</div>
+
+<div class="data-table-wrap">
+<table class="data-table">
+<thead>
+<tr><th>Flow</th><th class="right">Amount</th><th>Confidence</th></tr>
+</thead>
+<tbody>
+<tr><td>MC2 → JPMorgan</td><td class="mono">$800,000</td><td>STRONG</td></tr>
+<tr><td>MC2 → Butterfly Trust</td><td class="mono">$50,000</td><td>MODERATE</td></tr>
+<tr><td>Epstein → Brunel</td><td class="mono">$1,000,000</td><td>Fund flow reference (see <a href="#the-1m-offshore-wire">$1M Offshore Wire</a> below)</td></tr>
+<tr><td>Visoski → Brunel</td><td class="mono">$182,219</td><td>PROVEN</td></tr>
+<tr><td>Visoski → Brunel</td><td class="mono">$10,000</td><td>PROVEN</td></tr>
+</tbody>
+</table>
+</div>
+
+
+<div class="section-break">
+  <div class="num">V</div>
+  <h2>The Offshore Evidence</h2>
+  <div class="rule"></div>
+</div>
+
+
+<div class="section-break">
+  <div class="num">•</div>
+  <h2>Deposition Testimony — BVI Money Transfers</h2>
+  <div class="rule"></div>
+</div>
+
+<p><strong>Found in 3 documents:</strong></p>
+
+<p>- <a href="https://www.justice.gov/epstein/media/EFTA00181297.pdf">EFTA00181297.pdf</a></p>
+
+<p>- <a href="https://www.justice.gov/epstein/media/EFTA01111413.pdf">EFTA01111413.pdf</a></p>
+
+<p>- <a href="https://www.justice.gov/epstein/media/EFTA01248647.pdf">EFTA01248647.pdf</a></p>
+
+<p>Deposition testimony describes money transferred to the British Virgin Islands — the same jurisdiction where Scouting International was incorporated in November 2003.</p>
+
+
+<div class="section-break">
+  <div class="num">•</div>
+  <h2>The $1M Offshore Wire</h2>
+  <div class="rule"></div>
+</div>
+
+<p><strong>Found in 3 documents:</strong></p>
+
+<p>- <a href="https://www.justice.gov/epstein/media/EFTA00589437.pdf">EFTA00589437.pdf</a></p>
+
+<p>- <a href="https://www.justice.gov/epstein/media/EFTA00599855.pdf">EFTA00599855.pdf</a></p>
+
+<p>- <a href="https://www.justice.gov/epstein/media/EFTA01122242.pdf">EFTA01122242.pdf</a></p>
+
+<p>A $1 million wire transfer from Epstein to Brunel's offshore account is referenced in the context of MC2 being described as a recruitment pipeline. The destination of this wire is unspecified in the released documents, but the offshore infrastructure — Scouting International, BVI, incorporated November 2003, now defunct — is sitting in the same network.</p>
+
+
+<div class="section-break">
+  <div class="num">•</div>
+  <h2>Epstein Funding Brunel's Legal Defense</h2>
+  <div class="rule"></div>
+</div>
+
+<p><strong>Source:</strong> Link & Rockenbach PA billing records — matter: "Jean-Luc Brunel, MC2 Model & Talent Miami, LLC, Tyler MacDonald"</p>
+
+<div class="data-table-wrap">
+<table class="data-table">
+<thead>
+<tr><th>Invoice</th><th class="right">Amount</th><th>Period</th></tr>
+</thead>
+<tbody>
+<tr><td>#817</td><td class="mono">$2,917.50</td><td>July 2018</td></tr>
+<tr><td>#1032</td><td class="mono">$4,657.50</td><td>August 2018</td></tr>
+<tr><td>#1826</td><td class="mono">$13,816.63 → $24,391.65 (with past due)</td><td>January 2019</td></tr>
+<tr><td>#2383</td><td class="mono">$3,135.00</td><td>March 2019</td></tr>
+</tbody>
+</table>
+</div>
+
+
+<div class="section-break">
+  <div class="num">VI</div>
+  <h2>Network Architecture</h2>
+  <div class="rule"></div>
+</div>
+
+<div class="code-block">EPSTEIN FINANCIAL NETWORK — BRUNEL OFFSHORE BRANCH
+
+     ┌─── ICIJ Offshore Leaks ───┐
+     │                            │
+     │  Scouting International    │
+     │  Investment Co., Ltd.      │
+     │  BVI (Inc. Nov 2003)       │
+     │  Status: DEFUNCT           │
+     │                            │
+     │  Intermediaries:           │
+     │  ├── Portcullis TrustNet   │
+     │  └── NetIncorp.com Corp    │
+     │                            │
+     └────────────┬───────────────┘
+                  │
+     DOJ Subpoena (EFTA00809672)
+     names as Brunel-controlled
+                  │
+     ┌────────────┴────────────┐
+     │                         │
+  MC2 Models Mgmt       Karin Models Agency
+  MC2 Models Miami      (predecessor to MC2)
+     │
+     │ $50,000
+     ▼
+  ┌── Butterfly Trust ──┐
+  │  Acct #44130552     │
+  │  JPMorgan Chase     │
+  └──┬──────────────┬───┘
+     │              │
+  Deutsche Bank   Butterfly Trust
+  → $10M+         → Maxwell $648K+
+  (FinCEN ✅)     (8 STRONG-tier transfers)
+
+  ┌─── Deposition Testimony ───┐
+  │ &quot;monies transferred to the │
+  │ British Virgin Islands&quot;    │
+  │ (3 documents)              │
+  └────────────────────────────┘
+
+  ┌─── Court Filings ─────────┐
+  │ &quot;$1M wire transfer to      │
+  │ Brunel&#x27;s offshore account&quot; │
+  │ (3 documents)              │
+  └────────────────────────────┘</div>
+
+
+<div class="section-break">
+  <div class="num">VII</div>
+  <h2>NetIncorp Investigation</h2>
+  <div class="rule"></div>
+</div>
+
+<p>NetIncorp.com Corporation (ICIJ node 290197), the second intermediary that incorporated Scouting International, has <strong>689 connected entities</strong> in the ICIJ Offshore Leaks database. Eleven of those entity names appeared in the EFTA document corpus. All 11 were investigated and determined to be <strong>false positives</strong> from entity recognition artifacts:</p>
+
+<div class="data-table-wrap">
+<table class="data-table">
+<thead>
+<tr><th>NetIncorp Client</th><th>BVI</th><th class="right">Mentions</th><th>Verdict</th><th>Actual Content</th></tr>
+</thead>
+<tbody>
+<tr><td>eMedia Technologies Ltd</td><td>✓</td><td class="mono">43</td><td>❌ FALSE POSITIVE</td><td>OCR fragments: "Remedial," "CTVglobemedia"</td></tr>
+<tr><td>Nepal Pacific Group Inc.</td><td>✓</td><td class="mono">14</td><td>❌ FALSE POSITIVE</td><td>Carpet salesman named Tenzing Nepali; $31K broadloom invoices</td></tr>
+<tr><td>NACAR Group, Inc.</td><td>✓</td><td>8</td><td>❌ FALSE POSITIVE</td><td>NASCAR sponsorship docs, NACARA immigration legislation</td></tr>
+<tr><td>Inversiones EM 88, Inc.</td><td>✓</td><td>7</td><td>❌ FALSE POSITIVE</td><td>"Inversiones Trento Spa" — Costa Rica energy press release</td></tr>
+<tr><td>INVERSIONES PLUS CORP.</td><td>✓</td><td>7</td><td>❌ FALSE POSITIVE</td><td>Same Costa Rica press release as above</td></tr>
+<tr><td>22/11 Corporation</td><td>✓</td><td>7</td><td>❌ FALSE POSITIVE</td><td>Date formats in legal billing: "08/22/11"</td></tr>
+<tr><td>Poseidon Research Corp.</td><td>✓</td><td>6</td><td>❌ FALSE POSITIVE</td><td>P-8 Poseidon military aircraft news, Greek shipping address</td></tr>
+<tr><td>Tanglewood Offshore Tech</td><td>✓</td><td>3</td><td>❌ FALSE POSITIVE</td><td>Tanglewood Music Center (Boston) references</td></tr>
+<tr><td>SOBOL MARINE LTD.</td><td>✓</td><td>3</td><td>❌ FALSE POSITIVE</td><td>Lyubov Sobol (Russian opposition figure) in news clippings</td></tr>
+<tr><td>TAKEDA PROPERTIES LTD</td><td>✓</td><td>3</td><td>❌ FALSE POSITIVE</td><td>Takeda Pharmaceuticals training venue</td></tr>
+<tr><td>Radiance Generation, Inc.</td><td>✓</td><td>2</td><td>❌ FALSE POSITIVE</td><td>Frederic Fekkai salon: "Color Radiance Treatment" ($65 hair service)</td></tr>
+</tbody>
+</table>
+</div>
+
+<p><strong>Result:</strong> NetIncorp.com's 689 BVI client entities share <strong>zero</strong> actual connections to the Epstein financial network beyond Scouting International. The Brunel link is precise and isolated — not ambient noise from a broader intermediary relationship.</p>
+
+
+<div class="section-break">
+  <div class="num">VIII</div>
+  <h2>Methodology</h2>
+  <div class="rule"></div>
+</div>
+
+
+<div class="section-break">
+  <div class="num">•</div>
+  <h2>Databases Cross-Referenced</h2>
+  <div class="rule"></div>
+</div>
+
+<div class="data-table-wrap">
+<table class="data-table">
+<thead>
+<tr><th>Source</th><th>Records</th><th>Purpose</th></tr>
+</thead>
+<tbody>
+<tr><td class="bates">DOJ EFTA Corpus</td><td>1,476,377 files</td><td>Source documents, entity extraction, financial flows</td></tr>
+<tr><td>ICIJ Offshore Leaks</td><td>814K entities, 771K officers, 3.3M relationships</td><td>Offshore shell identification</td></tr>
+<tr><td>FinCEN SAR Data</td><td>Cross-reference</td><td>Transaction verification</td></tr>
+<tr><td>Fund Flows (5C)</td><td>23,832 directional flows</td><td>A→B money movement</td></tr>
+<tr><td>Fund Flows Audited (5B)</td><td>81,451 classified transactions</td><td>5-tier confidence scoring</td></tr>
+<tr><td>Verified Wires</td><td>Court-exhibit authenticated</td><td>Exhibit-authenticated transfers</td></tr>
+</tbody>
+</table>
+</div>
+
+
+<div class="section-break">
+  <div class="num">•</div>
+  <h2>Scripts Executed</h2>
+  <div class="rule"></div>
+</div>
+
+<div class="data-table-wrap">
+<table class="data-table">
+<thead>
+<tr><th>Script</th><th>Purpose</th><th>Output</th></tr>
+</thead>
+<tbody>
+<tr><td><code style="font-family:var(--font-mono);font-size:12px;color:var(--ice);background:var(--navy-mid);padding:1px 4px;">icij_crossref.py</code></td><td>Initial ICIJ fuzzy matching</td><td>745 entity, 63 officer, 25 intermediary matches</td></tr>
+<tr><td><code style="font-family:var(--font-mono);font-size:12px;color:var(--ice);background:var(--navy-mid);padding:1px 4px;">icij_deep_dive.py</code></td><td>Relationship graph extraction</td><td>Full node trees for 5 targets</td></tr>
+<tr><td><code style="font-family:var(--font-mono);font-size:12px;color:var(--ice);background:var(--navy-mid);padding:1px 4px;">icij_crossref_final.py</code></td><td>Financial table cross-reference</td><td>Person ↔ shell ↔ fund flow mapping</td></tr>
+<tr><td><code style="font-family:var(--font-mono);font-size:12px;color:var(--ice);background:var(--navy-mid);padding:1px 4px;">brunel_exhaustive.py</code></td><td>7-part exhaustive network dig</td><td>Portcullis/NetIncorp intermediary graphs</td></tr>
+<tr><td><code style="font-family:var(--font-mono);font-size:12px;color:var(--ice);background:var(--navy-mid);padding:1px 4px;">brunel_full_dig.py</code></td><td>172-document, 8,526-page corpus scan</td><td>Shell entity hit map, wire references</td></tr>
+<tr><td><code style="font-family:var(--font-mono);font-size:12px;color:var(--ice);background:var(--navy-mid);padding:1px 4px;">netincorp_deep.py</code></td><td>11-entity deep verification scan</td><td>All false positives confirmed</td></tr>
+</tbody>
+</table>
+</div>
+
+
+<div class="section-break">
+  <div class="num">•</div>
+  <h2>Other ICIJ-Confirmed Epstein Network Entities</h2>
+  <div class="rule"></div>
+</div>
+
+<p>The initial cross-reference identified four additional high-confidence ICIJ matches beyond Brunel:</p>
+
+<div class="data-table-wrap">
+<table class="data-table">
+<thead>
+<tr><th>Person</th><th>ICIJ Source</th><th>Offshore Entity</th><th>Epstein Financial Link</th></tr>
+</thead>
+<tbody>
+<tr><td>Jes Staley</td><td>Paradise Papers – Barbados</td><td>WAGGONER (BARBADOS) LTD</td><td>JPMorgan → Staley $1.38M, FinCEN confirmed</td></tr>
+<tr><td>Michael Dubin</td><td>Paradise Papers – Appleby</td><td>Powers & Dubin Asset Mgmt (Bermuda), CPD Asset Mgmt (Bermuda)</td><td>Financial Trust → Dubin $10M ("Jeepers"), $5M JFK/Harvard</td></tr>
+<tr><td>Epstein Family Trust</td><td>Offshore Leaks – Cook Islands</td><td>Node 169778</td><td>Robert J Mintz intermediary, Trustcorp Limited officer</td></tr>
+<tr><td>Ghislaine Investments</td><td>Bahamas Leaks</td><td>GHISLAINE INVESTMENTS LTD (node 20161231)</td><td>NES LLC → Maxwell $7.66M, 2,725 fund flow records</td></tr>
+</tbody>
+</table>
+</div>
+
+<p>These entities are noted for completeness. Each warrants independent narrative treatment.</p>
+
+
+<div class="section-break">
+  <div class="num">IX</div>
+  <h2>What's Original, What's Not</h2>
+  <div class="rule"></div>
+</div>
+
+
+<div class="section-break">
+  <div class="num">•</div>
+  <h2>Original</h2>
+  <div class="rule"></div>
+</div>
+
+<p>1. <strong>The connected map</strong> — Computational cross-reference linking ICIJ Offshore Leaks ↔ DOJ subpoena ↔ Butterfly Trust wire flows ↔ FinCEN data ↔ BVI deposition testimony in a single analytical framework</p>
+
+<p>2. <strong>The methodology</strong> — Programmatic cross-referencing of three massive databases at scale (1.48M files × 814K ICIJ entities × FinCEN records)</p>
+
+<p>3. <strong>The NetIncorp verification</strong> — Exhaustive 689-entity scan proving the Brunel connection is isolated, not ambient</p>
+
+<p>4. <strong>The completeness</strong> — 8,526 pages across 172 Brunel-related documents, every financial table queried</p>
+
+
+<div class="section-break">
+  <div class="num">•</div>
+  <h2>Not Original</h2>
+  <div class="rule"></div>
+</div>
+
+<p>- Brunel's name is searchable on <a href="https://offshoreleaks.icij.org/">offshoreleaks.icij.org</a> today</p>
+
+<p>- The subpoena (<a href="https://www.justice.gov/epstein/media/EFTA00809672.pdf">EFTA00809672</a>) is a publicly released DOJ document</p>
+
+<p>- Butterfly Trust flows were covered in 2023 JPMorgan/Deutsche Bank lawsuit reporting</p>
+
+<p>- The $1M offshore wire was reported by the Daily Beast</p>
+
+<p>- BVI transfer testimony exists in previously available deposition transcripts</p>
+
+
+<div class="section-break">
+  <div class="num">•</div>
+  <h2>Honest Characterization</h2>
+  <div class="rule"></div>
+</div>
+
+<p>Rigorous forensic synthesis of public data. The individual nodes existed in separate databases. The connected map — linking an ICIJ-confirmed offshore shell to a DOJ subpoena to a $10M+ domestic trust pipeline to deposition testimony about BVI money transfers — is the original contribution. That's what forensic accounting does: it connects things that are individually known into a picture that wasn't previously visible.</p>
+
+
+<div class="section-break">
+  <div class="num">X</div>
+  <h2>Appendix: Document Corpus</h2>
+  <div class="rule"></div>
+</div>
+
+<p>172 documents across the EFTA corpus contain Brunel-related financial or legal content. Key term frequency across 8,526 pages:</p>
+
+<div class="data-table-wrap">
+<table class="data-table">
+<thead>
+<tr><th>Term</th><th>Hits</th><th class="right">Files</th><th>Significance</th></tr>
+</thead>
+<tbody>
+<tr><td>MC2 Model</td><td class="mono">94</td><td class="mono">36</td><td>Widespread — core entity</td></tr>
+<tr><td>BVI</td><td class="mono">362</td><td class="mono">77</td><td>Mostly abbreviation noise; 3 files contain deposition testimony</td></tr>
+<tr><td>Scouting International</td><td>1</td><td>1</td><td class="bates">ONLY in EFTA00809672 — the subpoena</td></tr>
+<tr><td>Butterfly Trust</td><td class="mono">15</td><td>5</td><td>Court filings + financial exhibits</td></tr>
+<tr><td>offshore</td><td>6</td><td>4</td><td>Includes "$1M wire transfer to Brunel's offshore account"</td></tr>
+<tr><td>wire transfer</td><td class="mono">16</td><td>7</td><td>Financial documents with transaction details</td></tr>
+<tr><td>British Virgin</td><td>3</td><td>3</td><td>Deposition testimony about BVI transfers</td></tr>
+<tr><td>Karin Models</td><td class="mono">14</td><td class="mono">10</td><td>Depositions confirming MC2 predecessor</td></tr>
+<tr><td>L'eclair</td><td>1</td><td>1</td><td class="bates">ONLY in EFTA00809672 — dead end</td></tr>
+<tr><td>shell</td><td class="mono">23</td><td class="mono">12</td><td>References to shell companies in Epstein enterprise</td></tr>
+</tbody>
+</table>
+</div>
+
+<p style="font-size:12px;color:var(--white-dim);font-style:italic;">Narrative 18 of the Epstein Financial Forensics project. Published February 23, 2026.</p>
+
+<p style="font-size:12px;color:var(--white-dim);font-style:italic;">Every claim is anchored to specific bates stamps and court exhibits. Verify any finding at <a href="https://www.justice.gov/epstein">justice.gov/epstein</a>.</p>
+
+
+
+</div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <p>All amounts are (Unverified) automated extractions from DOJ EFTA documents released under the Epstein Files Transparency Act.<br>
+  Appearance in this analysis does not imply wrongdoing. This analysis identifies patterns for further investigation — it does not make legal conclusions.<br>
+  Source: <a href="https://github.com/randallscott25-star/epstein-forensic-finance" target="_blank">Epstein Financial Forensics Repository</a> · <a href="https://docs.google.com/spreadsheets/d/11lw0QjMZ-rYIjWesv5VG1YKts57ahPEm/edit?usp=sharing" target="_blank">Forensic Workbook</a></p>
+  
+</div>
+
+</body>
+</html>

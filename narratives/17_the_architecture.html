@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>N17 — One-Way Money</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #0a1019;
+  --navy-mid: #111827;
+  --navy-light: #1a2332;
+  --gold: #c49a3c;
+  --gold-dim: #a07d2e;
+  --gold-bright: #dbb44c;
+  --ice: #7ba7c2;
+  --ice-dim: #5a8aa8;
+  --ice-bright: #9dc2d8;
+  --red-flag: #c44040;
+  --white: #e8e4dc;
+  --white-dim: #b0a898;
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'IBM Plex Sans', sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  background: var(--navy);
+  color: var(--white);
+  font-family: var(--font-body);
+  font-weight: 300;
+  line-height: 1.8;
+  overflow-x: hidden;
+}
+.container { max-width: 780px; margin: 0 auto; padding: 0 32px; }
+
+/* HEADER */
+.header {
+  text-align: center;
+  padding: 80px 40px 48px;
+  border-bottom: 1px solid rgba(196,154,60,0.15);
+}
+.header .label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 28px;
+}
+.header h1 {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 4.5vw, 48px);
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.2;
+  max-width: 800px;
+  margin: 0 auto 20px;
+}
+.header h1 em { color: var(--gold); font-style: italic; }
+.header .subtitle {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-style: italic;
+  color: var(--ice);
+  margin-bottom: 28px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.header .author {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: var(--white-dim);
+  margin-bottom: 8px;
+}
+.header .date {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--white-dim);
+}
+
+/* STATS BAR */
+.stats-bar {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  padding: 28px 40px;
+  border-bottom: 1px solid rgba(196,154,60,0.1);
+  flex-wrap: wrap;
+}
+.stat { text-align: center; }
+.stat .val {
+  font-family: var(--font-mono);
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--gold);
+}
+.stat .lbl {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--white-dim);
+  margin-top: 4px;
+}
+
+/* BODY TEXT */
+.narrative { padding: 48px 0 60px; }
+.narrative p {
+  font-size: 15px;
+  margin-bottom: 20px;
+  color: var(--white);
+}
+.narrative p.lead {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-style: italic;
+  color: var(--ice);
+  line-height: 1.7;
+  margin-bottom: 32px;
+}
+.narrative a {
+  color: var(--ice);
+  text-decoration: underline;
+  text-decoration-color: rgba(123,167,194,0.3);
+  text-underline-offset: 3px;
+  transition: text-decoration-color 0.2s;
+}
+.narrative a:hover { text-decoration-color: var(--ice); }
+
+/* SECTION BREAKS */
+.section-break {
+  text-align: center;
+  padding: 48px 0 40px;
+}
+.section-break .num {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 4px;
+  color: var(--gold-dim);
+  text-transform: uppercase;
+}
+.section-break h2 {
+  font-family: var(--font-display);
+  font-size: clamp(24px, 3vw, 34px);
+  font-weight: 600;
+  color: var(--white);
+  margin-top: 8px;
+}
+.section-break .rule {
+  width: 60px;
+  height: 1px;
+  background: var(--gold-dim);
+  margin: 16px auto 0;
+}
+
+/* CALLOUTS */
+.callout {
+  background: var(--navy-mid);
+  border-left: 3px solid var(--gold);
+  padding: 20px 24px;
+  margin: 28px 0;
+}
+.callout p { margin-bottom: 8px; font-size: 14px; }
+.callout p:last-child { margin-bottom: 0; }
+.callout .co-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.callout .co-figure {
+  font-family: var(--font-mono);
+  font-size: 18px;
+  color: var(--gold);
+}
+
+/* DATA TABLES */
+.data-table-wrap { margin: 28px 0; overflow-x: auto; }
+.data-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.data-table thead th {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--ice);
+  text-align: left;
+  padding: 10px 12px;
+  border-bottom: 2px solid rgba(196,154,60,0.2);
+}
+.data-table thead th.right { text-align: right; }
+.data-table tbody td {
+  padding: 8px 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  color: var(--white-dim);
+}
+.data-table tbody td.mono {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--gold);
+  text-align: right;
+}
+.data-table tbody td.bates {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--ice-dim);
+}
+.data-table tbody td.sar {
+  color: var(--red-flag);
+  font-family: var(--font-mono);
+  font-size: 11px;
+}
+.data-table tbody tr:hover { background: rgba(196,154,60,0.04); }
+.data-table tbody td strong { color: var(--white); font-weight: 500; }
+
+/* PULL QUOTES */
+.pull-quote {
+  text-align: center;
+  padding: 36px 20px;
+  margin: 32px 0;
+  border-top: 1px solid rgba(196,154,60,0.1);
+  border-bottom: 1px solid rgba(196,154,60,0.1);
+}
+.pull-quote p {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--gold);
+  line-height: 1.5;
+  font-style: italic;
+}
+
+/* VIZ LINK */
+.viz-link {
+  display: block;
+  text-align: center;
+  padding: 20px;
+  margin: 32px 0;
+  background: var(--navy-mid);
+  border: 1px solid rgba(196,154,60,0.2);
+  text-decoration: none;
+  transition: border-color 0.2s, background 0.2s;
+}
+.viz-link:hover { border-color: var(--gold); background: var(--navy-light); }
+.viz-link .vl-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: var(--gold);
+  text-transform: uppercase;
+}
+.viz-link .vl-title {
+  font-family: var(--font-display);
+  font-size: 18px;
+  color: var(--white);
+  margin-top: 4px;
+}
+.viz-link .vl-desc {
+  font-size: 12px;
+  color: var(--white-dim);
+  margin-top: 4px;
+}
+
+/* SOURCE DOCS SECTION */
+.source-section {
+  border-top: 2px solid rgba(196,154,60,0.15);
+  margin-top: 48px;
+  padding-top: 40px;
+}
+.source-section h3 {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--white);
+  margin-bottom: 20px;
+}
+.source-section h4 {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-top: 28px;
+  margin-bottom: 12px;
+}
+.source-section p {
+  font-size: 13px;
+  color: var(--white-dim);
+  margin-bottom: 12px;
+  line-height: 1.7;
+}
+
+/* CODE BLOCKS */
+.code-block {
+  background: var(--navy-mid);
+  border: 1px solid rgba(196,154,60,0.1);
+  padding: 16px 20px;
+  margin: 20px 0;
+  overflow-x: auto;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--ice);
+  line-height: 1.6;
+  white-space: pre;
+}
+
+/* FOOTER */
+.footer {
+  text-align: center;
+  padding: 48px 40px;
+  border-top: 1px solid rgba(196,154,60,0.1);
+}
+.footer p {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--white-dim);
+  line-height: 1.8;
+  max-width: 700px;
+  margin: 0 auto;
+}
+.footer .dedication {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-style: italic;
+  color: var(--gold);
+  margin-top: 20px;
+}
+.footer a {
+  color: var(--ice-dim);
+  text-decoration: none;
+}
+.footer a:hover { text-decoration: underline; }
+
+/* DATASET BAR */
+.dataset-bar {
+  text-align: center;
+  margin: 20px 0;
+  padding: 12px;
+  background: var(--navy-mid);
+  border: 1px solid rgba(196,154,60,0.08);
+}
+.dataset-bar a {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--ice-dim);
+  margin: 0 4px;
+  text-decoration: none;
+}
+.dataset-bar a:hover { color: var(--gold); text-decoration: underline; }
+.dataset-bar .ds-label {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: var(--gold-dim);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+/* WORKBOOK LINKS */
+.wb-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin: 16px 0;
+}
+.wb-link {
+  display: block;
+  padding: 10px 14px;
+  background: var(--navy-mid);
+  border: 1px solid rgba(196,154,60,0.1);
+  text-decoration: none;
+  transition: border-color 0.2s;
+}
+.wb-link:hover { border-color: var(--gold-dim); }
+.wb-link .wb-name {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--white);
+}
+.wb-link .wb-icon {
+  font-size: 14px;
+  margin-right: 4px;
+}
+
+@media(max-width:700px) {
+  .stats-bar { gap: 20px; }
+  .wb-grid { grid-template-columns: 1fr; }
+  .header { padding: 48px 20px 32px; }
+  .container { padding: 0 16px; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="label">Data Narrative 17 — Epstein Forensic Finance Project</div>
+  <h1>One-Way Money</h1>
+  <div class="subtitle">$272M in. $63M out. First multi-institution balance sheet.</div>
+  <div class="author">Randall Scott Taylor</div>
+  <div class="date">February 2026</div>
+</div>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stat"><div class="val">$272M</div><div class="lbl">Inflows</div></div>
+  <div class="stat"><div class="val">$63M</div><div class="lbl">Outflows</div></div>
+  <div class="stat"><div class="val">$209M</div><div class="lbl">Net Imbalance</div></div>
+  <div class="stat"><div class="val">3</div><div class="lbl">Institutions</div></div>
+</div>
+
+<!-- BODY -->
+<div class="container">
+<div class="narrative">
+
+
+<div class="section-break">
+  <div class="num">I</div>
+  <h2>The Data</h2>
+  <div class="rule"></div>
+</div>
+
+<p class="lead">Let me be clear about what I'm working with.</p>
+
+<p>The master wire ledger contains 481 wire transfers totaling $973,392,414 extracted across the Phase 5I entity-resolution pipeline from the EFTA document production. 185 of those wires come from Deutsche Bank's verified court exhibits — specifically the five exhibits (A through E) attached to their Suspicious Activity Report on Epstein's accounts. The remaining 296 wires were extracted from the broader EFTA corpus across multiple banking institution productions including Bank of America, JPMorgan, Citibank, Barclays, and Wells Fargo. This isn't a Deutsche Bank story. This is a multi-institution story. Deutsche Bank's SAR exhibits happen to be the most organized slice of it, so I'll use them as the structural backbone — but the full picture is bigger than one bank.</p>
+
+<p>The entity classification index identifies 228 unique entities: 26 classified as Epstein-controlled, 126 as external parties, and 6 as banks or custodians.</p>
+
+
+<div class="section-break">
+  <div class="num">II</div>
+  <h2>Five Exhibits, Five Functions</h2>
+  <div class="rule"></div>
+</div>
+
+<p>Deutsche Bank organized its SAR wire evidence into five exhibits. I did not design this taxonomy. The bank's compliance department chose these groupings. What I did was sort every wire by source and destination and compute what goes in versus what comes out of each exhibit — and what fell out is that their five exhibits map directly to five distinct operational functions.</p>
+
+
+<div class="section-break">
+  <div class="num">•</div>
+  <h2>Layer 1 — Accumulation (Exhibit A)</h2>
+  <div class="rule"></div>
+</div>
+
+<p><strong>17 wires | $151,499,980</strong></p>
+
+<p>Every wire in Exhibit A goes in one direction: from an external source into Southern Trust Company Inc. That's it. One destination for all 17 wires. Zero outbound wires.</p>
+
+<p>Southern Trust was incorporated in the U.S. Virgin Islands in 2011 as Financial Informatics Inc. and renamed in September 2012. Three source clusters feed it:</p>
+
+<div class="data-table-wrap">
+<table class="data-table">
+<thead>
+<tr><th>Source Cluster</th><th class="right">Wires</th><th class="right">Total</th><th>Period</th></tr>
+</thead>
+<tbody>
+<tr><td>Leon Black / Apollo entities</td><td class="mono">14</td><td class="mono">$106,500,000</td><td>Oct 2013 – Apr 2017</td></tr>
+<tr><td>Edmond de Rothschild (institutional + personal)</td><td>2</td><td class="mono">$24,999,980</td><td>Dec 2015</td></tr>
+<tr><td>Narrow Holdings LLC c/o Elysium Management</td><td>1</td><td class="mono">$20,000,000</td><td>Jul 2014</td></tr>
+<tr><td><strong>Total</strong></td><td><strong>17</strong></td><td><strong>$151,499,980</strong></td><td></td></tr>
+</tbody>
+</table>
+</div>
+
+<p>Narrow Holdings is care-of Elysium Management — Leon Black's family office. That brings Black's effective total through this single shell to $126.5 million. One man's entities account for 83.5% of all Exhibit A volume.</p>
+
+
+<div class="section-break">
+  <div class="num">•</div>
+  <h2>Layer 2 — Distribution (Exhibit B)</h2>
+  <div class="rule"></div>
+</div>
+
+<p><strong>18 wires | $33,139,248</strong></p>
+
+<p>Exhibit B captures capital moving into and out of investment vehicles. Southern Financial LLC is the hub. Money enters from Tudor Futures Fund ($13,503,941 in two wires, August 2014) and three Blockchain Capital entities ($15,000,000 into The 2017 Caterpillar Trust, all on February 21, 2018). Money exits to venture investments: Joichi Ito ($1,000,001 across three wires), Coatue Enterprises LLC ($2,000,000 across four quarterly payments), and Neoteny 3 LP ($1,000,000).</p>
+
+<p>Where Layer 1 collects capital, Layer 2 deploys it.</p>
+
+
+<div class="section-break">
+  <div class="num">•</div>
+  <h2>Layer 3 — Operations (Exhibit C)</h2>
+  <div class="rule"></div>
+</div>
+
+<p><strong>64 wires | $89,372,037</strong></p>
+
+<p>This is the machine's operating system. Twenty-one wires totaling $51,876,640 flow from Jeepers Inc. (a Deutsche Bank brokerage entity) into Jeffrey Epstein's NOW/SuperNow checking account. That's brokerage-to-cash conversion — investment holdings liquidated into spendable money.</p>
+
+<p>Also feeding the operating account: $23,075,000 from Kellerhals Ferguson Kroblin PLLC (Epstein's USVI estate counsel, 2 wires), $3,000,000 from Link Rockenbach P.A., and $2,000,000 from AIC Title Agency.</p>
+
+
+<div class="section-break">
+  <div class="num">•</div>
+  <h2>Layer 4 — Redistribution (Exhibit D)</h2>
+  <div class="rule"></div>
+</div>
+
+<p><strong>11 wires | $68,760,686</strong></p>
+
+<p>Exhibit D is internal plumbing. The Haze Trust — which receives art-sale proceeds from Sotheby's ($11,249,417) and Christie's ($7,725,000) — redistributes capital across the shell network. $32,000,000 goes to Southern Financial LLC (Checking) across 5 wires. $10,000,000 goes to Southern Trust Company (Checking). $5,000,000 goes to Southern Financial LLC (DBAGNY).</p>
+
+<p>This is the rebalancing mechanism. Capital repositioned between shells as needed.</p>
+
+
+<div class="section-break">
+  <div class="num">•</div>
+  <h2>Layer 5 — Legitimization (Exhibit E)</h2>
+  <div class="rule"></div>
+</div>
+
+<p><strong>12 wires | $6,253,493</strong></p>
+
+<p>Every wire in Exhibit E originates from Gratitude America MMDA, Epstein's charitable vehicle. Funds flow to Gratitude America Ltd. accounts at Morgan Stanley, Citibank, and First Bank of Puerto Rico ($5,800,000), plus direct grants to the Melanoma Research Alliance Foundation ($225,000), the Bruce & Marsha Moskowitz Foundation ($150,000 across 3 wires), and the Cancer Research Wellness Institute ($50,000 across 2 wires).</p>
+
+<p>This is the paper trail of charitable purpose.</p>
+
+
+<div class="section-break">
+  <div class="num">III</div>
+  <h2>The Balance Sheet</h2>
+  <div class="rule"></div>
+</div>
+
+<p>Here's the part nobody else has done.</p>
+
+<p>I treated each of the nine entities at the center of this network as its own ledger. Money in from the outside, money in from other shells, money out to other shells, money out to the outside. Then I ran the arithmetic.</p>
+
+<div class="data-table-wrap">
+<table class="data-table">
+<thead>
+<tr><th>Shell Entity</th><th>External In</th><th>Shell In</th><th>Shell Out</th><th>External Out</th><th>Net Position</th></tr>
+</thead>
+<tbody>
+<tr><td>Southern Trust</td><td class="mono">$140,396,559</td><td class="mono">$30,000,000</td><td class="mono">$83,200,000</td><td class="mono">$29,765,000</td><td><strong>+$57,431,559</strong></td></tr>
+<tr><td>NOW/SuperNow Account</td><td class="mono">$32,718,397</td><td class="mono">$74,605,287</td><td class="mono">$0</td><td class="mono">$0</td><td><strong>+$107,323,684</strong></td></tr>
+<tr><td>Southern Financial</td><td class="mono">$14,039,248</td><td class="mono">$82,855,320</td><td class="mono">$38,250,000</td><td class="mono">$5,613,125</td><td><strong>+$53,031,443</strong></td></tr>
+<tr><td>Caterpillar Trust</td><td class="mono">$15,000,000</td><td class="mono">$0</td><td class="mono">$10,000,000</td><td class="mono">$0</td><td><strong>+$5,000,000</strong></td></tr>
+<tr><td>Haze Trust</td><td class="mono">$19,032,745</td><td class="mono">$64,503,608</td><td class="mono">$167,358,928</td><td class="mono">$0</td><td><strong>−$83,822,575</strong></td></tr>
+<tr><td>Jeepers Inc.</td><td class="mono">$0</td><td class="mono">$6,000,000</td><td class="mono">$57,876,640</td><td class="mono">$0</td><td><strong>−$51,876,640</strong></td></tr>
+<tr><td>Plan D LLC</td><td class="mono">$1,125</td><td class="mono">$30,500,000</td><td class="mono">$10,000,000</td><td class="mono">$18,000,000</td><td><strong>+$2,501,125</strong></td></tr>
+<tr><td>Gratitude America</td><td class="mono">$0</td><td class="mono">$22,064,876</td><td class="mono">$12,064,876</td><td class="mono">$453,493</td><td><strong>+$9,546,507</strong></td></tr>
+<tr><td>NES LLC</td><td class="mono">$0</td><td class="mono">$0</td><td class="mono">$0</td><td class="mono">$553,536</td><td><strong>−$553,536</strong></td></tr>
+<tr><td><strong>System Total</strong></td><td><strong>$221,188,074</strong></td><td></td><td></td><td><strong>$54,385,154</strong></td><td><strong>+$166,802,920</strong></td></tr>
+</tbody>
+</table>
+</div>
+
+<p>$221 million entered from the outside. $54 million is visible leaving. The remaining <strong>$167 million</strong> has no documented exit in the entire production — not in the SAR exhibits, not in the normalized data, not from any institution.</p>
+
+<p>Three entities eat most of it:</p>
+
+<p>The NOW/SuperNow Account absorbs $107.3 million net. It takes in $32.7 million from external sources and $74.6 million from the Jeepers brokerage pipeline and other internal transfers. Sends zero back out in the wire record. Terminal destination.</p>
+
+<p>Southern Trust Company nets $57.4 million. It takes in $140.4 million from external sources plus $30 million from internal shell transfers, and distributes $83.2 million to other shells and $29.8 million externally.</p>
+
+<p>Southern Financial nets $53 million. Receives $14 million from external sources and $82.9 million from the Haze Trust redistribution pipeline. Distributes $38.3 million internally and $5.6 million out to Ito, Coatue, and other external parties.</p>
+
+<p>This isn't evidence that money was stolen. It's evidence that the production is <strong>asymmetric</strong>. The filings comprehensively document how money entered the shell network and selectively omit where it went. Whether that reflects the limits of what banks tracked, what they chose to include, or what they were willing to hand over is a question I can't answer from wire data. The arithmetic speaks for itself.</p>
+
+
+<div class="section-break">
+  <div class="num">IV</div>
+  <h2>The Paired Deposit Pattern</h2>
+  <div class="rule"></div>
+</div>
+
+<p>Both of the network's two largest external depositors — Black/Apollo and Rothschild — do the same thing when they wire money to Southern Trust: they split the deposit across two entities.</p>
+
+<p><strong>Black's Paired Deposits:</strong></p>
+
+<div class="data-table-wrap">
+<table class="data-table">
+<thead>
+<tr><th>Date</th><th>Personal Entity</th><th class="right">Amount</th><th>Fund Entity</th><th class="right">Amount</th><th>Combined</th></tr>
+</thead>
+<tbody>
+<tr><td>Apr 25, 2014</td><td>Leon & Debra Black</td><td class="mono">$5,000,000</td><td>Black Family Partners LP</td><td class="mono">$5,000,000</td><td class="mono">$10,000,000</td></tr>
+<tr><td>Oct 16, 2014</td><td>Leon & Debra Black</td><td class="mono">$7,000,000</td><td>Black Family Partners LP</td><td class="mono">$13,000,000</td><td class="mono">$20,000,000</td></tr>
+<tr><td>Oct 22, 2014</td><td>Leon & Debra Black c/o Apollo</td><td class="mono">$2,000,000</td><td>Black Family Partners LP</td><td class="mono">$3,000,000</td><td class="mono">$5,000,000</td></tr>
+<tr><td>Oct 13, 2015</td><td>Leon & Debra Black c/o Apollo</td><td class="mono">$5,000,000</td><td>Black Family Partners LP</td><td class="mono">$5,000,000</td><td class="mono">$10,000,000</td></tr>
+</tbody>
+</table>
+</div>
+
+<p>Four of ten Black deposit dates are paired — personal account and family fund hitting the same destination on the same day. Split ratios aren't uniform (1:1, 0.54:1, 0.67:1, 1:1). The remaining six dates are single-entity deposits.</p>
+
+<p><strong>Rothschild's Paired Deposit:</strong></p>
+
+<div class="data-table-wrap">
+<table class="data-table">
+<thead>
+<tr><th>Date</th><th>Entity</th><th class="right">Amount</th><th>Type</th></tr>
+</thead>
+<tbody>
+<tr><td>Dec 17, 2015</td><td>Edmond de Rothschild (Suisse) SA</td><td class="mono">$10,000,000</td><td>Institutional</td></tr>
+<tr><td>Dec 21, 2015</td><td>Benjamin Edmond de Rothschild</td><td class="mono">$14,999,980</td><td>Personal</td></tr>
+<tr><td><strong>Combined</strong></td><td></td><td><strong>$24,999,980</strong></td><td></td></tr>
+</tbody>
+</table>
+</div>
+
+<p>Same pattern. One institutional wire, one personal wire, same shell. The $20 difference between $24,999,980 and $25,000,000 is a standard wire transfer fee. The four-day gap between wires — versus Black's same-day execution — is consistent with international transfer origination from Geneva to St. Thomas.</p>
+
+<p>Two depositors operating from different continents using the same structural method to fund the same entity. That's not coincidence. That's procedure.</p>
+
+
+<div class="section-break">
+  <div class="num">V</div>
+  <h2>The October 15, 2013 Round Trip</h2>
+  <div class="rule"></div>
+</div>
+
+<p>The very first Black deposit contains something I didn't expect.</p>
+
+<p>Exhibit A records, on October 15, 2013:</p>
+
+<div class="callout">
+<p><strong>Leon & Debra Black → Southern Trust Company Inc. | $8,500,000</strong></p>
+</div>
+
+<p>The normalized wire data — extracted from the broader production — records the same date:</p>
+
+<div class="callout">
+<p><strong>SOUTHERN_TRUST → DEBRA_BLACK | $8,500,000</strong></p>
+</div>
+
+<p>Same amount. Same day. In and out. The money enters under the joint name "Leon & Debra Black" and exits to "DEBRA_BLACK" within the same business day. Different entity designation on each side.</p>
+
+<p>That's a pass-through. Southern Trust serves as a waypoint that changes the name on the paper trail.</p>
+
+<p>A second amount-matched pair exists with a longer gap: $8,000,000 enters from Leon & Debra Black c/o Apollo on April 25, 2017 (Exhibit A) and $8,000,000 exits from SOUTHERN_TRUST to LEON_BLACK on September 5, 2018 (normalized data). Same amount, seventeen months apart, different entity names on each end.</p>
+
+
+<div class="section-break">
+  <div class="num">VI</div>
+  <h2>December 2015</h2>
+  <div class="rule"></div>
+</div>
+
+<p>The densest cluster in the Exhibit A record. Four wires, $44,999,980, fourteen days:</p>
+
+<div class="data-table-wrap">
+<table class="data-table">
+<thead>
+<tr><th>Date</th><th>Source</th><th class="right">Amount</th></tr>
+</thead>
+<tbody>
+<tr><td>Dec 17</td><td>Edmond de Rothschild (Suisse) SA</td><td class="mono">$10,000,000</td></tr>
+<tr><td>Dec 18</td><td>Black Family Partners LP</td><td class="mono">$10,000,000</td></tr>
+<tr><td>Dec 21</td><td>Benjamin Edmond de Rothschild</td><td class="mono">$14,999,980</td></tr>
+<tr><td>Dec 30</td><td>Leon & Debra Black c/o Apollo Management</td><td class="mono">$10,000,000</td></tr>
+</tbody>
+</table>
+</div>
+
+<p>On December 18, 2015 — one day after the first Rothschild wire, three days before the second — the DOJ announced a non-prosecution agreement with Edmond de Rothschild (Suisse) SA under the Swiss Bank Program. The bank admitted helping U.S. clients conceal assets in undeclared accounts: 950 accounts, $2.16 billion, 2008–2013. Penalty: $45,245,000.</p>
+
+<p>EFTA document <a href="https://efts.uscourts.gov/efts-nyed/masterSearch/results?query=EFTA00584904" target="_blank">EFTA00584904</a> contains the consulting contract between Southern Trust Company Inc. and Edmond de Rothschild Holding S.A., dated October 5, 2015. Services: "risk analysis and algorithms." Payout: $25 million if the DOJ penalty fell below $75 million; $10 million if between $75 million and $150 million. Payment due within three business days of EDRH completing payment to U.S. authorities.</p>
+
+<p>The DOJ penalty of $45.2 million fell well below the $75 million threshold. The contract entitled Epstein to the maximum $25 million. Our wire ledger captures $24,999,980 arriving in two wires within four days of the DOJ announcement. The contract terms, the penalty amount, and the wire dates line up without a single inconsistency.</p>
+
+<p>But it's not just Rothschild money in this window. Black Family Partners wired $10 million the day after the Rothschild institutional wire. Leon & Debra Black wired another $10 million twelve days later. Two of the three Exhibit A source clusters deposited into the same shell in the same two-week period around the same DOJ enforcement action.</p>
+
+<p>Q4 2015 — the October and December deposits combined — accounts for 6 wires totaling $54,999,980. That's 36.3% of all Exhibit A value concentrated in a single quarter. No other quarter comes close.</p>
+
+
+<div class="section-break">
+  <div class="num">VII</div>
+  <h2>The 260 Wires Nobody Talks About</h2>
+  <div class="rule"></div>
+</div>
+
+<p>Here's where I owe you the full picture.</p>
+
+<p>122 wires sit in neat exhibit buckets. The other 260 don't. They were extracted from the broader EFTA production — Deutsche Bank's SDNY document production, supplementary banking records, and cross-institutional transfers spanning JPMorgan ($8.5 million across 16 wires), Bank of America ($10.0 million across 10 wires), Citibank ($6.3 million across 14 wires), and BNY Mellon ($273,230 across 5 wires).</p>
+
+<p>These 260 wires contain 105 entities that never appear in the SAR exhibits. I call them shadow entities — not because they're hiding, but because they exist in a parallel dataset that the formal filing doesn't reference.</p>
+
+<p>The biggest shadow entity is Brad Wechsler. An Apollo Global Management affiliate executive whose name appears in 10 wires totaling $42,942,500 in flow volume.</p>
+
+<p>Here's what Wechsler's sub-ledger looks like:</p>
+
+<p><strong>Inbound to Wechsler:</strong></p>
+
+<div class="data-table-wrap">
+<table class="data-table">
+<thead>
+<tr><th>Source</th><th class="right">Amount</th></tr>
+</thead>
+<tbody>
+<tr><td>ALEXANDERSON</td><td class="mono">$1,600,000</td></tr>
+<tr><td>ALEXANDERSON</td><td class="mono">$3,000,000</td></tr>
+<tr><td><strong>Total In</strong></td><td><strong>$4,600,000</strong></td></tr>
+</tbody>
+</table>
+</div>
+
+<p>ALEXANDERSON is Eileen Alexanderson, an Elysium Management (Black family office) employee documented across 6 wires and $16.2 million in the production.</p>
+
+<p><strong>Outbound from Wechsler:</strong></p>
+
+<div class="data-table-wrap">
+<table class="data-table">
+<thead>
+<tr><th>Destination</th><th>Wire 1</th><th>Wire 2</th><th>Wire 3</th><th class="right">Total</th></tr>
+</thead>
+<tbody>
+<tr><td>HEATHER_GRAY</td><td class="mono">$8,818,875</td><td class="mono">$718,875</td><td class="mono">$8,100,000</td><td class="mono">$17,637,750</td></tr>
+<tr><td>SPINELLA</td><td class="mono">$8,818,875</td><td class="mono">$718,875</td><td class="mono">$8,100,000</td><td class="mono">$17,637,750</td></tr>
+<tr><td>RICHARD_JOSLIN</td><td class="mono">$3,000,000</td><td class="mono">$67,000</td><td>—</td><td class="mono">$3,067,000</td></tr>
+<tr><td><strong>Total Out</strong></td><td></td><td></td><td></td><td><strong>$38,342,500</strong></td></tr>
+</tbody>
+</table>
+</div>
+
+<p>Three wires to HEATHER_GRAY. Three wires to SPINELLA. Identical amounts in each pair — $8,818,875, $718,875, $8,100,000. Mirrored to the dollar.</p>
+
+<p>$38.3 million out from $4.6 million in. That's a <strong>$33.7 million gap</strong> in Wechsler's own sub-ledger. The other $33.7 million entered from somewhere not captured in our production.</p>
+
+<p>HEATHER_GRAY and SPINELLA are terminal sinks. They receive $17.6 million each and never appear as a source in any wire.</p>
+
+
+<div class="section-break">
+  <div class="num">VIII</div>
+  <h2>Terminal Sinks and Ghost Sources</h2>
+  <div class="rule"></div>
+</div>
+
+<p>A terminal sink is an entity that receives money and never sends any. A ghost source sends money and never receives any. In a clean financial system, most entities do both. In this network, the separation is stark.</p>
+
+<p><strong>Terminal sinks absorbing over $1 million:</strong></p>
+
+<div class="data-table-wrap">
+<table class="data-table">
+<thead>
+<tr><th>Entity</th><th class="right">Wires</th><th class="right">Total Received</th></tr>
+</thead>
+<tbody>
+<tr><td>Southern Trust Company Inc.</td><td class="mono">17</td><td class="mono">$151,499,980</td></tr>
+<tr><td>Jeffrey Epstein NOW/SuperNow</td><td class="mono">61</td><td class="mono">$83,372,037</td></tr>
+<tr><td>Southern Financial LLC (Checking)</td><td>5</td><td class="mono">$32,000,000</td></tr>
+<tr><td>The Haze Trust (Checking)</td><td>4</td><td class="mono">$21,760,686</td></tr>
+<tr><td>HEATHER_GRAY</td><td>3</td><td class="mono">$17,637,750</td></tr>
+<tr><td>SPINELLA</td><td>3</td><td class="mono">$17,637,750</td></tr>
+<tr><td>The 2017 Caterpillar Trust</td><td>3</td><td class="mono">$15,000,000</td></tr>
+<tr><td>ITO</td><td>8</td><td class="mono">$11,260,001</td></tr>
+<tr><td>BUTTERFLY_TRUST</td><td>4</td><td class="mono">$6,350,000</td></tr>
+<tr><td>Gratitude America Ltd.</td><td>4</td><td class="mono">$5,800,000</td></tr>
+<tr><td>RICHARD_JOSLIN</td><td>3</td><td class="mono">$3,567,000</td></tr>
+<tr><td>Coatue Enterprises LLC</td><td>4</td><td class="mono">$2,000,000</td></tr>
+</tbody>
+</table>
+</div>
+
+<p><strong>Ghost sources sending over $10 million</strong> — entities that appear only as senders:</p>
+
+<div class="data-table-wrap">
+<table class="data-table">
+<thead>
+<tr><th>Entity</th><th class="right">Wires</th><th class="right">Total Sent</th></tr>
+</thead>
+<tbody>
+<tr><td>The Haze Trust (DBAGNY)</td><td>8</td><td class="mono">$49,727,941</td></tr>
+<tr><td>Black Family Partners LP c/o Apollo</td><td>5</td><td class="mono">$36,000,000</td></tr>
+<tr><td>Leon & Debra Black</td><td>4</td><td class="mono">$35,500,000</td></tr>
+<tr><td>Leon & Debra Black c/o Apollo</td><td>4</td><td class="mono">$25,000,000</td></tr>
+<tr><td>Kellerhals Ferguson Kroblin PLLC</td><td>2</td><td class="mono">$23,075,000</td></tr>
+<tr><td>Narrow Holdings LLC c/o Elysium</td><td>1</td><td class="mono">$20,000,000</td></tr>
+<tr><td>ALEXANDERSON</td><td>6</td><td class="mono">$16,167,000</td></tr>
+<tr><td>Benjamin Edmond de Rothschild</td><td>1</td><td class="mono">$14,999,980</td></tr>
+<tr><td>Tudor Futures Fund</td><td>2</td><td class="mono">$13,503,941</td></tr>
+<tr><td>Sotheby's</td><td>1</td><td class="mono">$11,249,417</td></tr>
+<tr><td>Blockchain Capital IV LP</td><td>1</td><td class="mono">$10,500,000</td></tr>
+<tr><td>Black Family Partners LP</td><td>1</td><td class="mono">$10,000,000</td></tr>
+<tr><td>Edmond de Rothschild (Suisse) SA</td><td>1</td><td class="mono">$10,000,000</td></tr>
+</tbody>
+</table>
+</div>
+
+<p>Money enters from ghost sources and lands in terminal sinks. The network is built for one-way flow. Capital comes in from the outside and does not visibly return through the same channels.</p>
+
+
+<div class="section-break">
+  <div class="num">IX</div>
+  <h2>What I Can and Cannot Say</h2>
+  <div class="rule"></div>
+</div>
+
+<p>I can say this: five exhibits, five functions. Accumulation, distribution, operations, redistribution, legitimization. Deutsche Bank organized it this way. I just ran the numbers.</p>
+
+<p>I can say this: $221 million in, $54 million out. That's not an interpretation. That's arithmetic on 481 wires across multiple banking institutions.</p>
+
+<p>I can say this: two independent depositors from two different continents use the same paired-entity structure to fund the same shell company. The October 2013 round trip moves $8.5 million in and out of Southern Trust on the same day under different names. The Wechsler mirror transactions distribute $35.3 million in identical paired amounts to two terminal sinks. These are patterns. They repeat.</p>
+
+<p>I cannot say where the $167 million went. The production doesn't show me.</p>
+
+<p>I cannot say whether the asymmetry in the filing — comprehensive inflows, selective outflows — was intentional or accidental. Deutsche Bank chose what to put in those five exhibits. Other institutions chose what to include in their productions. I work with what they gave the court.</p>
+
+<p>I cannot say what any of these patterns mean in terms of legal liability. I'm conducting forensic financial analysis, not a prosecution.</p>
+
+<p>I report what the data shows. The data shows an architecture.</p>
+
+
+<div class="section-break">
+  <div class="num">X</div>
+  <h2>Source Data</h2>
+  <div class="rule"></div>
+</div>
+
+<p><strong>Source data:</strong> <a href="../data/master_wire_ledger_phase5i.json">Master Wire Ledger</a> · <a href="https://docs.google.com/spreadsheets/d/11lw0QjMZ-rYIjWesv5VG1YKts57ahPEm/edit?usp=sharing&ouid=103970896670138914877&rtpof=true&sd=true" target="_blank">Forensic Workbook</a> · <a href="https://randallscott25-star.github.io/epstein-forensic-finance/visualizations/shell_network.html" target="_blank">Interactive Network</a> · <a href="https://randallscott25-star.github.io/epstein-forensic-finance/visualizations/17_one_way_money.html" target="_blank">One-Way Money Visualization</a></p>
+
+<div class="data-table-wrap">
+<table class="data-table">
+<thead>
+<tr><th>Dataset</th><th>Records</th><th>Coverage</th></tr>
+</thead>
+<tbody>
+<tr><td><a href="https://github.com/Tweederrr/epstein-forensic-finance/tree/main/data" target="_blank">Master Wire Ledger (Phase 5I)</a></td><td>481 wires</td><td class="mono">$973,392,414</td></tr>
+<tr><td><a href="https://github.com/Tweederrr/epstein-forensic-finance/tree/main/data" target="_blank">Entity Classification Index</a></td><td>227 entities</td><td>43 EPSTEIN_ENTITY, 151 EXTERNAL_PARTY, 8 BANK/CUSTODIAN</td></tr>
+</tbody>
+</table>
+</div>
+
+
+<div class="section-break">
+  <div class="num">•</div>
+  <h2>EFTA Source Documents</h2>
+  <div class="rule"></div>
+</div>
+
+<div class="data-table-wrap">
+<table class="data-table">
+<thead>
+<tr><th>Document</th><th>Reference</th><th>Content</th></tr>
+</thead>
+<tbody>
+<tr><td class="bates"><a href="https://www.justice.gov/epstein/files/DataSet%208/EFTA00027019.pdf" target="_blank">EFTA00027019</a></td><td>Deutsche Bank SAR</td><td>Exhibits A–E: 122 wire transfers, $349M — source for five-layer architecture</td></tr>
+<tr><td class="bates"><a href="https://efts.uscourts.gov/efts-nyed/masterSearch/results?query=EFTA00584904" target="_blank">EFTA00584904</a></td><td>Consulting Agreement</td><td>Southern Trust Co. / Edmond de Rothschild Holding S.A., Oct 5 2015</td></tr>
+<tr><td class="bates"><a href="https://efts.uscourts.gov/efts-nyed/masterSearch/results?query=EFTA00582812" target="_blank">EFTA00582812</a></td><td>Retention Letter</td><td>Latham & Watkins / Kathryn Ruemmler engagement, Jul 31 2015</td></tr>
+</tbody>
+</table>
+</div>
+
+
+<div class="section-break">
+  <div class="num">•</div>
+  <h2>Forensic Workbook Tabs</h2>
+  <div class="rule"></div>
+</div>
+
+<div class="data-table-wrap">
+<table class="data-table">
+<thead>
+<tr><th>Tab</th><th>Link</th></tr>
+</thead>
+<tbody>
+<tr><td>Master Wire Ledger — Exhibit A (Black → Southern Trust)</td><td><a href="https://docs.google.com/spreadsheets/d/11lw0QjMZ-rYIjWesv5VG1YKts57ahPEm/edit?gid=2043824625#gid=2043824625" target="_blank">📊 Open Tab</a></td></tr>
+<tr><td>Entity P&L — Balance Sheet</td><td><a href="https://docs.google.com/spreadsheets/d/11lw0QjMZ-rYIjWesv5VG1YKts57ahPEm/edit?gid=1497389416#gid=1497389416" target="_blank">📊 Open Tab</a></td></tr>
+<tr><td>Shell Network — Full entity map</td><td><a href="https://docs.google.com/spreadsheets/d/11lw0QjMZ-rYIjWesv5VG1YKts57ahPEm/edit?gid=1040516313#gid=1040516313" target="_blank">📊 Open Tab</a></td></tr>
+<tr><td>Money Flow Patterns — Entity flows</td><td><a href="https://docs.google.com/spreadsheets/d/11lw0QjMZ-rYIjWesv5VG1YKts57ahPEm/edit?gid=2075093083#gid=2075093083" target="_blank">📊 Open Tab</a></td></tr>
+<tr><td>Shell Trust Hierarchy</td><td><a href="https://docs.google.com/spreadsheets/d/11lw0QjMZ-rYIjWesv5VG1YKts57ahPEm/edit?gid=1943952132#gid=1943952132" target="_blank">📊 Open Tab</a></td></tr>
+<tr><td>Executive Summary</td><td><a href="https://docs.google.com/spreadsheets/d/11lw0QjMZ-rYIjWesv5VG1YKts57ahPEm/edit?gid=1804001356#gid=1804001356" target="_blank">📊 Open Tab</a></td></tr>
+<tr><td>Methodology</td><td><a href="https://docs.google.com/spreadsheets/d/11lw0QjMZ-rYIjWesv5VG1YKts57ahPEm/edit?gid=1840632994#gid=1840632994" target="_blank">📊 Open Tab</a></td></tr>
+</tbody>
+</table>
+</div>
+
+
+<div class="section-break">
+  <div class="num">•</div>
+  <h2>Banking Institutions in Production</h2>
+  <div class="rule"></div>
+</div>
+
+<div class="data-table-wrap">
+<table class="data-table">
+<thead>
+<tr><th>Institution</th><th class="right">Wires</th><th class="right">Volume</th></tr>
+</thead>
+<tbody>
+<tr><td>Deutsche Bank</td><td class="mono">70</td><td class="mono">$164,397,517</td></tr>
+<tr><td>Bank of America</td><td class="mono">10</td><td class="mono">$9,950,141</td></tr>
+<tr><td>JPMorgan</td><td class="mono">16</td><td class="mono">$8,480,039</td></tr>
+<tr><td>Citibank</td><td class="mono">14</td><td class="mono">$6,336,432</td></tr>
+<tr><td>Morgan Stanley</td><td>4</td><td class="mono">$6,200,000</td></tr>
+<tr><td>BNY Mellon</td><td>5</td><td class="mono">$273,230</td></tr>
+<tr><td>HSBC</td><td>2</td><td class="mono">$116,656</td></tr>
+<tr><td>First Bank PR</td><td>2</td><td class="mono">$300,000</td></tr>
+</tbody>
+</table>
+</div>
+
+
+<div class="section-break">
+  <div class="num">•</div>
+  <h2>DOJ Datasets</h2>
+  <div class="rule"></div>
+</div>
+
+<p><strong>All 12 DOJ Datasets:</strong> <a href="https://www.justice.gov/epstein/doj-disclosures/data-set-1-files" target="_blank">1</a>, <a href="https://www.justice.gov/epstein/doj-disclosures/data-set-2-files" target="_blank">2</a>, <a href="https://www.justice.gov/epstein/doj-disclosures/data-set-3-files" target="_blank">3</a>, <a href="https://www.justice.gov/epstein/doj-disclosures/data-set-4-files" target="_blank">4</a>, <a href="https://www.justice.gov/epstein/doj-disclosures/data-set-5-files" target="_blank">5</a>, <a href="https://www.justice.gov/epstein/doj-disclosures/data-set-6-files" target="_blank">6</a>, <a href="https://www.justice.gov/epstein/doj-disclosures/data-set-7-files" target="_blank">7</a>, <a href="https://www.justice.gov/epstein/doj-disclosures/data-set-8-files" target="_blank">8</a>, <a href="https://www.justice.gov/epstein/doj-disclosures/data-set-9-files" target="_blank">9</a>, <a href="https://www.justice.gov/epstein/doj-disclosures/data-set-10-files" target="_blank">10</a>, <a href="https://www.justice.gov/epstein/doj-disclosures/data-set-11-files" target="_blank">11</a>, <a href="https://www.justice.gov/epstein/doj-disclosures/data-set-12-files" target="_blank">12</a></p>
+
+<p>All EFTA document IDs are from the public DOJ release under the Epstein Files Transparency Act at <a href="https://efts.gov" target="_blank">efts.gov</a>. Full methodology in <a href="../METHODOLOGY.md">METHODOLOGY.md</a>.</p>
+
+
+
+</div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <p>All amounts are (Unverified) automated extractions from DOJ EFTA documents released under the Epstein Files Transparency Act.<br>
+  Appearance in this analysis does not imply wrongdoing. This analysis identifies patterns for further investigation — it does not make legal conclusions.<br>
+  Source: <a href="https://github.com/randallscott25-star/epstein-forensic-finance" target="_blank">Epstein Financial Forensics Repository</a> · <a href="https://docs.google.com/spreadsheets/d/11lw0QjMZ-rYIjWesv5VG1YKts57ahPEm/edit?usp=sharing" target="_blank">Forensic Workbook</a></p>
+  
+</div>
+
+</body>
+</html>

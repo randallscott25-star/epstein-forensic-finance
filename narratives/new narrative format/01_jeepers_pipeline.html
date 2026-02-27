@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>N01 — The Jeepers Pipeline</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #0a1019;
+  --navy-mid: #111827;
+  --navy-light: #1a2332;
+  --gold: #c49a3c;
+  --gold-dim: #a07d2e;
+  --gold-bright: #dbb44c;
+  --ice: #7ba7c2;
+  --ice-dim: #5a8aa8;
+  --ice-bright: #9dc2d8;
+  --red-flag: #c44040;
+  --white: #e8e4dc;
+  --white-dim: #b0a898;
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'IBM Plex Sans', sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  background: var(--navy);
+  color: var(--white);
+  font-family: var(--font-body);
+  font-weight: 300;
+  line-height: 1.8;
+  overflow-x: hidden;
+}
+.container { max-width: 780px; margin: 0 auto; padding: 0 32px; }
+
+/* HEADER */
+.header {
+  text-align: center;
+  padding: 80px 40px 48px;
+  border-bottom: 1px solid rgba(196,154,60,0.15);
+}
+.header .label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 28px;
+}
+.header h1 {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 4.5vw, 48px);
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.2;
+  max-width: 800px;
+  margin: 0 auto 20px;
+}
+.header h1 em { color: var(--gold); font-style: italic; }
+.header .subtitle {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-style: italic;
+  color: var(--ice);
+  margin-bottom: 28px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.header .author {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: var(--white-dim);
+  margin-bottom: 8px;
+}
+.header .date {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--white-dim);
+}
+
+/* STATS BAR */
+.stats-bar {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  padding: 28px 40px;
+  border-bottom: 1px solid rgba(196,154,60,0.1);
+  flex-wrap: wrap;
+}
+.stat { text-align: center; }
+.stat .val {
+  font-family: var(--font-mono);
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--gold);
+}
+.stat .lbl {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--white-dim);
+  margin-top: 4px;
+}
+
+/* BODY TEXT */
+.narrative { padding: 48px 0 60px; }
+.narrative p {
+  font-size: 15px;
+  margin-bottom: 20px;
+  color: var(--white);
+}
+.narrative p.lead {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-style: italic;
+  color: var(--ice);
+  line-height: 1.7;
+  margin-bottom: 32px;
+}
+.narrative a {
+  color: var(--ice);
+  text-decoration: underline;
+  text-decoration-color: rgba(123,167,194,0.3);
+  text-underline-offset: 3px;
+  transition: text-decoration-color 0.2s;
+}
+.narrative a:hover { text-decoration-color: var(--ice); }
+
+/* SECTION BREAKS */
+.section-break {
+  text-align: center;
+  padding: 48px 0 40px;
+}
+.section-break .num {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 4px;
+  color: var(--gold-dim);
+  text-transform: uppercase;
+}
+.section-break h2 {
+  font-family: var(--font-display);
+  font-size: clamp(24px, 3vw, 34px);
+  font-weight: 600;
+  color: var(--white);
+  margin-top: 8px;
+}
+.section-break .rule {
+  width: 60px;
+  height: 1px;
+  background: var(--gold-dim);
+  margin: 16px auto 0;
+}
+
+/* CALLOUTS */
+.callout {
+  background: var(--navy-mid);
+  border-left: 3px solid var(--gold);
+  padding: 20px 24px;
+  margin: 28px 0;
+}
+.callout p { margin-bottom: 8px; font-size: 14px; }
+.callout p:last-child { margin-bottom: 0; }
+.callout .co-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.callout .co-figure {
+  font-family: var(--font-mono);
+  font-size: 18px;
+  color: var(--gold);
+}
+
+/* DATA TABLES */
+.data-table-wrap { margin: 28px 0; overflow-x: auto; }
+.data-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.data-table thead th {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--ice);
+  text-align: left;
+  padding: 10px 12px;
+  border-bottom: 2px solid rgba(196,154,60,0.2);
+}
+.data-table thead th.right { text-align: right; }
+.data-table tbody td {
+  padding: 8px 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  color: var(--white-dim);
+}
+.data-table tbody td.mono {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--gold);
+  text-align: right;
+}
+.data-table tbody td.bates {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--ice-dim);
+}
+.data-table tbody td.sar {
+  color: var(--red-flag);
+  font-family: var(--font-mono);
+  font-size: 11px;
+}
+.data-table tbody tr:hover { background: rgba(196,154,60,0.04); }
+.data-table tbody td strong { color: var(--white); font-weight: 500; }
+
+/* PULL QUOTES */
+.pull-quote {
+  text-align: center;
+  padding: 36px 20px;
+  margin: 32px 0;
+  border-top: 1px solid rgba(196,154,60,0.1);
+  border-bottom: 1px solid rgba(196,154,60,0.1);
+}
+.pull-quote p {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--gold);
+  line-height: 1.5;
+  font-style: italic;
+}
+
+/* VIZ LINK */
+.viz-link {
+  display: block;
+  text-align: center;
+  padding: 20px;
+  margin: 32px 0;
+  background: var(--navy-mid);
+  border: 1px solid rgba(196,154,60,0.2);
+  text-decoration: none;
+  transition: border-color 0.2s, background 0.2s;
+}
+.viz-link:hover { border-color: var(--gold); background: var(--navy-light); }
+.viz-link .vl-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: var(--gold);
+  text-transform: uppercase;
+}
+.viz-link .vl-title {
+  font-family: var(--font-display);
+  font-size: 18px;
+  color: var(--white);
+  margin-top: 4px;
+}
+.viz-link .vl-desc {
+  font-size: 12px;
+  color: var(--white-dim);
+  margin-top: 4px;
+}
+
+/* SOURCE DOCS SECTION */
+.source-section {
+  border-top: 2px solid rgba(196,154,60,0.15);
+  margin-top: 48px;
+  padding-top: 40px;
+}
+.source-section h3 {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--white);
+  margin-bottom: 20px;
+}
+.source-section h4 {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-top: 28px;
+  margin-bottom: 12px;
+}
+.source-section p {
+  font-size: 13px;
+  color: var(--white-dim);
+  margin-bottom: 12px;
+  line-height: 1.7;
+}
+
+/* CODE BLOCKS */
+.code-block {
+  background: var(--navy-mid);
+  border: 1px solid rgba(196,154,60,0.1);
+  padding: 16px 20px;
+  margin: 20px 0;
+  overflow-x: auto;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--ice);
+  line-height: 1.6;
+  white-space: pre;
+}
+
+/* FOOTER */
+.footer {
+  text-align: center;
+  padding: 48px 40px;
+  border-top: 1px solid rgba(196,154,60,0.1);
+}
+.footer p {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--white-dim);
+  line-height: 1.8;
+  max-width: 700px;
+  margin: 0 auto;
+}
+.footer .dedication {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-style: italic;
+  color: var(--gold);
+  margin-top: 20px;
+}
+.footer a {
+  color: var(--ice-dim);
+  text-decoration: none;
+}
+.footer a:hover { text-decoration: underline; }
+
+/* DATASET BAR */
+.dataset-bar {
+  text-align: center;
+  margin: 20px 0;
+  padding: 12px;
+  background: var(--navy-mid);
+  border: 1px solid rgba(196,154,60,0.08);
+}
+.dataset-bar a {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--ice-dim);
+  margin: 0 4px;
+  text-decoration: none;
+}
+.dataset-bar a:hover { color: var(--gold); text-decoration: underline; }
+.dataset-bar .ds-label {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: var(--gold-dim);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+/* WORKBOOK LINKS */
+.wb-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin: 16px 0;
+}
+.wb-link {
+  display: block;
+  padding: 10px 14px;
+  background: var(--navy-mid);
+  border: 1px solid rgba(196,154,60,0.1);
+  text-decoration: none;
+  transition: border-color 0.2s;
+}
+.wb-link:hover { border-color: var(--gold-dim); }
+.wb-link .wb-name {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--white);
+}
+.wb-link .wb-icon {
+  font-size: 14px;
+  margin-right: 4px;
+}
+
+@media(max-width:700px) {
+  .stats-bar { gap: 20px; }
+  .wb-grid { grid-template-columns: 1fr; }
+  .header { padding: 48px 20px 32px; }
+  .container { padding: 0 16px; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="label">Data Narrative 1 — Epstein Forensic Finance Project</div>
+  <h1>The Jeepers Pipeline</h1>
+  <div class="subtitle">$57,876,640 through a brokerage shell into personal checking — all documented, all dated, all on one exhibit.</div>
+  <div class="author">Randall Scott Taylor</div>
+  <div class="date">February 2026</div>
+</div>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stat"><div class="val">$57.9M</div><div class="lbl">Total Wires</div></div>
+  <div class="stat"><div class="val">24</div><div class="lbl">Wire Transfers</div></div>
+  <div class="stat"><div class="val">100%</div><div class="lbl">Dated</div></div>
+  <div class="stat"><div class="val">2013–2019</div><div class="lbl">Date Range</div></div>
+</div>
+
+<!-- BODY -->
+<div class="container">
+<div class="narrative">
+
+<p style="font-size:12px;color:var(--white-dim);font-style:italic;">All amounts are (Unverified) automated extractions from DOJ EFTA documents. Appearance in this analysis does not imply wrongdoing. See <a href="../docs/COMPLIANCE.md">COMPLIANCE.md</a> for professional standards framework.</p>
+
+
+<div class="section-break">
+  <div class="num">I</div>
+  <h2>What I Found</h2>
+  <div class="rule"></div>
+</div>
+
+<p class="lead">Jeepers Inc. was a Deutsche Bank brokerage entity. Its job: capitalize Jeffrey Epstein's personal NOW and SuperNow checking accounts. Between October 2013 and February 2019, I pulled 24 wire transfers totaling $57,876,640 (Unverified) flowing from Jeepers through its Deutsche Bank brokerage account into Epstein's personal checking.</p>
+
+<p>Every wire is on <strong>Exhibit C</strong> of the Deutsche Bank-SDNY production: "Capitalization of Jeffrey Epstein's NOW/SuperNow Accounts." Every wire has a bates stamp. Every wire has a date. This is the highest-confidence finding in the entire analysis.</p>
+
+
+<div class="section-break">
+  <div class="num">II</div>
+  <h2>The Pipeline</h2>
+  <div class="rule"></div>
+</div>
+
+<p>Same mechanism every time. Jeepers Inc. held assets in a Deutsche Bank brokerage account and periodically moved large sums into Epstein's personal NOW/SuperNow checking at the same bank. Three of the transfers moved money first from Jeepers Inc. (the entity) into the Jeepers Inc. DB Brokerage Account before the onward transfer — an internal staging step.</p>
+
+<div class="data-table-wrap">
+<table class="data-table">
+<thead>
+<tr><th>Date</th><th class="right">Amount (Unverified)</th><th>Bates Reference</th></tr>
+</thead>
+<tbody>
+<tr><td>Oct 11, 2013</td><td class="mono">$3,000,000</td><td class="bates">DB-SDNY-0002926</td></tr>
+<tr><td>Nov 14, 2013</td><td class="mono">$2,000,000</td><td class="bates">DB-SDNY-0002994</td></tr>
+<tr><td>Dec 20, 2013</td><td class="mono">$2,000,000</td><td class="bates">DB-SDNY-0003427</td></tr>
+<tr><td>Jan 30, 2014</td><td class="mono">$2,000,000</td><td class="bates">DB-SDNY-0003538</td></tr>
+<tr><td>Feb 20, 2014</td><td class="mono">$4,000,000</td><td class="bates">DB-SDNY-0003640</td></tr>
+<tr><td>Apr 11, 2014</td><td class="mono">$3,400,000</td><td class="bates">DB-SDNY-0003769</td></tr>
+<tr><td>May 6, 2014</td><td class="mono">$2,000,000</td><td class="bates">DB-SDNY-0003832</td></tr>
+<tr><td>Jun 11, 2014</td><td class="mono">$3,000,000</td><td class="bates">DB-SDNY-0003896</td></tr>
+<tr><td>Jul 16, 2014</td><td class="mono">$2,000,000</td><td class="bates">DB-SDNY-0003960</td></tr>
+<tr><td>Aug 19, 2014</td><td class="mono">$2,500,000</td><td class="bates">DB-SDNY-0004022</td></tr>
+<tr><td>Oct 2, 2014</td><td class="mono">$2,500,000</td><td class="bates">DB-SDNY-0004126</td></tr>
+<tr><td>Jan 5, 2015</td><td class="mono">$2,500,000</td><td class="bates">DB-SDNY-0004296</td></tr>
+<tr><td>Mar 13, 2015</td><td class="mono">$2,000,000</td><td class="bates">DB-SDNY-0004431</td></tr>
+<tr><td>Mar 27, 2015</td><td class="mono">$2,000,000</td><td class="bates">DB-SDNY-0004432</td></tr>
+<tr><td>Apr 16, 2015</td><td class="mono">$2,000,000</td><td class="bates">DB-SDNY-0004509</td></tr>
+<tr><td>May 18, 2015</td><td class="mono">$2,000,000</td><td class="bates">DB-SDNY-0004587</td></tr>
+<tr><td>Jun 12, 2015</td><td class="mono">$2,000,000</td><td class="bates">DB-SDNY-0004665</td></tr>
+<tr><td>Jul 9, 2015</td><td class="mono">$3,200,000</td><td class="bates">DB-SDNY-0004736</td></tr>
+<tr><td>Aug 20, 2015</td><td class="mono">$2,000,000</td><td class="bates">DB-SDNY-0004807</td></tr>
+<tr><td>Oct 7, 2015</td><td class="mono">$2,000,000</td><td class="bates">DB-SDNY-0004937</td></tr>
+<tr><td>Oct 29, 2015</td><td class="mono">$2,500,000</td><td class="bates">DB-SDNY-0004938</td></tr>
+<tr><td>Sep 9, 2016</td><td class="mono">$2,000,000</td><td class="bates">DB-SDNY-0005683</td></tr>
+<tr><td>Oct 26, 2016</td><td class="mono">$2,000,000</td><td class="bates">DB-SDNY-0005748</td></tr>
+<tr><td>Feb 7, 2019</td><td class="mono">$3,276,640</td><td class="bates">DB-SDNY-0008016</td></tr>
+</tbody>
+</table>
+</div>
+
+<p><strong>Total: $57,876,640 (Unverified) across 24 wires.</strong></p>
+
+
+<div class="section-break">
+  <div class="num">III</div>
+  <h2>What It Means</h2>
+  <div class="rule"></div>
+</div>
+
+<p>Look at the cadence. From October 2013 through October 2015, transfers arrived like clockwork — monthly or near-monthly, in round amounts between $2M and $4M. Brokerage positions liquidated into cash on a schedule.</p>
+
+<p>The bates numbers run sequential (DB-SDNY-0002926 through DB-SDNY-0008016), which tells me these were produced as a coherent set from Deutsche Bank's records. No gaps in the exhibit — I got every wire on Exhibit C that involved Jeepers Inc.</p>
+
+<p>After October 2015, the cadence breaks. Two transfers in late 2016, then nothing until a single $3,276,640 transfer on February 7, 2019 — five months before Epstein's arrest on July 6, 2019.</p>
+
+
+<div class="section-break">
+  <div class="num">IV</div>
+  <h2>What I Can't Determine</h2>
+  <div class="rule"></div>
+</div>
+
+<p>This analysis traces the pipeline — money flowing from Jeepers Inc. brokerage into Epstein's personal checking. What I cannot determine from the EFTA corpus:</p>
+
+<p>- <strong>What funded Jeepers Inc.</strong> The brokerage account was the intermediary, not the origin. The upstream source of these assets is not visible in the documents I extracted.</p>
+
+<p>- <strong>What the NOW/SuperNow accounts paid for.</strong> The outbound spending from Epstein's personal checking is a separate question requiring different document analysis.</p>
+
+<p>- <strong>Whether Jeepers Inc. had other functions.</strong> I only see the wire transfers. Jeepers may have held other positions or served other purposes within the financial network.</p>
+
+
+<div class="section-break">
+  <div class="num">V</div>
+  <h2>OCR Note</h2>
+  <div class="rule"></div>
+</div>
+
+<p>Several bates stamps show OCR artifacts in entity names: "Jee ers Inc." appears in place of "Jeepers Inc." at DB-SDNY-0003427, 0004431, 0004432, 0004509, 0004587, 0005683. Entity normalization resolved these to the correct name. The amounts and dates were unaffected.</p>
+
+<p style="font-size:12px;color:var(--white-dim);font-style:italic;">Source: DOJ EFTA Document Release, Deutsche Bank-SDNY Production, Exhibit C. All data extracted via automated pipeline; no manual adjustments to amounts or dates. 24/24 entries dated (100%). Supporting data: <a href="https://docs.google.com/spreadsheets/d/11lw0QjMZ-rYIjWesv5VG1YKts57ahPEm/edit?usp=sharing&ouid=103970896670138914877&rtpof=true&sd=true" target="_blank">Forensic Workbook (view-only)</a>. This finding appears in the <a href="../data/master_wire_ledger_phase5i.json">master wire ledger</a> published with this repository.</p>
+
+<div class="source-section">
+
+<h3>Source Documents & Exhibits</h3>
+
+<h4>Primary Exhibit</h4>
+
+<p><strong>Exhibit C</strong> (<a href="https://www.justice.gov/epstein/files/DataSet%208/EFTA00027019.pdf" target="_blank">EFTA00027019</a>): Jeepers Inc. brokerage account activity at Deutsche Bank, 2013–2019.</p>
+
+<h4>Wire Ledger Cross-Reference</h4>
+
+<p>24 wires verified, $57,876,640 total. All from Exhibit C.</p>
+
+<div class="data-table-wrap">
+<table class="data-table">
+<thead>
+<tr><th>Wire</th><th class="right">Amount</th><th>Date</th></tr>
+</thead>
+<tbody>
+<tr><td>Jeepers Inc. (DB Brokerage) → Jeffrey Epstein NOW/SuperNow Account</td><td class="mono">$3,000,000</td><td>2013-10-11</td></tr>
+<tr><td>Jeepers Inc. (DB Brokerage) → Jeffrey Epstein NOW/SuperNow Account</td><td class="mono">$2,000,000</td><td>2013-11-14</td></tr>
+<tr><td>Jeepers Inc. → Jeepers Inc. (DB Brokerage)</td><td class="mono">$2,000,000</td><td>2013-12-20</td></tr>
+<tr><td><em>(21 additional wires — see Master Wire Ledger, Exhibit C)</em></td><td></td><td></td></tr>
+</tbody>
+</table>
+</div>
+
+<h4>Corpus Statistics Source</h4>
+
+<p><strong>Method</strong>: Entity co-occurrence analysis across files containing "Jeepers" entity variants.</p>
+
+<p><strong>Database</strong>: 1,476,377 files, 11.4M extracted entities (see <a href="../docs/METHODOLOGY.md">METHODOLOGY.md</a>).</p>
+
+<h4>Scope Note</h4>
+
+<p>Wire data sourced exclusively from Deutsche Bank production (Exhibits A–E). Jeepers Inc. also co-occurs with Financial Trust Company (125 shared files), which banked primarily at Bear Stearns — indicating additional financial activity outside this production's scope. See N11 (Shell Map) and N12 (Bear Stearns) for multi-bank context.</p>
+
+<h4>📄 EFTA Source Documents</h4>
+
+<p style="font-size:12px;color:var(--white-dim);font-style:italic;">Click any document ID to open the DOJ PDF in a new tab. Click a Dataset number to browse neighboring files.</p>
+
+<div class="data-table-wrap">
+<table class="data-table">
+<thead>
+<tr><th>Document</th><th>Source</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td class="bates"><a href="https://www.justice.gov/epstein/files/DataSet%208/EFTA00027019.pdf" target="_blank">EFTA00027019</a></td><td>DS8</td><td>Deutsche Bank-SDNY Production: Exhibit C — Capitalization of Epstein's NOW/SuperNow Accounts</td></tr>
+<tr><td><a href="https://www.justice.gov/epstein/doj-disclosures/data-set-8-files" target="_blank">Dataset 8</a></td><td>DS8</td><td>Browse neighboring documents in Dataset 8</td></tr>
+</tbody>
+</table>
+</div>
+
+<h4>📊 Verify in Forensic Workbook</h4>
+
+<div class="data-table-wrap">
+<table class="data-table">
+<thead>
+<tr><th>Exhibit / Analysis</th><th>View in Workbook</th></tr>
+</thead>
+<tbody>
+<tr><td>Master Wire Ledger — Exhibit C (Jeepers wires)</td><td><a href="https://docs.google.com/spreadsheets/d/11lw0QjMZ-rYIjWesv5VG1YKts57ahPEm/edit?gid=2043824625#gid=2043824625" target="_blank">📊 Open Tab</a></td></tr>
+<tr><td>Shell Network — Jeepers co-occurrence</td><td><a href="https://docs.google.com/spreadsheets/d/11lw0QjMZ-rYIjWesv5VG1YKts57ahPEm/edit?gid=1040516313#gid=1040516313" target="_blank">📊 Open Tab</a></td></tr>
+<tr><td>Entity P&L — Jeepers Inc.</td><td><a href="https://docs.google.com/spreadsheets/d/11lw0QjMZ-rYIjWesv5VG1YKts57ahPEm/edit?gid=1497389416#gid=1497389416" target="_blank">📊 Open Tab</a></td></tr>
+<tr><td>Methodology</td><td><a href="https://docs.google.com/spreadsheets/d/11lw0QjMZ-rYIjWesv5VG1YKts57ahPEm/edit?gid=1840632994#gid=1840632994" target="_blank">📊 Open Tab</a></td></tr>
+</tbody>
+</table>
+</div>
+
+<h4>How to Verify</h4>
+
+<p>All EFTA document IDs are from the public DOJ release under the Epstein Files Transparency Act at <a href="https://efts.gov" target="_blank">efts.gov</a>. Wire data from <a href="https://www.justice.gov/epstein/files/DataSet%208/EFTA00027019.pdf" target="_blank">EFTA00027019</a> Exhibit C. Full methodology in <a href="../docs/METHODOLOGY.md">METHODOLOGY.md</a>.</p>
+
+</div>
+
+</div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <p>All amounts are (Unverified) automated extractions from DOJ EFTA documents released under the Epstein Files Transparency Act.<br>
+  Appearance in this analysis does not imply wrongdoing. This analysis identifies patterns for further investigation — it does not make legal conclusions.<br>
+  Source: <a href="https://github.com/randallscott25-star/epstein-forensic-finance" target="_blank">Epstein Financial Forensics Repository</a> · <a href="https://docs.google.com/spreadsheets/d/11lw0QjMZ-rYIjWesv5VG1YKts57ahPEm/edit?usp=sharing" target="_blank">Forensic Workbook</a></p>
+  
+</div>
+
+</body>
+</html>

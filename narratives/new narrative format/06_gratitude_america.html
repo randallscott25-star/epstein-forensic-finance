@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>N06 — Gratitude America</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #0a1019;
+  --navy-mid: #111827;
+  --navy-light: #1a2332;
+  --gold: #c49a3c;
+  --gold-dim: #a07d2e;
+  --gold-bright: #dbb44c;
+  --ice: #7ba7c2;
+  --ice-dim: #5a8aa8;
+  --ice-bright: #9dc2d8;
+  --red-flag: #c44040;
+  --white: #e8e4dc;
+  --white-dim: #b0a898;
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'IBM Plex Sans', sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  background: var(--navy);
+  color: var(--white);
+  font-family: var(--font-body);
+  font-weight: 300;
+  line-height: 1.8;
+  overflow-x: hidden;
+}
+.container { max-width: 780px; margin: 0 auto; padding: 0 32px; }
+
+/* HEADER */
+.header {
+  text-align: center;
+  padding: 80px 40px 48px;
+  border-bottom: 1px solid rgba(196,154,60,0.15);
+}
+.header .label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 28px;
+}
+.header h1 {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 4.5vw, 48px);
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.2;
+  max-width: 800px;
+  margin: 0 auto 20px;
+}
+.header h1 em { color: var(--gold); font-style: italic; }
+.header .subtitle {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-style: italic;
+  color: var(--ice);
+  margin-bottom: 28px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.header .author {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: var(--white-dim);
+  margin-bottom: 8px;
+}
+.header .date {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--white-dim);
+}
+
+/* STATS BAR */
+.stats-bar {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  padding: 28px 40px;
+  border-bottom: 1px solid rgba(196,154,60,0.1);
+  flex-wrap: wrap;
+}
+.stat { text-align: center; }
+.stat .val {
+  font-family: var(--font-mono);
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--gold);
+}
+.stat .lbl {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--white-dim);
+  margin-top: 4px;
+}
+
+/* BODY TEXT */
+.narrative { padding: 48px 0 60px; }
+.narrative p {
+  font-size: 15px;
+  margin-bottom: 20px;
+  color: var(--white);
+}
+.narrative p.lead {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-style: italic;
+  color: var(--ice);
+  line-height: 1.7;
+  margin-bottom: 32px;
+}
+.narrative a {
+  color: var(--ice);
+  text-decoration: underline;
+  text-decoration-color: rgba(123,167,194,0.3);
+  text-underline-offset: 3px;
+  transition: text-decoration-color 0.2s;
+}
+.narrative a:hover { text-decoration-color: var(--ice); }
+
+/* SECTION BREAKS */
+.section-break {
+  text-align: center;
+  padding: 48px 0 40px;
+}
+.section-break .num {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 4px;
+  color: var(--gold-dim);
+  text-transform: uppercase;
+}
+.section-break h2 {
+  font-family: var(--font-display);
+  font-size: clamp(24px, 3vw, 34px);
+  font-weight: 600;
+  color: var(--white);
+  margin-top: 8px;
+}
+.section-break .rule {
+  width: 60px;
+  height: 1px;
+  background: var(--gold-dim);
+  margin: 16px auto 0;
+}
+
+/* CALLOUTS */
+.callout {
+  background: var(--navy-mid);
+  border-left: 3px solid var(--gold);
+  padding: 20px 24px;
+  margin: 28px 0;
+}
+.callout p { margin-bottom: 8px; font-size: 14px; }
+.callout p:last-child { margin-bottom: 0; }
+.callout .co-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.callout .co-figure {
+  font-family: var(--font-mono);
+  font-size: 18px;
+  color: var(--gold);
+}
+
+/* DATA TABLES */
+.data-table-wrap { margin: 28px 0; overflow-x: auto; }
+.data-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.data-table thead th {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--ice);
+  text-align: left;
+  padding: 10px 12px;
+  border-bottom: 2px solid rgba(196,154,60,0.2);
+}
+.data-table thead th.right { text-align: right; }
+.data-table tbody td {
+  padding: 8px 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  color: var(--white-dim);
+}
+.data-table tbody td.mono {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--gold);
+  text-align: right;
+}
+.data-table tbody td.bates {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--ice-dim);
+}
+.data-table tbody td.sar {
+  color: var(--red-flag);
+  font-family: var(--font-mono);
+  font-size: 11px;
+}
+.data-table tbody tr:hover { background: rgba(196,154,60,0.04); }
+.data-table tbody td strong { color: var(--white); font-weight: 500; }
+
+/* PULL QUOTES */
+.pull-quote {
+  text-align: center;
+  padding: 36px 20px;
+  margin: 32px 0;
+  border-top: 1px solid rgba(196,154,60,0.1);
+  border-bottom: 1px solid rgba(196,154,60,0.1);
+}
+.pull-quote p {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--gold);
+  line-height: 1.5;
+  font-style: italic;
+}
+
+/* VIZ LINK */
+.viz-link {
+  display: block;
+  text-align: center;
+  padding: 20px;
+  margin: 32px 0;
+  background: var(--navy-mid);
+  border: 1px solid rgba(196,154,60,0.2);
+  text-decoration: none;
+  transition: border-color 0.2s, background 0.2s;
+}
+.viz-link:hover { border-color: var(--gold); background: var(--navy-light); }
+.viz-link .vl-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: var(--gold);
+  text-transform: uppercase;
+}
+.viz-link .vl-title {
+  font-family: var(--font-display);
+  font-size: 18px;
+  color: var(--white);
+  margin-top: 4px;
+}
+.viz-link .vl-desc {
+  font-size: 12px;
+  color: var(--white-dim);
+  margin-top: 4px;
+}
+
+/* SOURCE DOCS SECTION */
+.source-section {
+  border-top: 2px solid rgba(196,154,60,0.15);
+  margin-top: 48px;
+  padding-top: 40px;
+}
+.source-section h3 {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--white);
+  margin-bottom: 20px;
+}
+.source-section h4 {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-top: 28px;
+  margin-bottom: 12px;
+}
+.source-section p {
+  font-size: 13px;
+  color: var(--white-dim);
+  margin-bottom: 12px;
+  line-height: 1.7;
+}
+
+/* CODE BLOCKS */
+.code-block {
+  background: var(--navy-mid);
+  border: 1px solid rgba(196,154,60,0.1);
+  padding: 16px 20px;
+  margin: 20px 0;
+  overflow-x: auto;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--ice);
+  line-height: 1.6;
+  white-space: pre;
+}
+
+/* FOOTER */
+.footer {
+  text-align: center;
+  padding: 48px 40px;
+  border-top: 1px solid rgba(196,154,60,0.1);
+}
+.footer p {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--white-dim);
+  line-height: 1.8;
+  max-width: 700px;
+  margin: 0 auto;
+}
+.footer .dedication {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-style: italic;
+  color: var(--gold);
+  margin-top: 20px;
+}
+.footer a {
+  color: var(--ice-dim);
+  text-decoration: none;
+}
+.footer a:hover { text-decoration: underline; }
+
+/* DATASET BAR */
+.dataset-bar {
+  text-align: center;
+  margin: 20px 0;
+  padding: 12px;
+  background: var(--navy-mid);
+  border: 1px solid rgba(196,154,60,0.08);
+}
+.dataset-bar a {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--ice-dim);
+  margin: 0 4px;
+  text-decoration: none;
+}
+.dataset-bar a:hover { color: var(--gold); text-decoration: underline; }
+.dataset-bar .ds-label {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: var(--gold-dim);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+/* WORKBOOK LINKS */
+.wb-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin: 16px 0;
+}
+.wb-link {
+  display: block;
+  padding: 10px 14px;
+  background: var(--navy-mid);
+  border: 1px solid rgba(196,154,60,0.1);
+  text-decoration: none;
+  transition: border-color 0.2s;
+}
+.wb-link:hover { border-color: var(--gold-dim); }
+.wb-link .wb-name {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--white);
+}
+.wb-link .wb-icon {
+  font-size: 14px;
+  margin-right: 4px;
+}
+
+@media(max-width:700px) {
+  .stats-bar { gap: 20px; }
+  .wb-grid { grid-template-columns: 1fr; }
+  .header { padding: 48px 20px 32px; }
+  .container { padding: 0 16px; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="label">Data Narrative 6 — Epstein Forensic Finance Project</div>
+  <h1>Gratitude America</h1>
+  <div class="subtitle">A charity that sent 88% of its outflows to investment accounts and 7% to actual charitable purposes.</div>
+  <div class="author">Randall Scott Taylor</div>
+  <div class="date">February 2026</div>
+</div>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stat"><div class="val">$11.75M</div><div class="lbl">To Investments</div></div>
+  <div class="stat"><div class="val">$453K</div><div class="lbl">To Charity</div></div>
+  <div class="stat"><div class="val">88%</div><div class="lbl">Investment Ratio</div></div>
+  <div class="stat"><div class="val">Exhibit E</div><div class="lbl">Source</div></div>
+</div>
+
+<!-- BODY -->
+<div class="container">
+<div class="narrative">
+
+<p style="font-size:12px;color:var(--white-dim);font-style:italic;">All amounts are (Unverified) automated extractions from DOJ EFTA documents. Appearance in this analysis does not imply wrongdoing. See <a href="../docs/COMPLIANCE.md">COMPLIANCE.md</a> for professional standards framework.</p>
+
+
+<div class="section-break">
+  <div class="num">I</div>
+  <h2>What I Found</h2>
+  <div class="rule"></div>
+</div>
+
+<p class="lead">Gratitude America was a charity — on paper. I pulled 20 wire transfers totaling $13,080,518 (Unverified). Where'd the money go? Investment and bank accounts got almost everything. Actual charity got almost nothing.</p>
+
+<p>It's on <strong>Exhibit E</strong> of the Deutsche Bank-SDNY production.</p>
+
+
+<div class="section-break">
+  <div class="num">II</div>
+  <h2>Where the Money Went</h2>
+  <div class="rule"></div>
+</div>
+
+
+<div class="section-break">
+  <div class="num">•</div>
+  <h2>Investment and Banking Transfers</h2>
+  <div class="rule"></div>
+</div>
+
+<div class="data-table-wrap">
+<table class="data-table">
+<thead>
+<tr><th>Date</th><th>To</th><th class="right">Amount (Unverified)</th><th>Source</th></tr>
+</thead>
+<tbody>
+<tr><td>Mar 2, 2016</td><td>Gratitude America Ltd. (Morgan Stanley)</td><td class="mono">$5,000,000</td><td>Exhibit E</td></tr>
+<tr><td>Mar 2, 2016</td><td>Citibank</td><td class="mono">$5,000,000</td><td>Phase 25 recovery</td></tr>
+<tr><td>Jul 19, 2016</td><td>Gratitude America Ltd. (Morgan Stanley)</td><td class="mono">$500,000</td><td>Exhibit E</td></tr>
+<tr><td>Jul 19, 2016</td><td>Citibank</td><td class="mono">$500,000</td><td>Phase 25 recovery</td></tr>
+<tr><td>Jan 21, 2016</td><td>Gratitude America Ltd. (First Bank)</td><td class="mono">$50,000</td><td>Exhibit E</td></tr>
+<tr><td>Apr 6, 2016</td><td>Gratitude America Ltd. (First Bank)</td><td class="mono">$250,000</td><td>Exhibit E</td></tr>
+<tr><td>Jan 20, 2017</td><td>Citibank</td><td class="mono">$200,000</td><td>Phase 25 recovery</td></tr>
+<tr><td>Mar 6, 2017</td><td>Citibank</td><td class="mono">$250,000</td><td>Phase 25 recovery</td></tr>
+</tbody>
+</table>
+</div>
+
+<p><strong>Total to investment/banking: $11,750,000 (Unverified)</strong></p>
+
+<p>The $5M transfer on March 2, 2016 is the single largest disbursement — sent from the Gratitude America MMDA (Money Market Deposit Account) to a Morgan Stanley investment account held by "Gratitude America Ltd." The same day, $5M moved to Citibank. This was not a charitable grant. It was an asset transfer between financial accounts.</p>
+
+
+<div class="section-break">
+  <div class="num">•</div>
+  <h2>Actual Charitable Disbursements</h2>
+  <div class="rule"></div>
+</div>
+
+<div class="data-table-wrap">
+<table class="data-table">
+<thead>
+<tr><th>Date</th><th>To</th><th class="right">Amount (Unverified)</th><th>Source</th></tr>
+</thead>
+<tbody>
+<tr><td>Jan 29, 2016</td><td>Melanoma Research Alliance Foundation</td><td class="mono">$225,000</td><td>Exhibit E</td></tr>
+<tr><td>Jan 7, 2016</td><td>Bruce & Marsha Moskowitz Foundation</td><td class="mono">$50,000</td><td>Exhibit E</td></tr>
+<tr><td>Jul 14, 2016</td><td>Bruce & Marsha Moskowitz Foundation</td><td class="mono">$50,000</td><td>Exhibit E</td></tr>
+<tr><td>Dec 11, 2017</td><td>Bruce & Marsha Moskowitz Foundation</td><td class="mono">$50,000</td><td>Exhibit E</td></tr>
+<tr><td>Oct 2, 2017</td><td>Cancer Research Wellness Institute</td><td class="mono">$25,000</td><td>Exhibit E</td></tr>
+<tr><td>Feb 28, 2018</td><td>Cancer Research Wellness Institute</td><td class="mono">$25,000</td><td>Exhibit E</td></tr>
+<tr><td>Apr 2, 2018</td><td>NPO Baleto Teatras</td><td class="mono">$18,493</td><td>Exhibit E</td></tr>
+<tr><td>Sep 17, 2018</td><td>VSJ Baleto Teatras</td><td class="mono">$10,000</td><td>Exhibit E</td></tr>
+</tbody>
+</table>
+</div>
+
+<p><strong>Total charitable: $453,493 (Unverified)</strong></p>
+
+
+<div class="section-break">
+  <div class="num">III</div>
+  <h2>Where the Money Came From</h2>
+  <div class="rule"></div>
+</div>
+
+<div class="data-table-wrap">
+<table class="data-table">
+<thead>
+<tr><th>Date</th><th>From</th><th class="right">Amount (Unverified)</th></tr>
+</thead>
+<tbody>
+<tr><td>Oct 11, 2013</td><td>Deutsche Bank</td><td class="mono">$200,000</td></tr>
+<tr><td>Jul 19, 2016</td><td>Deutsche Bank</td><td class="mono">$500,000</td></tr>
+<tr><td>Undated</td><td>Deutsche Bank</td><td class="mono">$176,049</td></tr>
+<tr><td>Undated</td><td>Deutsche Bank</td><td class="mono">$976</td></tr>
+</tbody>
+</table>
+</div>
+
+<p><strong>Total visible inflows from Deutsche Bank: $877,025 (Unverified)</strong></p>
+
+<p>Visible inflows: $877K. Visible outflows: $12.2M. The gap means Gratitude America's main funding came from sources I didn't capture in the wires — probably internal transfers, investment returns, or deposits predating the document window.</p>
+
+
+<div class="section-break">
+  <div class="num">IV</div>
+  <h2>The Ratio</h2>
+  <div class="rule"></div>
+</div>
+
+<p>Based on the wire transfers I extracted:</p>
+
+<div class="data-table-wrap">
+<table class="data-table">
+<thead>
+<tr><th>Category</th><th class="right">Amount (Unverified)</th><th class="right">% of Outflows</th></tr>
+</thead>
+<tbody>
+<tr><td>Investment/banking accounts</td><td class="mono">$11,750,000</td><td>88.4%</td></tr>
+<tr><td>Charitable grants</td><td class="mono">$453,493</td><td>3.4%</td></tr>
+<tr><td>Other/unclassified</td><td class="mono">$877,025</td><td>—</td></tr>
+</tbody>
+</table>
+</div>
+
+<p><strong>For every dollar sent to charity, $26 went to investment accounts.</strong></p>
+
+<p>The three charitable recipients — Melanoma Research Alliance Foundation, Bruce & Marsha Moskowitz Foundation, and Cancer Research Wellness Institute — received between $10,000 and $225,000 each. The Lithuanian ballet entities (NPO Baleto Teatras and VSJ Baleto Teatras) received a combined $28,493.</p>
+
+
+<div class="section-break">
+  <div class="num">V</div>
+  <h2>The Morgan Stanley Account</h2>
+  <div class="rule"></div>
+</div>
+
+<p>The largest single destination for Gratitude America's outflows was "Gratitude America Ltd." at Morgan Stanley — receiving $5,500,000 across 2 wires. This is a separate legal entity from the MMDA account that held the charity's liquid assets. The relationship between "Gratitude America MMDA" (the Deutsche Bank money market account) and "Gratitude America Ltd." (the Morgan Stanley investment vehicle) warrants further examination.</p>
+
+
+<div class="section-break">
+  <div class="num">VI</div>
+  <h2>What I Can't Determine</h2>
+  <div class="rule"></div>
+</div>
+
+<p>- <strong>Gratitude America's full financial picture.</strong> I see wire transfers, not bank statements. The charity may have had additional grant-making through checks, ACH transfers, or other mechanisms not captured in wire data.</p>
+
+<p>- <strong>The investment returns.</strong> If the Morgan Stanley account generated returns that were later distributed to charitable purposes, the effective charitable ratio would be higher than what the wire data alone shows.</p>
+
+<p>- <strong>Tax filings.</strong> IRS Form 990 filings (if they exist) would show the complete picture of Gratitude America's revenues, expenses, and charitable distributions. That analysis is outside the scope of wire extraction.</p>
+
+<p>- <strong>The Lithuanian ballet connection.</strong> Two small transfers to ballet-related entities in Lithuania ($18,493 and $10,000) are an unusual pattern for a U.S.-based charity. I note the pattern without interpreting it.</p>
+
+<p style="font-size:12px;color:var(--white-dim);font-style:italic;">Source: DOJ EFTA Document Release, Deutsche Bank-SDNY Production, Exhibit E. All data extracted via automated pipeline. Supporting data: <a href="https://docs.google.com/spreadsheets/d/11lw0QjMZ-rYIjWesv5VG1YKts57ahPEm/edit?usp=sharing&ouid=103970896670138914877&rtpof=true&sd=true" target="_blank">Forensic Workbook (view-only)</a>. This finding appears in the <a href="../data/master_wire_ledger_phase5i.json">master wire ledger</a> published with this repository.</p>
+
+<div class="source-section">
+
+<h3>Source Documents & Exhibits</h3>
+
+<h4>Primary Exhibit</h4>
+
+<p><strong>Exhibit E</strong> (<a href="https://www.justice.gov/epstein/files/DataSet%208/EFTA00027019.pdf" target="_blank">EFTA00027019</a>): Gratitude America MMDA disbursements plus expansion wires.</p>
+
+<h4>Wire Ledger Cross-Reference</h4>
+
+<p>20 wires total (12 from Exhibit E, 8 expansion), $13,080,518 combined.</p>
+
+<p><strong>Exhibit E wires (12):</strong></p>
+
+<div class="data-table-wrap">
+<table class="data-table">
+<thead>
+<tr><th>Wire</th><th class="right">Amount</th><th>Date</th></tr>
+</thead>
+<tbody>
+<tr><td>Gratitude America MMDA → Bruce & Marsha Moskowitz Foundation</td><td class="mono">$50,000</td><td>2016-01-07</td></tr>
+<tr><td>Gratitude America MMDA → Gratitude America Ltd. (First Bank PR)</td><td class="mono">$50,000</td><td>2016-01-21</td></tr>
+<tr><td>Gratitude America MMDA → Melanoma Research Alliance Foundation</td><td class="mono">$225,000</td><td>2016-01-29</td></tr>
+<tr><td>Gratitude America MMDA → Gratitude America Ltd. (Morgan Stanley/Citibank)</td><td class="mono">$5,000,000</td><td>2016-03-02</td></tr>
+<tr><td>Gratitude America MMDA → Gratitude America Ltd. (First Bank PR)</td><td class="mono">$250,000</td><td>2016-04-06</td></tr>
+<tr><td>Gratitude America MMDA → Bruce & Marsha Moskowitz Foundation</td><td class="mono">$50,000</td><td>2016-07-14</td></tr>
+<tr><td>Gratitude America MMDA → Gratitude America Ltd. (Morgan Stanley/Citibank)</td><td class="mono">$500,000</td><td>2016-07-19</td></tr>
+<tr><td>Gratitude America MMDA → Cancer Research Wellness Institute</td><td class="mono">$25,000</td><td>2017-10-02</td></tr>
+<tr><td>Gratitude America MMDA → Bruce & Marsha Moskowitz Foundation</td><td class="mono">$50,000</td><td>2017-12-11</td></tr>
+<tr><td>Gratitude America MMDA → Cancer Research Wellness Institute</td><td class="mono">$25,000</td><td>2018-02-28</td></tr>
+<tr><td>Gratitude America MMDA → NPO Baleto Teatras</td><td class="mono">$18,493</td><td>2018-04-02</td></tr>
+<tr><td>Gratitude America MMDA → VSJ Baleto Teatras</td><td class="mono">$10,000</td><td>2018-09-17</td></tr>
+</tbody>
+</table>
+</div>
+
+<h4>Corpus Statistics Source</h4>
+
+<p><strong>Method</strong>: Entity co-occurrence analysis across 209 files containing "Gratitude America."</p>
+
+<p><strong>Database</strong>: 1,476,377 files, 11.4M extracted entities (see <a href="../docs/METHODOLOGY.md">METHODOLOGY.md</a>).</p>
+
+<h4>📄 EFTA Source Documents</h4>
+
+<p style="font-size:12px;color:var(--white-dim);font-style:italic;">Click any document ID to open the DOJ PDF in a new tab. Click a Dataset number to browse neighboring files.</p>
+
+<div class="data-table-wrap">
+<table class="data-table">
+<thead>
+<tr><th>Document</th><th>Source</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td class="bates"><a href="https://www.justice.gov/epstein/files/DataSet%208/EFTA00027019.pdf" target="_blank">EFTA00027019</a></td><td>DS8</td><td>Deutsche Bank-SDNY Production: Exhibit E — Gratitude America Ltd. wire activity</td></tr>
+<tr><td><a href="https://www.justice.gov/epstein/doj-disclosures/data-set-8-files" target="_blank">Dataset 8</a></td><td>DS8</td><td>Browse neighboring documents in Dataset 8</td></tr>
+</tbody>
+</table>
+</div>
+
+<h4>📊 Verify in Forensic Workbook</h4>
+
+<div class="data-table-wrap">
+<table class="data-table">
+<thead>
+<tr><th>Exhibit / Analysis</th><th>View in Workbook</th></tr>
+</thead>
+<tbody>
+<tr><td>Master Wire Ledger — Exhibit E (Gratitude America)</td><td><a href="https://docs.google.com/spreadsheets/d/11lw0QjMZ-rYIjWesv5VG1YKts57ahPEm/edit?gid=2043824625#gid=2043824625" target="_blank">📊 Open Tab</a></td></tr>
+<tr><td>Entity P&L — Gratitude America</td><td><a href="https://docs.google.com/spreadsheets/d/11lw0QjMZ-rYIjWesv5VG1YKts57ahPEm/edit?gid=1497389416#gid=1497389416" target="_blank">📊 Open Tab</a></td></tr>
+<tr><td>Shell Network — Gratitude America co-occurrence</td><td><a href="https://docs.google.com/spreadsheets/d/11lw0QjMZ-rYIjWesv5VG1YKts57ahPEm/edit?gid=1040516313#gid=1040516313" target="_blank">📊 Open Tab</a></td></tr>
+<tr><td>Methodology</td><td><a href="https://docs.google.com/spreadsheets/d/11lw0QjMZ-rYIjWesv5VG1YKts57ahPEm/edit?gid=1840632994#gid=1840632994" target="_blank">📊 Open Tab</a></td></tr>
+</tbody>
+</table>
+</div>
+
+<h4>How to Verify</h4>
+
+<p>EFTA document IDs from public DOJ release at <a href="https://efts.gov" target="_blank">efts.gov</a>. Wire data from <a href="https://www.justice.gov/epstein/files/DataSet%208/EFTA00027019.pdf" target="_blank">EFTA00027019</a> Exhibit E. Full methodology in <a href="../docs/METHODOLOGY.md">METHODOLOGY.md</a>.</p>
+
+</div>
+
+</div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <p>All amounts are (Unverified) automated extractions from DOJ EFTA documents released under the Epstein Files Transparency Act.<br>
+  Appearance in this analysis does not imply wrongdoing. This analysis identifies patterns for further investigation — it does not make legal conclusions.<br>
+  Source: <a href="https://github.com/randallscott25-star/epstein-forensic-finance" target="_blank">Epstein Financial Forensics Repository</a> · <a href="https://docs.google.com/spreadsheets/d/11lw0QjMZ-rYIjWesv5VG1YKts57ahPEm/edit?usp=sharing" target="_blank">Forensic Workbook</a></p>
+  
+</div>
+
+</body>
+</html>

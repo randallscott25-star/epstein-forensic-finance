@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>N08 — The Infrastructure of Access</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #0a1019;
+  --navy-mid: #111827;
+  --navy-light: #1a2332;
+  --gold: #c49a3c;
+  --gold-dim: #a07d2e;
+  --gold-bright: #dbb44c;
+  --ice: #7ba7c2;
+  --ice-dim: #5a8aa8;
+  --ice-bright: #9dc2d8;
+  --red-flag: #c44040;
+  --white: #e8e4dc;
+  --white-dim: #b0a898;
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'IBM Plex Sans', sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  background: var(--navy);
+  color: var(--white);
+  font-family: var(--font-body);
+  font-weight: 300;
+  line-height: 1.8;
+  overflow-x: hidden;
+}
+.container { max-width: 780px; margin: 0 auto; padding: 0 32px; }
+
+/* HEADER */
+.header {
+  text-align: center;
+  padding: 80px 40px 48px;
+  border-bottom: 1px solid rgba(196,154,60,0.15);
+}
+.header .label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 28px;
+}
+.header h1 {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 4.5vw, 48px);
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.2;
+  max-width: 800px;
+  margin: 0 auto 20px;
+}
+.header h1 em { color: var(--gold); font-style: italic; }
+.header .subtitle {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-style: italic;
+  color: var(--ice);
+  margin-bottom: 28px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.header .author {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: var(--white-dim);
+  margin-bottom: 8px;
+}
+.header .date {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--white-dim);
+}
+
+/* STATS BAR */
+.stats-bar {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  padding: 28px 40px;
+  border-bottom: 1px solid rgba(196,154,60,0.1);
+  flex-wrap: wrap;
+}
+.stat { text-align: center; }
+.stat .val {
+  font-family: var(--font-mono);
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--gold);
+}
+.stat .lbl {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--white-dim);
+  margin-top: 4px;
+}
+
+/* BODY TEXT */
+.narrative { padding: 48px 0 60px; }
+.narrative p {
+  font-size: 15px;
+  margin-bottom: 20px;
+  color: var(--white);
+}
+.narrative p.lead {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-style: italic;
+  color: var(--ice);
+  line-height: 1.7;
+  margin-bottom: 32px;
+}
+.narrative a {
+  color: var(--ice);
+  text-decoration: underline;
+  text-decoration-color: rgba(123,167,194,0.3);
+  text-underline-offset: 3px;
+  transition: text-decoration-color 0.2s;
+}
+.narrative a:hover { text-decoration-color: var(--ice); }
+
+/* SECTION BREAKS */
+.section-break {
+  text-align: center;
+  padding: 48px 0 40px;
+}
+.section-break .num {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 4px;
+  color: var(--gold-dim);
+  text-transform: uppercase;
+}
+.section-break h2 {
+  font-family: var(--font-display);
+  font-size: clamp(24px, 3vw, 34px);
+  font-weight: 600;
+  color: var(--white);
+  margin-top: 8px;
+}
+.section-break .rule {
+  width: 60px;
+  height: 1px;
+  background: var(--gold-dim);
+  margin: 16px auto 0;
+}
+
+/* CALLOUTS */
+.callout {
+  background: var(--navy-mid);
+  border-left: 3px solid var(--gold);
+  padding: 20px 24px;
+  margin: 28px 0;
+}
+.callout p { margin-bottom: 8px; font-size: 14px; }
+.callout p:last-child { margin-bottom: 0; }
+.callout .co-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.callout .co-figure {
+  font-family: var(--font-mono);
+  font-size: 18px;
+  color: var(--gold);
+}
+
+/* DATA TABLES */
+.data-table-wrap { margin: 28px 0; overflow-x: auto; }
+.data-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.data-table thead th {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--ice);
+  text-align: left;
+  padding: 10px 12px;
+  border-bottom: 2px solid rgba(196,154,60,0.2);
+}
+.data-table thead th.right { text-align: right; }
+.data-table tbody td {
+  padding: 8px 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  color: var(--white-dim);
+}
+.data-table tbody td.mono {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--gold);
+  text-align: right;
+}
+.data-table tbody td.bates {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--ice-dim);
+}
+.data-table tbody td.sar {
+  color: var(--red-flag);
+  font-family: var(--font-mono);
+  font-size: 11px;
+}
+.data-table tbody tr:hover { background: rgba(196,154,60,0.04); }
+.data-table tbody td strong { color: var(--white); font-weight: 500; }
+
+/* PULL QUOTES */
+.pull-quote {
+  text-align: center;
+  padding: 36px 20px;
+  margin: 32px 0;
+  border-top: 1px solid rgba(196,154,60,0.1);
+  border-bottom: 1px solid rgba(196,154,60,0.1);
+}
+.pull-quote p {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--gold);
+  line-height: 1.5;
+  font-style: italic;
+}
+
+/* VIZ LINK */
+.viz-link {
+  display: block;
+  text-align: center;
+  padding: 20px;
+  margin: 32px 0;
+  background: var(--navy-mid);
+  border: 1px solid rgba(196,154,60,0.2);
+  text-decoration: none;
+  transition: border-color 0.2s, background 0.2s;
+}
+.viz-link:hover { border-color: var(--gold); background: var(--navy-light); }
+.viz-link .vl-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: var(--gold);
+  text-transform: uppercase;
+}
+.viz-link .vl-title {
+  font-family: var(--font-display);
+  font-size: 18px;
+  color: var(--white);
+  margin-top: 4px;
+}
+.viz-link .vl-desc {
+  font-size: 12px;
+  color: var(--white-dim);
+  margin-top: 4px;
+}
+
+/* SOURCE DOCS SECTION */
+.source-section {
+  border-top: 2px solid rgba(196,154,60,0.15);
+  margin-top: 48px;
+  padding-top: 40px;
+}
+.source-section h3 {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--white);
+  margin-bottom: 20px;
+}
+.source-section h4 {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-top: 28px;
+  margin-bottom: 12px;
+}
+.source-section p {
+  font-size: 13px;
+  color: var(--white-dim);
+  margin-bottom: 12px;
+  line-height: 1.7;
+}
+
+/* CODE BLOCKS */
+.code-block {
+  background: var(--navy-mid);
+  border: 1px solid rgba(196,154,60,0.1);
+  padding: 16px 20px;
+  margin: 20px 0;
+  overflow-x: auto;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--ice);
+  line-height: 1.6;
+  white-space: pre;
+}
+
+/* FOOTER */
+.footer {
+  text-align: center;
+  padding: 48px 40px;
+  border-top: 1px solid rgba(196,154,60,0.1);
+}
+.footer p {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--white-dim);
+  line-height: 1.8;
+  max-width: 700px;
+  margin: 0 auto;
+}
+.footer .dedication {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-style: italic;
+  color: var(--gold);
+  margin-top: 20px;
+}
+.footer a {
+  color: var(--ice-dim);
+  text-decoration: none;
+}
+.footer a:hover { text-decoration: underline; }
+
+/* DATASET BAR */
+.dataset-bar {
+  text-align: center;
+  margin: 20px 0;
+  padding: 12px;
+  background: var(--navy-mid);
+  border: 1px solid rgba(196,154,60,0.08);
+}
+.dataset-bar a {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--ice-dim);
+  margin: 0 4px;
+  text-decoration: none;
+}
+.dataset-bar a:hover { color: var(--gold); text-decoration: underline; }
+.dataset-bar .ds-label {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: var(--gold-dim);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+/* WORKBOOK LINKS */
+.wb-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin: 16px 0;
+}
+.wb-link {
+  display: block;
+  padding: 10px 14px;
+  background: var(--navy-mid);
+  border: 1px solid rgba(196,154,60,0.1);
+  text-decoration: none;
+  transition: border-color 0.2s;
+}
+.wb-link:hover { border-color: var(--gold-dim); }
+.wb-link .wb-name {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--white);
+}
+.wb-link .wb-icon {
+  font-size: 14px;
+  margin-right: 4px;
+}
+
+@media(max-width:700px) {
+  .stats-bar { gap: 20px; }
+  .wb-grid { grid-template-columns: 1fr; }
+  .header { padding: 48px 20px 32px; }
+  .container { padding: 0 16px; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="label">Data Narrative 8 — Epstein Forensic Finance Project</div>
+  <h1>The Infrastructure of Access</h1>
+  <div class="subtitle">The people who moved the money are the same people victims named.</div>
+  <div class="author">Randall Scott Taylor</div>
+  <div class="date">February 2026</div>
+</div>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stat"><div class="val">10</div><div class="lbl">Names Tested</div></div>
+  <div class="stat"><div class="val">50</div><div class="lbl">Co-Occurrence Docs</div></div>
+  <div class="stat"><div class="val">3</div><div class="lbl">Document Circles</div></div>
+  <div class="stat"><div class="val">11.4M</div><div class="lbl">Entities</div></div>
+</div>
+
+<!-- BODY -->
+<div class="container">
+<div class="narrative">
+
+<p style="font-size:12px;color:var(--white-dim);font-style:italic;">This analysis documents entity co-occurrence across 1.48 million DOJ EFTA files. It does not reproduce victim testimony, identify survivors, or attribute guilt. All findings are automated extractions. See <a href="../docs/COMPLIANCE.md">COMPLIANCE.md</a> for professional standards framework.</p>
+
+
+<div class="section-break">
+  <div class="num">I</div>
+  <h2>What I Found</h2>
+  <div class="rule"></div>
+</div>
+
+<p class="lead">I searched 11.4 million entity records across 1.48 million DOJ documents for people who show up in three categories: financial records, victim-related documents, and travel records.</p>
+
+<p>Ten names tested. Every single one appeared in victim-related documents. Several appeared in all three categories at once. The financial infrastructure and the abuse infrastructure were not separate systems. They shared personnel.</p>
+
+
+<div class="section-break">
+  <div class="num">II</div>
+  <h2>The Data</h2>
+  <div class="rule"></div>
+</div>
+
+<p>I counted unique files per name, filtered by document type. Entities table (11.4 million rows) joined against files (1.48 million rows).</p>
+
+<p><strong>Document categories:</strong></p>
+
+<p>- <strong>Financial</strong>: doc_type = financial, spreadsheet, bank_statement; or summary contains wire, payment, account, check, invoice</p>
+
+<p>- <strong>Victim-related</strong>: doc_type = police_report, court_filing; or summary contains victim, abuse, minor, massage, trafficking, Jane Doe</p>
+
+<p>- <strong>Travel</strong>: doc_type = flight_log</p>
+
+
+<div class="section-break">
+  <div class="num">III</div>
+  <h2>The Table</h2>
+  <div class="rule"></div>
+</div>
+
+<div class="data-table-wrap">
+<table class="data-table">
+<thead>
+<tr><th>Name</th><th>Role (Public Record)</th><th>Financial Docs</th><th>Victim Docs</th><th>Flight Docs</th><th class="right">Total Corpus Files</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>Ghislaine Maxwell</strong></td><td>Co-conspirator (convicted)</td><td><strong>204</strong></td><td><strong>1,312</strong></td><td><strong>53</strong></td><td class="mono">6,145</td></tr>
+<tr><td><strong>Darren Indyke</strong></td><td>Estate attorney</td><td><strong>196</strong></td><td><strong>204</strong></td><td><strong>176</strong></td><td class="mono">8,381</td></tr>
+<tr><td><strong>Lesley Groff</strong></td><td>Executive assistant</td><td><strong>134</strong></td><td><strong>153</strong></td><td><strong>20</strong></td><td class="mono">73,144</td></tr>
+<tr><td><strong>Sarah Kellen</strong></td><td>Assistant / scheduler</td><td>5</td><td><strong>132</strong></td><td>4</td><td class="mono">247</td></tr>
+<tr><td><strong>Alfredo Rodriguez</strong></td><td>Household staff (testified)</td><td>6</td><td><strong>128</strong></td><td>1</td><td class="mono">253</td></tr>
+<tr><td><strong>Jean-Luc Brunel</strong></td><td>MC2 modeling agency</td><td class="mono">14</td><td><strong>120</strong></td><td>4</td><td class="mono">1,896</td></tr>
+<tr><td><strong>Larry Visoski</strong></td><td>Pilot</td><td><strong>99</strong></td><td class="mono">76</td><td><strong>249</strong></td><td class="mono">11,035</td></tr>
+<tr><td><strong>Juan Alessi</strong></td><td>Household staff (testified)</td><td>0</td><td><strong>61</strong></td><td>2</td><td class="mono">125</td></tr>
+<tr><td><strong>Nadia Marcinkova</strong></td><td>Named by victims</td><td>0</td><td><strong>35</strong></td><td>0</td><td class="mono">66</td></tr>
+<tr><td><strong>George Nader</strong></td><td>Convicted (child exploitation)</td><td class="mono">11</td><td class="mono">11</td><td>0</td><td class="mono">68</td></tr>
+</tbody>
+</table>
+</div>
+
+
+<div class="section-break">
+  <div class="num">IV</div>
+  <h2>What the Names Show</h2>
+  <div class="rule"></div>
+</div>
+
+<p><strong>Ghislaine Maxwell</strong> appears in 204 financial documents and 1,312 victim-related documents. She is the only person in this analysis who occupies the center of all three document universes at scale — financial (204), victim (1,312), and travel (53). She was convicted in 2021 on five federal charges including sex trafficking of a minor.</p>
+
+<p><strong>Darren K. Indyke</strong> appears in 196 financial documents, 204 victim-related documents, and 176 flight documents. He is the estate attorney who signed wire transfers on behalf of Epstein's trust entities. He appears on 5 verified wire transfers in the master ledger totaling $7.6 million. His name appears in victim-related documents because he is named in civil proceedings filed by Jane Doe plaintiffs against the Epstein estate — proceedings in which Southern Trust Company, which received $151.5 million in wire transfers (Exhibit A), is a named defendant.</p>
+
+<p><strong>Lesley Groff</strong> appears in 134 financial documents and 153 victim-related documents. She was Epstein's executive assistant who managed scheduling. Documents in the EFTA corpus place her name alongside victim references including "Jane Doe" (<a href="https://www.justice.gov/epstein/files/DataSet%209/EFTA00446172.pdf" target="_blank">EFTA00446172</a>), "Victim Payouts" (<a href="https://www.justice.gov/epstein/files/DataSet%209/EFTA00371439.pdf" target="_blank">EFTA00371439</a>), and "the Federal Crime Victims Rights Act" (<a href="https://www.justice.gov/epstein/files/DataSet%209/EFTA00429909.pdf" target="_blank">EFTA00429909</a>).</p>
+
+<p><strong>Sarah Kellen</strong> appears in 132 victim-related documents. Victims identified her as a scheduler who arranged their visits. Her financial footprint is small (5 documents), consistent with an operational role rather than a financial one.</p>
+
+<p><strong>Larry Visoski</strong> appears in 249 flight documents and 99 financial documents. He was Epstein's primary pilot. His victim-document presence (76 files) reflects his naming in depositions and legal proceedings where victims described travel to Epstein properties.</p>
+
+
+<div class="section-break">
+  <div class="num">V</div>
+  <h2>The Co-Occurrence Documents</h2>
+  <div class="rule"></div>
+</div>
+
+<p>When a single document contains BOTH an operational name AND victim/trafficking language, that is a co-occurrence. These are not separate references in separate files — they are the same document discussing the same subject.</p>
+
+<p>Selected examples from 50 co-occurrence documents identified:</p>
+
+<div class="data-table-wrap">
+<table class="data-table">
+<thead>
+<tr><th>Document</th><th>Type</th><th>Operational Names</th><th>Victim References</th></tr>
+</thead>
+<tbody>
+<tr><td class="bates"><a href="https://www.justice.gov/epstein/files/DataSet%208/EFTA00023049.pdf" target="_blank">EFTA00023049</a></td><td>document</td><td>Maxwell</td><td>Minor, Minor Victim-3</td></tr>
+<tr><td class="bates"><a href="https://www.justice.gov/epstein/files/DataSet%209/EFTA00065479.pdf" target="_blank">EFTA00065479</a></td><td>email</td><td>Ghislaine Maxwell, Groff</td><td>Trafficking Victims Protection Act</td></tr>
+<tr><td class="bates"><a href="https://www.justice.gov/epstein/files/DataSet%209/EFTA00073465.pdf" target="_blank">EFTA00073465</a></td><td>court filing</td><td>Ghislaine Maxwell</td><td>Crime Victims' Rights Act, Victim Notification System</td></tr>
+<tr><td class="bates"><a href="https://www.justice.gov/epstein/files/DataSet%209/EFTA00173201.pdf" target="_blank">EFTA00173201</a></td><td>document</td><td>Leslie Groff, Ghislaine Maxwell</td><td>Jeffrey Epstein-Victim, Sex Trafficking</td></tr>
+<tr><td class="bates"><a href="https://www.justice.gov/epstein/files/DataSet%209/EFTA00371439.pdf" target="_blank">EFTA00371439</a></td><td>email</td><td>Groff</td><td>Victim Payouts</td></tr>
+<tr><td class="bates"><a href="https://www.justice.gov/epstein/files/DataSet%209/EFTA00429909.pdf" target="_blank">EFTA00429909</a></td><td>email</td><td>Lesley Groff</td><td>Federal Crime Victims Rights Act</td></tr>
+<tr><td class="bates"><a href="https://www.justice.gov/epstein/files/DataSet%209/EFTA00446172.pdf" target="_blank">EFTA00446172</a></td><td>email</td><td>Lesley Groff</td><td>Jane Doe</td></tr>
+<tr><td class="bates"><a href="https://www.justice.gov/epstein/files/DataSet%209/EFTA00067267.pdf" target="_blank">EFTA00067267</a></td><td>subpoena</td><td>Sarah Kellen</td><td>Victim</td></tr>
+<tr><td class="bates"><a href="https://www.justice.gov/epstein/files/DataSet%209/EFTA00261508.pdf" target="_blank">EFTA00261508</a></td><td>document</td><td>Maxwell</td><td>VICTIM</td></tr>
+<tr><td class="bates"><a href="https://www.justice.gov/epstein/files/DataSet%209/EFTA00313632.pdf" target="_blank">EFTA00313632</a></td><td>court filing</td><td>Ghislaine Maxwell</td><td>Plaintiff Jane Doe</td></tr>
+</tbody>
+</table>
+</div>
+
+<p>These documents span the investigative lifecycle: FBI emails referencing "Crimes Against Children/Human Trafficking" alongside Maxwell's name, court filings where Jane Doe plaintiffs name operational staff, and victim impact statements that reference the same individuals who appear on financial records.</p>
+
+
+<div class="section-break">
+  <div class="num">VI</div>
+  <h2>The Financial Thread</h2>
+  <div class="rule"></div>
+</div>
+
+<p>The operational staff did not merely appear alongside victim references in legal proceedings. Several of them are directly connected to the wire transfer infrastructure documented in the <a href="../data/master_wire_ledger_phase5i.json">master wire ledger</a>:</p>
+
+<p><strong>Darren Indyke</strong> — Named on 5 verified wire transfers:</p>
+
+<p>- Received $5.8 million from Deutsche Bank (5 wires, Exhibit C)</p>
+
+<p>- Co-signed $1.2 million in transfers with Michelle Saipher to Epstein's NOW/SuperNow account</p>
+
+<p>- Named as estate attorney on Southern Trust Company — the entity that received $151.5 million (Exhibit A)</p>
+
+<p><strong>Ghislaine Maxwell</strong> — NES LLC, an entity linked to Maxwell, received $554,000 through the shell network (Narrative 4: Chain-Hop Anatomy). Maxwell appears in 204 financial documents spanning bank records, trust administration, and property transactions.</p>
+
+<p><strong>Lesley Groff</strong> — Appears in 134 financial documents. While not directly on wire transfers, her presence in financial records alongside her 153 victim-document appearances places her at the intersection of the money and the harm.</p>
+
+<p><strong>Richard Kahn</strong> — The attorney appears in 110 financial documents and 28 flight documents. He received $9.3 million through the wire transfer network for disbursement to third parties including Paul Morris.</p>
+
+
+<div class="section-break">
+  <div class="num">VII</div>
+  <h2>The Three-Circle Pattern</h2>
+  <div class="rule"></div>
+</div>
+
+<p>The EFTA corpus is not one collection of documents. It is at minimum three overlapping collections:</p>
+
+<p>1. <strong>Financial records</strong>: Bank statements, wire confirmations, trust documents, account records</p>
+
+<p>2. <strong>Victim records</strong>: Police reports, court filings, FBI investigations, victim impact statements, Jane Doe lawsuits</p>
+
+<p>3. <strong>Travel records</strong>: Flight logs, itineraries, APIS passenger manifests, aircraft purchase agreements</p>
+
+<p>Most people in the corpus appear in one circle. Victims appear in victim records. Bankers appear in financial records. Pilots appear in travel records.</p>
+
+<p>The operational staff — Maxwell, Indyke, Groff, Kellen, Visoski — appear in all three. They are the connective tissue. The same names managing the money appear in the documents where victims describe what happened to them.</p>
+
+<p>This is not a finding about guilt. It is a finding about structure. The financial infrastructure documented in Narratives 1–7 was not a separate system from the abuse infrastructure documented in victim testimony. They shared the same people.</p>
+
+
+<div class="section-break">
+  <div class="num">VIII</div>
+  <h2>What I Can't Determine</h2>
+  <div class="rule"></div>
+</div>
+
+<p>- <strong>Whether any specific wire transfer funded any specific act of abuse.</strong> The temporal and personnel overlap is documented. The causal chain is not.</p>
+
+<p>- <strong>What victims experienced.</strong> This analysis does not access, reproduce, or summarize victim testimony. It measures entity co-occurrence at the document level only.</p>
+
+<p>- <strong>Whether operational staff knew the purpose of the financial transfers they facilitated.</strong> Indyke signing a wire transfer is a legal act. Whether he knew where the money ultimately went is a question for investigators, not forensic accountants.</p>
+
+<p>- <strong>Whether all co-occurrences are meaningful.</strong> Maxwell appearing in a court filing alongside "Jane Doe" may reflect a lawsuit naming both — it does not necessarily mean a direct interaction. The co-occurrence is structural, not necessarily evidentiary.</p>
+
+<p>- <strong>The full scope of the operational network.</strong> This analysis tested 10 names. The EFTA corpus contains 734,122 unique persons. The operational network may be larger than what is measured here.</p>
+
+<p style="font-size:12px;color:var(--white-dim);font-style:italic;">Source: DOJ EFTA Document Release — 11.4 million entity records across 1.48 million files. Entity co-occurrence measured by unique file count per document category. Wire transfer data from Deutsche Bank-SDNY Production (Exhibits A–E), 185 verified wires. Document type classifications from automated pipeline with manual validation. Supporting data: <a href="https://docs.google.com/spreadsheets/d/11lw0QjMZ-rYIjWesv5VG1YKts57ahPEm/edit?usp=sharing&ouid=103970896670138914877&rtpof=true&sd=true" target="_blank">Forensic Workbook (view-only)</a>. This analysis is published as part of the <a href="https://github.com/randallscott25-star/epstein-forensic-finance#readme" target="_blank">Epstein Financial Forensics</a> repository.</p>
+
+<div class="source-section">
+
+<h3>Source Documents & Exhibits</h3>
+
+<h4>Primary Source</h4>
+
+<p>Corpus-wide entity co-occurrence analysis — not limited to any single exhibit.</p>
+
+<h4>Corpus Statistics Source</h4>
+
+<p><strong>Method</strong>: Person × document co-occurrence analysis identifying 10 operational staff members who appear across multiple document types and shell entities.</p>
+
+<p><strong>Database</strong>: 1,476,377 files, 11.4M extracted entities, 734,122 unique persons (see <a href="../docs/METHODOLOGY.md">METHODOLOGY.md</a>).</p>
+
+<p><strong>Finding</strong>: 50 co-occurrence documents linking operational staff to shell network.</p>
+
+<h4>Scope Note</h4>
+
+<p>This narrative draws from the full EFTA corpus, not limited to Deutsche Bank wire production. Staff identification based on cross-document-type presence (email + financial + court filing + fax).</p>
+
+<h4>📄 EFTA Source Documents</h4>
+
+<p style="font-size:12px;color:var(--white-dim);font-style:italic;">Click any document ID to open the DOJ PDF in a new tab. Click a Dataset number to browse neighboring files.</p>
+
+<div class="data-table-wrap">
+<table class="data-table">
+<thead>
+<tr><th>Document</th><th>Source</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td class="bates"><a href="https://www.justice.gov/epstein/files/DataSet%208/EFTA00023049.pdf" target="_blank">EFTA00023049</a></td><td>DS8</td><td>Maxwell — Minor, Minor Victim-3 document</td></tr>
+<tr><td class="bates"><a href="https://www.justice.gov/epstein/files/DataSet%209/EFTA00065479.pdf" target="_blank">EFTA00065479</a></td><td>DS9</td><td>Maxwell/Groff email — Trafficking Victims Protection Act</td></tr>
+<tr><td class="bates"><a href="https://www.justice.gov/epstein/files/DataSet%209/EFTA00073465.pdf" target="_blank">EFTA00073465</a></td><td>DS9</td><td>Maxwell court filing — Crime Victims' Rights Act</td></tr>
+<tr><td class="bates"><a href="https://www.justice.gov/epstein/files/DataSet%209/EFTA00173201.pdf" target="_blank">EFTA00173201</a></td><td>DS9</td><td>Groff/Maxwell — Jeffrey Epstein-Victim, Sex Trafficking</td></tr>
+<tr><td class="bates"><a href="https://www.justice.gov/epstein/files/DataSet%209/EFTA00371439.pdf" target="_blank">EFTA00371439</a></td><td>DS9</td><td>Groff email — Victim Payouts</td></tr>
+<tr><td class="bates"><a href="https://www.justice.gov/epstein/files/DataSet%209/EFTA00429909.pdf" target="_blank">EFTA00429909</a></td><td>DS9</td><td>Lesley Groff — Federal Crime Victims Rights Act</td></tr>
+<tr><td class="bates"><a href="https://www.justice.gov/epstein/files/DataSet%209/EFTA00446172.pdf" target="_blank">EFTA00446172</a></td><td>DS9</td><td>Lesley Groff — Jane Doe reference</td></tr>
+<tr><td class="bates"><a href="https://www.justice.gov/epstein/files/DataSet%209/EFTA00067267.pdf" target="_blank">EFTA00067267</a></td><td>DS9</td><td>Sarah Kellen subpoena — Victim</td></tr>
+<tr><td class="bates"><a href="https://www.justice.gov/epstein/files/DataSet%209/EFTA00261508.pdf" target="_blank">EFTA00261508</a></td><td>DS9</td><td>Maxwell document — VICTIM</td></tr>
+<tr><td class="bates"><a href="https://www.justice.gov/epstein/files/DataSet%209/EFTA00313632.pdf" target="_blank">EFTA00313632</a></td><td>DS9</td><td>Maxwell court filing — Plaintiff Jane Doe</td></tr>
+<tr><td class="bates"><a href="https://www.justice.gov/epstein/files/DataSet%208/EFTA00027019.pdf" target="_blank">EFTA00027019</a></td><td>DS8</td><td>Deutsche Bank-SDNY Production: Exhibits A–E (185 verified wires for staff cross-reference)</td></tr>
+<tr><td class="bates">Full EFTA Corpus</td><td>DS1–12</td><td>11.4M entity records across 1,476,377 files — person × document co-occurrence</td></tr>
+</tbody>
+</table>
+</div>
+
+<p><strong>All 12 DOJ Datasets:</strong> <a href="https://www.justice.gov/epstein/doj-disclosures/data-set-1-files" target="_blank">1</a>, <a href="https://www.justice.gov/epstein/doj-disclosures/data-set-2-files" target="_blank">2</a>, <a href="https://www.justice.gov/epstein/doj-disclosures/data-set-3-files" target="_blank">3</a>, <a href="https://www.justice.gov/epstein/doj-disclosures/data-set-4-files" target="_blank">4</a>, <a href="https://www.justice.gov/epstein/doj-disclosures/data-set-5-files" target="_blank">5</a>, <a href="https://www.justice.gov/epstein/doj-disclosures/data-set-6-files" target="_blank">6</a>, <a href="https://www.justice.gov/epstein/doj-disclosures/data-set-7-files" target="_blank">7</a>, <a href="https://www.justice.gov/epstein/doj-disclosures/data-set-8-files" target="_blank">8</a>, <a href="https://www.justice.gov/epstein/doj-disclosures/data-set-9-files" target="_blank">9</a>, <a href="https://www.justice.gov/epstein/doj-disclosures/data-set-10-files" target="_blank">10</a>, <a href="https://www.justice.gov/epstein/doj-disclosures/data-set-11-files" target="_blank">11</a>, <a href="https://www.justice.gov/epstein/doj-disclosures/data-set-12-files" target="_blank">12</a></p>
+
+<h4>📊 Verify in Forensic Workbook</h4>
+
+<div class="data-table-wrap">
+<table class="data-table">
+<thead>
+<tr><th>Exhibit / Analysis</th><th>View in Workbook</th></tr>
+</thead>
+<tbody>
+<tr><td>Shell Network — Staff co-occurrence</td><td><a href="https://docs.google.com/spreadsheets/d/11lw0QjMZ-rYIjWesv5VG1YKts57ahPEm/edit?gid=1040516313#gid=1040516313" target="_blank">📊 Open Tab</a></td></tr>
+<tr><td>Shell Trust Hierarchy</td><td><a href="https://docs.google.com/spreadsheets/d/11lw0QjMZ-rYIjWesv5VG1YKts57ahPEm/edit?gid=1943952132#gid=1943952132" target="_blank">📊 Open Tab</a></td></tr>
+<tr><td>Executive Summary</td><td><a href="https://docs.google.com/spreadsheets/d/11lw0QjMZ-rYIjWesv5VG1YKts57ahPEm/edit?gid=1804001356#gid=1804001356" target="_blank">📊 Open Tab</a></td></tr>
+<tr><td>Methodology</td><td><a href="https://docs.google.com/spreadsheets/d/11lw0QjMZ-rYIjWesv5VG1YKts57ahPEm/edit?gid=1840632994#gid=1840632994" target="_blank">📊 Open Tab</a></td></tr>
+</tbody>
+</table>
+</div>
+
+<h4>How to Verify</h4>
+
+<p>EFTA document IDs from public DOJ release at <a href="https://efts.gov" target="_blank">efts.gov</a>. Full methodology in <a href="../docs/METHODOLOGY.md">METHODOLOGY.md</a>.</p>
+
+</div>
+
+</div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <p>All amounts are (Unverified) automated extractions from DOJ EFTA documents released under the Epstein Files Transparency Act.<br>
+  Appearance in this analysis does not imply wrongdoing. This analysis identifies patterns for further investigation — it does not make legal conclusions.<br>
+  Source: <a href="https://github.com/randallscott25-star/epstein-forensic-finance" target="_blank">Epstein Financial Forensics Repository</a> · <a href="https://docs.google.com/spreadsheets/d/11lw0QjMZ-rYIjWesv5VG1YKts57ahPEm/edit?usp=sharing" target="_blank">Forensic Workbook</a></p>
+  <p class="dedication">For the girls.</p>
+</div>
+
+</body>
+</html>
