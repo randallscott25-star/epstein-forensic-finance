@@ -21,19 +21,20 @@ For the girls.
 
 ## 📌 Start Here
 
-### 🔺 New: Blueprint of a Financial Machine
+### 🔺 New: The Verification Wall
 
-> I audited $2.1 billion in Epstein financial records. Here's every name the money touched. 123 nodes, 313 financial links, 8 shell entities, 12 key persons, 8 operators, 5 banks — mapped across the full $2.146B corpus. **Season 1 finale.**
+> Every document has a Bates number. The question is what's behind it. N20 runs every N19 name through the verification wall — Trump ($65M), Gates ($37M), Clinton ($18M): Bates stamps all point to news articles and court filings, not bank documents. $0 verified. Leon Black: $310.5M across 42 verified wires, 15 bank documents with wire instructions and account numbers. **Season 2 opener.**
 >
-> **→ <a href="https://randallscott25-star.github.io/epstein-forensic-finance/narratives/19_grand_opus_narrative.html" target="_blank">Read Narrative 19</a>** · **<a href="https://randallscott25-star.github.io/epstein-forensic-finance/visualizations/19_blueprint_financial_machine.html" target="_blank">Interactive Visualization</a>** · **[Offshore Architecture (N18)](narratives/18_offshore_architecture.md)** · **[One-Way Money (N17)](narratives/17_the_architecture.md)**
+> **→ <a href="https://randallscott25-star.github.io/epstein-forensic-finance/narratives/20_the_verification_wall.html" target="_blank">Read Narrative 20</a>** · **<a href="https://randallscott25-star.github.io/epstein-forensic-finance/narratives/19_grand_opus_narrative.html" target="_blank">N19: Blueprint of a Financial Machine</a>** · **<a href="https://randallscott25-star.github.io/epstein-forensic-finance/visualizations/19_blueprint_financial_machine.html" target="_blank">Interactive Visualization</a>** · **[One-Way Money (N17)](narratives/17_the_architecture.md)**
 
 
-> **19 data narratives** reconstruct how $2.146 billion moved through 14 shell entities across 8+ banking institutions. Every claim is anchored to specific court exhibits and bates stamps.
+> **20 data narratives** reconstruct how $2.146 billion moved through 14 shell entities across 8+ banking institutions. Every claim is anchored to specific court exhibits and bates stamps.
 >
 > **→ [Read the Data Narratives](narratives/)** · **<a href="https://randallscott25-star.github.io/epstein-forensic-finance/visualizations/shell_network.html" target="_blank">Explore the Interactive Network</a>** · **<a href="https://docs.google.com/spreadsheets/d/11lw0QjMZ-rYIjWesv5VG1YKts57ahPEm/edit?usp=sharing&ouid=103970896670138914877&rtpof=true&sd=true" target="_blank">View the Forensic Workbook</a>**
 
 | # | Narrative | Key Finding |
 |---|-----------|-------------|
+| **20** | **<a href="https://randallscott25-star.github.io/epstein-forensic-finance/narratives/20_the_verification_wall.html" target="_blank">The Verification Wall</a>** | **Season 2 opener. Every document has a Bates number — the wall tests what's behind it. 8 noise POIs ($144.4M, $0 bank docs) vs. Leon Black ($310.5M, 42 verified wires, 15 bank docs). NLP phantom autopsy with clickable EFTA source documents.** |
 | 1 | [The Jeepers Pipeline](narratives/01_jeepers_pipeline.md) | $57.9M brokerage shell → personal checking, every wire dated |
 | 2 | [Art Market as Liquidity Channel](narratives/02_art_market.md) | Sotheby's + Christie's proceeds entered through Haze Trust |
 | 3 | [The Plan D Question](narratives/03_plan_d_question.md) | $18M out to Leon Black, near-zero inflow — where did it come from? |
@@ -51,7 +52,7 @@ For the girls.
 | 15 | [Gratitude America: The Charity That Invested](narratives/15_gratitude_america.md) | Tax-exempt charity routing $2–20M to Boothbay, Honeycomb, Valar, Coatue |
 | 16 | [The Accountant](narratives/16_the_accountant.md) | Richard Kahn / HBRK Associates: 18,833 emails, 11,153 files, touches every shell |
 | **17** | **[One-Way Money](narratives/17_the_architecture.md)** | **$272M in. $63M out. First multi-institution balance sheet. [Visualization](https://randallscott25-star.github.io/epstein-forensic-finance/visualizations/17_one_way_money.html)** |
-| **18** | **[Offshore Architecture: The Brunel–BVI–ICIJ Bridge](narratives/18_offshore_architecture.md)** | **DOJ subpoena names BVI shell. ICIJ confirms. Scouting International — Tortola, 2003, defunct. 172 docs, 3 databases cross-referenced.** |
+| 18 | [Offshore Architecture: The Brunel–BVI–ICIJ Bridge](narratives/18_offshore_architecture.md) | DOJ subpoena names BVI shell. ICIJ confirms. Scouting International — Tortola, 2003, defunct. 172 docs, 3 databases cross-referenced. |
 | **19** | **<a href="https://randallscott25-star.github.io/epstein-forensic-finance/narratives/19_grand_opus_narrative.html" target="_blank">Blueprint of a Financial Machine</a>** | **Season 1 finale. $2.146B, 123 nodes, 313 edges. Every bank, shell, operator, and key person mapped. <a href="https://randallscott25-star.github.io/epstein-forensic-finance/visualizations/19_blueprint_financial_machine.html" target="_blank">Visualization</a>** |
 
 
@@ -328,7 +329,8 @@ One gap has a credible dollar estimate ($5-15M in excluded tiers). The rest are 
 | 16 | [The Accountant](narratives/16_the_accountant.md) | Richard Kahn / HBRK Associates: 18,833 emails, 11,153 files, touches every shell | 18,833 emails · 11,153 files |
 | 17 | [One-Way Money](narratives/17_the_architecture.md) | $272M in. $63M out. $209M gap. First multi-institution balance sheet | 481 wires · 228 entities · $558M |
 | **18** | **[Offshore Architecture: The Brunel–BVI–ICIJ Bridge](narratives/18_offshore_architecture.md)** | **DOJ subpoena names BVI shell. ICIJ Offshore Leaks confirms. 3 databases cross-referenced** | **172 docs · 3 databases · 8,526 pages** |
-| **19** | **<a href="https://randallscott25-star.github.io/epstein-forensic-finance/narratives/19_grand_opus_narrative.html" target="_blank">Blueprint of a Financial Machine</a>** | **Season 1 finale. $2.146B, 123 nodes, 313 edges. Full network mapped. <a href="https://randallscott25-star.github.io/epstein-forensic-finance/visualizations/19_blueprint_financial_machine.html" target="_blank">Visualization</a>** |
+| **19** | **<a href="https://randallscott25-star.github.io/epstein-forensic-finance/narratives/19_grand_opus_narrative.html" target="_blank">Blueprint of a Financial Machine</a>** | **Season 1 finale. $2.146B, 123 nodes, 313 edges. Full network mapped. <a href="https://randallscott25-star.github.io/epstein-forensic-finance/visualizations/19_blueprint_financial_machine.html" target="_blank">Visualization</a>** | **10,964 txns · 123 nodes · $2.146B** |
+| **20** | **<a href="https://randallscott25-star.github.io/epstein-forensic-finance/narratives/20_the_verification_wall.html" target="_blank">The Verification Wall</a>** | **Season 2, Episode 1. Every document has a Bates number — the wall tests what's behind it. 8 noise POIs ($144.4M claimed, Bates stamps → news/court filings, $0 bank docs) vs. Leon Black ($310.5M, 42 verified wires, 15 bank docs). NLP phantom autopsy with clickable EFTA source documents.** | **9 POIs · 15 bank docs · $310.5M verified** |
 
 Source workbook: **[Forensic Workbook](https://docs.google.com/spreadsheets/d/11lw0QjMZ-rYIjWesv5VG1YKts57ahPEm/edit?usp=sharing&ouid=103970896670138914877&rtpof=true&sd=true)** · [Interactive Shell Network](https://randallscott25-star.github.io/epstein-forensic-finance/visualizations/shell_network.html)
 
@@ -346,7 +348,7 @@ Source workbook: **[Forensic Workbook](https://docs.google.com/spreadsheets/d/11
 │   ├── SCHEMA.md                          ← Database architecture diagram
 │   ├── NETWORK.md                         ← Trust network flow diagram
 │   └── SOURCE_APPENDIX_TEMPLATE.md        ← Standard template for source appendices
-├── narratives/                            ← 19 forensic data narratives with source appendices
+├── narratives/                            ← 20 forensic data narratives with source appendices
 ├── data/
 │   ├── publication_ledger_phase5l.json    ← 10,964 transactions, four-tier (publication dataset)
 │   ├── master_wire_ledger_phase5i.json    ← 481 wires (wire-specific subset)
@@ -482,4 +484,5 @@ The underlying DOJ documents are U.S. government publications in the public doma
 | Feb 25 | Phase 5K–5L: Payment type expansion + publication ledger assembly. 10,964 unique transactions, $2.146B, four-tier GAGAS framework |
 | Feb 25 | Workbook v9. 19 data narratives live. |
 | Feb 26 | N19: Blueprint of a Financial Machine — season 1 finale. 123 nodes, 313 edges, full $2.146B corpus mapped. Timeline v9 with 69 vetted persons of interest. |
+| Feb 27 | N20: The Verification Wall — season 2 opener. Bates distinction framework. 8 noise POIs ($144.4M → $0 bank docs) vs. Leon Black ($310.5M, 42 wires, 15 bank docs). Clickable EFTA source documents. |
 | Ongoing | Additional data narratives and follow-on analysis |
