@@ -60,7 +60,7 @@ For the girls.
 
 ## The Database
 
-**8.03 GB | 36 tables | 26.6 million rows | 19 datasets**
+**8.64 GB | 43 tables | 26.7 million rows | 19 datasets**
 
 | Metric | This Project | Largest Narrative Repo | Largest Search Platform | Others |
 |--------|:------------:|:----------------------:|:----------------------:|:------:|
@@ -68,11 +68,11 @@ For the girls.
 | **Datasets covered** | **19** (<a href="https://www.justice.gov/epstein/doj-disclosures/data-set-1-files" target="_blank">DS1</a>-12 + DS98-104) | 12 | 12 | 1-3 |
 | **Extracted text records** | **2.87M** (page-level) | 993,406 pages | — | — |
 | **Entity extraction (NLP)** | **11.4M entities** | ~4,000 curated | 1,589 manual | < 500 |
-| **Unique persons identified** | **734,122** | 1,536 registry | 1,589 | — |
+| **Unique persons identified** | **734,125** | 1,536 registry | 1,589 | — |
 | **Financial transactions modeled** | **81,451** (tiered) + **23,832** (directional) | ~186 normalized | 0 | 0 |
 | **Directional fund flows (A→B)** | **23,832** | qualitative | 0 | 0 |
 | **Wire transfers in master ledger** | **481** (Phase 5I audited) | 0 | 0 | 0 |
-| **Relational database tables** | **36** | 3-4 | — | — |
+| **Relational database tables** | **43** | 3-4 | — | — |
 | **Confidence-tiered scoring** | ✅ 5-axis | — | — | — |
 | **Redaction proximity analysis** | ✅ | ✅ (different method) | — | — |
 | **SAR cross-validation** | ✅ **104.4%** | — | — | — |
@@ -171,11 +171,11 @@ All amounts are (Unverified) automated extractions. See [FINDINGS.md](docs/FINDI
 
 ---
 
-## Database Schema (36 Tables)
+## Database Schema (43 Tables)
 
 > Full architecture diagram: **[SCHEMA.md](docs/SCHEMA.md)**
 
-Not a search index. A relational forensic database. **8.03 GB, 36 tables, 26.6 million rows.**
+Not a search index. A relational forensic database. **8.64 GB, 43 tables, 26.7 million rows.**
 
 **Financial Analysis (13 tables)**
 - `publication_ledger` — 10,964 deduplicated transactions ($2.146B) with four-tier GAGAS classification (T1–T4), payment type, source exhibit
@@ -366,7 +366,7 @@ Source workbook: **[Forensic Workbook](https://docs.google.com/spreadsheets/d/11
 
 ### Visual Guides
 
-- **[SCHEMA.md](docs/SCHEMA.md)** — Full database architecture showing how 36 tables, 11.4M entities, and 1.48M files feed into the 10,964-transaction publication ledger
+- **[SCHEMA.md](docs/SCHEMA.md)** — Full database architecture showing how 43 tables, 11.4M entities, and 1.48M files feed into the 10,964-transaction publication ledger
 - **[NETWORK.md](docs/NETWORK.md)** — Annotated trust network flow diagram with dollar amounts on every edge
 
 ### Forensic Workbook v9
@@ -406,7 +406,7 @@ This repo publishes methodology, findings, and summary data. The source code, da
 
 - **AICPA SSFS No. 1** says forensic practitioners maintain control over working papers, proprietary methodologies, and analytical tools. Work product privilege protects the analytical process.
 - **AICPA AU-C §230** says audit documentation is the property of the practitioner. Sufficient documentation is provided for a knowledgeable reviewer to understand the work performed.
-- **Chain of custody**: The 8.03GB forensic database is a consolidated analytical environment. Releasing it in fragments invites miscontextualization of intermediate results without the full pipeline logic.
+- **Chain of custody**: The 8.64GB forensic database is a consolidated analytical environment. Releasing it in fragments invites miscontextualization of intermediate results without the full pipeline logic.
 - **Reproducibility**: The methodology docs, scoring weights, classification rules, and dedup logic are fully described. You can replicate it without my tooling.
 - **Ongoing analysis**: The database and pipeline are still active. Premature release could compromise forthcoming narratives and follow-on investigations.
 
