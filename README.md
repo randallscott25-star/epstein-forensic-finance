@@ -11,7 +11,7 @@
 
 I took 1.48 million documents the DOJ released under the Epstein Files Transparency Act and built a forensic financial database from scratch. Wrote all the extraction code. Designed the schema. Built the classification pipeline. Ran the analysis. Solo project, start to finish. AI tools helped me write code faster — same way you'd use a calculator. The analytical calls are mine.
 
-My day job is multi-affiliate financial reconciliation, budget variance analysis, and automated exception reporting at institutional scale. I applied those same methods here.
+My background is multi-affiliate financial reconciliation, budget variance analysis, and automated exception reporting at institutional scale. I applied those same methods here.
 
 Far as I can tell, nobody else has tried to reconstruct the complete financial infrastructure in the EFTA corpus using quantitative forensic methods. Plenty of good narrative work out there. Plenty of search engines. This is the first attempt to model the full network — fund flows, entity relationships, shell trust hierarchies — at scale.
 
@@ -21,19 +21,20 @@ For the girls.
 
 ## 📌 Start Here
 
-### 🔺 New: The Verification Wall
+### ✈ New: They Were on the Plane (N21)
 
-> Every document has a Bates number. The question is what's behind it. N20 runs every N19 name through the verification wall — Trump ($65M), Gates ($37M), Clinton ($18M): Bates stamps all point to news articles and court filings, not bank documents. $0 verified. Leon Black: $310.5M across 42 verified wires, 15 bank documents with wire instructions and account numbers. **Season 2 opener.**
+> Aviation forensics from five DOJ datasets. 70 flights, 32 key persons, $281M in correlated financial events, 25 CBP border encounters — mapped to an interactive globe with flight-by-flight financial correlation. Every claim traces to a Bates-stamped exhibit. Built in React.
 >
-> **→ <a href="https://randallscott25-star.github.io/epstein-forensic-finance/narratives/20_the_verification_wall.html" target="_blank">Read Narrative 20</a>** · **<a href="https://randallscott25-star.github.io/epstein-forensic-finance/narratives/19_grand_opus_narrative.html" target="_blank">N19: Blueprint of a Financial Machine</a>** · **<a href="https://randallscott25-star.github.io/epstein-forensic-finance/visualizations/19_blueprint_financial_machine.html" target="_blank">Interactive Visualization</a>** · **<a href="https://randallscott25-star.github.io/epstein-forensic-finance/narratives/17_the_architecture.html" target="_blank">One-Way Money (N17)</a>**
+> **→ <a href="https://randallscott25-star.github.io/epstein-forensic-finance/visualizations/aviation_v5.html" target="_blank">Launch Aviation Visualization (N21)</a>** · **<a href="https://randallscott25-star.github.io/epstein-forensic-finance/narratives/20_the_verification_wall.html" target="_blank">The Verification Wall (N20)</a>** · **<a href="https://randallscott25-star.github.io/epstein-forensic-finance/narratives/19_grand_opus_narrative.html" target="_blank">Blueprint of a Financial Machine (N19)</a>** · **<a href="https://randallscott25-star.github.io/epstein-forensic-finance/narratives/17_the_architecture.html" target="_blank">One-Way Money (N17)</a>**
 
 
-> **20 data narratives** reconstruct how $2.146 billion moved through 14 shell entities across 8+ banking institutions. Every claim is anchored to specific court exhibits and bates stamps.
+> **21 data narratives** reconstruct how $2.146 billion moved through 14 shell entities across 8+ banking institutions. Every claim is anchored to specific court exhibits and bates stamps.
 >
 > **→ [Read the Data Narratives](narratives/)** · **<a href="https://randallscott25-star.github.io/epstein-forensic-finance/visualizations/shell_network.html" target="_blank">Explore the Interactive Network</a>** · **<a href="https://docs.google.com/spreadsheets/d/11lw0QjMZ-rYIjWesv5VG1YKts57ahPEm/edit?usp=sharing&ouid=103970896670138914877&rtpof=true&sd=true" target="_blank">View the Forensic Workbook</a>**
 
 | # | Narrative | Key Finding |
 |---|-----------|-------------|
+| **21** | **<a href="https://randallscott25-star.github.io/epstein-forensic-finance/visualizations/aviation_v5.html" target="_blank">They Were on the Plane</a>** | **Aviation forensics: 70 flights, 32 key persons, $281M correlated financial events, 25 CBP encounters. Interactive globe, flight-level financial correlation, victim co-flight analysis. Sources: DS4, DS5, DS7, DS8, DS9.** |
 | **20** | **<a href="https://randallscott25-star.github.io/epstein-forensic-finance/narratives/20_the_verification_wall.html" target="_blank">The Verification Wall</a>** | **Season 2 opener. Every document has a Bates number — the wall tests what's behind it. 8 noise POIs ($144.4M, $0 bank docs) vs. Leon Black ($310.5M, 42 verified wires, 15 bank docs). NLP phantom autopsy with clickable EFTA source documents.** |
 | 1 | <a href="https://randallscott25-star.github.io/epstein-forensic-finance/narratives/01_jeepers_pipeline.html" target="_blank">The Jeepers Pipeline</a> | $57.9M brokerage shell → personal checking, every wire dated |
 | 2 | <a href="https://randallscott25-star.github.io/epstein-forensic-finance/narratives/02_art_market.html" target="_blank">Art Market as Liquidity Channel</a> | Sotheby's + Christie's proceeds entered through Haze Trust |
@@ -41,7 +42,7 @@ For the girls.
 | 4 | <a href="https://randallscott25-star.github.io/epstein-forensic-finance/narratives/04_chain_hop_anatomy.html" target="_blank">Chain-Hop Anatomy</a> | 4-tier shell network mapped, $311M double-counting removed |
 | 5 | <a href="https://randallscott25-star.github.io/epstein-forensic-finance/narratives/05_deutsche_bank.html" target="_blank">Deutsche Bank's Role</a> | 38 wires, 75% of volume in last 6 months — and DB ranks 3rd by volume |
 | 6 | <a href="https://randallscott25-star.github.io/epstein-forensic-finance/narratives/06_gratitude_america.html" target="_blank">Gratitude America</a> | 88% to investments, 7% to charity — a "charity" that isn't one |
-| 7 | <a href="https://randallscott25-star.github.io/epstein-forensic-finance/narratives/07_follow_the_money_follow_the_plane.html" target="_blank">Follow the Money, Follow the Plane</a> | Wire-flight correlation at 4.3× random chance; $169M near St. Thomas flights |
+| 7 | <a href="https://randallscott25-star.github.io/epstein-forensic-finance/narratives/07_follow_the_money_follow_the_plane.html" target="_blank">Follow the Money, Follow the Plane</a> | Wire-flight temporal correlation analysis; financial events cluster with flight activity across 18 years |
 | 8 | <a href="https://randallscott25-star.github.io/epstein-forensic-finance/narratives/08_infrastructure_of_access.html" target="_blank">The Infrastructure of Access</a> | The people who moved the money are the people victims named |
 | 9 | <a href="https://randallscott25-star.github.io/epstein-forensic-finance/narratives/09_734122_names.html" target="_blank">734,122 Names</a> | Every person in 1.48M files scanned. 57 bridgers. No one hiding. |
 | 10 | <a href="https://randallscott25-star.github.io/epstein-forensic-finance/narratives/10_the_round_number_problem.html" target="_blank">The Round Number Problem</a> | Benford's Law fails: 84.3% exact round numbers. One decision-maker. |
@@ -317,7 +318,7 @@ One gap has a credible dollar estimate ($5-15M in excluded tiers). The rest are 
 | 4 | <a href="https://randallscott25-star.github.io/epstein-forensic-finance/narratives/04_chain_hop_anatomy.html" target="_blank">Chain-Hop Anatomy</a> | 4-tier shell network mapped — and $311M in double-counting removed | 67 wires · $312,796,381 |
 | 5 | <a href="https://randallscott25-star.github.io/epstein-forensic-finance/narratives/05_deutsche_bank.html" target="_blank">Deutsche Bank's Role</a> | 38 wires across every major Epstein entity, 75% of volume in last 6 months | 38 wires · $56,792,936 |
 | 6 | <a href="https://randallscott25-star.github.io/epstein-forensic-finance/narratives/06_gratitude_america.html" target="_blank">Gratitude America</a> | 88% of outflows to investment accounts, 7% to charitable purposes | 20 wires · $13,080,518 |
-| 7 | <a href="https://randallscott25-star.github.io/epstein-forensic-finance/narratives/07_follow_the_money_follow_the_plane.html" target="_blank">Follow the Money, Follow the Plane</a> | Wire-flight temporal correlation at 4.3× random chance; $169M near St. Thomas flights | 185 wires · 321 flights · $575M |
+| 7 | <a href="https://randallscott25-star.github.io/epstein-forensic-finance/narratives/07_follow_the_money_follow_the_plane.html" target="_blank">Follow the Money, Follow the Plane</a> | Wire-flight temporal correlation: financial events cluster with flight activity consistently across 18 years. Superseded by N21 aviation forensics | 185 wires · 321 flights |
 | 8 | <a href="https://randallscott25-star.github.io/epstein-forensic-finance/narratives/08_infrastructure_of_access.html" target="_blank">The Infrastructure of Access</a> | The people who moved the money are the same people victims named — Maxwell in 204 financial docs and 1,312 victim docs | 11.4M entities · 1.48M files |
 | 9 | <a href="https://randallscott25-star.github.io/epstein-forensic-finance/narratives/09_734122_names.html" target="_blank">734,122 Names</a> | Asked every person in 1.48M files who bridges financial and victim docs. 57 real names. 10 operational staff | 734,122 persons · 57 bridgers |
 | 10 | <a href="https://randallscott25-star.github.io/epstein-forensic-finance/narratives/10_the_round_number_problem.html" target="_blank">The Round Number Problem</a> | Benford's Law fails: digits 2 and 5 at 29.7% and 18.4%. 84.3% of wires are exact round numbers | 185 wires · $557M |
@@ -331,6 +332,7 @@ One gap has a credible dollar estimate ($5-15M in excluded tiers). The rest are 
 | **18** | **<a href="https://randallscott25-star.github.io/epstein-forensic-finance/narratives/18_offshore_architecture.html" target="_blank">Offshore Architecture: The Brunel–BVI–ICIJ Bridge</a>** | **DOJ subpoena names BVI shell. ICIJ Offshore Leaks confirms. 3 databases cross-referenced** | **172 docs · 3 databases · 8,526 pages** |
 | **19** | **<a href="https://randallscott25-star.github.io/epstein-forensic-finance/narratives/19_grand_opus_narrative.html" target="_blank">Blueprint of a Financial Machine</a>** | **Season 1 finale. $2.146B, 123 nodes, 313 edges. Full network mapped. <a href="https://randallscott25-star.github.io/epstein-forensic-finance/visualizations/19_blueprint_financial_machine.html" target="_blank">Visualization</a>** | **10,964 txns · 123 nodes · $2.146B** |
 | **20** | **<a href="https://randallscott25-star.github.io/epstein-forensic-finance/narratives/20_the_verification_wall.html" target="_blank">The Verification Wall</a>** | **Season 2, Narrative 20 1. Every document has a Bates number — the wall tests what's behind it. 8 noise POIs ($144.4M claimed, Bates stamps → news/court filings, $0 bank docs) vs. Leon Black ($310.5M, 42 verified wires, 15 bank docs). NLP phantom autopsy with clickable EFTA source documents.** | **9 POIs · 15 bank docs · $310.5M verified** |
+| **21** | **<a href="https://randallscott25-star.github.io/epstein-forensic-finance/visualizations/aviation_v5.html" target="_blank">They Were on the Plane</a>** | **Aviation forensics from DS4, DS5, DS7, DS8, DS9. 70 flights, 32 key persons, $281M in correlated financial events, 25 CBP border encounters. Interactive globe with flight-level ±30 day financial correlation. Victim co-flight analysis. Every flight → Bates-stamped exhibit.** | **70 flights · 32 persons · $281M · 25 CBP** |
 
 Source workbook: **[Forensic Workbook](https://docs.google.com/spreadsheets/d/11lw0QjMZ-rYIjWesv5VG1YKts57ahPEm/edit?usp=sharing&ouid=103970896670138914877&rtpof=true&sd=true)** · [Interactive Shell Network](https://randallscott25-star.github.io/epstein-forensic-finance/visualizations/shell_network.html)
 
@@ -348,7 +350,7 @@ Source workbook: **[Forensic Workbook](https://docs.google.com/spreadsheets/d/11
 │   ├── SCHEMA.md                          ← Database architecture diagram
 │   ├── NETWORK.md                         ← Trust network flow diagram
 │   └── SOURCE_APPENDIX_TEMPLATE.md        ← Standard template for source appendices
-├── narratives/                            ← 20 forensic data narratives with source appendices
+├── narratives/                            ← 21 forensic data narratives with source appendices
 ├── data/
 │   ├── publication_ledger_phase5l.json    ← 10,964 transactions, four-tier (publication dataset)
 │   ├── master_wire_ledger_phase5i.json    ← 481 wires (wire-specific subset)
@@ -392,7 +394,7 @@ Source workbook: **[Forensic Workbook](https://docs.google.com/spreadsheets/d/11
 
 **I didn't read the documents. I audited the money.**
 
-Other projects build search engines, write narrative reports, or create browsable archives. Good work, all of it. I took a different approach. I applied the same methodology I use in my day job — multi-affiliate reconciliation, exception reporting, variance analysis, confidence tiering — and pointed it at the EFTA corpus.
+Other projects build search engines, write narrative reports, or create browsable archives. Good work, all of it. I took a different approach. I applied the same methodology I use professionally — multi-affiliate reconciliation, exception reporting, variance analysis, confidence tiering — and pointed it at the EFTA corpus.
 
 The question isn't "what do the documents say?" It's: **"Where did the money go, who moved it, and what did the DOJ redact around it?"**
 
@@ -414,14 +416,14 @@ The master wire ledger (481 wires) and entity classification data are published 
 
 ## Author
 
-**RS Taylor**
+**Randall Scott Taylor** · Data Scientist
 
 BS Network & Cyber Security, Wilmington University
 MS Applied Data Science, Syracuse University
 
 I built this project. Every line of extraction code, every database table, every classification rule, every phase of the pipeline. AI tools (Claude, Anthropic) helped me write code faster. The analytical judgments, methodology design, and forensic interpretations are mine.
 
-Background: multi-affiliate financial reconciliation, budget auditing, automated classification and exception reporting systems, large-scale fiscal operations.
+Background: multi-affiliate financial reconciliation, automated classification and exception reporting systems, large-scale data operations.
 
 ---
 
@@ -485,4 +487,5 @@ The underlying DOJ documents are U.S. government publications in the public doma
 | Feb 25 | Workbook v9. 19 data narratives live. |
 | Feb 26 | N19: Blueprint of a Financial Machine — season 1 finale. 123 nodes, 313 edges, full $2.146B corpus mapped. Timeline v9 with 69 vetted persons of interest. |
 | Feb 27 | N20: The Verification Wall — season 2 opener. Bates distinction framework. 8 noise POIs ($144.4M → $0 bank docs) vs. Leon Black ($310.5M, 42 wires, 15 bank docs). Clickable EFTA source documents. |
+| Feb 28 | N21: They Were on the Plane — aviation forensics. 70 flights from DS4/DS5/DS7/DS8/DS9, 32 key persons, $281M correlated financial events, 25 CBP encounters, interactive globe, ±30 day flight-financial correlation. |
 | Ongoing | Additional data narratives and follow-on analysis |
