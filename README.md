@@ -34,7 +34,7 @@ For the girls.
 
 | # | Narrative | Key Finding |
 |---|-----------|-------------|
-| **21** | **<a href="https://randallscott25-star.github.io/epstein-forensic-finance/narratives/aviation_v5.html" target="_blank">They Were on the Plane</a>** | **Aviation forensics: 67 flights, 32 key persons, $281M correlated financial events, 25 CBP encounters. Interactive globe, flight-level financial correlation, victim co-flight analysis. Sources: DS4, DS5, DS7, DS8, DS9.** |
+| **21** | **<a href="https://randallscott25-star.github.io/epstein-forensic-finance/narratives/aviation_v5.html" target="_blank">They Were on the Plane</a>** | **Aviation forensics: 67 flights, 129 Vision-recovered passengers, $281M correlated financial events, 25 CBP encounters. Interactive globe, flight-level financial correlation, victim co-flight analysis. Claude Vision API processed 287 handwritten manifest pages. Sources: DS4, DS5, DS7, DS8, DS9.** |
 | **20** | **<a href="https://randallscott25-star.github.io/epstein-forensic-finance/narratives/20_the_verification_wall.html" target="_blank">The Verification Wall</a>** | **Season 2 opener. Every document has a Bates number — the wall tests what's behind it. 8 noise POIs ($144.4M, $0 bank docs) vs. Leon Black ($310.5M, 42 verified wires, 15 bank docs). NLP phantom autopsy with clickable EFTA source documents.** |
 | 1 | <a href="https://randallscott25-star.github.io/epstein-forensic-finance/narratives/01_jeepers_pipeline.html" target="_blank">The Jeepers Pipeline</a> | $57.9M brokerage shell → personal checking, every wire dated |
 | 2 | <a href="https://randallscott25-star.github.io/epstein-forensic-finance/narratives/02_art_market.html" target="_blank">Art Market as Liquidity Channel</a> | Sotheby's + Christie's proceeds entered through Haze Trust |
@@ -487,5 +487,6 @@ The underlying DOJ documents are U.S. government publications in the public doma
 | Feb 25 | Workbook v9. 19 data narratives live. |
 | Feb 26 | N19: Blueprint of a Financial Machine — season 1 finale. 123 nodes, 313 edges, full $2.146B corpus mapped. Timeline v9 with 69 vetted persons of interest. |
 | Feb 27 | N20: The Verification Wall — season 2 opener. Bates distinction framework. 8 noise POIs ($144.4M → $0 bank docs) vs. Leon Black ($310.5M, 42 wires, 15 bank docs). Clickable EFTA source documents. |
-| Feb 28 | N21: They Were on the Plane — aviation forensics. 67 flights from DS4/DS5/DS7/DS8/DS9, 32 key persons, $281M correlated financial events, 25 CBP encounters, interactive globe, ±30 day flight-financial correlation. |
+| Feb 28 | N21: They Were on the Plane — aviation forensics. 67 flights from DS4/DS5/DS7/DS8/DS9, 129 Vision-recovered passengers, $281M correlated financial events, 25 CBP encounters, interactive globe, ±30 day flight-financial correlation. |
+| Mar 1 | Vision API OCR: Claude Vision processed 287 manifest pages from Files 15902 + 29021. Recovered 129 unique passenger names from handwritten manifests. Confirmed: Ehud Barak + Secret Service, Dershowitz (6 flights), Legal Team flight (Dershowitz + Roy Black + Lefcourt + Indyke), Summers (3 flights + Lisa Summers), Cronkite, Sultan bin Sulayem (19 pax), Nowak. All high confidence. |
 | Ongoing | Additional data narratives and follow-on analysis |
