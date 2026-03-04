@@ -21,20 +21,13 @@ For the girls.
 
 ## 📌 Start Here
 
-### ✈ New: They Were on the Plane (N21)
 
-> Aviation forensics from five DOJ datasets. 67 flights, 129 Vision-recovered passengers, $281M in correlated financial events, 25 CBP border encounters — mapped to an interactive globe with flight-by-flight financial correlation. Claude Vision API processed 288 manifest pages to recover handwritten names that standard OCR could not read. Every claim traces to a Bates-stamped exhibit. Built in React.
+> **20 data narratives** reconstruct how $2.146 billion moved through 14 shell entities across 8+ banking institutions. Every claim is anchored to specific court exhibits and bates stamps.
 >
-> **→ <a href="https://randallscott25-star.github.io/epstein-forensic-finance/narratives/aviation_v5.html" target="_blank">Launch Aviation Visualization (N21)</a>** · **<a href="https://randallscott25-star.github.io/epstein-forensic-finance/narratives/20_the_verification_wall.html" target="_blank">The Verification Wall (N20)</a>** · **<a href="https://randallscott25-star.github.io/epstein-forensic-finance/narratives/19_grand_opus_narrative.html" target="_blank">Blueprint of a Financial Machine (N19)</a>** · **<a href="https://randallscott25-star.github.io/epstein-forensic-finance/narratives/17_the_architecture.html" target="_blank">One-Way Money (N17)</a>**
-
-
-> **21 data narratives** reconstruct how $2.146 billion moved through 14 shell entities across 8+ banking institutions. Every claim is anchored to specific court exhibits and bates stamps.
->
-> **→ [Read the Data Narratives](narratives/)** · **<a href="https://randallscott25-star.github.io/epstein-forensic-finance/visualizations/shell_network.html" target="_blank">Explore the Interactive Network</a>** · **<a href="https://docs.google.com/spreadsheets/d/11lw0QjMZ-rYIjWesv5VG1YKts57ahPEm/edit?usp=sharing&ouid=103970896670138914877&rtpof=true&sd=true" target="_blank">View the Forensic Workbook</a>**
+> **→ [Read the Data Narratives](narratives/)** · **<a href="https://randallscott25-star.github.io/epstein-forensic-finance/narratives/20_the_verification_wall.html" target="_blank">The Verification Wall (N20)</a>** · **<a href="https://randallscott25-star.github.io/epstein-forensic-finance/narratives/19_grand_opus_narrative.html" target="_blank">Blueprint of a Financial Machine (N19)</a>** · **<a href="https://randallscott25-star.github.io/epstein-forensic-finance/narratives/17_the_architecture.html" target="_blank">One-Way Money (N17)</a>** · **<a href="https://randallscott25-star.github.io/epstein-forensic-finance/visualizations/shell_network.html" target="_blank">Explore the Interactive Network</a>** · **<a href="https://docs.google.com/spreadsheets/d/11lw0QjMZ-rYIjWesv5VG1YKts57ahPEm/edit?usp=sharing&ouid=103970896670138914877&rtpof=true&sd=true" target="_blank">View the Forensic Workbook</a>**
 
 | # | Narrative | Key Finding |
 |---|-----------|-------------|
-| **21** | **<a href="https://randallscott25-star.github.io/epstein-forensic-finance/narratives/aviation_v5.html" target="_blank">They Were on the Plane</a>** | **Aviation forensics: 67 flights, 129 Vision-recovered passengers, $281M correlated financial events, 25 CBP encounters. Interactive globe, flight-level financial correlation, victim co-flight analysis. Claude Vision API processed 287 handwritten manifest pages. Sources: DS4, DS5, DS7, DS8, DS9.** |
 | **20** | **<a href="https://randallscott25-star.github.io/epstein-forensic-finance/narratives/20_the_verification_wall.html" target="_blank">The Verification Wall</a>** | **Season 2 opener. Every document has a Bates number — the wall tests what's behind it. 8 noise POIs ($144.4M, $0 bank docs) vs. Leon Black ($310.5M, 42 verified wires, 15 bank docs). NLP phantom autopsy with clickable EFTA source documents.** |
 | 1 | <a href="https://randallscott25-star.github.io/epstein-forensic-finance/narratives/01_jeepers_pipeline.html" target="_blank">The Jeepers Pipeline</a> | $57.9M brokerage shell → personal checking, every wire dated |
 | 2 | <a href="https://randallscott25-star.github.io/epstein-forensic-finance/narratives/02_art_market.html" target="_blank">Art Market as Liquidity Channel</a> | Sotheby's + Christie's proceeds entered through Haze Trust |
@@ -318,7 +311,7 @@ One gap has a credible dollar estimate ($5-15M in excluded tiers). The rest are 
 | 4 | <a href="https://randallscott25-star.github.io/epstein-forensic-finance/narratives/04_chain_hop_anatomy.html" target="_blank">Chain-Hop Anatomy</a> | 4-tier shell network mapped — and $311M in double-counting removed | 67 wires · $312,796,381 |
 | 5 | <a href="https://randallscott25-star.github.io/epstein-forensic-finance/narratives/05_deutsche_bank.html" target="_blank">Deutsche Bank's Role</a> | 38 wires across every major Epstein entity, 75% of volume in last 6 months | 38 wires · $56,792,936 |
 | 6 | <a href="https://randallscott25-star.github.io/epstein-forensic-finance/narratives/06_gratitude_america.html" target="_blank">Gratitude America</a> | 88% of outflows to investment accounts, 7% to charitable purposes | 20 wires · $13,080,518 |
-| 7 | <a href="https://randallscott25-star.github.io/epstein-forensic-finance/narratives/07_follow_the_money_follow_the_plane.html" target="_blank">Follow the Money, Follow the Plane</a> | Wire-flight temporal correlation: financial events cluster with flight activity consistently across 18 years. Superseded by N21 aviation forensics | 185 wires · 321 flights |
+| 7 | <a href="https://randallscott25-star.github.io/epstein-forensic-finance/narratives/07_follow_the_money_follow_the_plane.html" target="_blank">Follow the Money, Follow the Plane</a> | Wire-flight temporal correlation: financial events cluster with flight activity consistently across 18 years | 185 wires · 321 flights |
 | 8 | <a href="https://randallscott25-star.github.io/epstein-forensic-finance/narratives/08_infrastructure_of_access.html" target="_blank">The Infrastructure of Access</a> | The people who moved the money are the same people victims named — Maxwell in 204 financial docs and 1,312 victim docs | 11.4M entities · 1.48M files |
 | 9 | <a href="https://randallscott25-star.github.io/epstein-forensic-finance/narratives/09_734122_names.html" target="_blank">734,122 Names</a> | Asked every person in 1.48M files who bridges financial and victim docs. 57 real names. 10 operational staff | 734,122 persons · 57 bridgers |
 | 10 | <a href="https://randallscott25-star.github.io/epstein-forensic-finance/narratives/10_the_round_number_problem.html" target="_blank">The Round Number Problem</a> | Benford's Law fails: digits 2 and 5 at 29.7% and 18.4%. 84.3% of wires are exact round numbers | 185 wires · $557M |
@@ -332,7 +325,6 @@ One gap has a credible dollar estimate ($5-15M in excluded tiers). The rest are 
 | **18** | **<a href="https://randallscott25-star.github.io/epstein-forensic-finance/narratives/18_offshore_architecture.html" target="_blank">Offshore Architecture: The Brunel–BVI–ICIJ Bridge</a>** | **DOJ subpoena names BVI shell. ICIJ Offshore Leaks confirms. 3 databases cross-referenced** | **172 docs · 3 databases · 8,526 pages** |
 | **19** | **<a href="https://randallscott25-star.github.io/epstein-forensic-finance/narratives/19_grand_opus_narrative.html" target="_blank">Blueprint of a Financial Machine</a>** | **Season 1 finale. $2.146B, 123 nodes, 313 edges. Full network mapped. <a href="https://randallscott25-star.github.io/epstein-forensic-finance/visualizations/19_blueprint_financial_machine.html" target="_blank">Visualization</a>** | **10,964 txns · 123 nodes · $2.146B** |
 | **20** | **<a href="https://randallscott25-star.github.io/epstein-forensic-finance/narratives/20_the_verification_wall.html" target="_blank">The Verification Wall</a>** | **Season 2, Narrative 20 1. Every document has a Bates number — the wall tests what's behind it. 8 noise POIs ($144.4M claimed, Bates stamps → news/court filings, $0 bank docs) vs. Leon Black ($310.5M, 42 verified wires, 15 bank docs). NLP phantom autopsy with clickable EFTA source documents.** | **9 POIs · 15 bank docs · $310.5M verified** |
-| **21** | **<a href="https://randallscott25-star.github.io/epstein-forensic-finance/narratives/aviation_v5.html" target="_blank">They Were on the Plane</a>** | **Aviation forensics from DS4, DS5, DS7, DS8, DS9. 67 flights, 32 key persons, $281M in correlated financial events, 25 CBP border encounters. Interactive globe with flight-level ±30 day financial correlation. Victim co-flight analysis. Every flight → Bates-stamped exhibit.** | **67 flights · 32 persons · $281M · 25 CBP** |
 
 Source workbook: **[Forensic Workbook](https://docs.google.com/spreadsheets/d/11lw0QjMZ-rYIjWesv5VG1YKts57ahPEm/edit?usp=sharing&ouid=103970896670138914877&rtpof=true&sd=true)** · [Interactive Shell Network](https://randallscott25-star.github.io/epstein-forensic-finance/visualizations/shell_network.html)
 
@@ -350,7 +342,7 @@ Source workbook: **[Forensic Workbook](https://docs.google.com/spreadsheets/d/11
 │   ├── SCHEMA.md                          ← Database architecture diagram
 │   ├── NETWORK.md                         ← Trust network flow diagram
 │   └── SOURCE_APPENDIX_TEMPLATE.md        ← Standard template for source appendices
-├── narratives/                            ← 21 forensic data narratives with source appendices
+├── narratives/                            ← 20 forensic data narratives with source appendices
 ├── data/
 │   ├── publication_ledger_phase5l.json    ← 10,964 transactions, four-tier (publication dataset)
 │   ├── master_wire_ledger_phase5i.json    ← 481 wires (wire-specific subset)
@@ -487,6 +479,4 @@ The underlying DOJ documents are U.S. government publications in the public doma
 | Feb 25 | Workbook v9. 19 data narratives live. |
 | Feb 26 | N19: Blueprint of a Financial Machine — season 1 finale. 123 nodes, 313 edges, full $2.146B corpus mapped. Timeline v9 with 69 vetted persons of interest. |
 | Feb 27 | N20: The Verification Wall — season 2 opener. Bates distinction framework. 8 noise POIs ($144.4M → $0 bank docs) vs. Leon Black ($310.5M, 42 wires, 15 bank docs). Clickable EFTA source documents. |
-| Feb 28 | N21: They Were on the Plane — aviation forensics. 67 flights from DS4/DS5/DS7/DS8/DS9, 129 Vision-recovered passengers, $281M correlated financial events, 25 CBP encounters, interactive globe, ±30 day flight-financial correlation. |
-| Mar 1 | Vision API OCR: Claude Vision processed 287 manifest pages from Files 15902 + 29021. Recovered 129 unique passenger names from handwritten manifests. Confirmed: Ehud Barak + Secret Service, Dershowitz (6 flights), Legal Team flight (Dershowitz + Roy Black + Lefcourt + Indyke), Summers (3 flights + Lisa Summers), Cronkite, Sultan bin Sulayem (19 pax), Nowak. All high confidence. |
 | Ongoing | Additional data narratives and follow-on analysis |
