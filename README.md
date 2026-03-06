@@ -28,8 +28,8 @@ For the girls.
 
 | # | Narrative | Key Finding |
 |---|-----------|-------------|
-| **19** | **<a href="https://randallscott25-star.github.io/epstein-forensic-finance/narratives/19_grand_opus_narrative.html" target="_blank">Blueprint of a Financial Machine</a>** | **Season 1 finale. $2.146B, 123 nodes, 313 edges. Every bank, shell, operator, and key person mapped. <a href="https://randallscott25-star.github.io/epstein-forensic-finance/visualizations/19_blueprint_financial_machine.html" target="_blank">Visualization</a>** |
-| **20** | **<a href="https://randallscott25-star.github.io/epstein-forensic-finance/narratives/20_the_verification_wall.html" target="_blank">The Verification Wall</a>** | **Season 2 opener. Every document has a Bates number — the wall tests what's behind it. 8 noise POIs ($144.4M, $0 bank docs) vs. Leon Black ($310.5M, 42 verified wires, 15 bank docs). NLP phantom autopsy with clickable EFTA source documents.** |
+| **19** | **<a href="https://randallscott25-star.github.io/epstein-forensic-finance/narratives/19_grand_opus_narrative.html" target="_blank">Blueprint of a Financial Machine</a>** | **$2.146B, 123 nodes, 313 edges. Every bank, shell, operator, and key person mapped. <a href="https://randallscott25-star.github.io/epstein-forensic-finance/visualizations/19_blueprint_financial_machine.html" target="_blank">Visualization</a>** |
+| **20** | **<a href="https://randallscott25-star.github.io/epstein-forensic-finance/narratives/20_the_verification_wall.html" target="_blank">The Verification Wall</a>** | ** Every document has a Bates number — the wall tests what's behind it. 8 noise POIs ($144.4M, $0 bank docs) vs. Leon Black ($310.5M, 42 verified wires, 15 bank docs). NLP phantom autopsy with clickable EFTA source documents.** |
 
 
 
