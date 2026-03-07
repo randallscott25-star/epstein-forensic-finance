@@ -127,6 +127,8 @@ All amounts are (Unverified) automated extractions. See [FINDINGS.md](docs/FINDI
 
 ### Money Flow Direction Analysis
 
+*Phase 14–24 intermediate snapshot (382-wire ledger, pre-Phase 5I entity resolution)*
+
 | Direction | Wires | Amount (Unverified) | Share |
 |-----------|------:|-------:|------:|
 | **MONEY IN** — External → Epstein entities | 91 | $232,538,043 | 41.7% |
@@ -217,7 +219,7 @@ Phase 5B   Operational Cost Model → confidence-tiered financial extraction
 Phase 5C   Entity-to-Entity Fund Flows → directional A→B with 5-axis scoring
 Phase 5D   Payment-Travel-Victim Correlation → temporal pattern analysis
 Phase 5E   Redaction Map → navigational tool for document analysis
-Phases 14-24  Wire Transfer Extraction Pipeline → 382-wire ledger, $1.964B
+Phases 14-24  Wire Transfer Extraction Pipeline → 382-wire ledger (pre-5I), $1.964B
 Phase 5I   Entity Resolution & Bank Expansion → 481-wire ledger, $973M entity-resolved, 14-bank coverage
 Phase 5J   Multi-Bank Statement Parser → 1,202 verified transactions from 13 banks
 Phase 5K   Payment Type Expansion → CHIPS, SWIFT, checks, bank statements beyond wire transfers
@@ -291,7 +293,7 @@ One gap has a credible dollar estimate ($5-15M in excluded tiers). The rest are 
 | # | Title | Key Finding | Data Scope |
 |---|-------|-------------|------------|
 | **19** | **<a href="https://randallscott25-star.github.io/epstein-forensic-finance/narratives/19_grand_opus_narrative.html" target="_blank">Blueprint of a Financial Machine</a>** | **Season 1 finale. $2.146B, 123 nodes, 313 edges. Full network mapped. <a href="https://randallscott25-star.github.io/epstein-forensic-finance/visualizations/19_blueprint_financial_machine.html" target="_blank">Visualization</a>** | **10,964 txns · 123 nodes · $2.146B** |
-| **20** | **<a href="https://randallscott25-star.github.io/epstein-forensic-finance/narratives/20_the_verification_wall.html" target="_blank">The Verification Wall</a>** | **Season 2, Narrative 20 1. Every document has a Bates number — the wall tests what's behind it. 8 noise POIs ($144.4M claimed, Bates stamps → news/court filings, $0 bank docs) vs. Leon Black ($310.5M, 42 verified wires, 15 bank docs). NLP phantom autopsy with clickable EFTA source documents.** | **9 POIs · 15 bank docs · $310.5M verified** |
+| **20** | **<a href="https://randallscott25-star.github.io/epstein-forensic-finance/narratives/20_the_verification_wall.html" target="_blank">The Verification Wall</a>** | **Season 2, Narrative 20. Every document has a Bates number — the wall tests what's behind it. 8 noise POIs ($144.4M claimed, Bates stamps → news/court filings, $0 bank docs) vs. Leon Black ($310.5M, 42 verified wires, 15 bank docs). NLP phantom autopsy with clickable EFTA source documents.** | **9 POIs · 15 bank docs · $310.5M verified** |
 
 Source workbook: **[Forensic Workbook](https://docs.google.com/spreadsheets/d/11lw0QjMZ-rYIjWesv5VG1YKts57ahPEm/edit?usp=sharing&ouid=103970896670138914877&rtpof=true&sd=true)** · [Interactive Shell Network](https://randallscott25-star.github.io/epstein-forensic-finance/visualizations/shell_network.html)
 
@@ -316,7 +318,7 @@ Source workbook: **[Forensic Workbook](https://docs.google.com/spreadsheets/d/11
 │   └── entity_classification.json         ← Entity → type mapping (228 entities)
 ├── visualizations/                        ← Interactive shell network diagram
 └── tools/
-    ├── narrative_sql_tools.py             ← SQL query functions for all 19 narrative data sources
+    ├── narrative_sql_tools.py             ← SQL query functions for all 2 narrative data sources
     ├── linkify_efta.py                    ← Auto-link EFTA IDs → DOJ PDFs in .md files
     ├── convert_links_new_tab.py           ← Convert external links to target="_blank"
     ├── inject_efta_source_table.py        ← Add source document tables to narratives
@@ -446,4 +448,4 @@ The underlying DOJ documents are U.S. government publications in the public doma
 | Feb 25 | Workbook v9. 19 data narratives live. |
 | Feb 26 | N19: Blueprint of a Financial Machine — season 1 finale. 123 nodes, 313 edges, full $2.146B corpus mapped. Timeline v9 with 69 vetted persons of interest. |
 | Feb 27 | N20: The Verification Wall — season 2 opener. Bates distinction framework. 8 noise POIs ($144.4M → $0 bank docs) vs. Leon Black ($310.5M, 42 wires, 15 bank docs). Clickable EFTA source documents. |
-| Ongoing | Additional data narratives and follow-on analysis |
+| Ongoing | Deep dive forensic analysis — no further narratives planned |
