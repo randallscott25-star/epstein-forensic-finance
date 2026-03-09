@@ -1,4 +1,4 @@
-# ⚠ NOTICE: As of March 9, 2026, this project is currently under independent audit. Findings remain preliminary pending audit completion.
+
 # Epstein Financial Forensics
 
 **Forensic financial reconstruction from 1.48 million DOJ EFTA documents + 503K cataloged media items**
