@@ -12,11 +12,11 @@
 
 ## What This Is
 
-I took 1.48 million documents the DOJ released under the Epstein Files Transparency Act and built a forensic financial database from scratch. Wrote all the extraction code. Designed the schema. Built the classification pipeline. Ran the analysis. Solo project, start to finish. AI tools helped me write code faster — same way you'd use a calculator. The analytical calls are mine.
+We took 1.48 million documents the DOJ released under the Epstein Files Transparency Act and built a forensic financial database from scratch. Wrote all the extraction code. Designed the schema. Built the classification pipeline. Ran the analysis. Team project, start to finish. AI tools helped us write code faster — same way you'd use a calculator. The analytical calls are ours.
 
-My background is multi-affiliate financial reconciliation, budget variance analysis, and automated exception reporting at institutional scale. I applied those same methods here.
+Our team background spans multi-affiliate financial reconciliation, budget variance analysis, automated exception reporting at institutional scale, forensic financial analysis, and legal review. We applied those same methods here.
 
-Far as I can tell, nobody else has tried to reconstruct the complete financial infrastructure in the EFTA corpus using quantitative forensic methods. Plenty of good narrative work out there. Plenty of search engines. This is the first attempt to model the full network — fund flows, entity relationships, shell trust hierarchies — at scale.
+Far as we can tell, nobody else has tried to reconstruct the complete financial infrastructure in the EFTA corpus using quantitative forensic methods. Plenty of good narrative work out there. Plenty of search engines. This is the first attempt to model the full network — fund flows, entity relationships, shell trust hierarchies — at scale.
 
 For the girls.
 
@@ -57,7 +57,7 @@ For the girls.
 | **Multi-phase dedup pipeline** | ✅ 3-stage evolution | — | — | — |
 | **Shell hierarchy mapping** | ✅ 4-tier | — | — | — |
 
-> **Note:** The largest narrative repo counts individual *pages* as records — their unique PDF file count is ~519,548. My 1,476,377 are unique files, each with a distinct DOJ URL or registered serial. The 503,154 media items are separately cataloged from <a href="https://www.justice.gov/epstein/doj-disclosures/data-set-10-files" target="_blank">DS10</a> evidence photos and videos. Other projects in this space are doing solid work — narrative forensic reporting, searchable archives, community preservation. My lane is systematic financial reconstruction at scale.
+> **Note:** The largest narrative repo counts individual *pages* as records — their unique PDF file count is ~519,548. Our 1,476,377 are unique files, each with a distinct DOJ URL or registered serial. The 503,154 media items are separately cataloged from <a href="https://www.justice.gov/epstein/doj-disclosures/data-set-10-files" target="_blank">DS10</a> evidence photos and videos. Other projects in this space are doing solid work — narrative forensic reporting, searchable archives, community preservation. Our lane is systematic financial reconstruction at scale.
 
 ---
 
@@ -278,11 +278,11 @@ Every financial record gets scored independently across five axes:
 |-----------|:----------:|--------|
 | **WEAK/VERY_WEAK tier exclusions** | **Yes — $5M-$15M** | $991M excluded as low-confidence; manual review of top entries could recover $5-15M |
 | **Sealed/withheld documents** | No | Court-sealed records inaccessible to EFTA; dollar value unknown |
-| **Attempted vs. completed transactions** | No | SARs count attempted; I extract completed only; gap is real but unquantifiable |
+| **Attempted vs. completed transactions** | No | SARs count attempted; we extract completed only; gap is real but unquantifiable |
 | **Destroyed pre-retention records** | No | Bank retention policies may have purged records; unquantifiable |
 | **Cross-bank SAR duplication** | No (directional) | Same wire triggering SARs at both banks inflates the benchmark — *reduces* the gap |
 
-One gap has a credible dollar estimate ($5-15M in excluded tiers). The rest are real information gaps with unknown values. I'm not putting specific ranges on things I can't measure.
+One gap has a credible dollar estimate ($5-15M in excluded tiers). The rest are real information gaps with unknown values. We're not putting specific ranges on things we can't measure.
 
 ---
 
@@ -353,9 +353,9 @@ Source workbook: **[Forensic Workbook](https://docs.google.com/spreadsheets/d/11
 
 ## What Makes This Different
 
-**I didn't read the documents. I audited the money.**
+**We didn't read the documents. We audited the money.**
 
-Other projects build search engines, write narrative reports, or create browsable archives. Good work, all of it. I took a different approach. I applied the same methodology I use professionally — multi-affiliate reconciliation, exception reporting, variance analysis, confidence tiering — and pointed it at the EFTA corpus.
+Other projects build search engines, write narrative reports, or create browsable archives. Good work, all of it. We took a different approach. We applied the same methodology used professionally — multi-affiliate reconciliation, exception reporting, variance analysis, confidence tiering — and pointed it at the EFTA corpus.
 
 The question isn't "what do the documents say?" It's: **"Where did the money go, who moved it, and what did the DOJ redact around it?"**
 
@@ -368,23 +368,25 @@ This repo publishes methodology, findings, and summary data. The source code, da
 - **AICPA SSFS No. 1** says forensic practitioners maintain control over working papers, proprietary methodologies, and analytical tools. Work product privilege protects the analytical process.
 - **AICPA AU-C §230** says audit documentation is the property of the practitioner. Sufficient documentation is provided for a knowledgeable reviewer to understand the work performed.
 - **Chain of custody**: The 8.64GB forensic database is a consolidated analytical environment. Releasing it in fragments invites miscontextualization of intermediate results without the full pipeline logic.
-- **Reproducibility**: The methodology docs, scoring weights, classification rules, and dedup logic are fully described. You can replicate it without my tooling.
+- **Reproducibility**: The methodology docs, scoring weights, classification rules, and dedup logic are fully described. You can replicate it without our tooling.
 - **Ongoing analysis**: The database and pipeline are still active. Premature release could compromise forthcoming narratives and follow-on investigations.
 
 The master wire ledger (481 wires) and entity classification data are published in full in the `data/` directory. Those are the final audited outputs and they're sufficient for independent verification of everything published here.
 
 ---
 
-## Author
+## Project Team
 
-**Randall Scott Taylor** · Data Scientist
+**Anne Mitchell, Esq.** (Project Lead)
+
+**R.S. Taylor** (Lead Analyst)
 
 BS Network & Cyber Security, Wilmington University
 MS Applied Data Science, Syracuse University
 
-I built this project. Every line of extraction code, every database table, every classification rule, every phase of the pipeline. AI tools (Claude, Anthropic) helped me write code faster. The analytical judgments, methodology design, and forensic interpretations are mine.
+We built this project — every line of extraction code, every database table, every classification rule, every phase of the pipeline. AI tools (Claude, Anthropic) helped us write code faster. The analytical judgments, methodology design, and forensic interpretations are ours.
 
-Background: multi-affiliate financial reconciliation, automated classification and exception reporting systems, large-scale data operations.
+Team background: multi-affiliate financial reconciliation, automated classification and exception reporting systems, large-scale data operations, forensic financial analysis, and legal review.
 
 ---
 
