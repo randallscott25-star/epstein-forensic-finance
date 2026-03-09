@@ -17,7 +17,7 @@ We took 1.48 million documents the DOJ released under the Epstein Files Transpar
 
 Our team background spans multi-affiliate financial reconciliation, budget variance analysis, automated exception reporting at institutional scale, forensic financial analysis, and legal review. We applied those same methods here.
 
-Far as we can tell, nobody else has tried to reconstruct the complete financial infrastructure in the EFTA corpus using quantitative forensic methods. Plenty of good narrative work out there. Plenty of search engines. This is the first attempt to model the full network — fund flows, entity relationships, shell trust hierarchies — at scale.
+As far as we can tell, nobody else has tried to reconstruct the complete financial infrastructure in the EFTA corpus using quantitative forensic methods. Plenty of good narrative work out there. Plenty of search engines. This is the first attempt to model the full network — fund flows, entity relationships, shell trust hierarchies — at scale.
 
 For the girls.
 
@@ -449,6 +449,6 @@ The underlying DOJ documents are U.S. government publications in the public doma
 | Feb 25 | Workbook v8 (19 tabs). N18 published. JSON v26 community dataset. |
 | Feb 25 | Phase 5K–5L: Payment type expansion + publication ledger assembly. 10,964 unique transactions, $2.146B, four-tier GAGAS framework |
 | Feb 25 | Workbook v9. 19 data narratives live. |
-| Feb 26 | N19: Blueprint of a Financial Machine — season 1 finale. 123 nodes, 313 edges, full $2.146B corpus mapped. Timeline v9 with 69 vetted persons of interest. |
-| Feb 27 | N20: The Verification Wall — season 2 opener. Bates distinction framework. 8 noise POIs ($144.4M → $0 bank docs) vs. Leon Black ($310.5M, 42 wires, 15 bank docs). Clickable EFTA source documents. |
+| Feb 26 | N19: Blueprint of a Financial Machine — capstone narrative. 123 nodes, 313 edges, full $2.146B corpus mapped. Timeline v9 with 69 vetted persons of interest. |
+| Feb 27 | N20: The Verification Wall. Bates distinction framework. 8 noise POIs ($144.4M → $0 bank docs) vs. Leon Black ($310.5M, 42 wires, 15 bank docs). Clickable EFTA source documents. |
 | Ongoing | Deep dive forensic analysis — no further narratives planned |
