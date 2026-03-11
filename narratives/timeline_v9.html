@@ -137,7 +137,17 @@ body{background:var(--navy);color:var(--white);font-family:var(--font-body);font
 }
 </style>
 </head>
-<body>
+<body><!-- MEDIA & FORK NOTICE — inserted March 11, 2026 -->
+<div style="background:rgba(10,22,40,0.97);border-top:3px solid #c9a84c;border-bottom:1px solid rgba(201,168,76,0.3);padding:18px 28px;font-family:'IBM Plex Mono',monospace;font-size:11px;line-height:1.85;color:#b0a898;position:relative;z-index:100;">
+  <div style="max-width:860px;margin:0 auto;">
+    <div style="font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#c9a84c;margin-bottom:10px;font-weight:500;">&#9432; &thinsp; Notice to Media, Researchers &amp; Repository Forks</div>
+    <p style="margin:0 0 8px 0;">This document is a published output of an active forensic investigation. The underlying database is under continuous review — records are re-validated against primary bank documents, entities are reclassified as new source material is processed, and figures are corrected when the data demands it. What you are reading reflects the state of the analysis as of <strong style="color:#e8e4dc;">March 11, 2026</strong>.</p>
+    
+    <p style="margin:0;color:#7a7060;"><strong style="color:#b0a898;">If you are forking, archiving, or citing this work:</strong> snapshots capture a moment in time. Do not treat cached versions as authoritative. Always reference the live repository at <a href="https://github.com/randallscott25-star/epstein-forensic-finance" style="color:#c9a84c;text-decoration:none;">github.com/randallscott25-star/epstein-forensic-finance</a> for current figures. Last validated: <strong style="color:#e8e4dc;">March 11, 2026</strong>.</p>
+  </div>
+</div>
+<!-- END MEDIA & FORK NOTICE -->
+
 <div class="tl-wrap">
   <div class="tl-head">
     <div class="num">Section V</div>
@@ -146,11 +156,11 @@ body{background:var(--navy);color:var(--white);font-family:var(--font-body);font
     <div class="rule"></div>
   </div>
   <div class="tl-stats">
-    <div class="tl-stat"><div class="tl-sv">10,964</div><div class="tl-sl">Transactions</div></div>
+    <div class="tl-stat"><div class="tl-sv">6,310</div><div class="tl-sl">Transactions</div></div>
     <div class="tl-stat"><div class="tl-sv">$2.146B</div><div class="tl-sl">Total Volume</div></div>
     <div class="tl-stat"><div class="tl-sv">2005–2020</div><div class="tl-sl">Span</div></div>
     <div class="tl-stat"><div class="tl-sv">1,008</div><div class="tl-sl">Entities</div></div>
-    <div style="font-family:var(--font-mono);font-size:9px;color:var(--white-dim);text-align:center;opacity:.5;margin-top:-8px;padding-bottom:8px;">7,897 of 10,964 records carry dates and appear in the chart below. 3,067 undated records ($679M) exist in the ledger but cannot be plotted.</div>
+    <div style="font-family:var(--font-mono);font-size:9px;color:var(--white-dim);text-align:center;opacity:.5;margin-top:-8px;padding-bottom:8px;">4,857 of 6,310 unique records carry dates and appear in the chart below. 1,453 undated records ($737.2M) exist in the ledger but cannot be plotted.</div>
   </div>
   <div class="tl-box">
     <div class="tl-ctrl">
@@ -158,7 +168,7 @@ body{background:var(--navy);color:var(--white);font-family:var(--font-body);font
         <button class="on" onclick="setV('m')">Monthly</button>
         <button onclick="setV('y')">Annual</button>
       </div>
-      <div class="tl-cov"><span>7,897</span> dated records across <span>158</span> months &middot; click any bar</div>
+      <div class="tl-cov"><span>4,857</span> dated records across <span>158</span> months &middot; click any bar</div>
     </div>
     <div id="mv">
       <div class="tl-scroll"><div class="tl-chart" id="ch"></div></div>
@@ -185,7 +195,7 @@ body{background:var(--navy);color:var(--white);font-family:var(--font-body);font
     <div class="src-bar">
       <div class="lbl">Source Corpus</div>
       <div class="src-pills">
-        <div class="src-pill"><span>10,964</span> publication ledger</div>
+        <div class="src-pill"><span>6,310</span> publication ledger</div>
         <div class="src-pill"><span>7,343</span> extracted payments</div>
         <div class="src-pill"><span>2,129</span> fund flows</div>
         <div class="src-pill"><span>1,011</span> bank statements</div>
@@ -218,7 +228,7 @@ const EV=[
   {d:"2018-11",l:"Deutsche Bank Exit",desc:"Deutsche Bank closes all Epstein accounts after compliance review.",
    detail:"Deutsche Bank terminates its banking relationship with Epstein following an internal compliance review. DB had served as the primary banking institution since JPMorgan exited the relationship in 2013. The closure forces remaining financial operations to route through alternative channels. Within three months, the dissolution phase begins — suggesting the bank exit may have triggered the unwinding of the shell network."},
   {d:"2019-02",l:"Dissolution",desc:"$108M — largest single month in entire corpus.",
-   detail:"February 2019 records $108 million in financial activity — the single largest month across all 10,964 transactions. Haze Trust is liquidated through Southern Financial LLC in what appears to be a systematic unwinding of the shell network. This dissolution begins just three months after Deutsche Bank's exit and five months before the federal arrest. The speed and scale suggest an organized wind-down rather than a panic response."},
+   detail:"February 2019 records $108 million in financial activity — the single largest month across all 6,310 unique transactions. Haze Trust is liquidated through Southern Financial LLC in what appears to be a systematic unwinding of the shell network. This dissolution begins just three months after Deutsche Bank's exit and five months before the federal arrest. The speed and scale suggest an organized wind-down rather than a panic response."},
   {d:"2019-07",l:"Arrested",desc:"Federal arrest July 6, 2019. Financial activity ceases.",
    detail:"Epstein arrested on federal sex trafficking charges at Teterboro Airport on July 6, 2019. The last significant wire transfer occurred in June 2019. Only three small HBRK Associates payments totaling $53K follow. After 11+ years of continuous financial operations spanning 14 banks and 8 shell entities, the machine stops. Epstein is found dead in his cell on August 10, 2019."}
 ];
