@@ -3,7 +3,7 @@
 
 **Forensic financial reconstruction from 1.48 million DOJ EFTA documents + 503K cataloged media items**
 
-*Last validated: March 11, 2026*
+*Last validated: March 15, 2026*
 
 ![Visitors](https://komarev.com/ghpvc/?username=randallscott25-star&label=visitors&color=555555&style=flat)
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
@@ -15,9 +15,9 @@
 
 > **ℹ️ Notice to Media, Researchers & Repository Forks**
 > 
-> This repository is a published output of an active forensic investigation. The underlying database is under continuous review — records are re-validated against primary bank documents, entities are reclassified as new source material is processed, and figures are corrected when the data demands it. What you are reading reflects the state of the analysis as of **March 11, 2026**.
+> This repository is a published output of an active forensic investigation. The underlying database is under continuous review — records are re-validated against primary bank documents, entities are reclassified as new source material is processed, and figures are corrected when the data demands it. What you are reading reflects the state of the analysis as of **March 15, 2026**.
 >
-> If you are forking, archiving, or citing this work: snapshots capture a moment in time. Do not treat cached versions as authoritative. Always reference the live repository for current figures. Last validated: **March 11, 2026**.
+> If you are forking, archiving, or citing this work: snapshots capture a moment in time. Do not treat cached versions as authoritative. Always reference the live repository for current figures. Last validated: **March 15, 2026**.
 
 ---
 
