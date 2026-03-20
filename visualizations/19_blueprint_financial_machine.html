@@ -167,120 +167,103 @@ body {
 .mk-tiers {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
-}
-@media (max-width: 900px) {
-  .mk-tiers { grid-template-columns: repeat(2, 1fr); }
-}
-@media (max-width: 500px) {
-  .mk-tiers { grid-template-columns: 1fr; }
+  gap: 0;
+  border: 1px solid rgba(196,154,60,0.15);
+  border-radius: 3px;
+  overflow: hidden;
 }
 .mk-tier {
+  border-right: 1px solid rgba(196,154,60,0.1);
   background: var(--navy-mid);
-  border: 1px solid rgba(196,154,60,0.1);
-  padding: 14px 16px;
 }
+.mk-tier:last-child { border-right: none; }
 .mk-tier-header {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 10px;
-  padding-bottom: 6px;
+  padding: 16px 14px 12px;
   border-bottom: 1px solid rgba(255,255,255,0.05);
+  background: rgba(0,0,0,0.25);
 }
-.mk-tier-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  flex-shrink: 0;
-}
-.mk-tier-label {
+.mk-tier-num {
   font-family: var(--font-mono);
-  font-size: 10px;
-  letter-spacing: 1.5px;
+  font-size: 9px;
+  letter-spacing: 3px;
   text-transform: uppercase;
   color: var(--white-dim);
+  opacity: 0.5;
+  margin-bottom: 3px;
+}
+.mk-tier-name {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
 }
 .mk-tier-total {
   font-family: var(--font-mono);
-  font-size: 10px;
-  color: var(--gold-dim);
-  margin-left: auto;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.1;
+  margin-bottom: 3px;
 }
-.mk-node {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 4px 6px;
-  margin: 2px 0;
-  cursor: pointer;
-  border-radius: 3px;
-  transition: background 0.15s;
-}
-.mk-node:hover {
-  background: rgba(196,154,60,0.08);
-}
-.mk-node.active {
-  background: rgba(196,154,60,0.15);
-}
-.mk-node-dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  flex-shrink: 0;
-  border: 1px solid transparent;
-}
-.mk-node-dot.sar {
-  border-color: var(--red-flag);
-  box-shadow: 0 0 4px rgba(196,64,64,0.4);
-}
-.mk-node-name {
-  font-size: 12px;
-  color: var(--white-dim);
-  flex: 1;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.mk-node-amt {
-  font-family: var(--font-mono);
-  font-size: 10px;
-  color: var(--gold-dim);
-  flex-shrink: 0;
-}
-.mk-sar-note {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  margin-top: 10px;
-  padding-top: 6px;
-  border-top: 1px solid rgba(255,255,255,0.05);
+.mk-tier-count {
   font-family: var(--font-mono);
   font-size: 9px;
   color: var(--white-dim);
+  opacity: 0.45;
 }
-.mk-sar-dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  border: 1px solid var(--red-flag);
+.mk-entities { padding: 4px 0 8px; }
+.mk-entity {
+  padding: 6px 14px;
+  cursor: pointer;
+  transition: background 0.12s;
+}
+.mk-entity:hover { background: rgba(255,255,255,0.04); }
+.mk-entity-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 6px;
+  margin-bottom: 3px;
+}
+.mk-entity-name {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--white);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex: 1;
+}
+.mk-entity-vol {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  white-space: nowrap;
   flex-shrink: 0;
 }
+.mk-bar-track {
+  height: 2px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 1px;
+  overflow: hidden;
+}
+.mk-bar-fill {
+  height: 100%;
+  border-radius: 1px;
+}
+.mk-footer-note {
+  grid-column: 1 / -1;
+  padding: 10px 14px;
+  border-top: 1px solid rgba(196,154,60,0.08);
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--white-dim);
+  opacity: 0.4;
+  background: rgba(0,0,0,0.15);
+}
+@media(max-width:900px){ .mk-tiers { grid-template-columns: repeat(2,1fr); } }
+@media(max-width:560px){ .mk-tiers { grid-template-columns: 1fr; } }
 
-/* ── THE MACHINE (SVG) ── */
-.machine-wrap {
-  width: 100%;
-  overflow-x: auto;
-  padding: 20px 0 40px;
-}
-.machine-svg {
-  display: block;
-  margin: 0 auto;
-}
-.machine-svg text {
-  font-family: 'IBM Plex Sans', sans-serif;
-  fill: var(--white);
-}
 .machine-svg .tier-label {
   font-family: 'IBM Plex Mono', monospace;
   font-size: 11px;
@@ -635,57 +618,14 @@ body {
 </style>
 </head>
 <body>
-
-<!-- MEDIA & FORK NOTICE — inserted March 20, 2026 -->
-<div style="background:rgba(10,22,40,0.97);border-top:3px solid #c9a84c;border-bottom:1px solid rgba(201,168,76,0.3);padding:18px 28px;font-family:'IBM Plex Mono',monospace;font-size:11px;line-height:1.85;color:#b0a898;position:relative;z-index:100;">
-  <div style="max-width:860px;margin:0 auto;">
-    <div style="font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#c9a84c;margin-bottom:10px;font-weight:500;">&#9432; &thinsp; Notice to Media, Researchers &amp; Repository Forks</div>
-    <p style="margin:0 0 8px 0;">This document is a published output of an active forensic investigation. The underlying database is under continuous review — records are re-validated against primary bank documents, entities are reclassified as new source material is processed, and figures are corrected when the data demands it. What you are reading reflects the state of the analysis as of <strong style="color:#e8e4dc;">March 20, 2026</strong>.</p>
-    <p style="margin:0;color:#7a7060;"><strong style="color:#b0a898;">If you are forking, archiving, or citing this work:</strong> snapshots capture a moment in time. Do not treat cached versions as authoritative. Always reference the live repository at <a href="https://github.com/randallscott25-star/epstein-forensic-finance" style="color:#c9a84c;text-decoration:none;">github.com/randallscott25-star/epstein-forensic-finance</a> for current figures. Last validated: <strong style="color:#e8e4dc;">March 20, 2026</strong>.</p>
-  </div>
-</div>
+<!-- MEDIA & FORK NOTICE - March 20, 2026 -->
+<div style="background:rgba(10,22,40,0.97);border-top:3px solid #c9a84c;border-bottom:1px solid rgba(201,168,76,0.3);padding:18px 28px;font-family:'IBM Plex Mono',monospace;font-size:11px;line-height:1.85;color:#b0a898;position:relative;z-index:100;"><div style="max-width:860px;margin:0 auto;"><div style="font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#c9a84c;margin-bottom:10px;font-weight:500;">&#9432; Notice to Media, Researchers &amp; Repository Forks</div><p style="margin:0 0 8px 0;">This document is a published output of an active forensic investigation. Figures are corrected when the data demands it. State of analysis: <strong style="color:#e8e4dc;">March 20, 2026</strong>.</p><p style="margin:0;color:#7a7060;"><strong style="color:#b0a898;">If forking or citing:</strong> reference the live repo at <a href="https://github.com/randallscott25-star/epstein-forensic-finance" style="color:#c9a84c;text-decoration:none;">github.com/randallscott25-star/epstein-forensic-finance</a>. Last validated: <strong style="color:#e8e4dc;">March 20, 2026</strong>.</p></div></div>
 <!-- END MEDIA & FORK NOTICE -->
-
 <!-- QUESTIONS RELATED TO THE PROJECT -->
-<div style="background:rgba(6,12,22,0.99);border-top:2px solid #7ba7c2;border-bottom:1px solid rgba(123,167,194,0.2);padding:12px 28px;font-family:'IBM Plex Mono',monospace;font-size:11px;line-height:1.8;color:#b0a898;position:relative;z-index:100;">
-  <div style="max-width:860px;margin:0 auto;display:flex;align-items:baseline;gap:18px;flex-wrap:wrap;">
-    <div style="font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#7ba7c2;font-weight:500;white-space:nowrap;">Questions Related to the Project</div>
-    <a href="/cdn-cgi/l/email-protection#c5b1ada0b5b7aaafa0a6b185acb6acb5b5eba6aaa8" style="color:#9dc2d8;text-decoration:none;font-size:11px;letter-spacing:0.5px;"><span class="__cf_email__" data-cfemail="47332f223735282d222433072e342e37376924282a">[email&#160;protected]</span></a>
-  </div>
-</div>
+<div style="background:rgba(6,12,22,0.99);border-top:2px solid #7ba7c2;border-bottom:1px solid rgba(123,167,194,0.2);padding:12px 28px;font-family:'IBM Plex Mono',monospace;font-size:11px;line-height:1.8;color:#b0a898;position:relative;z-index:100;"><div style="max-width:860px;margin:0 auto;display:flex;align-items:baseline;gap:18px;flex-wrap:wrap;"><div style="font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#7ba7c2;font-weight:500;white-space:nowrap;">Questions Related to the Project</div><a href="mailto:theproject@isipp.com" style="color:#9dc2d8;text-decoration:none;font-size:11px;letter-spacing:0.5px;">theproject@isipp.com</a></div></div>
 <!-- END QUESTIONS RELATED TO THE PROJECT -->
-
-<!-- VALIDATION UPDATE — March 20, 2026 -->
-<div style="background:rgba(8,18,32,0.99);border-left:3px solid #c9a84c;border-right:1px solid rgba(201,168,76,0.15);border-top:1px solid rgba(201,168,76,0.15);border-bottom:1px solid rgba(201,168,76,0.15);padding:16px 28px;font-family:'IBM Plex Mono',monospace;font-size:11px;line-height:1.85;color:#b0a898;position:relative;z-index:100;">
-  <div style="max-width:860px;margin:0 auto;">
-    <div style="font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#c9a84c;margin-bottom:10px;font-weight:500;">&#10003; &thinsp; Database Validation — March 20, 2026</div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px 40px;margin-bottom:10px;">
-      <div>
-        <div style="color:#7ba7c2;font-size:9px;letter-spacing:2px;text-transform:uppercase;margin-bottom:4px;">Confirmed Unchanged</div>
-        <div style="color:#e8e4dc;">$2.146B corpus total &nbsp;&#183;&nbsp; 6,310 unique transactions</div>
-        <div style="color:#e8e4dc;">481 verified wires (Layer 1) &nbsp;&#183;&nbsp; 14 banking institutions</div>
-        <div style="color:#e8e4dc;">$973.4M Layer 1 &nbsp;&#183;&nbsp; $529.2M Layer 2 &nbsp;&#183;&nbsp; $643.4M Layer 4</div>
-      </div>
-      <div>
-        <div style="color:#7ba7c2;font-size:9px;letter-spacing:2px;text-transform:uppercase;margin-bottom:4px;">Methodology Note</div>
-        <div style="color:#9ca8b4;">Layer 4 (fund_flows_audited) entity attribution was revised after original publication. Corpus totals are unchanged. Individual entity volumes for shells and operators reflect verified bank records only (Layers 1–2). Layer 4 now tracks bank-level flows.</div>
-      </div>
-    </div>
-    <div style="border-top:1px solid rgba(201,168,76,0.12);padding-top:10px;">
-      <div style="color:#7ba7c2;font-size:9px;letter-spacing:2px;text-transform:uppercase;margin-bottom:6px;">New Findings — March 2026 Corpus Review</div>
-      <div style="display:flex;flex-wrap:wrap;gap:6px 20px;color:#9dc2d8;">
-        <span><strong style="color:#c9a84c;">Benjamin Edmond de Rothschild</strong> — $15.0M outflow confirmed</span>
-        <span><strong style="color:#c9a84c;">Edmond de Rothschild (Suisse) SA</strong> — $10.0M outflow confirmed</span>
-        <span><strong style="color:#c9a84c;">LSJ LLC</strong> — $21.2M Epstein entity (new)</span>
-        <span><strong style="color:#c9a84c;">NES LLC</strong> — $10.4M Epstein entity (new)</span>
-        <span><strong style="color:#c9a84c;">Kellerhals Ferguson Kroblin PLLC</strong> — $23.1M &nbsp;(VI counsel)</span>
-        <span><strong style="color:#c9a84c;">Sotheby's</strong> — $11.2M &nbsp;+&nbsp; <strong style="color:#c9a84c;">Christie's</strong> — $7.7M &nbsp;(art market)</span>
-        <span><strong style="color:#c9a84c;">Julius Baer</strong> — $6.65M &nbsp;(Swiss banking)</span>
-        <span><strong style="color:#c9a84c;">HEATHER_GRAY</strong> — $17.6M &nbsp;(unresolved counterparty)</span>
-      </div>
-    </div>
-  </div>
-</div>
+<!-- VALIDATION UPDATE - March 20, 2026 -->
+<div style="background:rgba(8,18,32,0.99);border-left:3px solid #c9a84c;padding:16px 28px;font-family:'IBM Plex Mono',monospace;font-size:11px;line-height:1.85;color:#b0a898;position:relative;z-index:100;"><div style="max-width:860px;margin:0 auto;"><div style="font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#c9a84c;margin-bottom:10px;font-weight:500;">&#10003; Database Validation - March 20, 2026</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:12px 40px;"><div><div style="color:#7ba7c2;font-size:9px;letter-spacing:2px;text-transform:uppercase;margin-bottom:4px;">Confirmed Unchanged</div><div style="color:#e8e4dc;">$2.146B corpus &nbsp;&#183;&nbsp; 6,310 transactions &nbsp;&#183;&nbsp; 481 verified wires &nbsp;&#183;&nbsp; 14 banks</div></div><div><div style="color:#7ba7c2;font-size:9px;letter-spacing:2px;text-transform:uppercase;margin-bottom:4px;">New Findings - March 2026</div><div style="color:#9dc2d8;">B. de Rothschild $15M &nbsp;&#183;&nbsp; EdR Suisse $10M &nbsp;&#183;&nbsp; LSJ LLC $21.2M &nbsp;&#183;&nbsp; NES LLC $10.4M &nbsp;&#183;&nbsp; Kellerhals Ferguson $23.1M &nbsp;&#183;&nbsp; Sotheby&#39;s $11.2M &nbsp;&#183;&nbsp; Christie&#39;s $7.7M &nbsp;&#183;&nbsp; Julius Baer $6.65M</div></div></div></div></div>
 <!-- END VALIDATION UPDATE -->
 
 
@@ -764,7 +704,7 @@ body {
   <p class="unverified">All dollar amounts are tagged (Unverified) and derived from publicly released documents subject to redaction and transcription variance.</p>
 </div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 // ═══════════════════════════════════════════════════════════
 // EMBEDDED DATA
 // ═══════════════════════════════════════════════════════════
@@ -1171,112 +1111,110 @@ function buildBalanceSheet() {
 // ═══════════════════════════════════════════════════════════
 // MAP KEY
 // ═══════════════════════════════════════════════════════════
+
+// ── TIER_DATA - live DB, validated March 20 2026 ──────────────────────────
+const TIER_DATA = {
+  bank: [
+    {n:'Deutsche Bank',    v:134166645, wi:1,   wo:199},
+    {n:'JPMorgan Chase',   v:205514755, wi:137, wo:168},
+    {n:'Bank of America',  v:123754963, wi:153, wo:1},
+    {n:'Citibank',         v:68670015,  wi:11,  wo:41},
+    {n:'BNY Mellon',       v:25623471,  wi:52,  wo:29},
+    {n:'Julius Baer',      v:6650000,   wi:1,   wo:0}
+  ],
+  shell: [
+    {n:'Southern Trust',    v:80065799,  wi:17,  wo:46},
+    {n:'Southern Financial',v:103721762, wi:158, wo:66},
+    {n:'Haze Trust',        v:51319627,  wi:22,  wo:18},
+    {n:'BV70 LLC',          v:50500000,  wi:1,   wo:3},
+    {n:'Plan D LLC',        v:40500000,  wi:2,   wo:1},
+    {n:'Caterpillar Trust', v:25000000,  wi:3,   wo:1},
+    {n:'NES LLC',           v:10409419,  wi:0,   wo:518},
+    {n:'Gratitude America', v:6842926,   wi:4,   wo:8}
+  ],
+  operator: [
+    {n:'Lyle Casriel',        v:92776512, wi:18,  wo:182},
+    {n:'Scott Stackman',      v:58488297, wi:118, wo:12},
+    {n:'Richard Kahn',        v:46616820, wi:73,  wo:52},
+    {n:'Darren Indyke',       v:43016331, wi:60,  wo:67},
+    {n:'Eileen Alexanderson', v:30945985, wi:1,   wo:15},
+    {n:'Halperin',            v:27370764, wi:8,   wo:2},
+    {n:'Lesley Groff',        v:21754326, wi:79,  wo:67},
+    {n:'Melanie Spinella',    v:21397694, wi:4,   wo:2}
+  ],
+  key_person: [
+    {n:'Debra Black',      v:120250697, wi:22, wo:28},
+    {n:'Leon Black',       v:88958639,  wi:37, wo:4},
+    {n:'Ghislaine Maxwell',v:68331896,  wi:4,  wo:142},
+    {n:'Brad Wechsler',    v:47149572,  wi:4,  wo:9},
+    {n:'Leslie Wexner',    v:30840475,  wi:4,  wo:7},
+    {n:'Jeffrey Epstein',  v:14000000,  wi:1,  wo:1},
+    {n:'Larry Visoski',    v:7954243,   wi:8,  wo:47},
+    {n:'Joichi Ito',       v:1483916,   wi:3,  wo:1}
+  ]
+};
+
 function buildMapKey() {
-  const container = document.getElementById('mkTiers');
-  const tiers = [
-    { key: 'bank', label: 'Tier 1 · Banks', color: '#7ba7c2' },
-    { key: 'shell', label: 'Tier 2 · Shells', color: '#c49a3c' },
-    { key: 'operator', label: 'Tier 3 · Operators', color: '#9dc2d8' },
-    { key: 'key_person', label: 'Tier 4 · Key Persons', color: '#dbb44c' }
+  var container = document.getElementById('mkTiers');
+  if (!container) return;
+
+  var tiers = [
+    { key:'bank',       num:'Tier 1', label:'Banks',         color:'#7ba7c2' },
+    { key:'shell',      num:'Tier 2', label:'Shell Entities', color:'#c49a3c' },
+    { key:'operator',   num:'Tier 3', label:'Operators',     color:'#9dc2d8' },
+    { key:'key_person', num:'Tier 4', label:'Key Persons',   color:'#dbb44c' }
   ];
 
-  tiers.forEach(tier => {
-    const nodes = getTierNodes(tier.key);
-    const totalVol = nodes.reduce((s, n) => s + n.v, 0);
+  function fmtV(v) {
+    if (v >= 1e9) return '$' + (v/1e9).toFixed(2) + 'B';
+    if (v >= 1e6) return '$' + (v/1e6).toFixed(0) + 'M';
+    if (v >= 1e3) return '$' + Math.round(v/1e3) + 'K';
+    return '$' + v.toLocaleString();
+  }
 
-    const col = document.createElement('div');
-    col.className = 'mk-tier';
-    let html = `
-      <div class="mk-tier-header">
-        <div class="mk-tier-dot" style="background:${tier.color}"></div>
-        <span class="mk-tier-label">${tier.label}</span>
-        <span class="mk-tier-total">${fmt(totalVol)}</span>
-      </div>
-    `;
+  container.innerHTML = tiers.map(function(tier) {
+    var nodes = (TIER_DATA[tier.key] || []).slice().sort(function(a,b){ return b.v - a.v; });
+    var totalVol = nodes.reduce(function(s,n){ return s + (n.v||0); }, 0);
+    var maxVol   = Math.max.apply(null, nodes.map(function(n){ return n.v||0; }));
+    var txCount  = nodes.reduce(function(s,n){ return s + (n.wi||0) + (n.wo||0); }, 0);
 
-    nodes.forEach(n => {
-      const sarClass = n.f ? ' sar' : '';
-      html += `
-        <div class="mk-node" data-node-name="${n.n}">
-          <div class="mk-node-dot${sarClass}" style="background:${tier.color}"></div>
-          <span class="mk-node-name">${n.n}</span>
-          <span class="mk-node-amt">${fmt(n.v)}</span>
-        </div>
-      `;
-    });
+    var rows = nodes.map(function(n) {
+      var pct      = maxVol > 0 ? Math.round(n.v / maxVol * 100) : 0;
+      var safeName = n.n.replace(/&/g,'&amp;').replace(/"/g,'&quot;');
+      return '<div class="mk-entity" data-name="' + safeName + '" onclick="showNodeByName(event,this.getAttribute(\'data-name\'))">'
+           + '<div class="mk-entity-row">'
+           + '<div class="mk-entity-name" title="' + safeName + '">' + safeName + '</div>'
+           + '<div class="mk-entity-vol" style="color:' + tier.color + '">' + fmtV(n.v) + '</div>'
+           + '</div>'
+           + '<div class="mk-bar-track"><div class="mk-bar-fill" style="width:' + pct + '%;background:' + tier.color + ';opacity:0.65"></div></div>'
+           + '</div>';
+    }).join('');
 
-    col.innerHTML = html;
-    container.appendChild(col);
-  });
+    return '<div class="mk-tier">'
+      + '<div class="mk-tier-header">'
+      + '<div class="mk-tier-num">' + tier.num + '</div>'
+      + '<div class="mk-tier-name" style="color:' + tier.color + '">' + tier.label + '</div>'
+      + '<div class="mk-tier-total" style="color:' + tier.color + '">' + fmtV(totalVol) + '</div>'
+      + '<div class="mk-tier-count">' + nodes.length + ' entities &nbsp;&#183;&nbsp; ' + txCount.toLocaleString() + ' txns</div>'
+      + '</div>'
+      + '<div class="mk-entities">' + rows + '</div>'
+      + '</div>';
+  }).join('')
+  + '<div class="mk-footer-note">Figures validated against live DB &nbsp;&#183;&nbsp; March 20, 2026 &nbsp;&#183;&nbsp; Layers 1&#8211;2 bank records only.</div>';
+}
 
-  // SAR legend note at bottom of map key
-  const note = document.createElement('div');
-  note.className = 'mk-sar-note';
-  note.style.gridColumn = '1 / -1';
-  note.innerHTML = '<div class="mk-sar-dot"></div> Red border = SAR flagged (Suspicious Activity Report filed by financial institution)';
-  container.appendChild(note);
-
-  // Wire up click interactions
-  let activeNode = null;
-  container.querySelectorAll('.mk-node').forEach(el => {
-    el.addEventListener('click', () => {
-      const name = el.dataset.nodeName;
-      const svg = document.getElementById('machineSvg');
-
-      // If clicking same node again, open detail panel
-      if (activeNode === name) {
-        openDetail(name);
-        return;
-      }
-
-      // Clear previous
-      container.querySelectorAll('.mk-node').forEach(n => n.classList.remove('active'));
-      svg.querySelectorAll('.flow-link').forEach(l => { l.style.opacity = ''; l.classList.remove('highlight'); });
-      svg.querySelectorAll('.node-circle').forEach(c => { c.style.opacity = ''; });
-
-      // Highlight this node
-      el.classList.add('active');
-      activeNode = name;
-
-      // Highlight on SVG
-      svg.querySelectorAll('.node-circle').forEach(c => {
-        if (c.dataset.name === name) {
-          c.style.opacity = '1';
-          // Scroll SVG into view
-          const wrap = document.querySelector('.machine-wrap');
-          const rect = c.getBoundingClientRect();
-          const wrapRect = wrap.getBoundingClientRect();
-          if (rect.left < wrapRect.left || rect.right > wrapRect.right) {
-            const cx = parseFloat(c.getAttribute('cx'));
-            wrap.scrollTo({ left: cx - wrap.clientWidth / 2, behavior: 'smooth' });
-          }
-        } else {
-          c.style.opacity = '0.25';
-        }
-      });
-
-      svg.querySelectorAll('.flow-link').forEach(l => {
-        if (l.dataset.source === name || l.dataset.target === name) {
-          l.classList.add('highlight');
-        } else {
-          l.style.opacity = '0.04';
-        }
-      });
-    });
-  });
-
-  // Click outside to reset
-  document.addEventListener('click', (e) => {
-    if (!e.target.closest('.mk-node') && !e.target.closest('.node-circle') && !e.target.closest('.detail-panel')) {
-      activeNode = null;
-      container.querySelectorAll('.mk-node').forEach(n => n.classList.remove('active'));
-      const svg = document.getElementById('machineSvg');
-      svg.querySelectorAll('.flow-link').forEach(l => { l.style.opacity = ''; l.classList.remove('highlight'); });
-      svg.querySelectorAll('.node-circle').forEach(c => { c.style.opacity = ''; });
-    }
-  });
+function showNodeByName(event, name) {
+  var node = DATA.nodes.find(function(n){ return n.n === name || n.n.indexOf(name.split(' ')[0]) >= 0; });
+  if (node) showPanel(event, node);
 }
 
 // ═══════════════════════════════════════════════════════════
 // INIT
-// ════════�
+// ═══════════════════════════════════════════════════════════
+buildMachine();
+buildMapKey();
+buildLayers();
+buildBalanceSheet();
+</script>
+</body>
+</html>
