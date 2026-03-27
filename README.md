@@ -3,7 +3,7 @@
 
 **Forensic financial reconstruction from 1.48 million DOJ EFTA documents + 503K cataloged media items**
 
-*Last validated: March 15, 2026*
+*Last validated: March 27, 2026*
 
 ![Visitors](https://komarev.com/ghpvc/?username=randallscott25-star&label=visitors&color=555555&style=flat)
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
@@ -13,11 +13,20 @@
 
 ---
 
+## The Projects — the-projects.org
+
+**Website:** https://the-projects.org  
+**Research Terminal:** https://cloud-efp.com — credentialed access  
+**Request Access:** https://cloud-efp.com/register  
+**Contact:** theproject@isipp.com
+
+---
+
 > **ℹ️ Notice to Media, Researchers & Repository Forks**
 > 
-> This repository is a published output of an active forensic investigation. The underlying database is under continuous review — records are re-validated against primary bank documents, entities are reclassified as new source material is processed, and figures are corrected when the data demands it. What you are reading reflects the state of the analysis as of **March 15, 2026**.
+> This repository is a published output of an active forensic investigation. The underlying database is under continuous review — records are re-validated against primary bank documents, entities are reclassified as new source material is processed, and figures are corrected when the data demands it. What you are reading reflects the state of the analysis as of **March 27, 2026**.
 >
-> If you are forking, archiving, or citing this work: snapshots capture a moment in time. Do not treat cached versions as authoritative. Always reference the live repository for current figures. Last validated: **March 15, 2026**.
+> If you are forking, archiving, or citing this work: snapshots capture a moment in time. Do not treat cached versions as authoritative. Always reference the live repository for current figures. Last validated: **March 27, 2026**.
 
 ---
 
@@ -74,7 +83,7 @@ For the girls.
 
 ## Headline Results
 
-> ⚠️ **All findings are navigational tools derived from automated extraction. Not independently verified. Not established fact. See [COMPLIANCE.md](docs/COMPLIANCE.md) for full professional standards disclaimers.**
+> ⚠️ **Findings reflect the publication ledger's confidence tier. T1–T3 figures are anchored to court exhibits and Bates-stamped DOJ source documents. T4 (Unclassified) figures and automated extractions outside the verified ledger are navigational tools, not established fact. See [COMPLIANCE.md](docs/COMPLIANCE.md) for full professional standards disclaimers.**
 
 | Metric | Value |
 |--------|-------|
@@ -138,13 +147,13 @@ TIER 4 — PERSONAL ACCOUNTS (terminal destinations)
   Darren Indyke (estate attorney)      $6.4M in  ← Deutsche Bank
 ```
 
-All amounts are (Unverified) automated extractions. See [FINDINGS.md](docs/FINDINGS.md) for details.
+Amounts reflect intermediate pipeline snapshots. Final verified figures are in the publication ledger. See [FINDINGS.md](docs/FINDINGS.md) for details.
 
 ### Money Flow Direction Analysis
 
 *Phase 14–24 intermediate snapshot (382-wire ledger, pre-Phase 5I entity resolution)*
 
-| Direction | Wires | Amount (Unverified) | Share |
+| Direction | Wires | Amount | Share |
 |-----------|------:|-------:|------:|
 | **MONEY IN** — External → Epstein entities | 91 | $232,538,043 | 41.7% |
 | **INTERNAL MOVE** — Shell → Shell reshuffling | 39 | $112,610,112 | 20.2% |
@@ -472,7 +481,7 @@ Team background: multi-affiliate financial reconciliation, automated classificat
 ## Ethical Standards
 
 - **Victim protection**: No victim names, identifying details, or testimony content is stored, published, or extractable from any output. Victim-adjacent redactions are noted by proximity only.
-- **SSFS alignment**: All outputs include frozen Row 1 caveats, (Unverified) column tags, and navigational-tool disclaimers.
+- **SSFS alignment**: All outputs include frozen Row 1 caveats, confidence tier labels, and navigational-tool disclaimers where applicable.
 - **No attribution of guilt**: Financial flows are documented as they appear in DOJ documents. Appearance in this analysis does not imply wrongdoing.
 - **Open methodology**: Every extraction rule, scoring weight, and classification threshold is documented and reproducible.
 
@@ -482,7 +491,19 @@ Team background: multi-affiliate financial reconciliation, automated classificat
 
 This analysis does not constitute an audit, examination, or review performed in accordance with GAAS, GAGAS, or AICPA SSFS No. 1. See **[COMPLIANCE.md](docs/COMPLIANCE.md)** for details.
 
-All financial amounts are (Unverified) automated extractions unless explicitly noted otherwise. Entity classifications are based on OCR text extraction with automated normalization and may contain errors. Shell entity designations are analytical classifications, not legal determinations.
+All financial amounts outside the publication ledger's T1–T3 verified tier are automated extractions subject to error. Entity classifications are based on OCR text extraction with automated normalization and may contain errors. Shell entity designations are analytical classifications, not legal determinations.
+
+---
+
+## Press Coverage
+
+| Outlet | Author | Piece | Date |
+|--------|--------|-------|------|
+| **The Observer (UK)** | Alexi Mostrous | <a href="https://observer.co.uk/news/international/article/sibling-revelry-doj-files-suggest-ghislaine-not-the-only-maxwell-who-took-epstein-cash" target="_blank">"Sibling Revelry"</a> — names R.S. Taylor analysis, $92.5M Ghislaine finding | March 8, 2026 |
+| **The Observer (UK)** | Alexi Mostrous | Epstein files investigation | March 3, 2026 |
+| **Ouest-France** | Arnaud Wajdzik | <a href="https://www.ouest-france.fr/monde/etats-unis/jeffrey-epstein/enquete-lart-les-trusts-et-les-millions-les-coulisses-du-montage-financier-qui-lie-les-lang-a-la-galaxie-epstein-5f525dae-1544-11f1-8725-6cea811c3c37" target="_blank">Lang family / trust network investigation</a> — DOJ corpus financial analysis contributed | March 2026 |
+| **Ouest-France** | Arnaud Wajdzik | <a href="https://www.ouest-france.fr/monde/etats-unis/jeffrey-epstein/contribuable-discret-jeffrey-epstein-a-paye-limpot-sur-la-fortune-en-france-pendant-8-ans-a0e3d360-1968-11f1-9fa1-ca7616976f61" target="_blank">Epstein's 8 years paying French wealth tax</a> — ISF records / DOJ corpus analysis contributed | March 2026 |
+| **ResearchBuzz** | — | <a href="https://researchbuzz.me/2026/02/23/epstein-financial-forensics-ai-impact-summit-wikipedia-seismograph-more-monday-researchbuzz-february-23-2026/" target="_blank">Featured</a> | February 23, 2026 |
 
 ---
 
@@ -531,5 +552,6 @@ The underlying DOJ documents are U.S. government publications in the public doma
 | Feb 27 | Workbook v10 published (21 tabs). Amador cross-validation tab added — $55.6M legal gap, $556.7M shell validation, Duffy structuring memo, Highbridge quid pro quo. |
 | Feb 27 | N20: The Verification Wall. Bates distinction framework. 8 noise POIs ($144.4M → $0 bank docs) vs. Leon Black ($310.5M, 42 wires, 15 bank docs). Clickable EFTA source documents. |
 | Mar 11, 2026 | N19/N20/timeline figures corrected to dedup-verified baseline (6,310 / $2.146B). Media & fork notice added to all published narratives. |
-| Mar 15, 2026 | Built for research team use. Browser-based terminal with secure per-member logins. Features include: Bates Lookup with 6-method document clustering, full-corpus full-text search, integrated media tab with transcriptions and facial recognition analysis, audio cleanup and filtering. Dedicated email client for corpus email documents. iPhone/SMS viewer for text message and iMessage records. Geolocation map tied to document metadata and geographic references across the corpus and external data sources. Bates queue system with one-click PDF report generation. Not for public access.|
+| Mar 15, 2026 | EFP Terminal deployed to private server. Browser-based research interface with secure per-user logins and named lanes. Features: Bates Lookup with 6-method document clustering, full-corpus full-text search, media tab with transcriptions and facial recognition, audio cleanup and filtering, corpus email client, iPhone/SMS viewer, geolocation map, Bates queue with PDF report generation. |
+| Mar 27, 2026 | The Projects website launched (the-projects.org). EFP Terminal migrated to cloud-efp.com with full authentication system — login wall, access request registration, admin approval dashboard, credentialed external access. Congressional oversight interest active. |
 | Ongoing | Deep dive forensic analysis — no further narratives planned |
