@@ -1,9 +1,9 @@
 
 # Epstein Financial Forensics
 
-**Forensic financial reconstruction from 1.48 million DOJ EFTA documents + 503K cataloged media items**
+**Forensic financial reconstruction from 1,476,437 unique DOJ EFTA document files (2.87 million pages) + 503K cataloged media items**
 
-*Last validated: March 27, 2026*
+*Last validated: April 12, 2026*
 
 ![Visitors](https://komarev.com/ghpvc/?username=randallscott25-star&label=visitors&color=555555&style=flat)
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
@@ -24,15 +24,15 @@
 
 > **ℹ️ Notice to Media, Researchers & Repository Forks**
 > 
-> This repository is a published output of an active forensic investigation. The underlying database is under continuous review — records are re-validated against primary bank documents, entities are reclassified as new source material is processed, and figures are corrected when the data demands it. What you are reading reflects the state of the analysis as of **March 27, 2026**.
+> This repository is a published output of an active forensic investigation. The underlying database is under continuous review — records are re-validated against primary bank documents, entities are reclassified as new source material is processed, and figures are corrected when the data demands it. What you are reading reflects the state of the analysis as of **April 12, 2026**.
 >
-> If you are forking, archiving, or citing this work: snapshots capture a moment in time. Do not treat cached versions as authoritative. Always reference the live repository for current figures. Last validated: **March 27, 2026**.
+> If you are forking, archiving, or citing this work: snapshots capture a moment in time. Do not treat cached versions as authoritative. Always reference the live repository for current figures. Last validated: **April 12, 2026**.
 
 ---
 
 ## What This Is
 
-We took 1.48 million documents the DOJ released under the Epstein Files Transparency Act and built a forensic financial database from scratch. Wrote all the extraction code. Designed the schema. Built the classification pipeline. Ran the analysis. Team project, start to finish. AI tools helped us write code faster — same way you'd use a calculator. The analytical calls are ours.
+We took 1,476,437 documents (2.87 million pages) the DOJ released under the Epstein Files Transparency Act and built a forensic financial database from scratch. Wrote all the extraction code. Designed the schema. Built the classification pipeline. Ran the analysis. Team project, start to finish. AI tools helped us write code faster — same way you'd use a calculator. The analytical calls are ours.
 
 Our team background spans multi-affiliate financial reconciliation, budget variance analysis, automated exception reporting at institutional scale, forensic financial analysis, and legal review. We applied those same methods here.
 
@@ -62,7 +62,7 @@ For the girls.
 
 | Metric | This Project | Largest Narrative Repo | Largest Search Platform | Others |
 |--------|:------------:|:----------------------:|:----------------------:|:------:|
-| **Total files indexed** | **1,476,377** + 503K media | 1,380,937 | 1,120,000 | < 20,000 |
+| **Total files indexed** | **1,476,437** + 503K media | 1,380,937 | 1,120,000 | < 20,000 |
 | **Datasets covered** | **19** (<a href="https://www.justice.gov/epstein/doj-disclosures/data-set-1-files" target="_blank">DS1</a>-12 + DS98-104) | 12 | 12 | 1-3 |
 | **Extracted text records** | **2.87M** (page-level) | 993,406 pages | — | — |
 | **Entity extraction (NLP)** | **11.4M entities** | ~4,000 curated | 1,589 manual | < 500 |
@@ -77,7 +77,7 @@ For the girls.
 | **Multi-phase dedup pipeline** | ✅ 3-stage evolution | — | — | — |
 | **Shell hierarchy mapping** | ✅ 4-tier | — | — | — |
 
-> **Note:** The largest narrative repo counts individual *pages* as records — their unique PDF file count is ~519,548. Our 1,476,377 are unique files, each with a distinct DOJ URL or registered serial. The 503,154 media items are separately cataloged from <a href="https://www.justice.gov/epstein/doj-disclosures/data-set-10-files" target="_blank">DS10</a> evidence photos and videos. Other projects in this space are doing solid work — narrative forensic reporting, searchable archives, community preservation. Our lane is systematic financial reconstruction at scale.
+> **Note:** The largest narrative repo counts individual *pages* as records — their unique PDF file count is ~519,548. Our 1,476,437 are unique files, each with a distinct DOJ URL or registered serial. The 503,154 media items are separately cataloged from <a href="https://www.justice.gov/epstein/doj-disclosures/data-set-10-files" target="_blank">DS10</a> evidence photos and videos. Other projects in this space are doing solid work — narrative forensic reporting, searchable archives, community preservation. Our lane is systematic financial reconstruction at scale.
 
 ---
 
@@ -213,8 +213,8 @@ Not a search index. A relational forensic database. **8.64 GB, 49 tables, 26.7 m
 - `redaction_summary` — 131,860 aggregated redaction analysis per document
 
 **Corpus Infrastructure (5 tables)**
-- `files` — 1,476,377 file records with 30 columns: metadata, classification, dates, extraction status, doc types
-- `extracted_text` — 2,866,239 page-level text records with classification and extraction method
+- `files` — 1,476,437 file records with 30 columns: metadata, classification, dates, extraction status, doc types
+- `extracted_text` — 2,866,804 page-level text records with classification and extraction method
 - `dates_found` — 2,411,188 temporal references extracted across entire corpus with context
 - `media_evidence` — 503,154 DS10 image/video catalog with custodian, doc_type, confidentiality markings
 - `media_catalog` — 2,663 cataloged media records with metadata
