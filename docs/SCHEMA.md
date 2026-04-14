@@ -216,8 +216,8 @@ EPSTEIN FORENSIC DATABASE (8GB)
                         ┌────────────────────────┐
                         │   PUBLICATION LEDGER   │
                         │   6,310 transactions   │
-                        │   $2,146,000,000     │
-                        │   104.4% SAR (T1-T3)   │
+                        │   $2,308,000,502     │
+                        │   122.8% SAR (T1-T3)   │
                         └────────────────────────┘
 ```
 
