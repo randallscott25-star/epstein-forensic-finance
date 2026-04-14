@@ -27,7 +27,7 @@ While SSFS No. 1 formally applies to AICPA members performing forensic services 
 | **Professional competence** | Practitioner holds MS Applied Data Science and professional experience in multi-affiliate financial reconciliation and budget auditing |
 | **Due professional care** | 9 contamination bugs identified and corrected; four-tier GAGAS-aligned confidence framework; 10 limitations documented |
 | **Planning and supervision** | 25+ phase pipeline with quality gates at each stage; dedup evolution across four methodological generations |
-| **Sufficient relevant data** | 1,476,377 files across 19 datasets; 6,310 publication ledger transactions; 481 wire transfers; 185 court-exhibit verified wires |
+| **Sufficient relevant data** | 1,476,377 files across 19 datasets; 6,397 publication ledger transactions; 481 wire transfers; 185 court-exhibit verified wires |
 | **Documentation** | Complete methodology published; every extraction rule, scoring weight, and classification threshold documented |
 | **Communication of results** | All outputs labeled (Unverified); navigational-tool disclaimers; no attribution of guilt |
 
@@ -133,7 +133,7 @@ This analysis was conducted by a single practitioner. In a traditional audit or 
 Mitigating factors:
 - **AI-assisted QA**: Claude (Anthropic) was used for code review, methodology critique, and output verification — providing a form of independent review
 - **Self-correcting pipeline**: 9 contamination bugs were caught during the pipeline itself, demonstrating active quality monitoring
-- **Conservative bias**: The publication ledger ($2.146B) is built on four-tier GAGAS classification; T1–T3 auditable subtotal ($1.961B) covers 104.4% of the SAR benchmark
+- **Conservative bias**: The publication ledger ($2.308B) is built on four-tier GAGAS classification; T1–T3 auditable subtotal ($2.038B) covers 122.8% of the SAR benchmark
 - **Transparent limitations**: All 10 known limitations are documented; (Unverified) tags appear on every financial amount
 - **Reproducibility**: The methodology is described in sufficient detail for independent replication
 
