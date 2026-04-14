@@ -45,13 +45,13 @@ For the girls.
 ## 📌 Start Here
 
 
-> **2 data narratives** reconstruct how $2.146 billion moved through 14 shell entities across 8+ banking institutions. All figures reflect the deduplication-verified publication ledger (6,767 unique records as of March 11, 2026). Every claim is anchored to specific court exhibits and bates stamps.
+> **2 data narratives** reconstruct how $2.308 billion moved through 14 shell entities across 8+ banking institutions. All figures reflect the deduplication-verified publication ledger (6,397 unique records as of March 11, 2026). Every claim is anchored to specific court exhibits and bates stamps.
 >
 > **→ [Read the Data Narratives](narratives/)** · **<a href="https://randallscott25-star.github.io/epstein-forensic-finance/narratives/20_the_verification_wall.html" target="_blank">The Verification Wall (N20)</a>** · **<a href="https://randallscott25-star.github.io/epstein-forensic-finance/narratives/19_grand_opus_narrative.html" target="_blank">Blueprint of a Financial Machine (N19)</a>** · **<a href="https://randallscott25-star.github.io/epstein-forensic-finance/visualizations/shell_network.html" target="_blank">Explore the Interactive Network</a>** 
 
 | # | Narrative | Key Finding |
 |---|-----------|-------------|
-| **19** | **<a href="https://randallscott25-star.github.io/epstein-forensic-finance/narratives/19_grand_opus_narrative.html" target="_blank">Blueprint of a Financial Machine</a>** | **$2.378B across 6,310 unique transactions. 123 nodes, 313 edges. Every bank, shell, operator, and key person mapped. <a href="https://randallscott25-star.github.io/epstein-forensic-finance/visualizations/19_blueprint_financial_machine.html" target="_blank">Visualization</a>** |
+| **19** | **<a href="https://randallscott25-star.github.io/epstein-forensic-finance/narratives/19_grand_opus_narrative.html" target="_blank">Blueprint of a Financial Machine</a>** | **$2.308B across 6,397 unique transactions. 123 nodes, 313 edges. Every bank, shell, operator, and key person mapped. <a href="https://randallscott25-star.github.io/epstein-forensic-finance/visualizations/19_blueprint_financial_machine.html" target="_blank">Visualization</a>** |
 | **20** | **<a href="https://randallscott25-star.github.io/epstein-forensic-finance/narratives/20_the_verification_wall.html" target="_blank">The Verification Wall</a>** | ** Every document has a Bates number — the wall tests what's behind it. 8 noise POIs ($144.4M, $0 bank docs) vs. Leon Black ($310.5M, 42 verified wires, 15 bank docs). NLP phantom autopsy with clickable EFTA source documents.** |
 
 
@@ -73,7 +73,7 @@ For the girls.
 | **Relational database tables** | **43** | 3-4 | — | — |
 | **Confidence-tiered scoring** | ✅ 5-axis | — | — | — |
 | **Redaction proximity analysis** | ✅ | ✅ (different method) | — | — |
-| **SAR cross-validation** | ✅ **126.6%** | — | — | — |
+| **SAR cross-validation** | ✅ **122.8%** | — | — | — |
 | **Multi-phase dedup pipeline** | ✅ 3-stage evolution | — | — | — |
 | **Shell hierarchy mapping** | ✅ 4-tier | — | — | — |
 
@@ -87,9 +87,9 @@ For the girls.
 
 | Metric | Value |
 |--------|-------|
-| **Publication Ledger Total** | **$2,146,000,000** (6,310 deduplicated transactions) |
+| **Publication Ledger Total** | **$2,308,000,502** (6,397 deduplicated transactions) |
 | **FinCEN SAR Benchmark** | $1,878,000,000 |
-| **T1–T3 Coverage of SAR** | **126.6%** ($1,960,500,000) |
+| **T1–T3 Coverage of SAR** | **122.8%** ($2,037,759,306) |
 | **Payment Types Classified** | 10 |
 | **Wire Transfers in Master Ledger** | 481 |
 | **Unique Entities (Entity-Resolved)** | 228 |
@@ -111,8 +111,8 @@ For the girls.
 | **T2** | Known Associates | $343,400,000 | 16.0% |
 | **T3** | Extended Network | $7,600,000 | 0.4% |
 | **T4** | Unclassified | $185,500,000 | 8.6% |
-| **T1–T3** | **Auditable Subtotal** | **$1,960,500,000** | **126.6% of SAR** |
-| **Total** | **Publication Ledger** | **$2,146,000,000** | — |
+| **T1–T3** | **Auditable Subtotal** | **$2,037,759,306** | **122.8% of SAR** |
+| **Total** | **Publication Ledger** | **$2,308,000,502** | — |
 
 ### Why T1–T3 Exceeds 100%
 
@@ -182,7 +182,7 @@ Amounts reflect intermediate pipeline snapshots. Final verified figures are in t
 Not a search index. A relational forensic database. **8.64 GB, 49 tables, 26.7 million rows.**
 
 **Financial Analysis (17 tables)**
-- `publication_ledger` — 6,310 deduplicated transactions ($2.378B, dedup_status='UNIQUE') with four-tier GAGAS classification (T1–T4), payment type, source exhibit
+- `publication_ledger` — 6,397 deduplicated transactions ($2.308B, dedup_status='UNIQUE') with four-tier GAGAS classification (T1–T4), payment type, source exhibit
 - `master_wire_ledger` — 481 court-exhibit authenticated wire transfers, entity-resolved, 14-bank coverage, 51% Bates
 - `extracted_payments` — 10,118 raw payment extractions across 10 payment types (pre-dedup input to publication ledger)
 - `bank_statement_transactions` — 24,563 multi-bank statement records from 13 institutions (1,202 verified after 11-layer cleanup)
@@ -261,7 +261,7 @@ Phases 14-24  Wire Transfer Extraction Pipeline → 382-wire ledger (pre-5I), $1
 Phase 5I   Entity Resolution & Bank Expansion → 481-wire ledger, $973M entity-resolved, 14-bank coverage
 Phase 5J   Multi-Bank Statement Parser → 1,202 verified transactions from 13 banks
 Phase 5K   Payment Type Expansion → CHIPS, SWIFT, checks, bank statements beyond wire transfers
-Phase 5L   Publication Ledger Assembly → 6,310 unique transactions (dedup-verified), $2.378B, four-tier GAGAS framework
+Phase 5L   Publication Ledger Assembly → 6,397 unique transactions (dedup-verified), $2.308B, four-tier GAGAS framework
 ```
 
 ### Financial Extraction Pipeline (Phases 14–5L)
@@ -280,7 +280,7 @@ Phase 5L   Publication Ledger Assembly → 6,310 unique transactions (dedup-veri
 | **5I** | **Entity resolution: 481 wires, 228 entities, 14 banks, 51% Bates coverage** | **$973M entity-resolved** |
 | 5J | Multi-bank statement parser: 1,202 transactions from 13 institutions | +$430K verified statements |
 | 5K | Payment type expansion: CHIPS, SWIFT, checks, bank statements | 10 payment types classified |
-| **5L** | **Publication ledger: 6,310 dedup-verified transactions, four-tier GAGAS, T1–T3 = 126.6% SAR** | **$2.378B total** |
+| **5L** | **Publication ledger: 6,397 dedup-verified transactions, four-tier GAGAS, T1–T3 = 122.8% SAR** | **$2.308B total** |
 
 Full phase-by-phase details: **[METHODOLOGY.md](docs/METHODOLOGY.md)**
 
@@ -379,7 +379,7 @@ Amador identified **$556,723,680** across 22 shell entities — independently co
 
 | # | Title | Key Finding | Data Scope |
 |---|-------|-------------|------------|
-| **19** | **<a href="https://randallscott25-star.github.io/epstein-forensic-finance/narratives/19_grand_opus_narrative.html" target="_blank">Blueprint of a Financial Machine</a>** | ** $2.378B, 123 nodes, 313 edges. Full network mapped. <a href="https://randallscott25-star.github.io/epstein-forensic-finance/visualizations/19_blueprint_financial_machine.html" target="_blank">Visualization</a>** | **6,310 txns · 123 nodes · $2.378B** |
+| **19** | **<a href="https://randallscott25-star.github.io/epstein-forensic-finance/narratives/19_grand_opus_narrative.html" target="_blank">Blueprint of a Financial Machine</a>** | ** $2.308B, 123 nodes, 313 edges. Full network mapped. <a href="https://randallscott25-star.github.io/epstein-forensic-finance/visualizations/19_blueprint_financial_machine.html" target="_blank">Visualization</a>** | **6,397 txns · 123 nodes · $2.308B** |
 | **20** | **<a href="https://randallscott25-star.github.io/epstein-forensic-finance/narratives/20_the_verification_wall.html" target="_blank">The Verification Wall</a>** | ** Narrative 20. Every document has a Bates number — the wall tests what's behind it. 8 noise POIs ($144.4M claimed, Bates stamps → news/court filings, $0 bank docs) vs. Leon Black ($310.5M, 42 verified wires, 15 bank docs). NLP phantom autopsy with clickable EFTA source documents.** | **9 POIs · 15 bank docs · $310.5M verified** |
 
 Source workbook: **[Forensic Workbook v10](https://docs.google.com/spreadsheets/d/11lw0QjMZ-rYIjWesv5VG1YKts57ahPEm/edit?usp=sharing&ouid=103970896670138914877&rtpof=true&sd=true)** · [Interactive Shell Network](https://randallscott25-star.github.io/epstein-forensic-finance/visualizations/shell_network.html)
@@ -400,7 +400,7 @@ Source workbook: **[Forensic Workbook v10](https://docs.google.com/spreadsheets/
 │   └── SOURCE_APPENDIX_TEMPLATE.md        ← Standard template for source appendices
 ├── narratives/                            ← 2 forensic data narratives with source appendices
 ├── data/
-│   ├── publication_ledger_phase5l.json    ← 6,310 deduplicated transactions, four-tier (publication dataset)
+│   ├── publication_ledger_phase5l.json    ← 6,397 deduplicated transactions, four-tier (publication dataset)
 │   ├── master_wire_ledger_phase5i.json    ← 481 wires (wire-specific subset)
 │   └── entity_classification.json         ← Entity → type mapping (228 entities)
 ├── visualizations/                        ← Interactive shell network diagram
@@ -414,7 +414,7 @@ Source workbook: **[Forensic Workbook v10](https://docs.google.com/spreadsheets/
 
 ### Visual Guides
 
-- **[SCHEMA.md](docs/SCHEMA.md)** — Full database architecture showing how 49 tables, 11.4M entities, and 1.48M files feed into the 6,310-transaction deduplicated publication ledger
+- **[SCHEMA.md](docs/SCHEMA.md)** — Full database architecture showing how 49 tables, 11.4M entities, and 1.48M files feed into the 6,397-transaction deduplicated publication ledger
 - **[NETWORK.md](docs/NETWORK.md)** — Annotated trust network flow diagram with dollar amounts on every edge
 
 ### Forensic Workbook v10
@@ -422,7 +422,7 @@ Source workbook: **[Forensic Workbook v10](https://docs.google.com/spreadsheets/
 | Tab | Name | Description |
 |:---:|------|-------------|
 |:---:|------|-------------|
-| 1 | Executive Summary | Headline $2.378B, four-tier GAGAS framework, publication ledger |
+| 1 | Executive Summary | Headline $2.308B, four-tier GAGAS framework, publication ledger |
 | 2 | Extraction Phases | Full pipeline with running totals, bug fixes color-coded |
 | 3 | **Money Flow Patterns** | Every wire classified: MONEY IN / INTERNAL MOVE / MONEY OUT |
 | 4 | **Shell Trust Hierarchy** | 4-tier network with actual dollar flows per entity |
@@ -546,12 +546,13 @@ The underlying DOJ documents are U.S. government publications in the public doma
 | Feb 24 | Workbook v7 published (14 tabs). Full database audit: 33 tables, 8.03GB, 26.6M rows |
 | Feb 25 | Phase 5J: Multi-bank statement parser. 1,202 verified transactions from 13 banks ($430K) |
 | Feb 25 | Workbook v8 (19 tabs). N18 published. JSON v26 community dataset. |
-| Feb 25 | Phase 5K–5L: Payment type expansion + publication ledger assembly. 10,964 raw records assembled; 6,310 dedup-verified unique transactions, $2.378B, four-tier GAGAS framework |
+| Feb 25 | Phase 5K–5L: Payment type expansion + publication ledger assembly. 10,964 raw records assembled; 6,397 dedup-verified unique transactions, $2.308B, four-tier GAGAS framework |
 | Feb 25 | Workbook v9. 19 data narratives live. |
-| Feb 26 | N19: Blueprint of a Financial Machine — capstone narrative. 123 nodes, 313 edges, full $2.378B corpus mapped. Timeline v9 with 69 vetted persons of interest. |
+| Feb 26 | N19: Blueprint of a Financial Machine — capstone narrative. 123 nodes, 313 edges, full $2.308B corpus mapped. Timeline v9 with 69 vetted persons of interest. |
 | Feb 27 | Workbook v10 published (21 tabs). Amador cross-validation tab added — $55.6M legal gap, $556.7M shell validation, Duffy structuring memo, Highbridge quid pro quo. |
 | Feb 27 | N20: The Verification Wall. Bates distinction framework. 8 noise POIs ($144.4M → $0 bank docs) vs. Leon Black ($310.5M, 42 wires, 15 bank docs). Clickable EFTA source documents. |
-| Mar 11, 2026 | N19/N20/timeline figures corrected to dedup-verified baseline (6,310 / $2.378B). Media & fork notice added to all published narratives. |
+| Mar 11, 2026 | N19/N20/timeline figures corrected to dedup-verified baseline. Media & fork notice added to all published narratives. |
 | Mar 15, 2026 | EFP Terminal deployed to private server. Browser-based research interface with secure per-user logins and named lanes. Features: Bates Lookup with 6-method document clustering, full-corpus full-text search, media tab with transcriptions and facial recognition, audio cleanup and filtering, corpus email client, iPhone/SMS viewer, geolocation map, Bates queue with PDF report generation. |
 | Mar 27, 2026 | The Projects website launched (the-projects.org). EFP Terminal migrated to cloud-efp.com with full authentication system — login wall, access request registration, admin approval dashboard, credentialed external access. Congressional oversight interest active. |
+| Apr 14, 2026 | Corpus integrity audit: 22 phantom summary-line records removed, 344 reclassified (interest payments, statement headers), 8 cross-layer duplicates resolved. Corpus corrected to $2.308B/6,397. Phase5c tier assignment fixed (was all-T3, now T1-T4 by evidence strength). N21 ICIJ entity-match claims retracted (Zorro/LSJ/NES were never in ICIJ databases), rebuilt with verified operator-level connections (Brunel, Fowler White, Hannan) using tiered evidence framework. All site pages wired to live API. |
 | Ongoing | Deep dive forensic analysis — no further narratives planned |
