@@ -96,7 +96,7 @@ EPSTEIN FORENSIC DATABASE (8GB)
 │   │       └── Regulatory filing data
 │   │
 │   └── MASTER OUTPUT
-│       ├── publication_ledger ────── 6,310 Phase 5L transactions ★★
+│       ├── publication_ledger ────── 6,397 Phase 5L transactions ★★
 │       │   ├── entity_from → entity_to
 │       │   ├── amount, date, payment_type
 │       │   ├── tier (T1/T2/T3/T4 — GAGAS-aligned)
@@ -215,7 +215,7 @@ EPSTEIN FORENSIC DATABASE (8GB)
                                      ▼
                         ┌────────────────────────┐
                         │   PUBLICATION LEDGER   │
-                        │   6,310 transactions   │
+                        │   6,397 transactions   │
                         │   $2,308,000,502     │
                         │   122.8% SAR (T1-T3)   │
                         └────────────────────────┘
