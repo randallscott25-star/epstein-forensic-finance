@@ -530,5 +530,5 @@ The underlying DOJ documents are U.S. government publications in the public doma
 | Feb 26 | N19: Blueprint of a Financial Machine — capstone narrative. 123 nodes, 313 edges, full $2.308B corpus mapped. Timeline v9 with 69 vetted persons of interest. |
 | Feb 27 | Workbook v10 published (21 tabs). Amador cross-validation tab added — $55.6M legal gap, $556.7M shell validation, Duffy structuring memo, Highbridge quid pro quo. |
 | Feb 27 | N20: The Verification Wall. Bates distinction framework. 8 noise POIs ($144.4M → $0 bank docs) vs. Leon Black ($310.5M, 42 wires, 15 bank docs). Clickable EFTA source documents. |
-| Mar 11, 2026 | N19/N20/timeline figures corrected to dedup-verified baseline (6,310 / $2.308B). Media & fork notice added to all published narratives. |
+| Mar 11, 2026 | N19/N20/timeline figures corrected to dedup-verified baseline (6,397 / $2.308B). Media & fork notice added to all published narratives. |
 | Ongoing | Deep dive forensic analysis — no further narratives planned |
