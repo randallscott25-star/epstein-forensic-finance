@@ -6,7 +6,7 @@
 
 ## Executive Summary
 
-After 25+ extraction phases across 1,476,377 DOJ EFTA files (plus 503K cataloged media items across 19 datasets), the publication ledger contains **6,310 unique transactions** totaling **$2,146,000,000** (Unverified) in documented financial activity across 10 payment types. The auditable subtotal (Tiers 1–3) reaches **$1,960,600,000** — **104.4%** of the $1.878 billion FinCEN SAR benchmark. The extraction revealed a structured 4-tier trust network with 43 confirmed shell-to-shell wire transfers across 14 shell entities and 8+ banking institutions.
+After 25+ extraction phases across 1,476,377 DOJ EFTA files (plus 503K cataloged media items across 19 datasets), the publication ledger contains **6,397 unique transactions** totaling **$2,308,000,502** (Unverified) in documented financial activity across 10 payment types. The auditable subtotal (Tiers 1–3) reaches **$2,037,759,306** — **122.8%** of the $1.878 billion FinCEN SAR benchmark. The extraction revealed a structured 4-tier trust network with 43 confirmed shell-to-shell wire transfers across 14 shell entities and 8+ banking institutions.
 
 ---
 
@@ -16,9 +16,9 @@ After 25+ extraction phases across 1,476,377 DOJ EFTA files (plus 503K cataloged
 
 | Metric | SAR Benchmark | Publication Ledger (Unverified) | Delta |
 |--------|-------------:|---------------:|------:|
-| Total financial activity | $1,878,000,000 | $2,146,000,000 | +$268,000,000 |
-| T1–T3 auditable subtotal | $1,878,000,000 | $1,960,600,000 | +$82,600,000 |
-| T1–T3 SAR coverage | 100% | 104.4% | +4.4% |
+| Total financial activity | $1,878,000,000 | $2,308,000,502 | +$268,000,000 |
+| T1–T3 auditable subtotal | $1,878,000,000 | $2,037,759,306 | +$82,600,000 |
+| T1–T3 SAR coverage | 100% | 122.8% | +4.4% |
 
 **Why T1–T3 exceeds 100%**: The SAR benchmark counts only transactions banks flagged as suspicious. My extraction captures all identifiable financial activity — including non-suspicious legitimate transactions (art auction proceeds, law firm settlements, VC investments, hedge fund returns). The T4 (Unclassified, $185M) tier is excluded from the SAR comparison because those transactions lack sufficient entity resolution for classification.
 
@@ -156,8 +156,8 @@ Consistent with NES LLC functioning as a personal expense shell for Maxwell.
 
 | Metric | Value |
 |--------|-------|
-| Publication ledger transactions | 6,310 unique |
-| Publication ledger total | $2,146,000,000 |
+| Publication ledger transactions | 6,397 unique |
+| Publication ledger total | $2,308,000,502 |
 | Payment types classified | 10 |
 | T1 (Epstein-Controlled) | $1,610,000,000 |
 | T2 (Known Associates) | $343,000,000 |
