@@ -4,7 +4,7 @@
 
 ## Overview
 
-This document describes the extraction pipeline I built to identify and quantify financial transactions from 1,476,377 files across 19 DOJ EFTA datasets. The pipeline produced a publication ledger of **6,310 unique transactions** totaling **$2,146,000,000** (Unverified) across 10 payment types. The auditable subtotal (Tiers 1–3) reaches **$1,960,600,000** — 104.4% of the $1.878 billion FinCEN SAR benchmark.
+This document describes the extraction pipeline I built to identify and quantify financial transactions from 1,476,377 files across 19 DOJ EFTA datasets. The pipeline produced a publication ledger of **6,397 unique transactions** totaling **$2,308,000,502** (Unverified) across 10 payment types. The auditable subtotal (Tiers 1–3) reaches **$2,037,759,306** — 122.8% of the $1.878 billion FinCEN SAR benchmark.
 
 I wrote all extraction code, designed the database schema, and performed the forensic analysis as a solo effort, with AI assistance (Claude, Anthropic) for development acceleration and quality assurance. The full database architecture is documented in **[SCHEMA.md](SCHEMA.md)**.
 
@@ -97,7 +97,7 @@ All amounts are (Unverified) automated extractions.
 | **5I** | **Entity Resolution & Bank Expansion** | **481 wires, 228 entities, 14 banks** | $973,392,414 (entity-resolved) | — | **Entity classification + custodian audit** |
 | **5J** | **Multi-Bank Statement Parser** | **+1,202 transactions from 13 banks** | +$430K verified statements | — | **Statement-level verification** |
 | **5K** | **Payment Type Expansion** | **CHIPS, SWIFT, checks, bank statements** | 10 payment types | — | **Beyond wire transfers** |
-| **5L** | **Publication Ledger Assembly** | **6,310 unique, four-tier GAGAS** | **$2,146,000,000** | **104.4%** | **T1–T3 = $1,960,600,000** |
+| **5L** | **Publication Ledger Assembly** | **6,397 unique, four-tier GAGAS** | **$2,308,000,502** | **122.8%** | **T1–T3 = $2,037,759,306** |
 
 ---
 
