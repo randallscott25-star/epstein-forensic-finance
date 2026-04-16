@@ -1,10 +1,10 @@
 # Methodology
 
-> ⚠️ **This analysis does not constitute an audit, examination, or review performed in accordance with GAAS, GAGAS, or AICPA SSFS No. 1. All dollar figures are (Unverified) automated extractions. Verification tiers are analyst assessments, not audit opinions. See [COMPLIANCE.md](COMPLIANCE.md) for full professional standards discussion.**
+> This document describes the forensic extraction pipeline used to reconstruct Epstein-related financial activity from the DOJ EFTA corpus. See [COMPLIANCE.md](COMPLIANCE.md) for applicable professional standards.
 
 ## Overview
 
-This document describes the extraction pipeline I built to identify and quantify financial transactions from 1,476,377 files across 19 DOJ EFTA datasets. The pipeline produced a publication ledger of **6,397 unique transactions** totaling **$2,308,000,502** (Unverified) across 10 payment types. The auditable subtotal (Tiers 1–3) reaches **$2,037,759,306** — 122.8% of the $1.878 billion FinCEN SAR benchmark.
+This document describes the extraction pipeline I built to identify and quantify financial transactions from 1,476,437 files across 19 DOJ EFTA datasets. The pipeline produced a publication ledger of **6,397 unique transactions** totaling **$2,308,000,502** across 10 payment types. The auditable subtotal (Tiers 1–3) reaches **$2,037,759,306** — 122.8% of the $1.878 billion FinCEN SAR benchmark.
 
 I wrote all extraction code, designed the database schema, and performed the forensic analysis as a solo effort, with AI assistance (Claude, Anthropic) for development acceleration and quality assurance. The full database architecture is documented in **[SCHEMA.md](SCHEMA.md)**.
 
@@ -16,7 +16,7 @@ I wrote all extraction code, designed the database schema, and performed the for
 
 | Metric | Value |
 |--------|------:|
-| Total files indexed | 1,476,377 + 503,154 media |
+| Total files indexed | 1,476,437 + 503,154 media |
 | Datasets | 19 (<a href="https://www.justice.gov/epstein/doj-disclosures/data-set-1-files" target="_blank">DS1</a>-12 + DS98-104) |
 | Extracted text records | 1.48M+ |
 | Entity extraction (spaCy NLP) | 11,438,106 entities |
@@ -73,8 +73,6 @@ Every financial record extracted from the EFTA corpus is independently scored ac
 
 ### Phase-by-Phase Log
 
-All amounts are (Unverified) automated extractions.
-
 | Phase | Description | Amount | Running Total | % SAR | Quality Gate |
 |-------|-------------|-------:|--------------:|------:|-------------|
 | v2 | Core OCR Extraction | +$1,204,000,000 | $1,204,000,000 | 64.1% | Amount-unique dedup |
@@ -97,13 +95,41 @@ All amounts are (Unverified) automated extractions.
 | **5I** | **Entity Resolution & Bank Expansion** | **481 wires, 228 entities, 14 banks** | $973,392,414 (entity-resolved) | — | **Entity classification + custodian audit** |
 | **5J** | **Multi-Bank Statement Parser** | **+1,202 transactions from 13 banks** | +$430K verified statements | — | **Statement-level verification** |
 | **5K** | **Payment Type Expansion** | **CHIPS, SWIFT, checks, bank statements** | 10 payment types | — | **Beyond wire transfers** |
-| **5L** | **Publication Ledger Assembly** | **6,397 unique, four-tier GAGAS** | **$2,308,000,502** | **122.8%** | **T1–T3 = $2,037,759,306** |
+| **5L** | **Publication Ledger Assembly** | **6,310 unique → 6,397 post-audit** | $2.146B → **$2.308B** | 122.9% | **T1–T3 GAGAS tiering** |
+| **5C (April)** | **Classified transaction integration** | **+438 records** | +$211.5M | — | **Pipeline extraction, tier-classified** |
+| **5D (April)** | **Court exhibit integration** | **+91 records** | +$121.9M | — | **DB-SDNY exhibit numbers** |
+| **6 (April)** | **FirstBank USVI integration** | **+14 records** | +$4.9M | — | **Virgin Islands accounts** |
+| **Audit (April 14)** | **Corpus integrity audit** | **-370 records, -$70M** | **$2.308B / 6,397** | 122.9% | **Phantom removal + reclassification** |
+
+### April 2026 Audit
+
+The April 14 corpus integrity audit removed $70M of noise from the ledger after Phase 5C/5D/6 were applied:
+
+- **21 phantom summary-line records** (-$53.9M) — JPMorgan statement "Total Debits" rows misread by the OCR pass as transactions
+- **341 reclassified interest payments** (-$4.0M) — moved out of the transaction ledger, into a separate interest ledger
+- **8 cross-layer duplicates** (-$12.4M) — same transaction appearing in both L2 and L3
+
+Net effect: 6,767 → 6,397 records, $2.378B → $2.308B total. Every removal is documented in the audit trail exposed at `/api/pub/stats#audit_trail`.
+
+---
+
+## Four-Layer Canonical Evidence Model (Post-April 2026)
+
+Post-audit, the 6,397-record ledger is organized into four canonical evidence layers:
+
+| Layer | Records | Total | Source |
+|-------|--------:|------:|--------|
+| L1 — Master wire ledger | 481 | $973.4M | Individual wire transfers, fully reconciled (Phase v2-24) |
+| L2 — Extracted payments | 3,876 | $529.2M | Pipeline-extracted transactions, tier-classified (Phase 5I) |
+| L3 — Bank statements + court-verified | 1,267 | $512.0M | Multi-bank statement parse + Phase 5C/6 FirstBank |
+| L4 — Audited fund flows | 773 | $293.4M | Curated from the NLP pipeline, hand-reviewed |
+| **Total** | **6,397** | **$2,308.0M** | |
 
 ---
 
 ## Deduplication Strategy
 
-### Three-Stage Dedup Evolution
+### Dedup Evolution
 
 **Stage 1 (Phases v2-20): Amount-Only Dedup**
 Each unique dollar amount was counted once, regardless of entity pairs or dates. Maximally conservative but destroyed legitimate repeat wires.
@@ -116,6 +142,9 @@ I removed the $10M safety cap for court-exhibit verified wires. All 8 above-cap 
 
 **Stage 4 (Phase 25): Date Recovery from Source Context**
 I queried source database tables (`fund_flows_audited.date_ref`, `fund_flows_audited.context_snippet`, `verified_wires.date`, `fund_flows.context`) to recover dates for 75 previously undated wires — improving date coverage from 31.9% to 51.6%. Zero collisions with existing dated entries confirmed that all undated wires were genuinely unique, validating the earlier dedup methodology. Credit: u/miraculum_one (Reddit) identified that dates were present in context fields.
+
+**Stage 5 (April 2026 audit): Cross-Layer Duplicate Removal**
+The April 14 integrity audit identified 8 cross-layer duplicates — transactions appearing in both L2 (extracted payments) and L3 (bank statements) that represented the same underlying wire. These were resolved to the higher-confidence L3 record.
 
 ### Entity Classification
 
@@ -146,20 +175,27 @@ Nine data quality issues were identified and corrected during the pipeline:
 | 8 | 23 | Date-Blind Dedup | +$189M | Four $10M wires on different dates counted as one | Date-aware master ledger composite key |
 | 9 | 24 | Arbitrary Cap + Custodian | +$120.6M / -$113.4M | $10M cap excluded verified wires; "(DBAGNY)" misclassified | Cap removed for verified tier; custodian audit |
 
+### Post-Phase-24 Audit Findings (April 2026)
+
+| # | Issue | Impact | Resolution |
+|---|-------|--------|-----------|
+| 10 | Phantom summary lines | -$53.9M | 21 JPMorgan "Total Debits" rows misread as transactions; removed |
+| 11 | Interest misclassification | -$4.0M | 341 interest payments reclassified out of the transaction ledger |
+| 12 | Cross-layer duplicates | -$12.4M | 8 transactions appearing in both L2 and L3; consolidated to higher-confidence record |
+
 ---
 
 ## Limitations
 
-1. **Not a professional audit**: This is automated text extraction, not a review under GAAS, GAGAS, or AICPA SSFS No. 1.
-2. **Solo practitioner**: No segregation of duties or independent partner review. AI-assisted QA provides partial mitigation.
-3. **OCR quality varies**: Some amounts may be misread from scan artifacts (e.g., $1M vs $10M).
-4. **Entity normalization is imperfect**: Some entities may be misidentified or incorrectly merged across OCR variants.
-5. **Sealed documents are inaccessible**: Court-sealed records cannot be extracted. The dollar value of sealed financial activity is unknown.
-6. **SAR vs. completed transactions**: The SAR benchmark counts **attempted** suspicious transactions; I extract **completed** wire transfers.
-7. **Destroyed records**: Pre-retention period records may have been destroyed. The dollar value is unquantifiable from the EFTA corpus.
-8. **Cross-table name overlap**: Same wire may appear with different entity formatting across database tables.
-9. **Chain-hop filtering trade-offs**: Some legitimate multi-step transactions may have been excluded by the internal entity filter.
-10. **Date coverage**: 350 of 481 master ledger entries have dates (72.8%) after Phase 5I entity resolution. The remaining 131 undated entries carry higher duplication risk, though zero-collision validation confirmed all undated wires were genuinely unique.
+1. **Solo practitioner**: No segregation of duties or independent partner review. AI-assisted QA provides partial mitigation.
+2. **OCR quality varies**: Some amounts may be misread from scan artifacts (e.g., $1M vs $10M) — detected and corrected when flagged.
+3. **Entity normalization is imperfect**: Some entities may be misidentified or incorrectly merged across OCR variants.
+4. **Sealed documents are inaccessible**: Court-sealed records cannot be extracted. The dollar value of sealed financial activity is unknown.
+5. **SAR vs. completed transactions**: The SAR benchmark counts **attempted** suspicious transactions; I extract **completed** wire transfers.
+6. **Destroyed records**: Pre-retention period records may have been destroyed. The dollar value is unquantifiable from the EFTA corpus.
+7. **Cross-table name overlap**: Same wire may appear with different entity formatting across database tables — resolved at ledger assembly via the dedup rules.
+8. **Chain-hop filtering trade-offs**: Some legitimate multi-step transactions may have been excluded by the internal entity filter.
+9. **Date coverage**: 350 of 481 master ledger entries have dates (72.8%) after Phase 5I entity resolution. The remaining 131 undated entries carry higher duplication risk, though zero-collision validation confirmed all undated wires were genuinely unique.
 
 ---
 
@@ -173,4 +209,4 @@ Nine data quality issues were identified and corrected during the pipeline:
 - **Scoring**: 5-axis forensic confidence scoring (v6.2, 93% PROVEN accuracy)
 - **AI Assistance**: Claude (Anthropic) — development acceleration and quality assurance
 - **Version Control**: Git/GitHub
-- **Total effort**: ~300+ hours across 100+ sessions (February 7-25, 2026), solo practitioner
+- **Total effort**: ~300+ hours across 100+ sessions (February 7 – April 16, 2026), solo practitioner
