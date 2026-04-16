@@ -10,6 +10,15 @@ As far as we can tell, nobody else has tried to reconstruct the complete financi
 
 ---
 
+## Project Links
+
+- **Website** — [the-projects.org](https://the-projects.org)
+- **Research Terminal** — [cloud-efp.com](https://cloud-efp.com) (credentialed access; [request access](https://cloud-efp.com/register))
+- **Live API** — [the-projects.org/api/pub/stats](https://the-projects.org/api/pub/stats)
+- **Contact** — theproject@isipp.com
+
+---
+
 ## Current Status (April 16, 2026)
 
 | Metric | Figure |
@@ -21,8 +30,6 @@ As far as we can tell, nobody else has tried to reconstruct the complete financi
 | Media items cataloged | 503,517 |
 | SAR benchmark coverage | **122.9%** |
 | Datasets integrated | DS1–DS12, DS98–DS104 |
-
-Live figures: [the-projects.org/api/pub/stats](https://the-projects.org/api/pub/stats)
 
 ---
 
@@ -126,6 +133,14 @@ Analysis conducted under GAAS/GAGAS standards with reference to AICPA SSFS No. 1
 
 ---
 
+## Author
+
+**R.S. Taylor**
+MS Applied Data Science — Syracuse University
+BS Network & Cyber Security — Wilmington University
+
+---
+
 ## Versioning Note
 
 If you are forking, archiving, or citing this work: snapshots capture a moment in time. Do not treat cached versions as authoritative. Always reference the live repository at `github.com/randallscott25-star/epstein-forensic-finance` for current figures, or the live API at `the-projects.org/api/pub/stats`.
@@ -141,3 +156,7 @@ Taylor, R.S. (2026). *Epstein Financial Forensics: Automated forensic financial 
 ## License
 
 This work is licensed under [Creative Commons Attribution 4.0 International](https://creativecommons.org/licenses/by/4.0/). The underlying DOJ documents are U.S. government publications in the public domain. This repository contains only metadata, extracted analysis, and methodology — no copyrighted source material is reproduced.
+
+---
+
+*For the girls.*
