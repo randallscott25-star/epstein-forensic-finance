@@ -124,7 +124,6 @@ Other projects in this space are doing solid work — narrative forensic reporti
 | Network mapping | Who's connected to whom | Complementary — we prove the transactions |
 | **This repo** | **Certified forensic ledger + entity-resolved fund flows** | — |
 
-Rachel Hurley's GriftMatrix maps who's connected to whom. We prove the transactions and document the conduct. One-liner: *Rachel maps the network; we prove the transactions and document the conduct.*
 
 ---
 
