@@ -5,6 +5,8 @@
 ![Visitors](https://komarev.com/ghpvc/?username=randallscott25-star&label=visitors&color=555555&style=flat)
 [![License: All Rights Reserved](https://img.shields.io/badge/License-All%20Rights%20Reserved-red.svg)](LICENSE)
 
+> **LICENSE NOTICE (effective April 16, 2026):** This repository is **All Rights Reserved**. The prior CC BY 4.0 grant no longer applies to new uses of this work. Copies made prior to April 16, 2026 were distributed under CC BY 4.0 and their status is governed by that license's terms. All new reuse, mirroring, redistribution, or derivative works require written permission from R.S. Taylor.
+
 We took the documents the Department of Justice released under the Epstein Files Transparency Act and built a forensic financial database from scratch. Wrote all the extraction code. Designed the schema. Built the classification pipeline. Ran the analysis. Team project, start to finish. AI tools helped us write code faster — same way you'd use a calculator. The analytical calls are ours.
 
 Our team background spans multi-affiliate financial reconciliation, budget variance analysis, automated exception reporting at institutional scale, forensic financial analysis, and legal review. We applied those same methods here.
